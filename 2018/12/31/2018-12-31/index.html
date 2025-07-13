@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Unity 贴图整理 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="贴图的英语 Map 其实包含了另一层含义就是“映射”。其功能就是把纹理通过 UV 坐标映射到3D 物体表面。贴图包含了除了纹理以外其他很多信息，比方说 UV 坐标、贴图输入输出控制等等。材质是一个数据集，主要功能就是给渲染器提供数据和光照算法。 漫反射贴图diffuse map ：漫反射贴图在游戏中表现出物体表面的反射和表面颜色。换句话说，它可以表现出物体被光照射到而显出的颜色和强度。我们通过颜色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity 贴图整理">
+<meta property="og:url" content="http://droidman.net/2018/12/31/2018-12-31/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="贴图的英语 Map 其实包含了另一层含义就是“映射”。其功能就是把纹理通过 UV 坐标映射到3D 物体表面。贴图包含了除了纹理以外其他很多信息，比方说 UV 坐标、贴图输入输出控制等等。材质是一个数据集，主要功能就是给渲染器提供数据和光照算法。 漫反射贴图diffuse map ：漫反射贴图在游戏中表现出物体表面的反射和表面颜色。换句话说，它可以表现出物体被光照射到而显出的颜色和强度。我们通过颜色">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2018-12-31T12:41:35.000Z">
+<meta property="article:modified_time" content="2025-07-09T12:00:57.824Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Unity">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-12-31" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/31/2018-12-31/" class="article-date">
+  <time datetime="2018-12-31T12:41:35.000Z" itemprop="datePublished">2018-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity 贴图整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>贴图的英语 Map 其实包含了另一层含义就是“映射”。其功能就是把纹理通过 UV 坐标映射到3D 物体表面。贴图包含了除了纹理以外其他很多信息，比方说 UV 坐标、贴图输入输出控制等等。材质是一个数据集，主要功能就是给渲染器提供数据和光照算法。</p>
+<p>漫反射贴图diffuse map ：漫反射贴图在游戏中表现出物体表面的反射和表面颜色。换句话说，它可以表现出物体被光照射到而显出的颜色和强度。我们通过颜色和明暗来绘制一幅漫反射贴图，在这张贴图中，吸收了比较多的光线的部分比较暗，而表面反射比较强的部分，吸收的光线比较少。<br>列举一下，物体的固有色以及纹理，贴图上的光影。前面的固有色和纹理我们很容易理解，至于后面的光影，我们再绘制漫反射贴图的时候需要区别对待，比如我们做一堵墙，每一块砖都是用模型做出来的，那么我们就没有必要绘制砖缝，因为这个可以通过打灯光来实现。可是我们如果用模型只做了一面墙，上面的砖块是用贴图来实现，那么就得绘制出砖缝了。从美术的角度，砖缝出了事一条单独的材质带外，还有就是砖缝也是承接投影的，所以在漫反射图上，绘制出投影也是很有必要的。没有什么物体能够反射出跟照到它身上相同强度的光。因此，让你的漫反射贴图暗一些是一个不错的想法。通常，光滑的面只有很少的光会散射，所以你的漫反射贴图可以亮一些。漫反射贴图应用到材质中去是直接通过DiffuseMap的。再命名规范上它通常是再文件的末尾加上“_d”来标记它是漫反射贴图。</p>
+<p>高度贴图Height maps：所谓高度图实际上就是一个2D数组。创建地形为什么需要高度图呢？可以这样考虑，地形实际上就是一系列高度不同的网格而已，这样数组中每个元素的索引值刚好可以用来定位不同的网格（x，y），而所储存的值就是网格的高度（z）。<br>我们在这里叙述高度图，其实也是为了更好的绘制法线贴图，很多情况下我们的法线贴图只能在已有的漫反射贴图作为素材进行绘制，这样就是需要由一个HeightMap转换成法线贴图的一个过程，明白了这个原理，做起来也就可以更好的驾驭其效果。<br>高度贴图是一种黑白的图像，它通过像素来定义模型表面的高度。越亮的地方它的高度就越高，画面越白的地方越高，越黑的地方越低，灰色的在中间，从而表现不同的地形。使用高度贴图仅仅是为了适应简单的工作流程。高度贴图通常通过“Heightmap”函数来调用到3D软件中去的，我们通常再文件名后面加一个”_h”来标示它。</p>
+<p>高光贴图 Specular maps：高光贴图是用来表现当光线照射到模型表面时,其表面属性的.(如金属和皮肤、布、塑料反射不同量的光)从而区分不同材质。高光贴图在引擎中表现为镜面反射和物体表面的高光颜色。<br>材质的反光程度就越强。(强弱度是指,如果将这张Specularmap去色成为黑白图,图上越偏向RGB0,0,0,的部分高光越弱,越偏向RGB255,255,255的部分高光越强.)<br>我们建立高光贴图的时候，我们使用solid value来表现普通表面的反射，而暗的地方则会给人一种侵蚀风化的反射效果。<br>颜色在高光贴图中将会用来定义高光的颜色，组成砖的材料应该是一些沙子，他们将会反射出一些微小的具有质感的光。（为了丰富高光贴图,我们有很多方法:做局部高光的细微变化,添加纹理(这个纹理要和材质本身的纹理区分开),叠加彩色图层(谨慎用)）。高光贴图是通过Specularmap函数调用到引擎中的，通常我们再贴图的后面加一个”_s”来区别它。要记住的是,单单凭借高光贴图是无法充分的表现材质特性的,只有Didffuse,Normal,和Specular三张配合才能充分的表现材质特性。</p>
+<p>AO贴图Ambient Occlusiont：中文一般叫做环境阻塞贴图，是一种目前次时代游戏中常用的贴图技术，AO贴图的计算是不受任何光线影响的，仅仅计算物体间的距离，并根据距离产生一个8位的通道。计算物体的AO贴图的时候，程序使每个像素，根据物体的法线，发射出一条光，这个光碰触到物体的时候，就会产生反馈，标记这里附近有物体，就呈现黑色。而球上方的像素所发射的光，没有碰触到任何物体，因此标记为白色。简单了解算法后，大家就明白，全局光的烘焙师模拟GI（全局光）所呈现的阴影效果，而AO贴图时模拟模型的各个面之间的距离。二者性质是完全不一样的。<br> 在unity中，我们有两个地方可以调整AO，一个是在光照贴图渲染器中，有一个调整AO的参数，这个是确实渲染了一层AO。还有一个就是通过摄影机特效，有一个屏幕空间环境阻塞的特效screen speace ambient occlusion（SSAO）.这两个都可以实现部分的AO效果。</p>
+<p>环境贴图CUBEMAP：Cube map技术说到底就是用一个虚拟的立方体(cube)包围住物体，眼睛到物体某处的向量eyevec经过反射（以该处的法线为对称轴），反射向量reflectvec射到立方体上，就在该立方体上获得一个纹素了（见下图）。明显，我们需要一个类似天空盒般的6张纹理贴在这个虚拟的立方体上。按CUBE MAPPING原意，就是一种enviroment map，因此把周围场景渲染到这6张纹理里是“正统”的。也就是每次渲染时，都作一次离线渲染，分别在每个矩形中心放置相机“拍下”场景，用FBO渲染到纹理，然后把这张纹理作为一个cube map对象的六纹理之一。这样即使是动态之物也能被映射到物体表面了（虽然缺点是不能映射物体自身的任何部分）。</p>
+<p>光照纹理LIGHTMAP：把物体光照的明暗信息保存到纹理上, 实时绘制时不再进行光照计算, 而是采用预先生成的光照纹理(lightmap)来表示明暗效果。<br>好处:由于省去了光照计算, 可以提高绘制速度 。对于一些过度复杂的光照(如光线追踪, 辐射度, AO等算法), 实时计算不太现实. 如果预先计算好保存到纹理上, 这样无疑可以大大提高模型的光影效果，保存下来的lightmap还可以进行二次处理, 如做一下模糊, 让阴影边缘更加柔和<br>缺点:模型额外多了一层纹理, 这样相当于增加了资源的管理成本(异步装载, 版本控制, 文件体积等). 当然, 也可以选择把明暗信息写回原纹理, 但这样限制比较多, 如纹理坐标范围, 物体实例个数。静态的光影效果与对动态的光影没法很好的结合. 如果光照方向改变了的话, 静态光影效果是无法进行变换的. 而且对于静态的阴影, 没法直接影响到动态的模型. 这一点, 反而影响了真实度。</p>
+<p>MIPMAP：把一张贴图按照2的倍数进行缩小。直到1X1。把缩小的图都存储起来。在渲染时，根据一个像素离眼睛为之的距离，来判断从一个合适的图层中取出texel颜色赋值给像素。<br>透过它的工作原理我们可以发现，硬件总是根据眼睛到目标的距离，来选择最适合当前屏幕像素分辨率的图层。假设一张256x256的mipmap贴图，当前屏幕分辨率为1024<em>1024。眼睛距离物体比较近时，mipmap最大也只可能从1024</em>1024的Mipmap图层选取texel。再次，当使用三线性过滤（trilinear）时，最大也只能访问2048<em>2048的图层选取texel，来和1024</em>1024图层中的像素进行线性插值。</p>
+<p>detailmap：顾名思义，就是细节的贴图，其实就是图层的叠加与混合。在这里有几个关键词，一个是Detail的Tiling值，一个是这个Detailmap需要在导入的时候设置为Mipmap。<br>法线贴图是凸凹贴图(Bump mapping)的一种常见应用，简单说就是在不增加模型多边形数量的前提下，通过渲染暗部和亮部的不同颜色深度，来为原来的贴图和模型增加视觉细节和真实效果。简单原理是在普通的贴图的基础上，再另外提供一张对应原来贴图的，可以表示渲染浓淡的贴图。通过将这张附加的表示表面凸凹的贴图的因素于实际的原贴图进行运算后，可以得到新的细节更加丰富富有立体感的渲染效果。法线贴图多用在CG动画的渲染以及游戏画面的制作上，将具有高细节的模型通过映射烘焙出法线贴图，贴在低端模型的法线贴图通道上，使之拥有法线贴图的渲染效果，却可以大大降低渲染时需要的面数和计算内容，从而达到优化动画渲染和游戏渲染的效果。法线贴图就是记录了一个需要进行光影变换的贴图上的各个点的凹凸情况的贴图，显示芯片根据这个贴图的内容，来实时的生成新的有过光影变化的贴图，从而实现立体效果。<br>法线贴图其实并不是真正的贴图，所以也不会直接贴到物体的表面，它所起的作用就是记录每个点上的法线的方向。所以这个贴图如果看起来也会比较诡异，经常呈现一种偏蓝紫色的样子。<br>大多数法线图一般都和下面的图类似，是一张以蓝紫色为主的图。这张法线图其实是一张RGB贴图，其中红，绿，蓝三个通道分别表示由高度图转换而来的该点的法线指向：Nx、Ny、Nz。在其中绝大部分点的法线都指向z方向，因此图更偏向于蓝色。在shader进行处理时，我们将光照与该点的法线值进行点积后即可得到在该光线下应有的明暗特性，再将其应用到原图上，即可反应在一定光照环境下物体的凹凸关系了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/12/31/2018-12-31/" data-id="cmcw2i8fv0000isz8bbei2v68" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/01/2019-01-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Shader光照模型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/29/2018-12-29/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何在Unity 中播放视频</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

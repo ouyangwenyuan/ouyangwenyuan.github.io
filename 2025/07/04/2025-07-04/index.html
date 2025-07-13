@@ -5,44 +5,19 @@
   
 
   
-  <title>2025-07-04 | 持续学习者————Just Do It！</title>
+  <title>框架之资源管理 | 持续学习者————Just Do It！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+  <meta name="description" content="这篇只涉及基础原理，下篇会讲如何实现一个简单的资源管理框架。 一、Assets和Objects 资源(Asset)是存储在Unity项目的 Assets 文件夹中的磁盘文件。有些资源的数据格式是Unity原生支持的，有些资源则需要转换为原生的数据格式后才能被使用。对象(UnityEngine.Object)，代表序列化数据的集合，表示某个资源的具体实例。它可以是Unity使用的任何类型的资源，所有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2025-07-04">
+<meta property="og:title" content="框架之资源管理">
 <meta property="og:url" content="http://droidman.net/2025/07/04/2025-07-04/index.html">
 <meta property="og:site_name" content="持续学习者————Just Do It！">
-<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:description" content="这篇只涉及基础原理，下篇会讲如何实现一个简单的资源管理框架。 一、Assets和Objects 资源(Asset)是存储在Unity项目的 Assets 文件夹中的磁盘文件。有些资源的数据格式是Unity原生支持的，有些资源则需要转换为原生的数据格式后才能被使用。对象(UnityEngine.Object)，代表序列化数据的集合，表示某个资源的具体实例。它可以是Unity使用的任何类型的资源，所有">
 <meta property="og:locale" content="en,ZH">
 <meta property="article:published_time" content="2025-07-04T00:27:04.000Z">
-<meta property="article:modified_time" content="2025-07-04T00:27:04.324Z">
+<meta property="article:modified_time" content="2025-07-13T03:03:48.134Z">
 <meta property="article:author" content="OuyangWenyuan">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="Objective-c">
-<meta property="article:tag" content="Swift">
-<meta property="article:tag" content="Unity">
-<meta property="article:tag" content="Unity3d">
-<meta property="article:tag" content="Shader">
-<meta property="article:tag" content="Http">
-<meta property="article:tag" content="Web">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="Program">
-<meta property="article:tag" content="Mac OS">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Unix">
-<meta property="article:tag" content="Window">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Lua">
-<meta property="article:tag" content="Javascript">
-<meta property="article:tag" content="Android">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="xcode">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="eclicpse">
-<meta property="article:tag" content="blender">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="unity">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
@@ -110,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      2025-07-04
+      框架之资源管理
     </h1>
   
 
@@ -118,13 +93,216 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>这篇只涉及基础原理，下篇会讲如何实现一个简单的资源管理框架。</p>
+<p>一、Assets和Objects</p>
+<p>资源(Asset)是存储在Unity项目的 Assets 文件夹中的磁盘文件。有些资源的数据格式是Unity原生支持的，有些资源则需要转换为原生的数据格式后才能被使用。<br>对象(UnityEngine.Object)，代表序列化数据的集合，表示某个资源的具体实例。它可以是Unity使用的任何类型的资源，所有对象都是UnityEngine.Object基类的子类<br>一个资源可以包含多个对象（一对多）<br>二、文件GUID、fileID(本地ID)、InstanceID(实例ID)<br>Unity文件、文件引用、Meta详解:<a href="https://blog.uwa4d.com/archives/USparkle_inf_UnityEngine.html" target="_blank" rel="noopener">https://blog.uwa4d.com/archives/USparkle_inf_UnityEngine.html</a></p>
+<p>meta文件：Unity在首次将Asset导入Unity时会生成meta文件，它与Asset存储在同一个目录中。该文件中记录了资源的GUID和fileID（本地ID），文件GUID(File GUID)标识了资源文件(Asset file)在哪个目标资源(target resource)文件里，fileID（本地ID）用于标识Asset中的每个子Object和组件。资源间的依赖关系通过GUID来确定；资源内部的依赖关系使用fileID来确定，每个fileID对应一组组件信息，该信息记录了其对应组件的类型及初始化信息。例如以下示例m_Script记录脚本的guid，其他参数为m_Script的类初始化时的参数</p>
+<p>— !u!114 &amp;114826744576399670<br>MonoBehaviour:<br>  m_ObjectHideFlags: 1<br>  m_PrefabParentObject: {fileID: 0}<br>  m_PrefabInternal: {fileID: 100100000}<br>  m_GameObject: {fileID: 1151505213129540}<br>  m_Enabled: 1<br>  m_EditorHideFlags: 0<br>  m_Script: {fileID: 11500000, guid: 48fb9c66a154844a495af53fc97a7656, type: 3}<br>  m_Name:<br>  m_EditorClassIdentifier:<br>  m_Material: {fileID: 0}<br>  m_Color: {r: 1, g: 1, b: 1, a: 1}<br>  m_RaycastTarget: 0<br>  m_OnCullStateChanged:<br>    m_PersistentCalls:<br>      m_Calls: []<br>    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,<br>      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null<br>  m_Sprite: {fileID: 21300000, guid: 5c7a7d69156d06448833b25308c032cf, type: 3}<br>  m_Type: 0<br>  m_PreserveAspect: 0<br>  m_FillCenter: 1<br>  m_FillMethod: 4<br>  m_FillAmount: 1<br>  m_FillClockwise: 1<br>  m_FillOrigin: 0<br>  m_SpriteName:<br>  m_isNativeSize: 0<br>  m_isGradualMat: 0<br>除了GUID，meta文件还存储了有关资源导入的信息。例如，贴图资源在导入时可以当作标准贴图、法线贴图、GUI贴图、cookie或者光线贴图。这些导入设置都会被存储在meta文件里。</p>
+<p>我们以预制体Close作为示例，它包含一个Image的图片子节点，一个BtnClose的按钮节点</p>
+<p>.meta文件大概是这样子的：guid是指Asset的id,这个id是唯一的，通过Library\metadata下保存的导入信息可以索引到Asset路径<br>fileFormatVersion: 2<br>guid: 9070bffdf4e7444e190533a128133eb4<br>timeCreated: 1519804963<br>licenseType: Pro<br>NativeFormatImporter:<br>  mainObjectFileID: 100100000<br>  userData:<br>  assetBundleName:<br>  assetBundleVariant:<br>　Library\metadata下的文件和Close.Prefabs大概是这样子的：</p>
+<p>如上，Close预制体包含了三个GameObject（Close、Image、BtnClose），在文件导入的时候，unity为每个文件生成一个导出配置，该配置存储在项目的Library\metadata\xx文件夹里，其中xx为.meta记录的guid的前两位，例如70a2579b07749524b8c15f66a4c7216f，对应的xx为70，这个配置保存了GUID和path的对应关系，该ath会指向你的资源目录，只要GUID没变，unity就能索引到资源的目录。该配置还保存了预制体内三个对象的fileID（本地ID）,他与上图右侧的Close.Prefabs文件记录的GameObject是一致的。</p>
+<p>我们再来看看Close.Prefabs这个文件，每一个Unity对象都会有一个FileID，然后在需要引用时，使用这些FileID即可。</p>
+<p>以Image对象为例子。Image对象拥有三个组件，RectTransform、CanvasRenderer、MonoBehaviour（对应的ImageEx组件，该组件继承自Image），你可以在unity里查看对象的fileID</p>
+<p>每一个组件的数据基本上就是这个组件的一堆参数了。那怎么区分这个组件是什么类型的呢？MonoBehaviour的类型参考<a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/ClassIDReference.html</a> YAML数据，例如— !u!222 &amp;222167935205389516的222对应的是CanvasRenderer这个组件，用户自定义的组件通过m_Script参数的guid定位到对应的c#文件目录，就能识别出这个具体是什么类了</p>
+<p>如下，114826744576399670（ImageEx）的组件信息里记录了ImageEx文件的guid，以及ImageEx的初始化信息，实例化这个对象时，unity通过这guid找到imageEx这个类的文件并实例化，再将初始化参数赋值给实例化的对象</p>
+<p>所以在实例化一个GameObject时，只要依照次序，依次创建物体，组件，初始化数据并进行引用绑定即可在场景中生成一个实例。</p>
+<p>InstanceID：Unity为了在运行时，提升资源管理的效率，会在内部维护一个缓存表，负责将文件的GUID与fileID转换成为整数数值，这个数值在本次会话中是唯一的，称作实例ID(InstanceID)。<br>程序启动时，实例ID缓存与所有工程内建的对象(例如在场景中被引用)，以及Resource文件夹下的所有对象，都会被一起初始化。如果在运行时导入了新的资源，或从AssetBundle中载入了新的对象，缓存会被更新，并为这些对象添加相应条目。实例ID仅在失效时才会被从缓存中移除，当提供了指定文件GUID和fileID的AssetBundle被卸载时会产生移除操作。<br>卸载AssetBundle会使实例ID失效，实例ID与其文件GUID和fileID之间的映射会被删除以便节省内存。重新载入AssetBundle后，载入的每个对象都会获得新的实例ID。<br>三、资源生命周期</p>
+<p>加载方式：被动加载和显示加载</p>
+<p>Object会在下列时刻被自动加载：<br>1.映射到该Object的Instance ID被反向引用（Dereference）<br>2.Object当前没有被加载到内存中<br>3.Object的源数据可以被定位</p>
+<p>例如A对象引用了B对象，当加载A对象时，如果B对象未被加载且B对象资源存在，那么B会被加载</p>
+<p>显示加载：在脚本中通过创建或者调用资源加载API（例如AssetBundle.LoadAsset）显式地加载Object</p>
+<p>Object会在下列3中情况下被卸载：</p>
+<p>1.在无用的Asset被清理时会自动卸载Object。该过程在Scene被破坏性地改变时自动发生（例如，通过SceneManager.LoadScene非增量地加载Scene），或者在脚本调用Resources.UnloadUnusedAssets时被触发。这一过程仅卸载那些没有被引用地Object —— 一个Object只会在没有任何Mono变量或其他的活动Object持有对它的引用的时候才能被卸载。</p>
+<p>2.通过调用Resources.UnloadAsset精确地卸载Resources文件夹中的Object。这些Object的Instance ID仍然是有效的，并且含有有效的File GUID和Local ID条目。如果任何Mono变量或者Object持有对这类被卸载的Object的引用，那么在任意引用被反向引用时，这个被卸载的Object都会被立刻重新加载。</p>
+<p>3.来自AssetBundle的Object会在调用AssetBundle.Unload(true)时立即被自动卸载。这会使Object的Instance ID的File GUID和Local ID失效，并且所有对已卸载的Object的活动引用都会变为“(Missing)”引用。在C#脚本中，尝试访问已卸载Object的方法或属性将会引发 NullReferenceException。</p>
+<p>四、加载耗时</p>
+<p>当序列化Unity GameObject的层级结构时，例如序列化预制体，整个层级结构都会被完全序列化。也就是说，这个层级结构中的每个GameObject和Component都会被单独地序列化到数据中。</p>
+<p>当创建GameObject层级结构时，会有几种不同的耗费CPU时间的形式：</p>
+<p>　　1.读取源数据（从存储设备、AssetBundle、其他GameObject等）</p>
+<p>　　2.在新的Transform之间设置父子关系</p>
+<p>　　3.实例化新的GameObject和Component</p>
+<p>　　4.在主线程中唤醒新的GameObject和Component</p>
+<p>后三个时间消耗通常是不变的，无论层级结构是从已有的层级结构克隆的还是从存储设备中加载的。然而，读取源数据消耗的时间会随着序列化的层级结构中的GameObject和Component的数量线性增长，而且受到读取速度的影响。</p>
+<p>在现有的所有平台上，从内存中读取数据都比从存储设备中读取数据快很多。另外，在不同平台上的不同存储媒介上性能特征差异很大。因此，在低速存储设备上加载预制体时，读取预制体的序列化数据消耗的时间很容易超过实例化预制体所花费的时间。也就是说，加载操作的开销受到了存储设备I/O时间的限制。</p>
+<p>前面提到过，在序列化整个预制体时，其中的每个GameObject和Component的数据都会被单独地序列化，这里面可能含有重复的数据。例如，一个UI屏幕上由30个相同的元素，这些元素就会被序列化30次，产生一大团二进制数据。在加载时，这30个相同的元素上的每个GameObject和Component的数据都要全部从磁盘读取出来，然后才能转换成新的Object实例。实例化预制体的整体开销中，文件读取时间占了占了很大比重。对于大型的层级结构，应该将其分模块进行实例化，然后再在运行时将他们整合到一起。</p>
+<p>那么建议就是：将预制体中拥有相同结构的对象单独拎出来做成预制体，采用动态加载的方式加载，例如滑动列表的单Item。</p>
+<p>五、资源加载方式对比</p>
+<p>1.AssetDatabase:在编辑器内加载卸载资源，并不能在游戏发布时使用，它只能在编辑器内使用。但是，它加载速度快，使用简单。</p>
+<p>2.Resources：该文件夹下的资源都会被打进最后的安装包里，类似缺省打进程序包里的AssetBundle。不建议使用该文件夹，因为：</p>
+<p>不正确地使用Resources文件夹会导致应用启动时间变长，同时会增大构建出来的应用程序（该文件夹下的文件，不论是否有引用都会打进最终的包里）。随着Resources文件夹的增加，管理工程各处Resources文件夹里的资源也变得很困难。</p>
+<p>使用Resources文件夹导致细粒度的内存管理愈发地困难。</p>
+<p>使用Resources文件夹无法热更，就这一项就够了～。</p>
+<p>在工程构建的时候，所有名字为”Resources”的目录下的所有资源都会被合并为一个序列化文件。像AssetBundle文件一样，这个文件同时也包含了元数据(metadata)和索引信息(indexing information)。索引信息包含了一个序列化的、将对象的名称映射为 文件GUID+本地ID 查找树(lookup tree)。同时这个索引信息也包含了对象在序列化文件中的偏移位置信息。</p>
+<p>因为这个查找树的数据结构是（在大部分平台上）一个平衡搜索树(balanced search tree)[注1].它的构建时间复杂度是 O(N log(N))，这里的 N 是树中对象的数量。随着Resources文件夹下资源的增长，索引信息的加载时间也会超过线性的速度增长。</p>
+<p>这个操作是发生在应用启动的过程中的Unity闪屏(splash screen)出现的时候，并且是不可跳过的。如果Resources 系统包含了 10000 个资源，那么在低端移动设备上面这个过程将会达到数秒之久，尽管绝大部分的Resources下面的资源在第一个场景当中都是不需要加载的。</p>
+<p>3.AssetBundle：参考<a href="https://www.cnblogs.com/wang-jin-fu/p/11171626.html，支持热更，但是每次资源变化都得重新打ab包（奇慢），所以适合发布模式，但开发模式千万别用。" target="_blank" rel="noopener">https://www.cnblogs.com/wang-jin-fu/p/11171626.html，支持热更，但是每次资源变化都得重新打ab包（奇慢），所以适合发布模式，但开发模式千万别用。</a></p>
+<p>4.UnityWebRequest：从网络端下载</p>
+<p>UnityWebRequest功能分三块：</p>
+<p>　　◾上传文件到服务器</p>
+<p>　　◾从服务器下载</p>
+<p>　　◾http通信控，(例如，重定向和错误处理)</p>
+<p>UnityWebRequest  由三个元素组成。</p>
+<p>　　◾UploadHandler  将数据发送到服务器的对象</p>
+<p>　　◾DownloadHandler   从服务器接收数据的对象</p>
+<p>　　◾UnityWebRequest     负责 HTTP 通信流量控制并管理上面两个对象的对象。也是存储错误和重定向信息的地方。</p>
+<p>使用：</p>
+<p>public class Example : MonoBehaviour<br>{<br>    void Start()<br>    {<br>        // A correct website page.<br>        StartCoroutine(GetRequest(“<a href="https://www.example.com&quot;" target="_blank" rel="noopener">https://www.example.com&quot;</a>));</p>
+<pre><code>    // A non-existing page.
+    StartCoroutine(GetRequest(&quot;https://error.html&quot;));
+}
+
+IEnumerator GetRequest(string uri)
+{
+    using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+    {
+        // Request and wait for the desired page.
+        yield return webRequest.SendWebRequest();
+
+        string[] pages = uri.Split(&apos;/&apos;);
+        int page = pages.Length - 1;
+
+        if (webRequest.isNetworkError)
+        {
+            Debug.Log(pages[page] + &quot;: Error: &quot; + webRequest.error);
+        }
+        else
+        {
+            Debug.Log(pages[page] + &quot;:\nReceived: &quot; + webRequest.downloadHandler.text);
+        }
+    }
+}</code></pre><p>}</p>
+<p>六、资源管理</p>
+<p>资源管理分三部分：</p>
+<p>1.项目内文件的放置规范：合理的划分目录才能合理的使用AssetBundle。一般来说，除了场景和模型，其他资源都是一个目录一个ab包，当然这个目录的细分程度视项目而定，但是更新频繁的对象如预制体，建议细分程度高一点即目录文件小一点。如果目录划分混乱，会导致ab包的效率低下（试想英雄模块和副本模块的资源放在一个目录下并打进ab包里，那么加载英雄界面时会把副本也加载进来，这是即浪费内存又影响加载效率的事）</p>
+<p>　　1-1.Assets目录中的所有资源文件名均采用大驼峰式命名法 ，即每一个单词的首字母都大写。且使用能够描述其功能或意义的英文单词或词组。</p>
+<p>　　1-2.Assets目录中不得出现压缩包、PPT、Word文档等与游戏项目无关的资源文件</p>
+<p>　　1-3.相同类型的资源放在同一个目录下，例如ui资源和场景、模型分开放置，一般会有场景、UI（界面预制体、图集）、模型、音效、脚本、特效、Shader等</p>
+<p>　　1-4.相同功能的资源放在同一个目录下，例如英雄相关功能可能会有十几个界面的预制体，把这些预制体放在同一个文件夹。</p>
+<p>　　1-5.所有插件放在Plugin下。所有的Editor文件放在同一个目录下</p>
+<p>　　1-6.Resources谨慎放置资源，因为该文件夹下的资源都会打进包里，不管是否有用到</p>
+<p>　　1-7.一个图集一个目录</p>
+<p>2.包体大小的控制</p>
+<p>　　2-1.删除无用资源。那么如何确定一个资源是否有被引用到呢？</p>
+<p>　　首先我们需要使用AssetDatabase.FindAssets接口获取到需要查找依赖的对象，例如我们想知道文件夹“xxx”下是否有文件引用资源a，那么xxx目录下的对象就是我们需要查找依赖的对象。如下的参数searchInFolders</p>
+<p>　　我们需要查找依赖的类型，例如sprite是不可能依赖sprite的，那么在查找某sprite是否有被引用（依赖）时，我们在需要查找依赖的对象里可以剔除掉sprite类型。如下的参数filter</p>
+<p>　　</p>
+<p> 　　获取到了需要查找引用的对象后，使用AssetDatabase.GetDependencies可以获取到这些对象引用到的资源的路径，把这些路径比对你想查找的资源A的路径，如果有相等的，说明A就有被引用，就不能被删除。</p>
+<p>　　</p>
+<p> 　　终于的实现如下</p>
+<p>/// <summary><br>    /// 查找资源依赖<br>    /// </summary><br>    /// <param name="filter"></param> 搜索条件 如”index l:ui t:texture2D” l开头为标签，t开头为类型，以空格隔开，””空字符串查找整个Asset目录<br>    /// <param name="searchInFolders"></param> 要查找的目录<br>    /// <param name="targetPath"></param> 要查找引用的资源，例如Assets/Test/index.png<br>    void FindDependcy(string targetPath, string filter = “”,  string searchInFolders = “”) {<br>        string[] searchObjs;</p>
+<pre><code>    if (!string.IsNullOrEmpty(searchInFolders))
+    {
+        string[] folders = m_TargetPath.Split(&apos;,&apos;);
+        searchObjs = AssetDatabase.FindAssets(filter, folders);//获取需要查找引用的对象
+    }
+    else
+    {
+        searchObjs = AssetDatabase.FindAssets(filter);//获取需要查找引用的对象
+    }
+
+    List&lt;string&gt; resultList = new List&lt;string&gt;();
+    for (var i = 0; i &lt; searchObjs.Length; i++)
+    {
+        var guid = searchObjs[i];
+        string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+        string[] dependencies = AssetDatabase.GetDependencies(assetPath, m_Recursive);//获取文件依赖项
+
+        foreach (string depend in dependencies)
+        {
+            if (targetPath == depend)
+            {
+                //查找到依赖资源targetPath的对象
+                resultList.Add(assetPath);
+            }
+        }
+    }
+
+    if (resultList.Count == 0) {
+        Debug.Log(string.Format(&quot;资源{0}没有被引用,可以删除&quot;, targetPath));
+    }
+}　　</code></pre><p>　　2-2.压缩资源包：本人项目采用的是lzma压缩方式，可以参考雨松的文章<a href="https://www.xuanyusong.com/archives/3095" target="_blank" rel="noopener">https://www.xuanyusong.com/archives/3095</a></p>
+<p>　　AssetBundle自带压缩模式，但是lzma使用时需要整包解压缩，所以我当前项目采用的是AssetBundle采用lz4压缩，在对所有的ab包进行lzma压缩，也就是压缩了两层。</p>
+<p>　　2-3.上传部分高清资源：有部分资源需要某特定的模块才会用到，那么这部分比较大的文件可以上传到服务器按需下载。例如商城的资源一般引用高清资源，但用户初次进游戏的时候并不会使用到（有些用户甚至很长一段时间都不会打开这些界面）,unity 上传资源到服务器参考UnityWebRequest接口</p>
+<p>3.内存的控制，内存占用太高会导致程序崩溃，频繁加载、卸载又会引起卡顿。在内存占用和加载之间取一个平衡点（卸载无用资源）</p>
+<p>　　</p>
+<p>　　3-1.unity的内存占用如上图所示。CreateFromFile已经被LoadFromMemory替代了。　　</p>
+<p>　　Assets加载:用AssetBundle.Load(同Resources.Load) 这才会从AssetBundle的内存镜像里读取并创建一个Asset对象，创建Asset对象同时也会分配相应内存用于存放(反序列化)，异步读取用AssetBundle.LoadAsync。</p>
+<p>　　AssetBundle的释放：<br>　　AssetBundle.Unload(flase)是释放AssetBundle文件的内存镜像，不包含Load创建的Asset内存对象。当AssetBundle被再次加载时并不会恢复引用，而是会重新创建引用，容易造成资源冗余。<br>　　AssetBundle.Unload(true)是释放那个AssetBundle文件内存镜像和并销毁所有用Load创建的Asset内存对象。</p>
+<p>　　Destroy: 主要用于销毁克隆对象，也可以用于场景内的静态物体，不会自动释放该对象的所有引用。虽然也可以用于Asset,但是概念不一样要小心，如果用于销毁从文 件加载的Asset对象会销毁相应的资源文件！但是如果销毁的Asset是Copy的或者用脚本动态生成的，只会销毁内存对象。</p>
+<p>　　一个Prefab从assetBundle里Load出来 里面可能包括：Gameobject transform mesh texture material shader script和各种其他Assets。<br>　　Instaniate一个Prefab，是一个对Assets进行Clone(复制)+引用结合的过程，GameObject transform 是Clone是新生成的。其他mesh / texture / material / shader 等，这其中有些是纯引用的关系的，包括：Texture和TerrainData，还有引用和复制同时存在的，包括：Mesh/material /PhysicMaterial。引用的Asset对象不会被复制，只是一个简单的指针指向已经Load的Asset对象。</p>
+<p>　　再次Instaniate一个同样的Prefab,还是这套mesh/texture/material/shader…，这时候会有新的GameObject等，但是不会创建新的引用对象比如Texture.<br>　　所以你Load出来的Assets其实就是个数据源，用于生成新对象或者被引用，生成的过程可能是复制（clone)也可能是引用（指针）<br>　　当你Destroy一个实例时，只是释放那些Clone对象，并不会释放引用对象和Clone的数据源对象，Destroy并不知道是否还有别的object在引用那些对象。<br>　　等到没有任何游戏场景物体在用这些Assets以后，这些assets就成了没有引用的游离数据块了，是UnusedAssets了，这时候就可以通过 Resources.UnloadUnusedAssets来释放,Destroy不能完成这个任 务</p>
+<p>　　3-2.资源泄漏、冗余</p>
+<p>　　资源泄漏是内存泄露的主要表现形式，其具体原因是用户对加载后的资源进行了储存（比如放到Container中、在脚本中引用），但在场景切换时并没有将其Remove或Clear，从而无论是引擎本身还是手动调用Resources.UnloadUnusedAssets等相关API均无法对其进行卸载，进而造成了资源泄露。只有那些真正没有任何引用指向的资源会被回收，因此请确保在资源不再使用时，将所有对该资源的引用设置为null或者Destroy。</p>
+<p>　　当你得到一个类型为“GameObject”的c#对象时，它几乎什么都不包含。这是因为Unity是一个C/ c++引擎。这个GameObject(游戏对象)包含的所有实际信息(它的名称、它拥有的组件列表、它的HideFlags等等)都位于c++端。c#对象只有一个指向本机对象的指针”。也就是说一个对象包含两部分，c++端的实际信息，当你加载一个新场景或者调用object.destroy (myObject)时，这些对象会被销毁。c#端指向c++端的指针， c#对象的生命周期通过垃圾收集器以c#方式进行管理。这意味着可能存在一个c#对象指针指向一个已经被销毁的c++对象。如果您将这个对象与null进行比较将返回“true”，从而就会出现对象的Null判断为true，但实际上还是被引用着，无法被GC释放的问题。</p>
+<p>　　举个例子，在名为A的MonoBehaviour中，有个数组来存放名为B的 MonoBehaviour对象的引用。当我们其他的逻辑去Destroy了B对象所在的GameObject后，在A对象中的数组里，遍历打印，它们（B的引用）都为Null，在Inspector面板上看是missing。而这时候进行GC，堆内存其实并未释放这些B对象。只有当A对象中的数组被清空后，再调用GC，才可释放这些对象所占内存。</p>
+<p>　　所谓“资源冗余”，是指在某一时刻内存中存在两份甚至多份同样的资源。导致这种情况的出现主要有两种原因：</p>
+<p>　　一、AssetBundle打包机制出现问题，同一份资源被打入到多份AssetBundle文件中。例如bundle1和bundle2同时引用了不再任意ab包里的资源材质A，那么bundle1和bundle2都会包含一份材质A的拷贝。当这些AssetBundle先后被加载到内存后，内存中即会出现纹理资源冗余的情况。</p>
+<p>　　二、资源的实例化所致，在Unity引擎中，当我们修改了一些特定GameObject的资源属性时，引擎会为该GameObject自动实例化一份资源供其使用，比如Material、Mesh等。</p>
+<p>　　3-3.内存分类</p>
+<p>　　程序代码包括了所有的Unity引擎，使用的库，以及你所写的所有的游戏代码。想要减少这部分内存的使用，能做的就是减少使用的库　　</p>
+<p>　　托管堆(Managed Heap)是被Mono使用的一部分内存。Mono的堆内存一旦分配，就不会返还给系统。这意味着Mono的堆内存是只升不降的。尽量避免托管堆出现峰值　　</p>
+<p>　　堆内存的碎片化：回收的堆内存不会和其他未分配的内存合并，它的两边的内存可能仍然在使用，意味着内存中的对象不会被重新定位，去缩小对象之间的内存空隙。例如A,B,C,D四块连续内存，B被回收后，原先B所在的内存只能存放大小小于或者等于B内存（如下图），如果B足够小，那B就是一个无法重复利用的碎片。尽管堆中可用的空间总量可能是巨大的，但有可能很多或者所有的空间都位于已经分配对象之间的小“间隙”中。在这种情况下，尽管总共有足够大的空间来分配，但托管堆找不到足够大的连续空间来分配内存。在下次内存分配的时候就不能找到合适大小的存储单元，这样就会触发GC操作或者堆内存扩展操作。堆内存碎片会造成两个结果，一个是游戏占用的内存会越来越大</p>
+<p>　　</p>
+<p>　　本机堆(Native Heap)是Unity引擎进行申请和操作的地方，比如贴图，音效，关卡数据等。</p>
+<p>　　3-4.对象池。就是将对象存储在一个池子中，当需要时再次使用，而不是每次都实例化一个新的对象。它其实是用内存换加载效率，所以对象池也不能无限地存储对象，避免占用太多的内存，只保存一些需要频繁加载、卸载的对象，例如子弹、通用道具item等。</p>
+<p>　　在unity里频繁地创建和销毁对象效率很低，也会造成频繁的资源回收（GC）。</p>
+<p>　　最简单例子如下，使用一个数组（list\queue都可以）去存储子弹，但你需要使用子弹时，调用GetObject方法获取，如果池子里有，直接返回，如果池子里并不存在，会实例化一个子弹。当你使用完毕后，调用Recyle回收就好了，业务不需要关心子弹的创建、销毁、缓存。</p>
+<p>using UnityEngine;<br>using System.Collections;<br>using System.Collections.Generic;<br>public class BufferPool<br>{<br>    private Queue<GameObject> pool;<br>    private GameObject prefab;<br>    private Transform prefabParent;</p>
+<pre><code>//使用构造函数构造对象池
+public BufferPool(GameObject obj,Transform parent,int count)
+{
+    prefab = obj;
+
+    pool = new Queue&lt;GameObject&gt;(count);
+    prefabParent = parent;
+
+    for (int i = 0; i &lt; count; i++)
+    {
+        GameObject objClone = GameObject.Instantiate(prefab) as GameObject;
+        objClone.transform.parent = prefabParent;//为克隆出来的子弹指定父物体
+        objClone.name = &quot;Clone0&quot; + i.ToString();
+        objClone.SetActive(false);
+        pool.Enqueue(objClone); 
+    }
+}
+
+
+public GameObject GetObject()
+{
+    GameObject obj = null;
+
+    if (pool.Count &gt; 0)
+    {
+        obj = pool.Dequeue();  //Dequeue()方法 移除并返回位于 Queue 开始处的对象
+        obj.transform.position = prefabParent.position;
+    }
+    else
+    {
+        obj = GameObject.Instantiate(prefab) as GameObject;
+        obj.transform.SetParent(prefabParent);
+
+    }
+
+    obj.SetActive(true);
+    return obj;
+}
+
+//回收对象
+public void Recycle(GameObject obj)
+{
+    obj.SetActive(false);
+    pool.Enqueue(obj);//加入队列
+}</code></pre><p>}
+　　</p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://droidman.net/2025/07/04/2025-07-04/" data-id="cmcvdrdwz000hccz8gifldteu" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/" rel="tag">unity</a></li></ul>
+
     </footer>
   </div>
   
@@ -135,7 +313,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          2025-07-05
+          框架之资源加载
         
       </div>
     </a>
@@ -143,7 +321,7 @@
   
     <a href="/2025/07/03/2025-07-03/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2025-07-03</div>
+      <div class="article-nav-title">框架之网络模块</div>
     </a>
   
 </nav>
@@ -162,7 +340,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -172,7 +350,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
     </div>
   </div>
 
@@ -181,7 +359,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -194,23 +372,23 @@
       <ul>
         
           <li>
-            <a href="/2025/07/10/2025-07-10/">2025-07-10</a>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
           </li>
         
           <li>
-            <a href="/2025/07/09/2025-07-09-1/">2025-07-09</a>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
           </li>
         
           <li>
-            <a href="/2025/07/09/2025-07-09/">2025-07-09</a>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
           </li>
         
           <li>
-            <a href="/2025/07/08/2025-07-08/">2025-07-08</a>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
           </li>
         
           <li>
-            <a href="/2025/07/07/2025-07-07/">2025-07-07</a>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
           </li>
         
       </ul>

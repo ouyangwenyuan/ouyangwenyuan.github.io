@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="持续学习者————Just Do It！">
+<meta property="og:url" content="http://droidman.net/page/9/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Objective-c">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Unity3d">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Unix">
+<meta property="article:tag" content="Window">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Lua">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="xcode">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="eclicpse">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2017-04-22" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/22/2017-04-22/" class="article-date">
+  <time datetime="2017-04-22T00:35:02.000Z" itemprop="datePublished">2017-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/22/2017-04-22/">Spring框架介绍及使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring框架—控制反转（IOC）<br>1 Spring框架概述<br>1.1 什么是Spring<br>1.2 Spring的优点<br>1.3 Spring的体系结构<br>2 入门案例:（IoC）<br>2.1导入jar包<br>2.2目标类<br>2.3 配置文件<br>2.4测试<br>3 入门案例：DI<br>3.1 目标类<br>3.2 dao<br>3.3 service<br>3.4 配置文件<br>3.5 测试<br>4 依赖注入装配Bean 基于xml<br>4.1属性依赖注入<br>4.1.1 构造方法<br>4.1.2 setter方法<br>4.2 集合依赖注入<br>5 依赖注入装配Bean 基于注解<br>Spring框架—面向切面编程（AOP）<br>1 什么是AOP<br>2 AOP实现原理<br>3 AOP术语【掌握】<br>4 AOP实现方式<br>4.1手动方式<br>4.1.1JDK动态代理<br>4.1.2 CGLIB字节码增强<br>4.2半自动<br>4.2.1目标类<br>4.2.2切面类<br>4.2.3Spring 配置<br>4.2.4 测试<br>4.3全自动<br>4.3.1 Spring配置<br>4.3.2 测试</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/22/2017-04-22/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/22/2017-04-22/" data-id="cmcw2edh7000913z8645o7rgv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/16/2017-04-16/" class="article-date">
+  <time datetime="2017-04-16T00:34:20.000Z" itemprop="datePublished">2017-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/16/2017-04-16/">编程中的基本数据结构与算法思想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="编程的关键在于选择数据结构和算法，数据结构用于描述问题，算法用于描述解决问题的方法和步骤。"><a href="#编程的关键在于选择数据结构和算法，数据结构用于描述问题，算法用于描述解决问题的方法和步骤。" class="headerlink" title="编程的关键在于选择数据结构和算法，数据结构用于描述问题，算法用于描述解决问题的方法和步骤。"></a>编程的关键在于选择数据结构和算法，数据结构用于描述问题，算法用于描述解决问题的方法和步骤。</h6><p>描述问题的数据除了各数据元素本身，还要考虑各元素的逻辑关系，主要是一对一的线性关系，一对多的树型关系和多对多的图形关系。另外，内存中对各数据元素的存储只有顺序存储和链式存储两种方式，所以数据结构还要考虑数据的存储结构，并考虑逻辑结构与数据结构如何有效地结合到一起。</p>
+<h6 id="用算法描述问题，当问题比较复杂时，通常的思路是分而治之，并辅以适当的数据结构。"><a href="#用算法描述问题，当问题比较复杂时，通常的思路是分而治之，并辅以适当的数据结构。" class="headerlink" title="用算法描述问题，当问题比较复杂时，通常的思路是分而治之，并辅以适当的数据结构。"></a>用算法描述问题，当问题比较复杂时，通常的思路是分而治之，并辅以适当的数据结构。</h6><h5 id="1-分治法Divide-and-Conquer"><a href="#1-分治法Divide-and-Conquer" class="headerlink" title="1 分治法Divide and Conquer"></a>1 分治法Divide and Conquer</h5><p>分治法通常描述为以下三步：</p>
+<ol>
+<li><p>Divide the problem into more subproblems（分解问题为众多的子问题）;</p>
+</li>
+<li><p>Conuqe(solve) the subproblems（解决各子问题）;</p>
+</li>
+<li><p>Combine(merge) the solution of subproblems(if need)（合并各子问题的解（如果需要））.</p>
+</li>
+</ol>
+<p>如用分治法来计算2^10?</p>
+<p>2^10＝2^5<em>x^5=2^2</em>x^3<em>x^5=32</em>32=1024</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/16/2017-04-16/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/16/2017-04-16/" data-id="cmcw2edh6000713z8ez66dfnm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-15" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/15/2017-04-15/" class="article-date">
+  <time datetime="2017-04-15T12:34:35.000Z" itemprop="datePublished">2017-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/15/2017-04-15/">MySQL面试题总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-为什么要使用数据库"><a href="#1-为什么要使用数据库" class="headerlink" title="1. 为什么要使用数据库"></a>1. 为什么要使用数据库</h4><pre><code>▪    数据保存在内存
+    优点：存取速度快
+    缺点：数据不能永久保存
+▪    数据保存在文件
+    优点：数据永久保存
+    缺点：
+        1）速度比内存操作慢，频繁的IO操作。
+        2）查询数据不方便
+▪    数据保存在数据库
+    1）数据永久保存
+    2）使用SQL语句，查询方便效率高。
+    3）管理数据方便</code></pre><h4 id="2-什么是SQL？"><a href="#2-什么是SQL？" class="headerlink" title="2. 什么是SQL？"></a>2. 什么是SQL？</h4><p>结构化查询语言(Structured Query Language)简称SQL，是一种数据库查询语言。<br>作用：用于存取数据、查询、更新和管理关系数据库系统。</p>
+<h4 id="3-什么是MySQL"><a href="#3-什么是MySQL" class="headerlink" title="3. 什么是MySQL?"></a>3. 什么是MySQL?</h4><p>MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。在Java企业级开发中非常常用，因为 MySQL 是开源免费的，并且方便扩展。</p>
+<h4 id="4-数据库三大范式是什么"><a href="#4-数据库三大范式是什么" class="headerlink" title="4. 数据库三大范式是什么"></a>4. 数据库三大范式是什么</h4><p>第一范式：每个列都不可以再拆分。<br>第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分。<br>第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。<br>在设计数据库结构的时候，要尽量遵守三范式，如果不遵守，必须有足够的理由。比如性能。事实上我们经常会为了性能而妥协数据库的设计。</p>
+<h4 id="5-mysql有关权限的表都有哪几个"><a href="#5-mysql有关权限的表都有哪几个" class="headerlink" title="5. mysql有关权限的表都有哪几个"></a>5. mysql有关权限的表都有哪几个</h4><p>MySQL服务器通过权限表来控制用户对数据库的访问，权限表存放在mysql数据库里，由mysql_install_db脚本初始化。这些权限表分别user，db，table_priv，columns_priv和host。下面分别介绍一下这些表的结构和内容：</p>
+<pre><code>•    user权限表：记录允许连接到服务器的用户帐号信息，里面的权限是全局级的。
+•    db权限表：记录各个帐号在各个数据库上的操作权限。
+•    table_priv权限表：记录数据表级的操作权限。
+•    columns_priv权限表：记录数据列级的操作权限。
+•    host权限表：配合db权限表对给定主机上数据库级操作权限作更细致的控制。这个权限表不受GRANT和REVOKE语句的影响。</code></pre><h4 id="6-MySQL的binlog有有几种录入格式？分别有什么区别？"><a href="#6-MySQL的binlog有有几种录入格式？分别有什么区别？" class="headerlink" title="6. MySQL的binlog有有几种录入格式？分别有什么区别？"></a>6. MySQL的binlog有有几种录入格式？分别有什么区别？</h4><p>有三种格式，statement，row和mixed。</p>
+<pre><code>•    statement模式下，每一条会修改数据的sql都会记录在binlog中。不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。由于sql的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。
+•    row级别下，不记录sql语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如alter table)，因此这种模式的文件保存的信息太多，日志量太大。
+•    mixed，一种折中的方案，普通操作使用statement记录，当无法使用statement的时候使用row。</code></pre><p>此外，新版的MySQL中对row级别也做了一些优化，当表结构发生变化的时候，会记录语句而不是逐行记录。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/15/2017-04-15/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/15/2017-04-15/" data-id="cmcw2edh5000513z81grva5di" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-09" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/09/2017-04-09/" class="article-date">
+  <time datetime="2017-04-09T00:33:58.000Z" itemprop="datePublished">2017-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/09/2017-04-09/">MySQL常用优化指南，及大表优化思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当MySQL单表记录数过大时，增删改查性能都会急剧下降</p>
+<h3 id="单表优化"><a href="#单表优化" class="headerlink" title="单表优化"></a>单表优化</h3><p>除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。<br>而事实上很多时候 MySQL 单表的性能依然有不少优化空间，甚至能正常支撑千万级以上的数据量。</p>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><pre><code>▪    尽量使用 TINYINT、 SMALLINT、 MEDIUM_INT 作为整数类型而非 INT，如果非负则加上 UNSIGNED
+▪    VARCHAR 的长度只分配真正需要的空间
+▪    使用枚举或整数代替字符串类型
+▪    尽量使用 TIMESTAMP 而非 DATETIME
+▪    单表不要有太多字段，建议在 20 以内
+▪    避免使用 NULL 字段，很难查询优化且占用额外索引空间
+▪    用整型来存 IP</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/09/2017-04-09/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/09/2017-04-09/" data-id="cmcw2edh2000113z800m6061g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/08/2017-04-08/" class="article-date">
+  <time datetime="2017-04-08T00:41:04.000Z" itemprop="datePublished">2017-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/08/2017-04-08/">MySQL 学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="连接与断开服务器"><a href="#连接与断开服务器" class="headerlink" title="连接与断开服务器"></a>连接与断开服务器</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 地址 -P 端口 -u 用户名 -p 密码</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">PROCESSLIST</span> <span class="comment">-- 显示哪些线程正在运行</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="comment">-- 显示系统变量信息</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看当前数据库</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">DATABASE</span>();</span><br><span class="line"><span class="comment">-- 显示当前时间、用户名、数据库版本</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">now</span>(), <span class="keyword">user</span>(), <span class="keyword">version</span>();</span><br><span class="line"><span class="comment">-- 创建库</span></span><br><span class="line">    <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span>[ <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 数据库名 数据库选项</span><br><span class="line">    数据库选项：</span><br><span class="line">        <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> charset_name</span><br><span class="line">        <span class="keyword">COLLATE</span> collation_name</span><br><span class="line"><span class="comment">-- 查看已有库</span></span><br><span class="line">    <span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>[ <span class="keyword">LIKE</span>  PATTERN ]</span><br><span class="line"><span class="comment">-- 查看当前库信息</span></span><br><span class="line">    <span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> 数据库名</span><br><span class="line"><span class="comment">-- 修改库的选项信息</span></span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> 库名 选项信息</span><br><span class="line"><span class="comment">-- 删除库</span></span><br><span class="line">    <span class="keyword">DROP</span> <span class="keyword">DATABASE</span>[ <span class="keyword">IF</span> <span class="keyword">EXISTS</span>] 数据库名</span><br><span class="line">        同时删除该数据库相关的目录及其目录内容</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/08/2017-04-08/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/08/2017-04-08/" data-id="cmcw2edh4000313z86yy9gyf1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/02/2017-04-02/" class="article-date">
+  <time datetime="2017-04-02T00:35:10.000Z" itemprop="datePublished">2017-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/02/2017-04-02/">Java 基础学习总结和学习路线规划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工作也有一段时间了，今天休息，正好有时间把最近所学的东西整理一下。<br>java是一门面向对象编程的语言，不仅吸收了c++语言的各种优点，还摒弃了c++中难以理解的多继承，指针等概念，作为静态面向对象语言编程代表，极好地实现了面向对象理论，让程序员以抽象的思维方式进行复杂的编程。<br>java语言的主要特点：<br>简单性<br>java不支持goto语句，代之以提供break和coninue语句以及异常处理，java还剔除了c++的操作符重载和多继承特征，java没有结构体，所有的数据都是对象，数组和字符串也是，所以不需要指针，java能够自动的处理对象的引用和间接引用，实现自动化的无用单元收集（自动垃圾回收GC），使程序不用为存储问题烦恼，把更多的时间和精力花在处理业务。<br>面向对象<br>封装，继承，多态，<br>在一个面向对象的系统中，类（class）是数据和操作数据的方法的集合，数据和方法一起描述对象（object）的状态和行为，每一个对象是其行为和状态的封装，类是按一定体系和层次来安排的，子类可以从父类中继承行为。java程序是用类和包来组织的。包是类的扩展集合，<br>分布性<br>java设计成支持在网络上应用，它是分布式语言，支持各种层次的网络连接，java的socket类支持可靠的流网络连接，所以用户可以生产分布式的客户机和服务器，网络变成类软件应用的分布运载工具，java只需编写一次，就可以到处运行。<br>编译和解释性<br>java编译程序生成字节码（bytecode）而不是通常的机器码，java字节码提供对体系结构中性的目标文件格式，java程序可以在任何实现了java解释程序和运行环境（JRE）的系统中运行。在java虚拟机环境中，程序开发的标准链接阶段，java只是把新类装进环境的过程，它是增量式，轻量级的过程。<br>稳健性<br>java原来是被用来编写嵌入式系统软件的强类型语言，它允许扩展编译时检查潜在的类型不匹配问题，java要求显式的类型声明，不支持c风格的隐式声明，这些严格的要求保证类编译程序能捕捉调用错误，<br>java的存储模型，java不支持指针，它消除了重写存储和覆盖数据的可能性，java的垃圾回收机制能有效预防内存泄漏和其他有关动态存储分配和内存释放的错误。java解释程序也只需许多运行时的检查，比如空指针，数组越界等异常。说到这，java的异常处理也使得java程序更稳健的，使用try/catch/finally 语句，程序很容易定位出错的代码，大大简化了错误的处理和恢复任务。<br>安全性<br>java的存储分配模型是预防恶意代码的主要方法之一<br>可移植性<br>java程序是运行在java虚拟机中或者JRE中，java的编译程序也是用java编写的，而java的运行环境是用ANSI C编写的。sun公司提供了不同的操作系统java虚拟机（java运行环境）</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/02/2017-04-02/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/02/2017-04-02/" data-id="cmcw2edgx000013z8295o5ok5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/01/2017-04-01/" class="article-date">
+  <time datetime="2017-04-01T13:28:45.000Z" itemprop="datePublished">2017-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/2017-04-01/">Markdown 语法使用说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Markdown 语法和 MWeb 写作使用说明<br>Markdown 的设计哲学<br>本文约定<br>标题<br>第一级标题 <h1><br>第二级标题 <h2><br>第六级标题 <h6><br>强调<br>换行<br>列表<br>无序列表<br>有序列表<br>任务列表（Task lists）<br>图片<br>链接<br>区块引用<br>行内代码<br>多行或者一段代码<br>顺序图或流程图<br>表格<br>删除线<br>分隔线<br>MathJax<br>脚注（Footnote）<br>注释和阅读更多<br>TOC</p>
+<h1 id="Markdown-语法和-MWeb-写作使用说明"><a href="#Markdown-语法和-MWeb-写作使用说明" class="headerlink" title="Markdown 语法和 MWeb 写作使用说明"></a>Markdown 语法和 MWeb 写作使用说明</h1><h2 id="Markdown-的设计哲学"><a href="#Markdown-的设计哲学" class="headerlink" title="Markdown 的设计哲学"></a>Markdown 的设计哲学</h2><blockquote>
+<p>Markdown 的目標是實現「易讀易寫」。<br>不過最需要強調的便是它的可讀性。一份使用 Markdown 格式撰寫的文件應該可以直接以純文字發佈，並且看起來不會像是由許多標籤或是格式指令所構成。<br>Markdown 的語法有個主要的目的：用來作為一種網路內容的<em>寫作</em>用語言。</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/01/2017-04-01/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/01/2017-04-01/" data-id="cj0zau2p100003s738mkua1fj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-3-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/16/2017-3-16/" class="article-date">
+  <time datetime="2017-03-16T12:34:51.000Z" itemprop="datePublished">2017-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/16/2017-3-16/">gif keyboard 版本规划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#gif keyboard 版本规划<br>本年度：2017年3月-2017年12月，基本大体规划10个大版本，开发过程中有问题bug或者增加其他小功能等可调整此规划。</p>
+<h2 id="第一版（v1-0-0）"><a href="#第一版（v1-0-0）" class="headerlink" title="第一版（v1.0.0）"></a>第一版（v1.0.0）</h2><h3 id="目标-快速开发一款可以发送gif的输入法（利用各个社交软件的分享功能）功能需求：提供一个用户可以快速发送gif图片的入口。用户在任何支持发送图片的设计软件中都可以快速发送gif图。用户可以在app中讲图片发送到相应的聊天软件中。"><a href="#目标-快速开发一款可以发送gif的输入法（利用各个社交软件的分享功能）功能需求：提供一个用户可以快速发送gif图片的入口。用户在任何支持发送图片的设计软件中都可以快速发送gif图。用户可以在app中讲图片发送到相应的聊天软件中。" class="headerlink" title="目标:快速开发一款可以发送gif的输入法（利用各个社交软件的分享功能）功能需求：提供一个用户可以快速发送gif图片的入口。用户在任何支持发送图片的设计软件中都可以快速发送gif图。用户可以在app中讲图片发送到相应的聊天软件中。"></a>目标:快速开发一款可以发送gif的输入法（利用各个社交软件的分享功能）功能需求：提供一个用户可以快速发送gif图片的入口。用户在任何支持发送图片的设计软件中都可以快速发送gif图。用户可以在app中讲图片发送到相应的聊天软件中。</h3><h3 id="主要功能："><a href="#主要功能：" class="headerlink" title="主要功能："></a>主要功能：</h3><ul>
+<li>设置和选择输入法</li>
+<li>app主界面展示所有的gif图</li>
+<li>用户可以通过搜索关键字来找图片</li>
+<li>查看大图并分享</li>
+<li>用户可以发送图片到相应的聊天软件的聊天界面</li>
+<li>图片缓存，缓存清除<h3 id="开发要求和验收指标："><a href="#开发要求和验收指标：" class="headerlink" title="开发要求和验收指标："></a>开发要求和验收指标：</h3></li>
+<li>第一版快速试错开发，抢占市场。确保界面和设计图还原度90%以上，</li>
+<li>从gitkeyboard 程序中分享图片功能。主流的社交和聊天软件分享确保没有问题。</li>
+<li>从输入键盘中选择图片发送功能，对主流的社交和聊天软件分享确保没有问题。</li>
+<li>设置和选择键盘确保没有问题。</li>
+</ul>
+<h3 id="实现难点和可能存在的问题："><a href="#实现难点和可能存在的问题：" class="headerlink" title="实现难点和可能存在的问题："></a>实现难点和可能存在的问题：</h3><p>android／ios:<br>1、前期原型和设计和后期研究各平台分享和imoji的展示样式冲突<br>2、fbmessenger 具体分享gif到当前聊天界面的研究，<br>3、imoji的展示。<br>4、图片发送处理，图片的缓存，内存优化问题。</p>
+<p>server:搭建简易图片存储服务器，提供简单的搜索、分类、gif详情等api。</p>
+<p><strong>完成时间：</strong>3月30日</p>
+<hr>
+<h2 id="第二版"><a href="#第二版" class="headerlink" title="第二版"></a>第二版</h2><h3 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h3><p>搭建自己的gif图片服务器，接入自己的gif服务</p>
+<h3 id="主要功能：-1"><a href="#主要功能：-1" class="headerlink" title="主要功能："></a>主要功能：</h3><p>服务端：</p>
+<ul>
+<li>爬取其台平台的图片数据存储到我们的服务器（或者找专业制作和设计gif 和 emoji）</li>
+<li>建立图片数据库，按tag，关键字分类存储。</li>
+<li>提供搜索接口，gif详情借口。</li>
+</ul>
+<p>客户端：</p>
+<ul>
+<li>替换搜索接口，详情借口等</li>
+<li>解决bug和优化图片展示</li>
+</ul>
+<p><strong>完成时间：</strong>4月30日</p>
+<hr>
+<h2 id="第三版"><a href="#第三版" class="headerlink" title="第三版"></a>第三版</h2><h3 id="目标：-1"><a href="#目标：-1" class="headerlink" title="目标："></a>目标：</h3><p>可以在我们的输入文字表情不用切换输入法，可集成现有输入法。</p>
+<h3 id="主要功能：-2"><a href="#主要功能：-2" class="headerlink" title="主要功能："></a>主要功能：</h3><p>客户端：</p>
+<ul>
+<li>熟悉keyboard代码，从keyboard中移植代码到gif keyboard中。</li>
+<li>用听过</li>
+<li>用户可以发送图片到相应的聊天软件的聊天界面。</li>
+</ul>
+<p><strong>完成时间：</strong>5月31日</p>
+<hr>
+<h2 id="第四版"><a href="#第四版" class="headerlink" title="第四版"></a>第四版</h2><h3 id="目标：-2"><a href="#目标：-2" class="headerlink" title="目标："></a>目标：</h3><p>加入用户系统，提供用户注册和登录模块。可以收藏表情，给表情加tag，根据收藏数和tag数生成推荐列表。<br>添加保存图片功能。</p>
+<h3 id="主要功能：-3"><a href="#主要功能：-3" class="headerlink" title="主要功能："></a>主要功能：</h3><p>服务器端：</p>
+<ul>
+<li>创建用户表，提供用户注册和登录模块。</li>
+<li>提供注册和登录接口，提供收藏和添加tag接口</li>
+</ul>
+<p>客户端：</p>
+<ul>
+<li>登录和开发前端UI实现和服务器连调</li>
+<li>增加收藏页面，加tag页面，实现收藏和加tag功能</li>
+<li>增加最新和最热列表</li>
+<li>保存图片到本地</li>
+</ul>
+<p><strong>完成时间：</strong>6月30日</p>
+<hr>
+<h2 id="第五版"><a href="#第五版" class="headerlink" title="第五版"></a>第五版</h2><h3 id="目标：-3"><a href="#目标：-3" class="headerlink" title="目标："></a>目标：</h3><p>用户表情库分类，搞笑类，卖萌类，性感类，常用语类</p>
+<h3 id="主要功能：-4"><a href="#主要功能：-4" class="headerlink" title="主要功能："></a>主要功能：</h3><p>设计：设计表情，<br>server： 提供分类接口<br>client： 输入法中提供分类栏</p>
+<p><strong>完成时间：</strong>7月31日</p>
+<hr>
+<h2 id="第六版"><a href="#第六版" class="headerlink" title="第六版"></a>第六版</h2><h3 id="目标：-4"><a href="#目标：-4" class="headerlink" title="目标："></a>目标：</h3><p>app中增加幽默板块，推荐优秀的幽默图，内涵图，段子图</p>
+<h3 id="主要功能：-5"><a href="#主要功能：-5" class="headerlink" title="主要功能："></a>主要功能：</h3><p>server：提供推荐接口，开发后台编辑模块<br>client：增加一个tab页面，增加每日推荐图<br>运营：内容运营，编辑搞笑文章，吸引用户</p>
+<p><strong>完成时间：</strong>8月31日</p>
+<hr>
+<h2 id="第七版"><a href="#第七版" class="headerlink" title="第七版"></a>第七版</h2><h3 id="目标：-5"><a href="#目标：-5" class="headerlink" title="目标："></a>目标：</h3><p>添加图片评论和点赞功能。根据评论数和点赞数生存推荐列表。</p>
+<h3 id="主要功能：-6"><a href="#主要功能：-6" class="headerlink" title="主要功能："></a>主要功能：</h3><p>server：添加点赞，评论接口<br>client：实现点赞，评论功能</p>
+<p><strong>完成时间：</strong>9月30日</p>
+<hr>
+<h2 id="第八版"><a href="#第八版" class="headerlink" title="第八版"></a>第八版</h2><h3 id="目标：-6"><a href="#目标：-6" class="headerlink" title="目标："></a>目标：</h3><p>提供用户拍照，录视频，上传gif的功能。</p>
+<h3 id="主要功能：-7"><a href="#主要功能：-7" class="headerlink" title="主要功能："></a>主要功能：</h3><p>服务端：</p>
+<ul>
+<li>支持gif 上传存储，</li>
+<li>支持GIF 过滤（敏感图片）</li>
+</ul>
+<p>客户端：<br>实现拍照，录视频，支持上传图片功能</p>
+<p><strong>完成时间：</strong>10月31日</p>
+<hr>
+<h2 id="第九版"><a href="#第九版" class="headerlink" title="第九版"></a>第九版</h2><h3 id="目标：-7"><a href="#目标：-7" class="headerlink" title="目标："></a>目标：</h3><p>开发web版的图片列表，图片浏览和上传。<br>增加广告，推广产品</p>
+<h3 id="主要功能：-8"><a href="#主要功能：-8" class="headerlink" title="主要功能："></a>主要功能：</h3><p>服务端：开发web前端，图片列表展示和图片上传。与app 同步</p>
+<p>客户端：</p>
+<ul>
+<li>增加广告和推荐我们其台app，</li>
+<li>同步账号</li>
+</ul>
+<p><strong>完成时间：</strong>11月30日</p>
+<hr>
+<h2 id="第十版"><a href="#第十版" class="headerlink" title="第十版"></a>第十版</h2><h3 id="目标：-8"><a href="#目标：-8" class="headerlink" title="目标："></a>目标：</h3><p>开放gif平台，开发sdk和api，供社交类聊天类等三方app授权使用。</p>
+<h3 id="主要功能：-9"><a href="#主要功能：-9" class="headerlink" title="主要功能："></a>主要功能：</h3><p>服务端：</p>
+<ul>
+<li>抽取共用需求整理文档</li>
+<li>开发sdk和api</li>
+</ul>
+<p>客户端：集成sdk，统一使用sdk 替换原来的接口<br>优化用户体验</p>
+<p><strong>完成时间：</strong>12月31日</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/03/16/2017-3-16/" data-id="cmcvqgp96000m0mz8fuy5hlx0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

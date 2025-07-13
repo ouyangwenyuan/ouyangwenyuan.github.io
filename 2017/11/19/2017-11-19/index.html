@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Unity 小技巧总结 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="定时重复处理，比如， 启动0.5秒后每隔1秒执行一次 DoSomeThing 函数：1.用InvokeRepeating 函数实现void Start() { InvokeRepeating(“DoSomeThing”, 0.5, 1.0); }CancelInvoke(“你调用的方法”); 停止InvokeRepeating 123456789101112131415void Start()&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity 小技巧总结">
+<meta property="og:url" content="http://droidman.net/2017/11/19/2017-11-19/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="定时重复处理，比如， 启动0.5秒后每隔1秒执行一次 DoSomeThing 函数：1.用InvokeRepeating 函数实现void Start() { InvokeRepeating(“DoSomeThing”, 0.5, 1.0); }CancelInvoke(“你调用的方法”); 停止InvokeRepeating 123456789101112131415void Start()&amp;#">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2017-11-19T00:43:19.000Z">
+<meta property="article:modified_time" content="2025-07-09T11:35:44.458Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Unity">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-11-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/19/2017-11-19/" class="article-date">
+  <time datetime="2017-11-19T00:43:19.000Z" itemprop="datePublished">2017-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity 小技巧总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定时重复处理，比如， 启动0.5秒后每隔1秒执行一次 DoSomeThing 函数：<br>1.用InvokeRepeating 函数实现<br>void Start() { InvokeRepeating(“DoSomeThing”, 0.5, 1.0); }<br>CancelInvoke(“你调用的方法”); 停止InvokeRepeating</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void Start()</span><br><span class="line">&#123;</span><br><span class="line">     StartCoroutine(&quot;Repeating&quot;);开始调用</span><br><span class="line">     StopCoroutine(&quot;Repeating&quot;);停止调用</span><br><span class="line">&#125;</span><br><span class="line">IEnumerator Repeating()</span><br><span class="line">    &#123;</span><br><span class="line">        yield return new WaitForSeconds(0.5f);</span><br><span class="line"></span><br><span class="line">        while (true)</span><br><span class="line">        &#123;</span><br><span class="line">            yield return new WaitForSeconds(1f);</span><br><span class="line">            DoSomeThing();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>尽量避免每帧处理,可以每隔几帧处理一次<br>比如：<br>void Update() { DoSomeThing(); }</p>
+<p>可改为每5帧处理一次：<br>void Update() { if(Time.frameCount % 5 == 0) { DoSomeThing(); } }</p>
+<p>主动回收垃圾<br>给某个 GameObject 绑上以下的代码：<br>void Update() { if(Time.frameCount % 50 == 0) { System.GC.Collect(); } }</p>
+<p>不要使用SendMessage之类的方法，他比直接调用方法慢了100倍，你可以直接调用或通过C#的委托来实现。</p>
+<p>关于渲染队列和Batch的非官方经验总结是，一帧的渲染队列的生成，依次决定于每个渲染物体的：<br>Shader的RenderType tag,<br>Renderer.SortingLayerID,<br>Renderer.SortingOrder,<br>Material.renderQueue（默认值为Shader里的”Queue”）,<br>Transform.z(ViewSpace)（默认为按z值从前到后，但当Queue是“Transparent”的时候，按z值从后到前）。<br>这个渲染队列决定了之后（可能有dirty flag的机制？）渲染器再依次遍历这个渲染队列，“同一种”材质的渲染物体合到一个Batch里。</p>
+<p>Unity渲染路径（Rendering Path）种类<br>概述<br>开发者可以在Unity工程的PlayerSettings设置对渲染路径进行3选1：<br>Deferred Lighting，延迟光照路径。3者中最高质量地还原光照阴影。光照性能只与最终像素数目有关，光源数量再多都不会影响性能。<br>Forward Rendering，顺序渲染路径。能发挥出Shader全部特性的渲染路径，当然也就支持像素级光照。最常用、功能最自由，性能与光源数目*受光照物体数目有关，具体性能视乎其具体使用到的Shader的复杂度。<br>Vertex Lit，顶点光照路径。顶点级光照。性能最高、兼容性最强、支持特性最少、品质最差。</p>
+<p>unity 点击2D物体<br>1.给物体添加对应的2D碰撞体，例如Box Collider 2D;<br>2.Update检测鼠标是否点下；<br>3.如果鼠标点下，创建一条射线，通过Physics2D.Raycast获取点击时鼠标处的对象；</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Input.GetMouseButtonDown(<span class="number">0</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 mousePos = Input.mousePosition;</span><br><span class="line">        Ray ray = Camera.main.ScreenPointToRay(mousePos);</span><br><span class="line">        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);</span><br><span class="line">        <span class="keyword">if</span> (hit.collider != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(hit.collider.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>从游戏开始到当前帧经历的时间 Time.realtimeSinceStartup;<br>从游戏开始到当前帧经历的帧总数 Time.frameCount;</p>
+<p>计算FPS：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">_countFrame += <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> time = Time.realtimeSinceStartup;</span><br><span class="line">    <span class="keyword">if</span> (time - _lastTime &gt;= <span class="number">1.0f</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _fps = (<span class="keyword">float</span>)(_countFrame/(time - _lastTime));</span><br><span class="line">        Debug.Log(<span class="string">"FPS: "</span> + _countFrame);</span><br><span class="line">        _countFrame = <span class="number">0</span>;</span><br><span class="line">        _lastTime = time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得到当前帧鼠标的位移量：Input.GetAxis()</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Input.GetMouseButton(<span class="number">0</span>) &amp;&amp; _isRotation)&#123;</span><br><span class="line">        <span class="keyword">float</span> x = Input.GetAxis(<span class="string">"Mouse X"</span>)*<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">float</span> y = Input.GetAxis(<span class="string">"Mouse Y"</span>)*<span class="number">10</span>;</span><br><span class="line">        Debug.Log(<span class="string">"x: "</span> + x + <span class="string">" y: "</span> + y);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>对象跟随鼠标运动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vector3 wp &#x3D; Camera.main.WorldToScreenPoint(transform.position);</span><br><span class="line">Vector3 sp &#x3D; Input.mousePosition;</span><br><span class="line">sp.z &#x3D; wp.z;</span><br><span class="line"></span><br><span class="line">if (Input.GetMouseButton(0))</span><br><span class="line">&#123;</span><br><span class="line">transform.position &#x3D; Camera.main.ScreenToWorldPoint(sp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>协同程序的开启与终止：<br>       在Unity3D中，使用MonoBehaviour.StartCoroutine方法即可开启一个协同程序，也就是说该方法必须在MonoBehaviour或继承于MonoBehaviour的类中调用。<br>       在Unity3D中，使用StartCoroutine(string methodName)和StartCoroutine(IEnumerator routine)都可以开启一个线程。区别在于使用字符串作为参数可以开启线程并在线程结束前终止线程，相反使用IEnumerator 作为参数只能等待线程的结束而不能随时终止(除非使用StopAllCoroutines()方法)；另外使用字符串作为参数时，开启线程时最多只能传递一个参数，并且性能消耗会更大一点，而使用IEnumerator 作为参数则没有这个限制。<br>        在Unity3D中，使用StopCoroutine(string methodName)来终止一个协同程序，使用StopAllCoroutines()来终止所有可以终止的协同程序，但这两个方法都只能终止该MonoBehaviour中的协同程序。<br>        还有一种方法可以终止协同程序，即将协同程序所在gameobject的active属性设置为false，当再次设置active为ture时，协同程序并不会再开启；如是将协同程序所在脚本的enabled设置为false则不会生效。这是因为协同程序被开启后作为一个线程在运行，而MonoBehaviour也是一个线程，他们成为互不干扰的模块，除非代码中用调用，他们共同作用于同一个对象，只有当对象不可见才能同时终止这两个线程。然而，为了管理我们额外开启的线程，Unity3D将协同程序的调用放在了MonoBehaviour中，这样我们在编程时就可以方便的调用指定脚本中的协同程序，而不是无法去管理，特别是对于只根据方法名来判断线程的方式在多人开发中很容易出错，这样的设计保证了对象、脚本的条理化管理，并防止了重名。</p>
+<p>ＵＧＵＩ空格导致换行：将空格转换为全角空格，半角空格会使Text自动换行。</p>
+<p>实现text显示不同颜色的字，如我是程序员小白，其中程序员为红色，其余自为黑色。使用透明颜色标签&lt;color=#0000ff00&gt;111</color>，其中的１１１不会显示在Text上但会占据格子，作用类似于空格，通过这个标签的颜色值可以改变相应的字体颜色。</p>
+<p>unity 编辑状态下暂停：</p>
+<p>1.Debug.Break();或者UnityEditor.EditorApplication.isPaused = false;</p>
+<p>2.使用编辑器类：EditorApplication.ExecuteMenuItem(“Edit/Play”);<br>3.UnityEditor.EditorApplication.isPlaying = false;</p>
+<p>问题：<br>unity中通过Application.dataPath + “/Resources/Config/xxx”)作为将要读取文件的路径时，在编辑器上正常运行，但在打包后却无法正确读取文件<br>解决：<br>这是因为不同平台Application.dataPath所指定的路径不一样，editor模式下代表的是Asset,打包后对应的路径是打包时生成的文件夹“xxx_data”，这是需要把对应的文件拷贝到“xxx_data”文件夹下，例如打包后文件路径“E:\Unity\TowerDefense\Build\塔防_Data\Resources\Config”对应编辑器下的“E:\Unity\TowerDefense\Assets\Resources\Config”。</p>
+<p>问题：<br>UNITY 无法导入视频解决方法<br>解决<br>1.unity 导入视频时无法转换成movieTexture， 这时候unity会提示影片导入失败，这时候需要安转QuickTime Player，这个软件可以把unity的影片转换成unity能用的材质。<br>2.QuickTime 无法正常运行时并且提示 “please install apple application support”时，打开下载的QuickTime安装包，选择安装“apple application support.msi”,安装选择“修复”。<br>3.unity支持的影片格式有.mov .mpg .mpeg .mp4 .avi .asf。<br>4.成功导入的影片会生成一个对应的Movie Audio，这个文件是该影片的声音文件。</p>
+<p>问题：Scroll Rect中滑动事件是通过EventTrigger响应，所以当item也是通过EventTrigger响应点击事件时，就会遮挡住后面的Scroll Rect的滑动事件。<br>UGUI的ScrollRect组件会和放在它上面的button或者toggle等组件有事件响应的冲突，具体体现为上面的组件会遮挡下面的响应，在button或者toggle等组件上出现只能点击不能滑动的效果，要想滑动必须点旁边才行。<br>解决：<br>（1）.Button: Button.onClick.AddListener(delegate () {ButtonOnClick(Button.gameObject); }); onClick回调函数 是继承自UnityEngine.Events.UnityAction.委托。由于同一个点击事件通过不同的事件模块去响应，很好的处理了item挡住Scroll Rect 事件的问题。委托格式为不带任何参数和返回的函数。<br>这里的Button是指你要按下的那个按钮，ButtonOnClick是该按钮按下时要触发的事件。<br>第二种解决方案是：不用按钮，1.新建一个继承MonoBehaviour和IPointerClickHandler接口的脚本（例如ClickObject），2.这个脚本实现public void OnPointerClick(PointerEventData eventData)方法：3.创建一个名为Panel_IPointer的空对象，这个空对象就是你的按钮。并且将ClickObject脚本附加到对象上。这时候点击这个对象就会调用OnPointerClick方法。<br>第三种：创建一个Image（例如名为Btn），Btn对象添加EventTrigger组件，” Add New” -&gt; 选择” PointerClick”。将Btn对象拖拽到触发者位置。然后点击”No Function”选择我们要触发的OnTestClick事件。<br>（2）toggle：使用isOn的方法，例如if（toggle.ison）{debug.log(“click”)};</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/19/2017-11-19/" data-id="cmcw1g2re000kz4z8gp1mdesz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/25/2017-11-25/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unity后台计时器不运行问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/18/2017-11-18/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Unity 物理引擎 学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

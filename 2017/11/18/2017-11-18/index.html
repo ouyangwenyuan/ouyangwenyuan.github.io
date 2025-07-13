@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Unity 物理引擎 学习 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="刚体： 刚体是模拟物理效果的对象。添加了刚体组件的游戏物体，会受重力影响，可以被玩家四处推动，或者直接用脚本添加力给对象来让他四处移动。通常情况下，对同一物体，要么通过刚体操纵，要么通过变换（transform）操纵。但添加刚体组件之后直接通过Transform组件更改物体位置，它和其他对象的碰撞可能出问题（除非Is Kinematic 选项被选中，选中该选项，则没法通过物理模拟来改变物体运动状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity 物理引擎 学习">
+<meta property="og:url" content="http://droidman.net/2017/11/18/2017-11-18/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="刚体： 刚体是模拟物理效果的对象。添加了刚体组件的游戏物体，会受重力影响，可以被玩家四处推动，或者直接用脚本添加力给对象来让他四处移动。通常情况下，对同一物体，要么通过刚体操纵，要么通过变换（transform）操纵。但添加刚体组件之后直接通过Transform组件更改物体位置，它和其他对象的碰撞可能出问题（除非Is Kinematic 选项被选中，选中该选项，则没法通过物理模拟来改变物体运动状态">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2017-11-18T00:43:14.000Z">
+<meta property="article:modified_time" content="2025-07-09T11:00:45.729Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="物理引擎">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-11-18" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/18/2017-11-18/" class="article-date">
+  <time datetime="2017-11-18T00:43:14.000Z" itemprop="datePublished">2017-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity 物理引擎 学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>刚体：</p>
+<p>刚体是模拟物理效果的对象。添加了刚体组件的游戏物体，会受重力影响，可以被玩家四处推动，或者直接用脚本添加力给对象来让他四处移动。通常情况下，对同一物体，要么通过刚体操纵，要么通过变换（transform）操纵。但添加刚体组件之后直接通过Transform组件更改物体位置，它和其他对象的碰撞可能出问题（除非Is Kinematic 选项被选中，选中该选项，则没法通过物理模拟来改变物体运动状态）。应避免同时使用两种方式。正确地方法应该是通过施加力或者扭矩来移动刚体。</p>
+<p>属性：</p>
+<p>Mass 质量：物体的质量(任意单位)。建议一个物体的质量不要多于或少于其他单位的100倍。<br>Drag 阻力：移动时物体受到的空气阻力。0表示没有,极大时物体立即停止运动。<br>Angular Drag：角阻力 当受扭力旋转时物体受到的空气阻力。0表示没有，极大时物体立即停止旋转。<br>Use Gravity 是否使用重力<br>Is Kinematic 是否是运动学：若激活，该物体不再受物理引擎驱动，而只能通过transform来操作。适用于模拟运动的平台或者模拟与铰链关节连接的刚体。<br>Interpolate 插值<br>当你发现刚体运动时抖动，可以尝试下面的选项。<br>None 无 不应用插值。<br>Interpolate 内插值 基于上一帧的变换来平滑本帧变换。<br>Extrapolate 外插值 基于下一帧的预估变换来平滑本帧变换。</p>
+<p>Collision Detection 碰撞检测模式。用于避免高速物体穿过其他物体，却未触发碰撞。<br>Discrete 离散</p>
+<p>离散碰撞检测。使用离散碰撞检测模式来与场景中其他碰撞器进行碰撞检测。其他物体与它的碰撞检测，也会应用这种模式。适用于普通碰撞（这是默认的模式）。<br>Continuous 连续<br>连续碰撞检测。使用离散碰撞检测来检测与动态碰撞器（刚体）的碰撞，使用连续碰撞检测来检测与静态网格（非刚体）的碰撞检测。采用连续动态碰撞检测模式的刚体碰见这类物体也将采用连续碰撞检测模式。而与其他刚体将采用离散碰撞检测模式。这种模式适用于那些采用动态连续碰撞模式的物体碰撞的物体。（这对物理表现有很大的影响，如果你不关心与高速物体的碰撞，那么就让其为默认的离散模式。）<br>Continuous Dynamic    动态连续<br>连续动态碰撞检测。使用连续动态碰撞检测模式来检测与连续模式和连续动态模式的物体间的碰撞。也适用于与静态网格（非刚体）的碰撞检测。而与之碰撞的其他模式的物体，采用的是离散动态碰撞检测模式。适用于高速物体。<br>Constraints 约束 对刚体运动的约束。 限制刚体在某些维度上的移动或|和旋转。</p>
+<p>Freeze Position 冻结位置，刚体在世界中沿所选X，Y，Z轴的移动，将无效。<br>Freeze Rotation 冻结旋转，刚体在世界中沿所选的X,Y,Z轴的旋转，将无效。<br>velocity:刚体的速度向量,最好不要直接修改它，可以通过它的大小判断撞击的强度。</p>
+<p>方法：<br>Rigibody.AddForce(Vector3)，在物体的中心点位置添加一个Vector3的力，使物体朝该Vector3方向运动，运动速度为该向量的模。<br>Rigibody.AddTorque(Vector3)，在物体中心添加一个力矩Vector3，力矩可以使物体旋转，刚体将绕着torque轴旋转。<br>Rigibody.AddForceAtPosition(Vector3,Vector3),在物体某个位置添加一个力，对于真实的效果，位置应大约在刚体表面的范围。<br>Rigibody.AddExplosionForce（float forceStrength，Vector3 postion，float range）,在某个位置添加一个大小为float，半径为range的爆炸力（向爆炸范围内各个方向的对象施加一个力），用来模拟爆炸效果。爆炸力将随着到刚体的距离线形衰减。。</p>
+<p>提示：两个刚体 (Rigidbody) 的相对质量 (Mass) 确定它们在互相碰撞时的反应方式。<br>使一个刚体 (Rigidbody) 的 质量 (Mass) 大于另一个刚体 (Rigidbody) 不会使其在自由落体过程中下落得更快。请使用阻力 (Drag) 实现此目的。<br>较小阻力 (Drag)值会使对象看起来较重。较高值会使对象看起来较轻。阻力 (Drag) 的典型值介于 0.001（实心金属块）与 10（羽毛）之间。<br>如果直接处理对象的变换 (Transform) 组件 (Component) ，但是仍需要物理，请附加刚体 (Rigidbody) 并将其设为运动学 (Kinematic)。<br>如果通过其变换 (Transform) 组件 (Component) 移动某个游戏对象 (GameObject)，但是希望接收碰撞体 (Collider)/触发器 (Trigger) 消息，则必须将刚体 (Rigidbody) 附加到移动的对象。<br>不能仅仅通过将其“角阻力”(Angular Drag) 设置为无穷大使对象停止旋转。</p>
+<p>碰撞体、触发器<br>发生碰撞条件：两个物体都必须带有碰撞器(Collider)，其中一个物体还必须带有Rigidbody刚体，没有碰撞体的刚体会彼此相互穿过。发生碰撞时，当两个物体都是碰撞器（Is Trigger都未勾选）时触发OnCollisionXXX，否则触发OnTriggerxxx。</p>
+<p>属性：<br>Is Trigger 是否触发器，勾选后会触发OnTriggerxxx方法，会穿过刚体<br>Material 材质，后面再讲<br>Center 中心点，用于调整碰撞盒的位置<br>Size 大小 在X、Y、Z三维上的碰撞器尺寸。<br>Convex 凸起的 如激活，该网格碰撞器将会和其他网格碰撞器碰撞。凸起的网格碰撞器限制在255个三角形面内。网格碰撞器之间通常不相互碰撞，但如果一个网格碰撞器被标记为凸起的（Convex ），那么它就可以与其他网格碰撞器碰撞。典型的解决方案是，对移动的对象使用基本碰撞器，而对静态环境对象使用网格碰撞器。<br>碰撞方法：<br>OnTriggerEnter( Collider other )当进入触发器<br>OnTriggerExit( Collider other )当退出触发器<br>OnTriggerStay( Collider other )当逗留触发器<br>OnCollisionEnter( Collision collisionInfo ) 当进入碰撞器<br>OnCollisionExit( Collision collisionInfo ) 当退出碰撞器<br>OnCollisionStay( Collision collisionInfo ) 当逗留碰撞器</p>
+<p>Static Colliders 静态碰撞器，包含碰撞器但不含刚体的游戏对象。你不要逐帧移动 一个静态碰撞器，移动静态碰撞器将导致PhysX引擎的内部重置，非常耗费资源，而且会造成性能的极大下降。<br> 基于层的碰撞检测：Edit-&gt;Project Settings-&gt;Physics.，打开物理引用界面. 在碰撞矩阵中选择要与其他层相互作用的层，勾选即可.（前提是先设置好层）</p>
+<p>物理材质 Physic Material<br>物理材质用来调节碰撞物体的摩擦力和弹力效果。要创建物理材质从菜单栏选择Assets-&gt;Create-&gt;Physic Material。然后从项目视图拖拽物理材质到场景的一个碰撞器上。</p>
+<p>属性：<br>Dynamic Friction 动力摩擦力，对象在运动时的摩擦力，取值范围0<del>1，该值越大，物体受到阻力越大，越快停止运动。<br>Static Friction 静态摩擦力，对象被放置在表面时的摩擦力，取值范围0</del>1，该值越大，物体受到阻力越大，开始运动所需力也越大，取值接近0时可模拟冰的效果。<br>Bouncyness 弹力 0值将不反弹。1值反弹将没有任何能量损失。<br>Friction Combine Mode 摩擦力结合模式 ，两个碰撞物体的摩擦力是如何结合起来。<br>Average 使用两个摩擦力的平均值<br>Min 使用两个摩擦力的最小值<br>Max 使用两个摩擦力的最大值<br>Multiply 使用两个摩擦力的乘积</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/18/2017-11-18/" data-id="cmcw1g2rd000jz4z873px4boh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/19/2017-11-19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unity 小技巧总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/12/2017-11-12/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AssetBundle加载到内存和释放研究</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="持续学习者————Just Do It！">
+<meta property="og:url" content="http://droidman.net/page/8/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Objective-c">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Unity3d">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Unix">
+<meta property="article:tag" content="Window">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Lua">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="xcode">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="eclicpse">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2017-11-05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/05/2017-11-05/" class="article-date">
+  <time datetime="2017-11-05T00:43:04.000Z" itemprop="datePublished">2017-11-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/05/2017-11-05/">unity Assetbundle 使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文的主要内容是分析5.X版本的AssetBundle机制（包括创建资源包、压缩资源包、加载资源包和从资源包中加载/卸载资源等几个方面）及其关键的API使用方式。<br>AssetBundle是Unity推荐的资源管理方式，官方列举了诸如热更新，压缩，灵活等等优点。</p>
+<p>使用步骤<br>一、打包<br>1.通过Editor中的UI为AssetBundle标记资源。而且一个资源和对应的AssetBundle的映射将会在资源数据库（AssetDatabase）中被创建。</p>
+<p>2.BuildPipeline.BuildAssetBundles()：我们只需要提供一个输出AssetBundle的地址即可。引擎将自动根据资源的assetbundleName属性（即在上文中UI中设置的值）批量打包，自动建立Bundle以及资源之间的依赖关系。<br>Unity3D为我们提供了唯一的API用来打AssetBundle包。即：BuildPipeline.BuildAssetBundles<br>在脚本中调用BuildPipeline.BuildAssetBundles，U3D将自动根据资源的assetbundleName属性批量打包，自动建立Bundle和资源之间的依赖关系。在资源的Inpector界面最下方可设置该资源的assetbundleName，每个assetbundleName对应一个Bundle，即assetbundleName相同的资源会打在一个Bundle中。如果所依赖的资源设置了不同的assetbundleName，则会自动与之建立依赖关系，避免出现冗余，从而减小Bundle包的大小。当然，除了可以指定assetbundleName，我们还可以在Inpector中设置另一个名字，即variant。在打包时，variant会作为后缀添加在assetbundleName之后。相同assetbundleName，不同variant的Bundle是可以相互替换的。</p>
+<p>设置好之后，我们只需要创建一个新的脚本，通过编辑器拓展调用BuildPipeline.BuildAssetBundles方法即可：</p>
+<p>BuildPipeline.BuildAssetBundles方法的参数<br>outputPath：输出目录，一般我们设置为  Application.streamingAssetsPath + Bundle的目标路径和Bundle名称<br>targetPlatform：目标平台，在安卓，IOS，PC下，我们需要传入不同的平台标识，以打出不同平台适用的包，注意，Windows平台下打出来的包，不能用于IOS<br>BuildAssetBundleOptions：BuildAssetBundleOptions.CollectDependencies会去查找依赖，BuildAssetBundleOptions.CompleteAssets会强制包含整个资源，BuildAssetBundleOptions.DeterministicAssetBundle会确保生成唯一ID，在打包依赖时会有用到</p>
+<p>Unity3D引擎为我们提供了三种压缩策略来处理AssetBundle的压缩，即：LZMA格式、LZ4格式、不压缩。<br>LZMA格式：在默认情况下，打包生成的AssetBundle都会被压缩。在U3D中，AssetBundle的标准压缩格式便是LZMA（LZMA是一种序列化流文件），因此在默认情况下，打出的AssetBundle包处于LZMA格式的压缩状态，在使用AssetBundle前需要先解压缩。<br>使用LZMA格式压缩的AssetBundle的包体积最小（高压缩比），但是相应的会增加解压缩时的时间。<br>LZ4格式： Unity 5.3之后的版本增加了LZ4格式压缩，由于LZ4的压缩比一般，因此经过压缩后的AssetBundle包体的体积较大（该算法基于chunk）。但是，使用LZ4格式的好处在于解压缩的时间相对要短。若要使用LZ4格式压缩，只需要在打包的时候开启BuildAssetBundleOptions.ChunkBasedCompression即可。<br>BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath,<br>BuildAssetBundleOptions.ChunkBasedCompression);<br>不压缩：我们也可以不对AssetBundle进行压缩。没有经过压缩的包体积最大，但是访问速度最快。若要使用不压缩的策略，只需要在打包的时候开启BuildAssetBundleOptions.UncompressedAssetBundle即可。<br>BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath,<br>BuildAssetBundleOptions.UncompressedAssetBundle);</p>
+<p>在打包的时候，我们需要对包的大小和数量进行一个平衡，所有资源打成一个包，一个资源打一个包，都是比较极端的做法，他们的问题也很明显，更多情况下我们需要灵活地将他们组合起来<br>打成一个包的缺点是加载了这个包，我们不需要的东西也会被加载进来，占用额外内存，而且不利于热更新 打成多个包的缺点是，容易造成冗余，首先影响包的读取速度，然后包之间的内容可能会有重复，且太多的包不利于资源管理哪些模块打成一个包，哪些模块打成多个包，需要根据实际情况来，例如游戏中每个怪物都需要打成一个包，因为每个怪物之间是独立的，例如游戏的基础UI，可以打成一个包，因为他们在各个界面都会出现<br> PS.想打包进AssetBundle中的二进制文件，文件名的后缀必须为“.bytes”</p>
+<p>二、加载<br>首先获取AssetBundle对象，第二从AssetBundle中加载目标资源。在运行时加载AssetBundle对象主要可以分为两大类途径：<br>1.先获取WWW对象，再通过WWW.assetBundle加载AssetBundle对象：<br>public WWW(string url)，直接调用WWW类的构造函数，目标AssetBundle所在的路径作为其参数，构造WWW对象的过程中会加载Bundle文件并返回一个WWW对象，完成后会在内存中创建较大的WebStream（解压后的内容，通常为原Bundle文件的4~5倍大小，纹理资源比例可能更大），因此后续的AssetBundle.LoadAsset可以直接在内存中进行。<br>public static WWW LoadFromCacheOrDownload(string url, int version, uint crc = 0)，WWW类的一个静态方法，调用该方法同样会加载Bundle文件同时返回一个WWW对象，和上一个直接调用WWW的构造函数的区别在于该方法会将解压形式的Bundle内容存入磁盘中作为缓存（如果该Bundle已在缓存中，则省去这一步），完成后只会在内存中创建较小的SerializedFile，而后续的AssetBundle.LoadAsset需要通过IO从磁盘中的缓存获取。LoadFromCacheOrDownload会记录所有Bundle的使用情况，并在适当的时候删除最近很少使用的资源包，它允许存在两个版本号不同但名字一样的资源包，这意味着你更新这个资源包之后，如果没有更新代码中的版本号，你可能取到的会是旧版本的资源包，从而产生其他的一些BUG。另外，当你的磁盘空间不足的时候（硬盘爆了），LoadFromCacheOrDownload只是一个普通的new WWW<br>2.直接加载AssetBundle对象：<br>public static AssetBundle LoadFromFile(string path, uint crc = 0)：新的从文件创建加载AssetBundle方法，loadFromFile方法支持上一节中提到的几个压缩格式，针对LZ压缩格式和未压缩的磁盘上的bundle文件，该方法会直接加载。针对使用默认的LZMA压缩格式压缩的bundle文件，该方法会在幕后先将bundle文件解压后再加载。这是最快的加载AssetBundle的方式。该方法是同步版本，还有异步版本：LoadFromFileAsync。<br>public static AssetBundle LoadFromMemory(byte[] binary, uint crc = 0)：从内存中获取Bundle的二进制数据，同步地创建AssetBundle对象。该方法一般用在经过加密的数据上，经过加密的流数据经过解密之后我们可以调用该方法动态的创建AssetBundle对象。该方法是同步版本，还有异步版本：LoadFromMemoryAsync。<br>三、资源加载<br>LoadAsset：从资源包中加载指定的资源<br>LoadAllAsset：加载当前资源包中所有的资源.<br>LoadAssetAsync：从资源包中异步加载资源<br>在Bundle中加载的Prefab是不能直接使用的，它需要被实例化之后，才能使用，而对于这种Prefab，实例化之后，这个Bundle就可以被释放了<br>GameObject obj = GameObject.Instantiate(bundle.Load(“MyPrefab”)) as GameObject;<br>bundle.Load(“MyPrefab”, typeof(GameObject))加载的时候最好传入资源的类型</p>
+<p>四、针对项目的建议<br>由于以上分析的几种加载手段各有各的使用情景和特点。因此建议在我们的项目中按照以下情景使用这些方法：<br>1.随游戏一同发布的AssetBundle（一般位于StreamingAssets文件夹中）：在打AssetBundle包时，使用LZ4压缩格式进行打包（开启BuildAssetBundleOptions.ChunkBasedCompression即可）。<br>2.在运行时需要加载AssetBundle对象时，使用LoadFromFile方法进行加载。<br>这样做的好处是：即可以将AssetBundle文件压缩，又可以兼顾加载速度，且节约内存。<br>3.在打AssetBundle包时，使用默认的LZMA格式压缩。<br>4.使用WWW.LoadFromCacheOrDownload方法下载并缓存AssetBundle包文件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/05/2017-11-05/" data-id="cmcw1g2r6000ez4z815vbclgp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/" rel="tag">unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/04/2017-11-04/" class="article-date">
+  <time datetime="2017-11-04T00:43:00.000Z" itemprop="datePublished">2017-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/04/2017-11-04/">UGUI适配</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着游戏设备越来越多，屏幕的分辨率也越来越多。而针对不同的屏幕分辨率，制作不同的素材是不现实的，所以就需要我们提供一套分辨率自适应的机制，来适配不同屏幕分辨率的设备。这篇博客就来介绍一下UGUI提供的分辨率自适应的机制。<br>游戏中的分辨率自适应主要包括两部分：一是在不同尺寸的屏幕下，整体缩放比例的计算方式；二是在不同比例（宽高比）的屏幕下，UI控件所处的位置关系，也成为布局。</p>
+<p>整体缩放比例<br>UGUI中Canvas Scaler组件是负责整体缩放机制的，缩放模式提供了三种：<br>Constant Pixel Size：固定像素尺寸，即按素材的“固定像素”渲染，缩放屏幕不缩放图片，不适配屏幕<br>Scale Factor：缩放比例，在素材原尺寸上的缩放比例，默认值是1，缩放图片<br>Reference Pixels Per Unit：每个unity单位对应的像素数</p>
+<p>Scale With Screen Size：根据屏幕尺寸缩放，图片跟着缩放，适配<br>Reference Resolution：标准分辨率，这是我们提供给美术做图的标准分辨率，所有的UI素材都应该按这个分辨率去做<br>Screen Match Mode：</p>
+<p>Shrink 保持缩放比例，裁切</p>
+<p>Expand 缩放不裁切</p>
+<p>Match Width Or Height 以宽高权重匹配<br>Match：宽高所占权重，默认值是0，相当于以“标准分辨率的宽”和“实际屏幕的宽”的比例作为缩放比例。同理，如果值是1，相当于以“标准分辨率的高”和“实际屏幕的高”的比例作为缩放比例。如果值是0.5，则相当于宽和高的比例权重相等，最终的缩放比=宽缩放比<em>宽权重+高缩放比</em>高权重<br>Reference Pixels Per Unit：每个unity单位对应的像素数</p>
+<p>Constant Physical Size：固定物理尺寸<br>Physical Unit：物理单位，包括点，英寸，厘米，毫米等<br>Fallback Screen DPI：对应物理单位的像素密度<br>Default Sprite DPI：默认精灵的像素密度<br>Reference Pixels Per Unit：每个unity单位对应的像素数<br>目前手机设备分辨率宽高比都在1.5:1<del>1.8:1范围，pad的分辨率在1.3:1</del>1.5:1范围，所以一般情况下，我们会根据要覆盖的机型，得到其大概的宽高比范围，从中间选择一个合适的宽高比，例如1.7:1（因为手机设备比较多，所以更接近1.8:1的比例）。有了宽高比，接下来我们要选择目标分辨率了，通常情况下以1024作为宽，以1024/1.7=602作为高比较合适，因为一般的压缩格式会要求宽高是2的次幂或者4的倍数。<br>在确定宽高比和目标分辨率之后，我们还需要设置适配规则，比较推荐的做法是做一张较大的背景图，背景图中上下左右边的内容允许被裁剪。当适配到1.8:1的设备上时，由于背景图内容宽度小于设备宽度，此时需要使用“宽”适配，这时背景图的上下边将被裁剪掉；反之适配到1.5:1的设备上时，需要使用“高”适配，这时背景图的左右边将被裁减掉。<br>布局<br>  在适配分辨率方面，除了等比缩放外，还有一方面是对UI控件位置的适配，例如角色头像一般处在屏幕的左上角，虚拟摇杆处在屏幕的左下角，要想在不同的分辨率下都处在比较合适的位置，就需要理解“锚点”的作用了。<br>   UGUI中控件的锚点都是相对于父控件的，包括 左上，中上，右上，左中，中心，右中，左下，中下，右下，默认值是中心。<br>   当我们在标准分辨率下定位好控件后，设置好合适的锚点，不论在那种分辨率下，控件都会处于一个合适的位置。<br>   以左上角头像为例，我们将其锚点（anchor）设置为“左上”，轴（pivot）设置为“左上角”。<br>   PosX和PosY即UI控件相对于父控件（Canvas）的相对位置，由于锚点设置为“左上”，轴设置为“左上角”，所以位置PosX和PosY都为0</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/04/2017-11-04/" data-id="cmcw1g2r5000cz4z88k928pno" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-13" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/13/2017-05-13/" class="article-date">
+  <time datetime="2017-05-13T00:35:54.000Z" itemprop="datePublished">2017-05-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/13/2017-05-13/">三消游戏的一些算法总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>•    &quot;如何表示消除游戏的棋盘？&quot;
+•    &quot;怎样检测相邻的相同元素？&quot;
+
+•    &quot;如何实现消除后自动补全棋盘效果？
+•    &quot;如何实现消除后自动生成新元素效果？&quot;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 消除游戏棋盘表示</span><br><span class="line">	int[,] board &#x3D; new int[8, 8]; &#x2F;&#x2F; 0表示空位，1-6表示不同颜色</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; 检测相邻相同元素</span><br><span class="line">	bool HasMatch(int[,] grid, int x, int y) &#123;</span><br><span class="line">	    int color &#x3D; grid[x, y];</span><br><span class="line">	    &#x2F;&#x2F; 检查水平方向</span><br><span class="line">	    if (x &gt; 0 &amp;&amp; grid[x-1, y] &#x3D;&#x3D; color &amp;&amp; x &lt; grid.GetLength(0)-1 &amp;&amp; grid[x+1, y] &#x3D;&#x3D; color)</span><br><span class="line">	        return true;</span><br><span class="line">	    &#x2F;&#x2F; 检查垂直方向</span><br><span class="line">	    if (y &gt; 0 &amp;&amp; grid[x, y-1] &#x3D;&#x3D; color &amp;&amp; y &lt; grid.GetLength(1)-1 &amp;&amp; grid[x, y+1] &#x3D;&#x3D; color)</span><br><span class="line">	        return true;</span><br><span class="line">	    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+•    &quot;如何实现三消游戏中的特殊连锁反应效果？&quot;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 连锁反应节点</span><br><span class="line">public class ChainNode &#123;</span><br><span class="line">    public Vector2Int Position;</span><br><span class="line">    public ChainNode Next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理连锁反应</span><br><span class="line">void ProcessChain(ChainNode head) &#123;</span><br><span class="line">    while (head !&#x3D; null) &#123;</span><br><span class="line">        RemoveTile(head.Position);</span><br><span class="line">        ApplySpecialEffect(head.Position);</span><br><span class="line">        head &#x3D; head.Next;</span><br><span class="line">        yield return new WaitForSeconds(0.3f); &#x2F;&#x2F; 动画间隔</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>“如何检测棋盘上的所有可消除组合？”</p>
+<p>“怎样实现特殊消除效果（如L型/T型消除）？”<br>// 检测所有匹配项<br>List<Vector2Int> FindAllMatches(int[,] grid) {<br>    var matches = new List<Vector2Int>();<br>    int width = grid.GetLength(0);<br>    int height = grid.GetLength(1);</p>
+<pre><code>// 水平检测
+for (int y = 0; y &lt; height; y++) {
+    for (int x = 0; x &lt; width - 2; x++) {
+        if (grid[x, y] &gt; 0 &amp;&amp; 
+            grid[x, y] == grid[x+1, y] &amp;&amp; 
+            grid[x, y] == grid[x+2, y]) {
+            matches.Add(new Vector2Int(x, y));
+            matches.Add(new Vector2Int(x+1, y));
+            matches.Add(new Vector2Int(x+2, y));
+        }
+    }
+}
+
+// 垂直检测（类似逻辑）
+// ...
+
+return matches.Distinct().ToList();</code></pre><p>}</p>
+<p>问题：”如何实现随着玩家水平变化的难度系统？”</p>
+<p>public class DifficultyAdjuster {<br>    private float playerSuccessRate;<br>    private int gamesPlayed;</p>
+<pre><code>public int GetAdjustedLevel(int baseLevel) {
+    float difficultyFactor = Mathf.Clamp(1.5f - playerSuccessRate, 0.5f, 2f);
+    return Mathf.RoundToInt(baseLevel * difficultyFactor);
+}
+
+public void UpdateSuccess(bool levelPassed) {
+    gamesPlayed++;
+    playerSuccessRate = (playerSuccessRate * (gamesPlayed - 1) + (levelPassed ? 1 : 0)) / gamesPlayed;
+}</code></pre><p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/13/2017-05-13/" data-id="cmcvdrdxo000wccz87nok0lgv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-07" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/07/2017-05-07/" class="article-date">
+  <time datetime="2017-05-07T00:35:47.000Z" itemprop="datePublished">2017-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/07/2017-05-07/">文件的读写存储操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当程序运行时，变量时保存数据的好方法，如果希望程序结束了数据仍能保持，就需要将数据存储到文件中（序列化），你可以认为文件的内容是一个字符串值，那如何使用python 在硬盘上创建，读取和保存呢。</p>
+<p>文件关键属性：</p>
+<pre><code>- 文件名
+- 文件路径
+- 文件扩展名
+- 文件权限
+- 文件显示隐藏属性
+- 文件大小</code></pre><p>在不同的平台路径分隔符不一致：在window上是反斜杠，在OSX 和linux上是斜杠，附加卷诸如DVD或USB在不同的操作系统上显示也不同，在window上显示的新的带字符的跟驱动器，在osx表示位/Volumes下的新文件夹，在linux上显示的是/mnt下的新文件夹</p>
+<p>import os<br>os.listdir() #列出当前目录的所有文件<br>os.getcwd() #获取当前目录<br>os.chdir(‘path’) #切好当前工作目录<br>os.makedirs(‘path’) #创建文件夹<br>os.path.join(‘path’,’file’) #目录和文件拼接</p>
+<p>绝对路径和相对路径<br>绝对路径总是从根文件夹开始‘/’<br>相对路径相对的是程序当前的工作目录<br>‘.’ 当前目录<br>‘..’ 当前目录的父目录<br>os.path.abspath(‘path’) #将目录转为绝对目录<br>os.path.isabs(‘path’) #判断目录是否是绝对路径<br>os.path.relpath(path1,path2) #传人参数是俩个绝对路径，返回path1 相对 path2的相对路径<br>os.path.dirname(‘path’) #返回path 参数重最后一个斜杆之前的所有内容， （文件夹路径）<br>os.path.basename(‘path’) #返回path参数最后一个斜杆之后的内容。（文件或者文件夹名）<br>os.path.split(‘path’) #返回（os.path.dirname(),os.path.basename()）</p>
+<p>检查路径有效性<br>os.path.exists(‘path’) #路径是否存在或者正确<br>os.path.isdir(‘path’) #路径是否是一个目录<br>os.path.isfile(‘path’) #路径是否是一个文件</p>
+<p>文件的读写<br>open(‘path’,’r/w/a/) #打开文件读，写，追加，返回一个File对象<br>close(‘path’) #关闭文件</p>
+<p>用shelve 模块保存变量<br>import shelve<br>shelveFile = shelve.open(‘mydata’)<br>cats =[‘zoophix’,’bbb’,’ccc’]<br>shelveFile[‘cats’]=cats<br>shelveFile.close()</p>
+<p>list(shelveFile.keys)<br>list(shelveFile.values)</p>
+<p>用pprint.pformat()函数保存变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import pprint</span><br><span class="line">cats &#x3D;[&#123;&#39;name&#39;:&#39;hello&#39;,&#39;desc&#39;:&#39;world&#39;&#125;,&#123;&#39;name:&#39;ouyang&#39;,&#39;desc&#39;:&#39;haha&#39;&#125;]</span><br><span class="line">pprint.pformat(cats)</span><br><span class="line">fileobj &#x3D; open(&#39;myCats.py&#39;,&#39;w&#39;)</span><br><span class="line">fileobj.write(&#39;cats&#x3D;&#39; + pprint.pformat(cats) + &#39;\n&#39;)</span><br><span class="line">fileobj.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import myCats</span><br><span class="line">myCats.cats</span><br><span class="line">myCats.cats[0]</span><br><span class="line">myCats.cats[0][name]</span><br></pre></td></tr></table></figure>
+<p>创建一个.py文件而不是利用shelve模块保存变量的好处在于他是一个文本文件，所以任何人都可以用一个简单的文本编辑器读取和修改该文件的内容，但是对于大多数应用，利用shelve模块来保存数据，是将变量保存到文本的最佳方式，因为只有基本数据类型，诸如整形，浮点型，字符串，列表和字典，可以作为简单文本写入一个文件。而对象就不能编码为简单文本，比如File对象。</p>
+<p>从剪切板取得文本<br>将文本张贴到剪切板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import pyperclip,re</span><br><span class="line">text &#x3D; str(pyperclip.paste())</span><br><span class="line">matchs &#x3D;[]</span><br><span class="line">for groups in phoneRx.findall(text):</span><br><span class="line">	phonenum &#x3D; &#39;-&#39;.join([group[1],group[3],group[5])</span><br><span class="line">	matchs.append(phonenum</span><br><span class="line">	</span><br><span class="line">if len(matchs)&gt;0:</span><br><span class="line">	pyperclip.copy(&#39;\n&#39;.join(matchs))</span><br><span class="line">	print(Copied to clipboard:)</span><br><span class="line">	print(&#39;\n&#39;.join(matchs))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/07/2017-05-07/" data-id="cmcvdrdxl000tccz8hnnv0ex3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/06/2017-05-06/" class="article-date">
+  <time datetime="2017-05-06T00:35:40.000Z" itemprop="datePublished">2017-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/06/2017-05-06/">python 正则表达式练习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>知道【正则表达式】可能意味着用3步解决一个问题，而不是用3000步，如果你是一个技术怪侠，别忘了你用几次快捷键就能解决的问题，其他人需要数天的繁琐工作才能解决，而且他们还容易犯错。<br>                                        —- Cory Doctorow </p>
+</blockquote>
+<p>正则表达式总结：</p>
+<ul>
+<li>()添加小括号将在正则表达式中创建分组，</li>
+<li>？匹配[0,1]次前面的分组</li>
+<li>*匹配[0,多]次前面的分组</li>
+<li>+匹配[1,多]次前面的分组</li>
+<li>{}匹配特定次数或者特定范围次数的前面的分组</li>
+<li>{N} 匹配 N 次前面的分组</li>
+<li>{N，}匹配[N, 多]次前面的分组</li>
+<li>{,N}匹配[0,N]次前面的分组</li>
+<li>{N,M}匹配[N,M]次前面的分组进行贪心（最大）匹配</li>
+<li>{N,M}?匹配[N,M]次前面的分组进行非贪心（最小）匹配</li>
+<li>*？或+？对前面的分组进行最小匹配。</li>
+<li>^span匹配的字符串必须以span开头</li>
+<li>span$匹配的字符串必须以span结束</li>
+<li>. 匹配所有字符（一个字符），换行符除外</li>
+<li>\d,\w和\s分别匹配数字（0-9），单词（任意字母，数字或下划线），和空格（空格，制表符，换行符），</li>
+<li>\D,\W,\S分别匹配出除数字，单词（任意字母，数字或下划线），空格（空格，制表符，换行符）以外的所有字符</li>
+<li>[abca-zA-Z0-9]匹配方括号中的任意字符</li>
+<li>[^abc]匹配不在方括号内的任意字符</li>
+</ul>
+<p>python中使用正则表达式<br>import re #导入模块<br>x = re.compile(r’(\d\d\d)-(\d\d\d-\d\d\d\d) ‘) # 创建一个匹配对象 ，python 的转义字符要加<br>mo = x.search(‘My number is 415-555-4242. ‘) # 搜索匹配正则<br>mo.group() #匹配的结果</p>
+<p>使用group（）匹配对象的方法从一个分组中获取匹配的文本，查找的是第一个匹配对象<br>group（）和group（0）返回完整的匹配<br>group(1),group(2) 返回对应第几个括号中的匹配值<br>groups() 返回多个匹配值的元组<br>mo.groups()<br>(‘415’,’555-4242’)<br>areacode,mainNumber = mo.groups()<br>areacode = 415<br>mainNumber = 5555-4242</p>
+<p>用管道匹配多个分组（｜）<br>字符‘｜’称为管道，希望匹配多个值时使用r’a|b|c’将匹配a或b或c</p>
+<p>使用findall（） 可以找出所有的匹配结果<br>只有正则表达式中没有分组，返回的是一个字符串列表。<br>如果有分组，findall将返回一个匹配的元组的列表。</p>
+<p>用问号？实现可选匹配<br>re.compile(r’[aeiouAEIOU]’)匹配单词中的元音字母<br>re.compile(r’[^aeiouAEIOU]’)匹配单词中的非元音字母<br>在[]中的普通的正则表达式符合不会被解释，所以不要在前面(.,*,?,(,),)加转义的反斜杠（\）</p>
+<p>点-星（.*）能匹配除换行外的所有字符，通过对re.comile()的第二个参数传人re.DOTALL,可以让句点字符匹配包括换行字符。</p>
+<p>用sub（）方法替换字符串</p>
+<p>管理复杂的正则表达式<br>比较复杂的需要长的费解的正则表达式，可以传人re.VERBOSE 作为re.compile()的第二个参数，可以忽略正则表达式中的空白符和注释。从而缓解复杂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">eg： phoneRx &#x3D; re.compile(r&#39;((\d&#123;3&#125;|\(\d3\))?(\s|-|\.)?\d&#123;3&#125;(\s|-|\.)\d&#123;4&#125;(\s*(ext|x|ext.)\s*\d&#123;2,5&#125;)?)&#39;)</span><br><span class="line"></span><br><span class="line">phoneRx &#x3D; re.compile(r&#39;&#39;&#39;(</span><br><span class="line">	(\d&#123;3&#125;|\(d&#123;3&#125;\))? #区号</span><br><span class="line">	(\s|-|\.)? #分隔</span><br><span class="line">	\d&#123;3&#125; #前三</span><br><span class="line">	(\s|-\.) #分隔</span><br><span class="line">	\d&#123;4&#125; #后四</span><br><span class="line">	(\s*(ext|x|ext.)\s*\d&#123;2,5&#125;)? #扩展</span><br><span class="line">)&#39;&#39;&#39;,re.VERBOSE)</span><br></pre></td></tr></table></figure>
+
+<p>使用re.IGNORECASE 忽略大小写<br>someRx = re.compile(‘foo’,re.IGNORECASE|re.DOTALL|re.VERBOSE) #按位或来组合使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/06/2017-05-06/" data-id="cmcvdrdxh000qccz888ul71o4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/02/2017-05-02/" class="article-date">
+  <time datetime="2017-05-02T00:26:37.000Z" itemprop="datePublished">2017-05-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/02/2017-05-02/">不要急于学习编程语言，先学会如何解决问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一篇关于虚度青春的短篇回忆录。<br>多年来，我一直在学习编程语言，然后用它们来构建更好的投资工具。在建立预测和风险管理模型之余，编程方面的工作堆积如山。<br>但实际上，我并没有花太多时间在真正需要解决的问题上。<br>我把大部分注意力放在了算法和编程语言上。多年来，我每周都要花几个小时学习计算机基础知识，却没有花太多时间应用这些知识来让现实世界变得更美好。<br>而我的一个朋友却基于微软 Office 开发出了一个完整的产品，它使用 Access 保存数据，使用 Excel 分析数据，然后使用 Word 输出报告。<br>当他把产品卖给一家大公司时，我为他感到高兴，同时也有些嫉妒。我比他更了解编程，但却没能推出可以解决实际问题的产品。<br>实际上，为什么要开发产品比如何开发产品更加重要。我花时间学习如何编程，而我的朋友把时间花在解决实际的问题上。<br>他从使用非常简单的工具开始，一步一步往前走，直到找到一个完整的解决方案。在这个过程中，他自学了如何将其他工具整合在一起。这仍然需要做大量的工作，但他做到了，尽管资源非常有限。<br>1<br>神奇之处在于“为什么”<br>后来，我加入了一家初创公司，并最终汲取了这个教训。<br>一个团队能否取得重大突破从来都不取决于如何使用代码完成某些功能，而在于知道要做什么，以及为什么要这样做。<br>在创造性的旅程中，没有什么比在不必要的东西上投入太多更令人心碎的了。<br>如果你想要创造出一些有用的东西，首先要知道“为什么”要这样做。从一开始你就要问自己：谁会用这些东西，它们将如何改善他们的生活？<br>2<br>专注于解决真正的问题可以加快学习速度<br>当你专注于真正需要解决的问题时，大脑中的信息留存率会更高。我们的大脑会优先考虑需要保存的信息，并忽略大部分其他东西。这样可以节约能量，但不利于学习。<br>知道自己为什么要学习，就相当于触发大脑要优先考虑新信息。<br>追求创造性的活动会让你学得更快，而这并不要求你一定要学会一门编程语言。<br>3<br>下面这些事情比学习编程语言更重要<br>找到真正的问题。<br>把问题写下来，它现在是什么样的，它应该是什么样的，并尽可能详细。例如，如果你的问题与使用 Office 文件格式保存数据有关，那么就详细说明这方面的问题，这样有助于找到最好的解决方案。<br>当你对问题本身以及你想如何解决问题有了很好的描述，你就已经成功了一半。<br>然后你要努力去澄清问题，朝着可以找到解决方案的方向迈进。<br>如果你在这个时候纠结于编程语言，那么你可能不是一个好程序员。你要不断培养描述问题和解决方案的能力。<br>当你对问题有了很好的描述，并且确切地知道想要什么，然后再去学习一门编程语言来解决这个问题就变得很容易了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/02/2017-05-02/" data-id="cmcvdrdw80000ccz823nhdj8s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/01/2017-05-01/" class="article-date">
+  <time datetime="2017-05-01T01:19:07.000Z" itemprop="datePublished">2017-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/01/2017-05-01/">每天看一遍，不久你会变（转）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要月入5000看3遍，要月入1万看10遍，要月入100万以上把以下内容背下来！<br>是什么限制了你的能力？<br>1：否定性思想<br>比如：不可能、没办法、怎么会？没想过、不知道等等，这些词汇会让你的大脑停止思考，不会再为结果找答案。没方法等于没能力。<br>2：推卸责任<br>比如：没看见、不知道、不是我的错、因为···所以···，这些词汇会让一个人心安理得的让这件事情和自己没关系，损失了很多次成长的机会。<br>3：金钱<br>金钱会锁定一个人的能力，不给钱就不干活，钱给的少就不去做，久而久之自己丧失了赚钱的能力。<br>4：职责局限<br>这个不归我管、那个不归我管，不在其位不谋其政，他忘了机会永远留给有准备的人。<br> <br>5：抱怨<br>自己永远是一个受害者，发生事情永远是别人的原因，整天怨天尤人，慢慢的失去了解决问题的能力，幸福快乐都离他而去。<br>6：自以为是<br>谁的意见都听不进去，总是觉得自己是对的，慢慢的谁都不再给他提意见，再也听不到真话的同时，只能自己慢慢成长。<br> <br>7：不自信<br>你不相信的东西永远不会全力以赴的去争取。一切随缘，顺其自然。<br>8：怕犯错<br>怕犯错的人不敢去做更多的事，出了错第一时间先给自己找理由找借口，失去了很多次尝试的机会，没有结果意识，经常为了对和错争论的面红耳赤。<br>9：懒惰<br>不想干，也不愿意去想，安于现状、与世无争、承受不了压力，只想不劳而获，每天做着美梦，温水煮青蛙，这种人是舒服死的。提醒自己全力以赴。<br> <br>宁可去碰壁，也不能在家里面壁；<br>是狼就要练好牙，是羊就要练好腿；是人就要练好脑子。<br> <br>什么是奋斗？<br>奋斗就是每一天都很难，<br>可一年一年却越来越容易！<br>不奋斗就是每一天都很容易，<br>可一年一年却越来越难！<br>拼一个春夏秋冬，<br>赢一个无悔人生，<br>我可以接受失败，<br>不能接受从来没有奋斗过！  <br> <br>跟谁混很重要<br>“沙子是废物，水泥也是废物，但他们混在一起是混凝土，就是<br>精品；大米是精品，汽油也是精品，但他们混在一起就是废物。<br>是精品还是废物不重要，跟谁混，很重要!  ＂<br>朋友不是乱交的，每天在一起喝酒的不一定是真朋友，每天在一起混的也不一定是永远的朋友。<br> <br>人生要交的四位朋友：<br>1、交一个欣赏你的朋友，即便在你穷困潦倒的时候反而会更安慰你、帮助你。<br>2、交一个有正能量的朋友，在你情绪低落的时候陪伴你、鼓励你。<br>3、交一个为你领路的朋友，自愿做你的垫脚石，带你走过泥泞、拨开迷雾。<br>4、交一个肯指点你的朋友，时刻提醒你、监督你，让你时刻发现自己的不足。财富不是永远的朋友，朋友却是永远的财富！<br> <br>抽出三分钟给自己洗个脑<br>30年前说下海能赚钱的人，被认为是骗子。<br>20年前说炒股能赚钱的人，被认为是骗子。<br>15年前说保险能帮到大家的，被认为是骗子。<br>10年前马云说互联网能改变人们的生活，也被认为是骗子。<br>那些说别人是骗子的人，生活一成不変，生活质量一天比一天差！而那些当年所谓的“骗子”却成了时代的标志！<br> <br>“每一次新的机遇的到来，都会造就一批富翁！”<br>每一批富翁都是：<br>当别人不明白的时候，他明白他在做什么；<br>当别人不理解的时候，他理解他在做什么；<br>当别人明白了，他富有了；当别人理解了，他成功了。<br>任何一次机遇的到来，都必将经历四个阶段:“看不见“、“看不起“、“看不懂”、“来不及”  ；<br>任何一次财富的缔造必将经历一个过程:“先知先觉经营者；后知后觉跟随者；不知不觉消费者  ! ”反省一下，你有错过吗？人生比努力更重要的是选择！与时俱进是财富的源泉哦!<br> <br>下面一席话，发人深省！<br>当摩托罗拉还沉醉在V8088的时候，不知道诺基亚已迎头赶上。<br>当诺基亚还注重低端机市场时，乔布斯的苹果已经潜入。<br>当苹果成为街机的时候，三星已经傲视天下。<br>当中国移动沾沾自喜为中国最大的通讯商时，浑然不觉微信客户已突破4个亿。<br>当中国银行业赚的盆满钵满高歌猛进时，阿里巴巴已经推出网络虚拟信用卡。<br>当很多人还在想租个门面房开个小生意时，光棍节一天中国互联网上创造天价成交额。<br>不要说停止学习，就是慢一点都有可能被淘汰出局。<br> <br>未来十年拼什么?<br>四个字：整～借～学～变<br>一：整；资源整合!<br>你能整合多少资源，多少渠道，你将来就会得到多少财富！<br>二：借；造船过河不如借船过河。<br>趋势，无法阻挡；<br>抉择，要有智慧！<br>三：学；今天的企业家，赢在学习，胜在改变！<br>案例：<br>一；1991年，跨国巨头柯达在技术上领先同行十年，但却在2012年1月申请破产。<br>二；昔日手机霸主，诺基亚风雨飘摇濒临倒闭。<br>三；自2003年，便赋闲不再学习的李宁，于去年7月10日，出售了香港豪宅，被迫二度岀山。不知高龄的李宁能否力挽狂澜，拯救岌岌可危的”李宁”?<br>古人云:富不学富不长，穷不学穷不尽！<br>四：变；要想改变口袋，先要改变脑袋！<br>这个社会一直在淘汰有学历的人，但是不会淘汰有学习力愿意改变的人!<br>读万卷书不如行万里路，<br>行万里路不如阅人无数，<br>阅人无数不如名师指路，<br>名师指路不如重叠成功人的脚步！<br> <br>【不要等到明天】<br>1.改变一种行为不要拖到明天，否则它会变成你的习惯。<br>2.拒绝一份诱惑不要拖到明天，否则它会造成你的伤害。<br>3.抓住一次机会不要拖到明天，否则失去了就不会再来。<br>4.不要让今天的行动拖到明天，否则它无法带来精彩。<br>5.不要把今天的幸福拖到明天，否则它将一去不复返。<br>6.不要把机会拖到明天，因机会是唯一的你还要等到明天吗？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/01/2017-05-01/" data-id="cmcvdrdwf0001ccz8fi3qhyzz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-30" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/30/2017-04-30/" class="article-date">
+  <time datetime="2017-04-30T00:35:19.000Z" itemprop="datePublished">2017-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/30/2017-04-30/">八大排序算法图文详解（转）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。<br> <br>常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。<br> <br>本文将依次介绍上述八大排序算法<br>算法一</p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p> <img src="/img/2017-04-30-0.gif" alt="Insert sort">
+ </p>
+<p> <br>插入排序示意图</p>
+<p>插入排序是一种最简单直观的排序算法，它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。<br> <br>算法步骤：<br> <br>1）将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。<br> <br>2）从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。）<br>算法二</p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p> <br><img src="/img/2017-04-30-1.gif" alt="Shell sort"> </p>
+<p> <br>希尔排序示意图</p>
+<p>希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。但希尔排序是非稳定排序算法。<br> <br>希尔排序是基于插入排序的以下两点性质而提出改进方法的：<br> <br>    •    插入排序在对几乎已经排好序的数据操作时， 效率高， 即可以达到线性排序的效率 <br>    •    但插入排序一般来说是低效的， 因为插入排序每次只能将数据移动一位 </p>
+<p> <br>希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。<br> <br>算法步骤：<br> <br>1）选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；<br> <br>2）按增量序列个数k，对序列进行k 趟排序；<br> <br>3）每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。<br> <br>算法三</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p> <img src="/img/2017-04-30-2.gif" alt="Selection sort"></p>
+<p>选择排序示意图</p>
+<p>选择排序(Selection sort)也是一种简单直观的排序算法。<br> <br>算法步骤：<br> <br>1）首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置<br> <br>2）再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。<br> <br>3）重复第二步，直到所有元素均排序完毕。</p>
+<p>算法四</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><img src="/img/2017-04-30-3.gif" alt="Bubble sort"> </p>
+<p>冒泡排序示意图</p>
+<p> 冒泡排序（Bubble Sort）也是一种简单直观的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br> <br>算法步骤：<br> <br>1）比较相邻的元素。如果第一个比第二个大，就交换他们两个。<br> <br>2）对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。<br> <br>3）针对所有的元素重复以上的步骤，除了最后一个。<br> <br>4）持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+<p>算法五</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p> <img src="/img/2017-04-30-4.gif" alt="Merge sort"></p>
+<p>归并排序示意图</p>
+<p>归并排序（Merge sort）是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。<br> <br>算法步骤：
+ </p>
+<ol>
+<li>申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列。
+ </li>
+<li>设定两个指针，最初位置分别为两个已经排序序列的起始位置。
+ </li>
+<li>比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置。
+ </li>
+<li>重复步骤3直到某一指针达到序列尾。
+ </li>
+<li>将另一序列剩下的所有元素直接复制到合并序列尾。</li>
+</ol>
+<p>算法六</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p> <img src="/img/2017-04-30-5.gif" alt="Quick sort"></p>
+<p>快速排序示意图</p>
+<p>快速排序是由东尼·霍尔所发展的一种排序算法。在平均状况下，排序 n 个项目要Ο(n log n)次比较。在最坏状况下则需要Ο(n2)次比较，但这种状况并不常见。事实上，快速排序通常明显比其他Ο(n log n) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。<br> <br>快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。</p>
+<p>算法步骤：<br> <br>1 从数列中挑出一个元素，称为 “基准”（pivot）。<br> <br>2 重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。<br> <br>3 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。<br> <br>递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。</p>
+<p>算法七</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p> <img src="/img/2017-04-30-6.gif" alt="Heap sort"></p>
+<p>堆排序示意图</p>
+<p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。<br> <br>堆排序的平均时间复杂度为Ο(nlogn) 。<br> <br>算法步骤：<br> <br>1）创建一个堆H[0..n-1]。<br> <br>2）把堆首（最大值）和堆尾互换。<br> <br>3）把堆的尺寸缩小1，并调用shift_down(0),目的是把新的数组顶端数据调整到相应位置。<br> <br>4） 重复步骤2，直到堆的尺寸为1。</p>
+<p>算法八</p>
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p> <br>基数排序是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。<br> <br>说基数排序之前，我们简单介绍桶排序：<br> <br>算法思想：是将阵列分到有限数量的桶子里。每个桶子再个别排序（有可能再使用别的排序算法或是以递回方式继续使用桶排序进行排序）。桶排序是鸽巢排序的一种归纳结果。当要被排序的阵列内的数值是均匀分配的时候，桶排序使用线性时间（Θ（n））。但桶排序并不是 比较排序，他不受到 O(n log n) 下限的影响。简单来说，就是把数据分组，放在一个个的桶中，然后对每个桶里面的在进行排序。<br> <br>例如要对大小为[1..1000]范围内的n个整数A[1..n]排序：<br> <br>首先，可以把桶设为大小为10的范围，具体而言，设集合B[1]存储[1..10]的整数，集合B[2]存储   (10..20]的整数，……集合B[i]存储(   (i-1)<em>10,   i</em>10]的整数，i   =   1,2,..100。总共有  100个桶。<br> <br>然后，对A[1..n]从头到尾扫描一遍，把每个A[i]放入对应的桶B[j]中。  再对这100个桶中每个桶里的数字排序，这时可用冒泡，选择，乃至快排，一般来说任  何排序法都可以。<br> <br>最后，依次输出每个桶里面的数字，且每个桶中的数字从小到大输出，这  样就得到所有数字排好序的一个序列了。<br> <br>假设有n个数字，有m个桶，如果数字是平均分布的，则每个桶里面平均有n/m个数字。如果<br> <br>对每个桶中的数字采用快速排序，那么整个算法的复杂度是：<br> <br>O(n   +   m   *   n/m*log(n/m))   =   O(n   +   nlogn   –   nlogm)<br> <br>从上式看出，当m接近n的时候，桶排序复杂度接近O(n)。<br> <br>当然，以上复杂度的计算是基于输入的n个数字是平均分布这个假设的。这个假设是很强的  ，实际应用中效果并没有这么好。如果所有的数字都落在同一个桶中，那就退化成一般的排序了。<br> <br>前面说的几大排序算法 ，大部分时间复杂度都是O（n2），也有部分排序算法时间复杂度是O(nlogn)。而桶式排序却能实现O（n）的时间复杂度。但桶排序的缺点是：<br> <br>1）首先是空间复杂度比较高，需要的额外开销大。排序有两个数组的空间开销，一个存放待排序数组，一个就是所谓的桶，比如待排序值是从0到m-1，那就需要m个桶，这个桶数组就要至少m个空间。<br> <br>2）其次待排序的元素都要在一定的范围内等等。</p>
+<p>总结</p>
+<p> <br>各种排序的稳定性，时间复杂度、空间复杂度、稳定性总结如下图：<br>     <img src="/img/algorithm-2017-04-30.webp" alt="algorithm-time"></p>
+<p> <br>关于时间复杂度：<br> <br>(1)平方阶(O(n2))排序各类简单排序：直接插入、直接选择和冒泡排序；<br> <br>(2)线性对数阶(O(nlog2n))排序：快速排序、堆排序和归并排序；<br> <br>(3)O(n1+§))排序,§是介于0和1之间的常数：希尔排序；<br> <br>(4)线性阶(O(n))排序：基数排序，此外还有桶、箱排序。</p>
+<p>关于稳定性：<br> <br>稳定的排序算法：冒泡排序、插入排序、归并排序和基数排序<br> <br>不是稳定的排序算法：选择排序、快速排序、希尔排序、堆排序
+ </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/30/2017-04-30/" data-id="cmcw2edh9000d13z89oh0crmn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-29" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/29/2017-04-29/" class="article-date">
+  <time datetime="2017-04-29T02:42:12.000Z" itemprop="datePublished">2017-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/29/2017-04-29/">tomcat三种部署项目的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h4><p>在tomcat中的conf目录中，在server.xml中的host 节点下添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;host&gt;</span><br><span class="line">	&lt;Context path&#x3D;&quot;&#x2F;hello&quot; docBase&#x3D;&quot;D:\eclipse3.2.2forwebtools\workspace\hello\WebRoot&quot; debug&#x3D;&quot;0&quot; privileged&#x3D;&quot;true&quot;&gt; </span><br><span class="line">	&lt;&#x2F;Context&gt; </span><br><span class="line">&lt;&#x2F;host&gt;</span><br></pre></td></tr></table></figure>
+<p>至于Context 节点属性，可详细见相关文档。 </p>
+<h4 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h4><p>将web项目文件件拷贝到webapps 目录中。 </p>
+<h4 id="第三种方法："><a href="#第三种方法：" class="headerlink" title="第三种方法："></a>第三种方法：</h4><p>很灵活，在conf目录中，新建 Catalina（注意大小写）＼localhost目录，在该目录中新建一个xml文件，名字可以随意取，只要和当前文件中的文件名不重复就行了，该xml文件的内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path&#x3D;&quot;&#x2F;hello&quot; docBase&#x3D;&quot;D:\eclipse3.2.2forwebtools\workspace\hello\WebRoot&quot; debug&#x3D;&quot;0&quot; privileged&#x3D;&quot;true&quot;&gt; </span><br><span class="line">&lt;&#x2F;Context&gt;</span><br></pre></td></tr></table></figure>
+<p>第3个方法有个优点，可以定义别名。服务器端运行的项目名称为path，外部访问的URL则使用XML的文件名。这个方法很方便的隐藏了项目的名称，对一些项目名称被固定不能更换，但外部访问时又想换个路径，非常有效。 </p>
+<p>第2、3还有优点，可以定义一些个性配置，如数据源的配置等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/29/2017-04-29/" data-id="cj22mzjyi0004m1z8bn820oax" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-04-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/23/2017-04-23/" class="article-date">
+  <time datetime="2017-04-23T12:34:51.000Z" itemprop="datePublished">2017-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/23/2017-04-23/">Java 并发面试总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java 并发问题一直是各个大厂面试的重点之一。我在平时的面试中，也发现很多候选人对一些基本的并发概念表示没听过，或原理不理解，可能知道一些却又讲不清楚，最终导致面试失败。<br>本文会结合我实际中接触到的一些面试题，重点来聊一聊 Java 并发中的相关知识点。<br>我会通过面试题一问一答的方式来阐述，因为我觉得这是最容易理解和引发思考的方式，读者不妨在看答案之前先花 30 秒想一想，然后我们才能更好地一起探讨。<br>另外，鉴于时间和精力极其有限，虽然本文我考察了不少专业技术书籍和博客，但是错误在所难免，欢迎指正，期待共同进步。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/23/2017-04-23/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/04/23/2017-04-23/" data-id="cmcw2edh8000b13z8cno05qa0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

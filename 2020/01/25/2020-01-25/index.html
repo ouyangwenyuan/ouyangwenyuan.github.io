@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Unity AssetBundle 官方文档整理 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、为什么要使用AssetBundle AssetBundle是Unity推荐的资源管理方式，热更新必须使用此方式。 二、AssetBundle是什么？ 1234567First is the actual file on disk. This we call the AssetBundle archive, or just archive for short in this document.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity AssetBundle 官方文档整理">
+<meta property="og:url" content="http://droidman.net/2020/01/25/2020-01-25/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="一、为什么要使用AssetBundle AssetBundle是Unity推荐的资源管理方式，热更新必须使用此方式。 二、AssetBundle是什么？ 1234567First is the actual file on disk. This we call the AssetBundle archive, or just archive for short in this document.">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2020-01-25T12:52:40.000Z">
+<meta property="article:modified_time" content="2025-07-09T14:11:08.019Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Unity，AssetBundle">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2020-01-25" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/25/2020-01-25/" class="article-date">
+  <time datetime="2020-01-25T12:52:40.000Z" itemprop="datePublished">2020-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity AssetBundle 官方文档整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、为什么要使用AssetBundle</p>
+<p>AssetBundle是Unity推荐的资源管理方式，热更新必须使用此方式。</p>
+<p>二、AssetBundle是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">First is the actual file on disk. This we call the AssetBundle archive, or just archive for short in this document. </span><br><span class="line">The archive can be thought of as a container, like a folder, that holds additional files inside of it. </span><br><span class="line">These additional files consist of two types; the serialized file and resource files. The serialized file contains your assets broken out into their individual objects and written out to this single file.</span><br><span class="line">The resource files are just chunks of binary data stored separately for certain assets (textures and audio) to allow us to load them from disk on another thread efficiently.</span><br><span class="line"></span><br><span class="line">Second is the actual AssetBundle object you interact with via code to load assets from a specific archive. </span><br><span class="line">This object contains a map of all the file paths of the assets you added to this archive to the objects that belong to that asset that need to be loaded when you ask for it.</span><br></pre></td></tr></table></figure>
+<p>1.如上，第一部分是我们在unity里看到的，生成出来的ab包文件，你可以理解成一种特殊的文件夹。我们将chariot打成ab包”animation_2d_chariot.unity3d“，然后用UnityStudio解压”animation_2d_chariot.unity3d“后的结构大概是下面这样子的</p>
+<p>他所包含的资源列表如下：</p>
+<p>你也可以通过.mainfest文件查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">ManifestFileVersion: 0</span><br><span class="line">CRC: 2785811640</span><br><span class="line">Hashes:</span><br><span class="line">  AssetFileHash:</span><br><span class="line">    serializedVersion: 2</span><br><span class="line">    Hash: 05555bf8d49a3c8fc690e4913454de28</span><br><span class="line">  TypeTreeHash:</span><br><span class="line">    serializedVersion: 2</span><br><span class="line">    Hash: 0317c6c2e1c00c8e914e7d09d8b3e9b0</span><br><span class="line">HashAppended: 0</span><br><span class="line">ClassTypes:</span><br><span class="line">- Class: 1</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 4</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 21</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 28</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 48</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 114</span><br><span class="line">  Script: &#123;fileID: 11500000, guid: 24fd26203f8ea48f1b25f24fc3663d1c, type: 3&#125;</span><br><span class="line">- Class: 114</span><br><span class="line">  Script: &#123;fileID: 11500000, guid: c93168c4c5e9f49bfa80fc75bd465a40, type: 3&#125;</span><br><span class="line">- Class: 114</span><br><span class="line">  Script: &#123;fileID: 11500000, guid: a6791178c999f426a8618ef42eac4275, type: 3&#125;</span><br><span class="line">- Class: 115</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 212</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">- Class: 213</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">Assets:</span><br><span class="line">- Assets&#x2F;Data&#x2F;animation&#x2F;2d&#x2F;chariot&#x2F;chariot_5.prefab</span><br><span class="line">- Assets&#x2F;Data&#x2F;animation&#x2F;2d&#x2F;chariot&#x2F;chariot_6.prefab</span><br><span class="line">Dependencies:</span><br><span class="line">- F:&#x2F;ALClient&#x2F;Assets&#x2F;Temp&#x2F;data&#x2F;shader.unity3d</span><br></pre></td></tr></table></figure>
+<p>2.第二部分是脚本中使用的，例如通过unity api AssetBundle.LoadFromFile可以从指定路径加载一个AssetBundle 对象，这个要加载的对象就是上面我们说的unity里面的Asset（你可以理解成AssetBundle是一种特殊的资源，如prefabs），通过这个脚本的AssetBundle,我们可以加载出unity的AssetBundle所包含的文件</p>
+<p>三、如何生成AssetBundle文件？</p>
+<p>生成AssetBundle文件分两步，第一步标记你要生成AssetBundle的文件，你可以在unity面板直接指定AB包名字，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">To assign a given Asset to an AssetBundle, follow these steps:</span><br><span class="line"></span><br><span class="line">Select the asset you want to assign to a bundle from your Project View</span><br><span class="line">Examine the object in the inspector</span><br><span class="line">At the bottom of the inspector</span><br><span class="line">, you should see a section to assign AssetBundles and Variants:</span><br><span class="line">The left-hand drop down assigns the AssetBundle while the right-hand drop down assigns the variant</span><br><span class="line">Click the left-hand drop down where it says “None” to reveal the currently registered AssetBundle names</span><br><span class="line">Click “New…” to create a new AssetBundle</span><br><span class="line">Type in the desired AssetBundle name. Note that AssetBundle names do support a type of folder structure depending on what you type. To add sub folders, separate folder names by a “&#x2F;”. For example: AssetBundle name “environment&#x2F;forest” will create a bundle named forest under an environment sub folder</span><br><span class="line">Once you’ve selected or created an AssetBundle name, you can repeat this process for the right hand drop down to assign or create a Variant name, if you desire. Variant names are not required to build the AssetBundles</span><br><span class="line"></span><br><span class="line">1.选中该Project中要导出ab包的文件。2在Inspect底部设置AssetBundle</span><br></pre></td></tr></table></figure>
+
+
+<p>但是一般不推荐这种手撸的方法（大项目动辄几万个文件。。。），一般使用脚本动态进行设置，如下，主要就是针对你要导出的文件、文件夹调用AssetImporter.SetAssetBundleNameAndVariant方法动态设置ab包，你可以进一步封装，例如文件夹xxx目录下的所有文件都设置成单独的ab包或者只有子目录设置ab包等等，这种方法会比手撸效率高很多，只需要设置一次需要导出abbb包的文件，然后在每次打包都调用指定的方法进行ab包设置就好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置单个文件（或目录）的ABName</span><br><span class="line">    private static void ImportSingleFile(string Path, string abName)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetImporter importer &#x3D; AssetImporter.GetAtPath(Path);</span><br><span class="line"></span><br><span class="line">        if (importer &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            Debugger.LogError(&quot;[路径错误] path:&#123;0&#125;&quot;, Path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        abName &#x3D; abName.Replace (&#39;\\&#39;, &#39;_&#39;).Replace (&#39;&#x2F;&#39;,&#39;_&#39;);</span><br><span class="line">        importer.SetAssetBundleNameAndVariant(abName, BaseDef.AB_SUFFIX);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>第二步，调用unity的生成ab包的接口（依赖第一步设置完的ab包名字和属性）</p>
+<p>BuildPipeline.BuildAssetBundles(string outputPath, BuildAssetBundleOptions assetBundleOptions, BuildTarget targetPlatform);</p>
+<p>outputPath：输出路径<br>assetBundleOptions：压缩模式等，unity提供三种压缩模式，官方说明：<a href="https://docs.unity3d.com/Manual/AssetBundles-Building.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/AssetBundles-Building.html</a></p>
+<p>BuildAssetBundleOptions.None:LZMA格式压缩，使用的时候要整包解压到内存，最大的压缩比（意味着压缩后的文件最小），但第一次的加载需要更长的时间，unity会将解压后的LZMA重新压缩成LZ4格式并保存在硬盘里，意味着第二次加载将会拥有和LZ4压缩相同的加速度，unity推荐在下载时使用（如热更、高清资源），这样可以节省用户流量，加快下载速度</p>
+<p>BuildAssetBundleOptions.UncompressedAssetBundle：不压缩，最大的文件，最快的加载速度<br>BuildAssetBundleOptions.ChunkBasedCompression：LZ4压缩，使用的时候不需要整包解压，即只解压当前需要的块，这是unity推荐的压缩方式（母包）</p>
+<p>Using ChunkBasedCompression has comparable loading times to uncompressed bundles with the added benefit of reduced size on disk.<br>如果觉得lz4的压缩格式导致包体过大，可以将一部分ab包在压缩成lzma（将要压缩的ab包放在文件夹Temp，再将Temp压缩成LZMA格式，只在用户初次进入游戏时整个解压就好了），相当于压缩了两次</p>
+<p>targetPlatform：目标平台android/ios等</p>
+<p>四、AssetBundle如何分组？</p>
+<p>AssetBundle 数量太少：<br>　　会增加运行时内存使用，因为可能加载了当前功能不需要使用的资源<br>　　会增加加载时间，虽然lz4压缩格式不需要整包解压，但还是会把文件头加载进来的<br>　　需要下载大量数据，包体太大，导致细分度不够，可能其中一个对象更新了会导致其他对象也更新，对热更不友好。</p>
+<p>有太多的 AssetBundle:<br>　　会增加构建的时间<br>　　会加大开发的复杂性<br>　　会增加总的加载时间：一个大文件的解压时间和多个小文件的解压时间 ，文件总大小一致的话，肯定是大文件快</p>
+<p>官方说明：<a href="https://docs.unity3d.com/Manual/AssetBundles-Preparing.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/AssetBundles-Preparing.html</a></p>
+<p>1.按逻辑实体（功能）分组，例如英雄界面相关的预知体一个包，副本界面相关的预制体打一个包，对热更支持最高</p>
+<p>2.按类型分组，例如音效、shader、本地化文件等都单独打1-n个包，对热更版本不友好，因为包体相对会被比较大</p>
+<p>3.不相干(concurrent)内容分组，将需要同时加载和使用内容分组到同一个 AssetBundle 的策略。这种策略最常用在强本地相关属性的内容上，也就是说内容很少或者基本不可能在应用特定的位置或者时间之外出现，例如某个副本关卡用到的独特的资源、模型等</p>
+<p>官方的分组建议如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Regardless of the strategy you follow, here are some additional tips that are good to keep in mind across the board:</span><br><span class="line"></span><br><span class="line">1.Split frequently updated objects into AssetBundles separate from objects that rarely change</span><br><span class="line">2.Group objects that are likely to be loaded simultaneously. Such as a model, its textures, and its animations</span><br><span class="line">3.If you notice multiple objects across multiple AssetBundles are dependant on a single asset from a completely different AssetBundle, move the dependency to a separate AssetBundle. </span><br><span class="line">If several AssetBundles are referencing the same group of assets in other AssetBundles, it may be worth pulling those dependencies into a shared AssetBundle to reduce duplication.</span><br><span class="line">4.If two sets of objects are unlikely to ever be loaded at the same time, such as Standard and High Definition assets, be sure they are in their own AssetBundles.</span><br><span class="line">6.Consider splitting apart an AssetBundle if less that 50% of that bundle is ever frequently loaded at the same time</span><br><span class="line">7.Consider combining AssetBundles that are small (less that 5 to 10 assets) but whose content is frequently loaded simultaneously</span><br><span class="line">8.If a group of objects are simply different versions of the same object, consider AssetBundle Variants</span><br></pre></td></tr></table></figure>
+<p>1.把经常更新的资源放在一个单独的包里面，跟不经常更新的包分离<br>2.把需要同时加载的资源放在一个包里面，如同一个功能模块。如果两个对象不太可能同时加载，比如一个纹理的高清和标清版本，可以将他们分配到不同的 AssetBundle 中<br>3.可以把其他包共享的资源放在一个单独的包里面，例如UI界面里面会有很多按钮、弹窗，而这些资源一般是所有界面通用的，那就可以把它们打1-3个图集<br>4.控制ab包体的大小，太大了，热更的话，要更新很大的文件，太小的话，io次数会很高，对性能不好</p>
+<p>五、如何加载AssetBundle？</p>
+<p>1.从包含AssetBundle数据的bytes 里读取</p>
+<p>2.本地加载最快的接口，如果是lzma的压缩格式，会先解压到内存里（占用内存）</p>
+<p>3.从网络加载（也可以从本地加载）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">IEnumerator InstantiateObject()</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        string uri &#x3D; &quot;file:&#x2F;&#x2F;&#x2F;&quot; + Application.dataPath + &quot;&#x2F;AssetBundles&#x2F;&quot; + assetBundleName;        </span><br><span class="line">　　　　 UnityEngine.Networking.UnityWebRequest request &#x3D; UnityEngine.Networking.UnityWebRequest.GetAssetBundle(uri, 0);</span><br><span class="line">        yield return request.Send();</span><br><span class="line">        AssetBundle bundle &#x3D; DownloadHandlerAssetBundle.GetContent(request);</span><br><span class="line">        GameObject cube &#x3D; bundle.LoadAsset&lt;GameObject&gt;(&quot;Cube&quot;);</span><br><span class="line">        GameObject sprite &#x3D; bundle.LoadAsset&lt;GameObject&gt;(&quot;Sprite&quot;);</span><br><span class="line">        Instantiate(cube);</span><br><span class="line">        Instantiate(sprite);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>六、如何从AssetBundle中加载文件？</p>
+<p>同步加载单个对象：T objectFromBundle = bundleObject.LoadAsset<T>(assetName);</p>
+<p>异步加载单个对象：</p>
+<p>AssetBundleRequest request = loadedAssetBundleObject.LoadAssetAsync<GameObject>(assetName);<br>yield return request;<br>var loadedAsset = request.asset;<br>同步加载ab包里的所有对象：Unity.Object[] objectArray = loadedAssetBundle.LoadAllAssets();</p>
+<p>异步加载ab包里的所有对象：</p>
+<p>AssetBundleRequest request = loadedAssetBundle.LoadAllAssetsAsync();<br>yield return request;<br>var loadedAssets = request.allAssets;<br>七、如何使用AssetBundleManifest，什么叫做依赖包？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AssetBundles can become dependent on other AssetBundles if one or more of the UnityEngine.Objects contains a reference to a UnityEngine.Object located in another bundle. A dependency does not occur if the UnityEngine.Object contains a reference to a UnityEngine.Object that is not contained in any AssetBundle. In this case, a copy of the object that the bundle would be dependent on is copied into the bundle when you build the AssetBundles. If multiple objects in multiple bundles contain a reference to the same object that isn’t assigned to a bundle, every bundle that would have a dependency on that object will make its own copy of the object and package it into the built AssetBundle.</span><br><span class="line"></span><br><span class="line">Should an AssetBundle contain a dependency, it is important that the bundles that contain those dependencies are loaded before the object you’re attempting to instantiate is loaded. Unity will not attempt to automatically load dependencies.</span><br><span class="line"></span><br><span class="line">Consider the following example, a Material in Bundle 1 references a Texture in Bundle 2:</span><br><span class="line"></span><br><span class="line">In this example, before loading the Material from Bundle 1, you would need to load Bundle 2 into memory. It does not matter which order you load Bundle 1 and Bundle 2, the important takeaway is that Bundle 2 is loaded before loading the Material from Bundle 1. In the next section, we’ll discuss how you can use the AssetBundleManifest objects we touched on in the previous section to determine, and load, dependencies at runtime.</span><br></pre></td></tr></table></figure>
+<p>ab包依赖情况有以下两种：</p>
+<p>1.ab包引用到另一个ab包里面的资源，即ab包依赖了另一个ab包，例如Bundle1材质A引用了Bundle2的贴图B，那么Bundle1就是依赖Bundle2的，在加载材质A前，你必须先加载Bundle2到内存，unity不会自动加载依赖项。也就是说在你使用某个ab包时，必须先加载他依赖的ab包。</p>
+<p>2.ab包引用到另一个不再任何ab包里的资源，例如Bundle1材质A引用了贴图B，而贴图B没有打进任何ab包里，那么最终打ab包时，unity会拷贝一份贴图B到Bundle1，如果有n个Bundle都引用了贴图B，那么这n个Bundle里都会有贴图的拷贝，会造成资源冗余。</p>
+<p>AssetBundleManifest文件包含了所有ab包的依赖关系，在使用ab包前，你需要先加载AssetBundleManifest文件，在通过AssetBundleManifest获取ab包的依赖ab包，AssetBundleManifest的加载：</p>
+<p>AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);<br>AssetBundleManifest manifest = assetBundle.LoadAsset<AssetBundleManifest>(“AssetBundleManifest”);<br>获取依赖包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AssetBundle assetBundle &#x3D; AssetBundle.LoadFromFile(manifestFilePath);</span><br><span class="line">AssetBundleManifest manifest &#x3D; assetBundle.LoadAsset&lt;AssetBundleManifest&gt;(&quot;AssetBundleManifest&quot;);</span><br><span class="line">string[] dependencies &#x3D; manifest.GetAllDependencies(&quot;assetBundle&quot;); &#x2F;&#x2F;Pass the name of the bundle you want the dependencies for.</span><br><span class="line">foreach(string dependency in dependencies)</span><br><span class="line">&#123;</span><br><span class="line">    AssetBundle.LoadFromFile(Path.Combine(assetBundlePath, dependency));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>七、如何判断AssetBundle是否还被引用？</p>
+<p>ab包的引用主要作用有两点：1.缓存ab包，卸载无用的ab包，避免内存泄漏 2.判断ab包的依赖包是否已经被加载</p>
+<p>核心点是引用技术，每个AssetBundle都会维护一个引用计数，当该ab包被加载、被依赖时引用计数加1，当依赖包被卸载、加载的资源被卸载时，引用计数减1，当引用计数为0超过一段时间（一般为几分钟）时，认为该ab包已经无用了，卸载该ab包。</p>
+<p>以下是一个简单的示例（不涉及到从ab包里加载资源），简单说明引用计数的用法，这个例子分两部分，一个是缓存的ab包实体类AssetBundleCache，该类维护一个自己的引用计数，一个是缓存的控制类ABCachePool，该类用于维护ab包的引用、卸载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; AssetBundle缓存</span><br><span class="line">public class AssetBundleCache</span><br><span class="line">&#123;</span><br><span class="line">    string m_name;          &#x2F;&#x2F; AssetBundle name</span><br><span class="line">    int m_referencedCount;  &#x2F;&#x2F; 引用计数</span><br><span class="line">    float m_unloadTime;     &#x2F;&#x2F; 释放时间</span><br><span class="line"></span><br><span class="line">    public AssetBundleCache(string name, AssetBundle ab, int refCount)</span><br><span class="line">    &#123;</span><br><span class="line">        m_name &#x3D; name;</span><br><span class="line">        Bundle &#x3D; ab;</span><br><span class="line">        ReferencedCount &#x3D; refCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; AssetBundle</span><br><span class="line">    public AssetBundle Bundle</span><br><span class="line">    &#123;</span><br><span class="line">        get;</span><br><span class="line">        private set;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 是否常驻，通用资源的ab包不卸载</span><br><span class="line">    public bool Persistent</span><br><span class="line">    &#123;</span><br><span class="line">        get;</span><br><span class="line">        set;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public string BundleName</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            return m_name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 引用计数</span><br><span class="line">    public int ReferencedCount</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            return m_referencedCount;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        set</span><br><span class="line">        &#123;</span><br><span class="line">            m_referencedCount &#x3D; value;</span><br><span class="line">            if (m_referencedCount &lt;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                m_unloadTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                m_unloadTime &#x3D; 0;</span><br><span class="line">            &#125;</span><br><span class="line">            if (m_referencedCount &lt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogWarningFormat(&quot;AssetBundleCache reference count &lt; 0, name:&#123;0&#125;, referencecount:&#123;1&#125;&quot;, m_name, m_referencedCount);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 是否可以删除</span><br><span class="line">    public bool IsCanRemove</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 常驻资源</span><br><span class="line">            if (Persistent) return false;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 非常驻，并且引用计数为0</span><br><span class="line">            if (!Persistent &amp;&amp; ReferencedCount &lt;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 缓存时间到</span><br><span class="line">    public bool IsTimeOut</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            return Time.realtimeSinceStartup - m_unloadTime &gt;&#x3D; Config.Instance.AssetCacheTime;&#x2F;&#x2F;这个时间自己定义</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;卸载ab包</span><br><span class="line">    public void Unload()</span><br><span class="line">    &#123;</span><br><span class="line">        if (Bundle !&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            Bundle.Unload(false);</span><br><span class="line">            Bundle &#x3D; null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">public class ABCachePool</span><br><span class="line">&#123;</span><br><span class="line">    #region Instance</span><br><span class="line">    private static ABCachePool m_Instance;</span><br><span class="line">    public static ABCachePool Instance</span><br><span class="line">    &#123;</span><br><span class="line">        get &#123; return m_Instance ?? (m_Instance &#x3D; new ABCachePool()); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    #endregion</span><br><span class="line">    Dictionary&lt;string, AssetBundleCache&gt; m_AssetBundleCaches &#x3D; new Dictionary&lt;string, AssetBundleCache&gt;();  &#x2F;&#x2F; 缓存队列</span><br><span class="line">    HashSet&lt;string&gt; m_persistentABs &#x3D; new HashSet&lt;string&gt;();</span><br><span class="line"></span><br><span class="line">    public Dictionary&lt;string, AssetBundleCache&gt; AssetBundleCaches</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            return m_AssetBundleCaches;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">　　&#x2F;&#x2F;只有在退出游戏时会调用这个接口</span><br><span class="line">    public void ClearAllCache()</span><br><span class="line">    &#123;</span><br><span class="line">        foreach(KeyValuePair&lt;string, AssetBundleCache&gt; keyval in m_AssetBundleCaches)</span><br><span class="line">        &#123;</span><br><span class="line">            keyval.Value.Unload();</span><br><span class="line">        &#125;</span><br><span class="line">        m_AssetBundleCaches.Clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">　　&#x2F;&#x2F;是否存在ab包缓存</span><br><span class="line">    public bool IsExistCache(string abName)</span><br><span class="line">    &#123;</span><br><span class="line">        return m_AssetBundleCaches.ContainsKey (abName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 引用这个bundle</span><br><span class="line">    public AssetBundleCache ReferenceCacheByName(string abName)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetBundleCache cache &#x3D; null;</span><br><span class="line">        m_AssetBundleCaches.TryGetValue (abName, out cache);</span><br><span class="line">        if(cache!&#x3D;null)</span><br><span class="line">        &#123;</span><br><span class="line">            ++cache.ReferencedCount;</span><br><span class="line">        &#125;</span><br><span class="line">        return cache;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取ABCache 不增加引用</span><br><span class="line">    public AssetBundleCache GetABCacheByName(string abName)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetBundleCache cache &#x3D; null;</span><br><span class="line">        m_AssetBundleCaches.TryGetValue (abName, out cache);</span><br><span class="line">        return cache;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public AssetBundleCache AddCache(string abName, AssetBundle bundle, int refCount)</span><br><span class="line">    &#123;</span><br><span class="line">        if(m_AssetBundleCaches.ContainsKey (abName))</span><br><span class="line">        &#123;</span><br><span class="line">            Debugger.LogWarning (&quot;AssetBundleCache already contains key:&#123;0&#125;, it will be cover by new value.&quot;, abName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        AssetBundleCache cache &#x3D; new AssetBundleCache (abName, bundle, refCount);</span><br><span class="line">        m_AssetBundleCaches [abName] &#x3D; cache;</span><br><span class="line"></span><br><span class="line">        if(m_persistentABs.Contains (abName))</span><br><span class="line">        &#123;</span><br><span class="line">            cache.Persistent &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return cache;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; immediate 只有场景是立刻卸载</span><br><span class="line">    public AssetBundleCache UnReferenceCache(string abName, bool immediate &#x3D; false)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetBundleCache cache &#x3D; null;</span><br><span class="line">        if (!m_AssetBundleCaches.TryGetValue(abName, out cache))</span><br><span class="line">        &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(cache.Persistent)</span><br><span class="line">        &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        --cache.ReferencedCount;</span><br><span class="line"></span><br><span class="line">        if (immediate &amp;&amp; cache.IsCanRemove)</span><br><span class="line">        &#123;</span><br><span class="line">            RemoveCache (abName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return cache;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void RemoveCache(string abName)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetBundleCache cache &#x3D; m_AssetBundleCaches [abName];</span><br><span class="line">        cache.Unload ();</span><br><span class="line">        m_AssetBundleCaches.Remove(abName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private List&lt;string&gt; m_lstRm &#x3D; new List&lt;string&gt;();</span><br><span class="line">    &#x2F;&#x2F; 清除无引用的AssetBundle缓存</span><br><span class="line">    public void ClearNoneRefCache(bool mustTimeout)</span><br><span class="line">    &#123;</span><br><span class="line">        foreach(KeyValuePair&lt;string, AssetBundleCache&gt; keyval in m_AssetBundleCaches)</span><br><span class="line">        &#123;</span><br><span class="line">            AssetBundleCache item &#x3D; keyval.Value;</span><br><span class="line">            &#x2F;&#x2F; 只清除引用计数为0的</span><br><span class="line">            if (item.IsCanRemove &amp;&amp; (!mustTimeout || item.IsTimeOut))</span><br><span class="line">            &#123;</span><br><span class="line">                m_lstRm.Add(keyval.Key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for(int i&#x3D;0; i&lt;m_lstRm.Count; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            RemoveCache(m_lstRm[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        m_lstRm.Clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 常驻ab包设置</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;arrAB&quot;&gt;&lt;&#x2F;param&gt;</span><br><span class="line">    public void SetPersistentABs(string[] arrAB)</span><br><span class="line">    &#123;</span><br><span class="line">        m_persistentABs.Clear();</span><br><span class="line">        for (int i &#x3D; 0; i &lt; arrAB.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string strAB &#x3D; FileHelper.GenBundlePath (arrAB[i]);</span><br><span class="line">            m_persistentABs.Add(strAB);</span><br><span class="line"></span><br><span class="line">            AssetBundleCache abCache;</span><br><span class="line">            m_AssetBundleCaches.TryGetValue(strAB, out abCache);</span><br><span class="line">            if (abCache!&#x3D;null)</span><br><span class="line">            &#123;</span><br><span class="line">                abCache.Persistent &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>八、如何卸载AssetBundle？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Most projects should use AssetBundle.Unload(true) and adopt a method to ensure that Objects are not duplicated. Two common methods are:</span><br><span class="line"></span><br><span class="line">Having well-defined points during the application’s lifetime at which transient AssetBundles are unloaded, such as between levels or during a loading screen.</span><br><span class="line"></span><br><span class="line">Maintaining reference-counts for individual Objects and unload AssetBundles only when all of their constituent Objects are unused. This permits an application to unload &amp; reload individual Objects without duplicating memory.</span><br><span class="line"></span><br><span class="line">If an application must use AssetBundle.Unload(false), then individual Objects can only be unloaded in two ways:</span><br><span class="line"></span><br><span class="line">Eliminate all references to an unwanted Object, both in the scene and in code. After this is done, call Resources.UnloadUnusedAssets.</span><br><span class="line"></span><br><span class="line">Load a scene non-additively. This will destroy all Objects in the current scene and invoke Resources.UnloadUnusedAssets automatically.</span><br></pre></td></tr></table></figure>
+<p>AssetBundle.Unload可以卸载一个AssetBundle，下面会说到这个方法</p>
+<p>Resources.UnloadUnusedAssets会卸载所有不被引用的资源，具体如下图所示</p>
+<p> 九、注意事项</p>
+<p>1.AssetBundle.Unload(bool unloadAllLoadedObjects)</p>
+<p>unloadAllLoadedObjects为true时会卸载所有从这个ab包里加载的对象（不包括instantiation对象），例如材质M加载自Bundle1，当Bundle1调用Unload（true）时，材质M也会被删除，对象会在场景中显示红色（缺失）</p>
+<p>unloadAllLoadedObjects为false时不会卸载从这个ab包里加载的对象，但会断开和这个对象的联系，例如材质M加载自Bundle1，当Bundle1调用Unload（false）时，材质M不会被删除，当用户再次加载Bundle1的时候不会重新建立和材质M的联系，而是会重新创建一份引用，造成材质M的冗余，如下图，内存里会存在两个材质M，冗余了一份</p>
+<p> 关于true跟false，unity官方时间以使用true的，这样不会造成冗余，但是你必须清楚的知道什么时候可以卸载这个ab包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Most projects should use AssetBundle.Unload(true) and adopt a method to ensure that Objects are not duplicated. Two common methods are:</span><br><span class="line"></span><br><span class="line">Having well-defined points during the application’s lifetime at which transient AssetBundles are unloaded, such as between levels or during a loading screen.</span><br><span class="line"></span><br><span class="line">Maintaining reference-counts for individual Objects and unload AssetBundles only when all of their constituent Objects are unused. This permits an application to unload &amp; reload individual Objects without duplicating memory.</span><br><span class="line"></span><br><span class="line">If an application must use AssetBundle.Unload(false), then individual Objects can only be unloaded in two ways:</span><br><span class="line"></span><br><span class="line">Eliminate all references to an unwanted Object, both in the scene and in code. After this is done, call Resources.UnloadUnusedAssets.</span><br><span class="line"></span><br><span class="line">Load a scene non-additively. This will destroy all Objects in the current scene and invoke Resources.UnloadUnusedAssets automatically.</span><br></pre></td></tr></table></figure>
+<p>2.一个没有被分配到任何ab包中的资源A，任何引用资源A的ab包都会产生一份资源A的拷贝，这会导致游戏的ab包大小变大（资源A冗余了），如果这两个ab包都被加载到内存，那么还会导致内存里存在两份完全一样资源A。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Any Object that is not explicitly assigned in an AssetBundle will be included in all AssetBundles that contain 1 or more Objects that reference the untagged Object.</span><br><span class="line"></span><br><span class="line">If two different Objects are assigned to two different AssetBundles, but both have references to a common dependency Object, then that dependency Object will be copied into both AssetBundles. </span><br><span class="line">The duplicated dependency will also be instanced, meaning that the two copies of the dependency Object will be considered different Objects with a different identifiers. </span><br><span class="line">This will increase the total size of the application’s AssetBundles. This will also cause two different copies of the Object to be loaded into memory if the application loads both of its parents.</span><br></pre></td></tr></table></figure>
+<p>解决这个问题的最优解是：把所有ab包引用的资源都打到ab包里，即ab包不引用任何不再ab包里的资源，但是这样做需要程序在加载ab包时，确认该ab包的所有依赖包都已经加载完成了（ab包缓存、ab依赖包加载）</p>
+<p>3.图集：首先我们需要大概知道图集在AssetBundle里是以什么形式存在的。如下图所示，一个图集的ab包里包含了这个图集的图片资源以及图集的信息（下图的SpriteAtlasTexture-ui_atlas_elf-1024x1024-fmt12）</p>
+<p>需要注意的是：</p>
+<p>1.如果一个图集包含的Sprite资源被包含在多个AssetBundle里，那么所有包含该图集的Sprite的ab包都会有一份图集信息（SpriteAtlasTexture-ui_atlas_elf-1024x1024-fmt12），从上图我们看到，这个文件还是很大的</p>
+<p>2.如果一个图集包含的Sprite资源不再任何ab包里，那么图集信息（SpriteAtlasTexture-ui_atlas_elf-1024x1024-fmt12）也不会在任何的ab包里</p>
+<p>综上，如果图集分散到多个ab包，会造成资源冗余，会增大包体大小，运行时也会浪费内存，如果不分配到ab包里又无法热更，那么唯一的做法就是一个图集打一个ab包（把相同图集的Sprite放在同一个文件夹，这个文件夹只包含该图集的sprite，在把这个文件夹打成ab包）</p>
+<p>4.减少同时加载的AB数量（这个是纯逻辑控制），使用AssetBundle.LoadFromFile接口。使用WWW加载会生成一个新的线程，在移动平台线程多了会导致游戏崩溃，尽量使用UnityWebRequest</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2020/01/25/2020-01-25/" data-id="cmcw2gdvj0000hnz84ohm71i2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/26/2020-01-26/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unity 性能优化之UGUI
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/2019-10-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常用的Bash 命令 整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

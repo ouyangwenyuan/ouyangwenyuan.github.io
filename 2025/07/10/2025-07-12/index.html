@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>unity 一键打包 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注意事项： 1.python如何解析命令行参数 2.python如何调用unity命令进行打包 3.unity如何解析命令行参数，例如命令行传过来的： ‘“%s” -batchmode -projectPath %s -executeMethod ExportProject.Build name:”%s” output:”%s” id:”%s” symbols:”%s” development:%">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unity 一键打包">
+<meta property="og:url" content="http://droidman.net/2025/07/10/2025-07-12/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="注意事项： 1.python如何解析命令行参数 2.python如何调用unity命令进行打包 3.unity如何解析命令行参数，例如命令行传过来的： ‘“%s” -batchmode -projectPath %s -executeMethod ExportProject.Build name:”%s” output:”%s” id:”%s” symbols:”%s” development:%">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2025-07-10T00:27:05.000Z">
+<meta property="article:modified_time" content="2025-07-13T06:00:26.105Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="unity python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2025-07-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/07/10/2025-07-12/" class="article-date">
+  <time datetime="2025-07-10T00:27:05.000Z" itemprop="datePublished">2025-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      unity 一键打包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>注意事项：</p>
+<p>1.python如何解析命令行参数</p>
+<p>2.python如何调用unity命令进行打包</p>
+<p>3.unity如何解析命令行参数，例如命令行传过来的：</p>
+<p>‘“%s” -batchmode -projectPath %s -executeMethod ExportProject.Build name:”%s” output:”%s” id:”%s” symbols:”%s” development:%s release:%s language:%s checkupdate:%s expansion:%s version:”%s” compatibility:%s -quit -logFile ./log/%s’</p>
+<p>其中name是bundleid，识别平台、是否是测试包等，release是否是正式包等等参数。</p>
+<p>4.如何更新git</p>
+<p>5.unity一键导出图集、ab包名字，生个成功md5文件</p>
+<p>6.配制参数导出到两端平台</p>
+<p>ios：修改info.plist文件</p>
+<p>android：将配置保存成java可以解析的本地文件，例如json.properties文件，在导出结束后拷贝到android工程目录下。</p>
+<p>详细步骤：</p>
+<p>1.python调用unity命令，通知unity打包AssetBundle.</p>
+<p>1-1.更新git</p>
+<p>1-2.一键设置图集</p>
+<p>1-3.一键设置ab包</p>
+<p>1-4.生成ab包</p>
+<p>1-5.压缩ab包（可选）</p>
+<p>1-6.生成md5文件</p>
+<p>2.python调用unity命令，导出工程。（正常打包）</p>
+<p>2-1.导出工程</p>
+<p>2-2.导出配置文件，如app id,app key。</p>
+<p>3.python调用两端命令进行打包。（正常打包）</p>
+<p>3-1.python拷贝文件，组合unity导出项目和两端备份工程。</p>
+<p>3-2.android端调用：./gradlew assembleNormal</p>
+<p>3-3.ios端先调用pod repo update（可选，看sdk是否从远端拉取），在调用cmdBuild = ‘xcodebuild archive  -workspace Unity-iPhone.xcworkspace  -scheme Unity-iPhone -archivePath %s || exit ‘%(archivePath)生成archive 包，最后调用cmdIpa = ‘xcodebuild -exportArchive -archivePath %s -exportPath %s -exportOptionsPlist &quot;%s/config/ad-hoc.plist&quot;‘ % (archivePath, ipaDir, self.CurrPath)生成ipa。</p>
+<p>4.python将变更的ab包以及md5文件上传网站（热更）</p>
+<p>下面对一些关键步骤进行详细分析</p>
+<p>一、python如何解析命令行参数</p>
+<p>api使用：<a href="https://docs.python.org/zh-cn/3/howto/argparse.html" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3/howto/argparse.html</a></p>
+<p>API：<a href="https://docs.python.org/zh-cn/3/library/argparse.html#action。看完这两篇，解析参数其实很简单～" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3/library/argparse.html#action。看完这两篇，解析参数其实很简单～</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">import configparser</span><br><span class="line"></span><br><span class="line">def Run(self):</span><br><span class="line">        parser &#x3D; argparse.ArgumentParser()</span><br><span class="line">        </span><br><span class="line">        group &#x3D; parser.add_mutually_exclusive_group()</span><br><span class="line">        group.add_argument(&quot;-f&quot;, action&#x3D;&quot;store_true&quot;, help&#x3D;&quot;打完整包&quot;)</span><br><span class="line">　　　　</span><br><span class="line">        args &#x3D; parser.parse_args()</span><br></pre></td></tr></table></figure>
+<p>如上所示，使用python的库即可解析命令行的参数</p>
+<p>1.创建一个解析器：parser = argparse.ArgumentParser()</p>
+<p>2.添加解析器要解析的参数add_argument</p>
+<p>ArgumentParser.add_argument(name or flags…[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])<br>name or flags:参数的flag（名字），例如：foo 或 -f, —foo。注意不带-的参数是必须输入的，带-的是可选参数，可以不再命令行输入。</p>
+<p>action:获取的参数该采取何种提取方式。例如action=”store_true”，那么命令行有输入参数时，该参数为true，否则为false。action=”store_const”，那么参数等于const的值</p>
+<p>const: 被一些 action 和 nargs 选择所需求的常数</p>
+<p>default: 当参数未在命令行中出现时使用的值。</p>
+<p>type: 命令行参数应当被转换成的类型。默认是string型</p>
+<p>choice: 参数允许的值。例如choice = [0,1,2]那么参数值只能是这三个中的一个</p>
+<p>help: 对该参数的简要说明。</p>
+<p>3.ArgumentParser 通过 parse_args() 方法解析参数。它将检查命令行，把每个参数转换为适当的类型然后调用相应的操作。</p>
+<p>二、python如何调用unity打包</p>
+<p>这边应该是命令行如何调用。</p>
+<p>API说明：<a href="https://docs.unity3d.com/Manual/CommandLineArguments.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/CommandLineArguments.html</a></p>
+<p>fumExport = “&quot;%s&quot; -batchmode -projectPath %s -executeMethod ExportAssetBundle.Build symbols:&quot;%s&quot; checkupdate:%s -quit -logFile ./log/%s”<br>cmdExport = fumExport%(self.UnityPath, self.ProjectPath,self.BaseSymbols, checkupdate, logFileName)<br>主要关注以下几个参数，参数间以空格隔开</p>
+<p>1.-batchmode：打开unity，但不会弹出unity界面。需要确保要打开的项目没有被unity打开，不然会报错，一次只能运行一个Unity项目实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Run Unity in batch mode. You should always use this in conjunction with the other command line arguments, because it ensures no pop-up windows appear and eliminates the need for any human intervention. </span><br><span class="line">When an exception occurs during execution of the script code, the Asset server updates fail, or other operations fail, Unity immediately exits with return code 1. </span><br><span class="line">Note that in batch mode, Unity sends a minimal version of its log output to the console. However, the Log Files still contain the full log information. </span><br><span class="line">You cannot open a project in batch mode while the Editor has the same project open; only a single instance of Unity can run at a time.</span><br><span class="line">Tip: To check whether you are running the Editor or Standalone Player in batch mode, use the Application.isBatchMode operator.</span><br><span class="line"></span><br><span class="line">If the project has not yet been imported when using -batchmode, the target platform is the default one. To force a different platform when using -batchmode, use the -buildTarget option.</span><br></pre></td></tr></table></figure>
+<p>2.-projectPath：要打开的unity工程路径</p>
+<p>3.-executeMethod：要触发的unity方法，该方法必须是静态方法且放在Editor目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Execute the static method as soon as Unity opens the project, and after the optional Asset server update is complete.</span><br><span class="line">You can use this to do tasks such as continous integration, performing Unit Tests, making builds or preparing data. </span><br><span class="line">To return an error from the command line process, either throw an exception which causes Unity to exit with return code 1, or call EditorApplication.Exit with a non-zero return code. </span><br><span class="line">To pass parameters, add them to the command line and retrieve them inside the function using System.Environment.GetCommandLineArgs. </span><br><span class="line">To use -executeMethod, you need to place the enclosing script in an Editor folder. The method you execute must be defined as static.</span><br></pre></td></tr></table></figure>
+<p>4.-quit：退出unity</p>
+<p>5.-logFile：log的输出路径，方便在命令失败时查看日志</p>
+<p>6.-buildTarget：指定目标平台。建议每个平台拷贝一份unity项目而不是通过这个参数指定平台</p>
+<p>三、unity如何解析命令行参数</p>
+<p>使用c# 的Environment.GetCommandLineArgs方法可以获取到命令行的参数列表</p>
+<p>//Returns a string array containing the command-line arguments for the current process.<br>public static string[] GetCommandLineArgs ();<br>建议使用键值对的方式定义参数，方便解析和理解。例如symbols:”1” checkupdate:0。解析如下，key对应参数名字如symbols</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static string GetValueFromArgs(string key, string defaultValue)</span><br><span class="line">    &#123;</span><br><span class="line">        string ret &#x3D; defaultValue;</span><br><span class="line">        foreach (string arg in System.Environment.GetCommandLineArgs())</span><br><span class="line">        &#123;</span><br><span class="line">            if (arg.StartsWith(key))</span><br><span class="line">            &#123;</span><br><span class="line">                ret &#x3D; arg.Split(&quot;:&quot;[0])[1];</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>四、如何同步git代码？</p>
+<p>git:定位到你的git目录（cd），然后调用’git pull’命令</p>
+<p>svn:定位到你的svn目录（cd），然后调用’TortoiseProc.exe /command:update /path ‘ + dist + ‘ /notempfile’ + configs.setting[‘closeOption’]</p>
+<p>可以参考<a href="https://www.cnblogs.com/zblade/p/9380845.html" target="_blank" rel="noopener">https://www.cnblogs.com/zblade/p/9380845.html</a></p>
+<p>那么在unity可以调用命令行吗？  可以的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void ProcessCommand(string command, string argument, string workingdir)</span><br><span class="line">    &#123;</span><br><span class="line">        ProcessStartInfo start &#x3D; new ProcessStartInfo(command)</span><br><span class="line">        &#123;</span><br><span class="line">            Arguments &#x3D; argument,</span><br><span class="line">            CreateNoWindow &#x3D; false,</span><br><span class="line">            ErrorDialog &#x3D; true,</span><br><span class="line">            UseShellExecute &#x3D; true,</span><br><span class="line">            WorkingDirectory &#x3D; workingdir</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Process p &#x3D; Process.Start (start);</span><br><span class="line"></span><br><span class="line">        p.WaitForExit ();</span><br><span class="line">        p.Close ();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<p>1<br>2<br>ShellHelper.ProcessCommand(“TortoiseProc.exe”, “/command:update /path:” + svnPath + “ /closeonend:1”, null);<br>ShellHelper.ProcessCommand (“git”, “pull”, loadDir);<br>五、如何统一设置图集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private static void SetSingleAtlasName(string strFile)</span><br><span class="line">&#123;</span><br><span class="line">    string strPath &#x3D; Path.GetDirectoryName (strFile);</span><br><span class="line">    string strSPName &#x3D; GetSpriteNameFromPath (strPath);</span><br><span class="line"></span><br><span class="line">    TextureImporter importer &#x3D; TextureImporter.GetAtPath (strFile) as TextureImporter;</span><br><span class="line">    if(importer&#x3D;&#x3D;null)</span><br><span class="line">    &#123;</span><br><span class="line">        Debug.LogErrorFormat (&quot;Import atlas:&#123;0&#125;, is not a texture!&quot;, strFile);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    Debug.LogFormat (&quot;TextureImport:&#123;0&#125;--&gt;spname:&#123;1&#125;&quot;, strFile, strSPName);</span><br><span class="line">    if(importer.textureType !&#x3D; TextureImporterType.Sprite)</span><br><span class="line">    &#123;</span><br><span class="line">         return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(importer.spritePackingTag!&#x3D;strSPName)</span><br><span class="line">    &#123;</span><br><span class="line">        importer.spritePackingTag &#x3D; strSPName;</span><br><span class="line">        importer.SaveAndReimport ();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static string GetSpriteNameFromPath(string strSpritePath)</span><br><span class="line">&#123;</span><br><span class="line">   strSpritePath &#x3D; strSpritePath.Replace (&quot;&#x2F;&quot;, &quot;_&quot;);</span><br><span class="line">   string strAtlasName &#x3D; strSpritePath.Replace (&quot;Assets_Art_&quot;, &quot;&quot;).Replace (&quot;Assets_Data_&quot;, &quot;&quot;).ToLower();</span><br><span class="line">   return strAtlasName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上，核心是GetSpriteNameFromPath和importer.spritePackingTag。GetSpriteNameFromPath通过图片的目录获取图片的图集名字，importer.spritePackingTag设置图片的名字。使用时需要将每个要打图集的.pngg文件调用此方法。获取某个目录下的.png文件方法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string[] arrFiles &#x3D; FileHelper.GetAllChildFiles (strPath, &quot;.png&quot;, SearchOption.AllDirectories);</span><br><span class="line">int len &#x3D; arrFiles.Length;</span><br><span class="line">for(int i&#x3D;0; i&lt;len; i++)</span><br><span class="line">&#123;</span><br><span class="line">    string strFile &#x3D; arrFiles [i];</span><br><span class="line">    SetSingleAtlasName (strFile);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>六、如何统一设置ab包并生成md5</p>
+<p>这边需要注意的是，业务传入文件名，框架如何加载到对应的ab包并加载出asset。</p>
+<p>一个可行的方法是把文件的文件名和文件的ab包名字作一个映射并保存到本地，框架加载ab包时先加载该配置并获取对应的ab包名字。</p>
+<p>核心的方法是unity设置ab包的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">　　　　&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 摘要:</span><br><span class="line">&#x2F;&#x2F;     Set the AssetBundle name and variant.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 参数:</span><br><span class="line">&#x2F;&#x2F;   assetBundleName:</span><br><span class="line">&#x2F;&#x2F;     AssetBundle name.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;   assetBundleVariant:</span><br><span class="line">&#x2F;&#x2F;     AssetBundle variant.</span><br><span class="line">[GeneratedByOldBindingsGenerator]</span><br><span class="line">public void SetAssetBundleNameAndVariant(string assetBundleName, string assetBundleVariant);</span><br></pre></td></tr></table></figure>
+<p>详细代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Text;</span><br><span class="line">using UnityEditor;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class ImporterAssetBundle</span><br><span class="line">&#123;</span><br><span class="line">    static Dictionary&lt;string, string&gt; ms_uiBundles &#x3D; new Dictionary&lt;string, string&gt;();</span><br><span class="line">    public static void Reimport(bool buildLua &#x3D; false)</span><br><span class="line">    &#123;</span><br><span class="line">        ClearBundleName();</span><br><span class="line">        ms_uiBundles.Clear();</span><br><span class="line"></span><br><span class="line">        ImportAll();</span><br><span class="line"></span><br><span class="line">        AssetDatabase.RemoveUnusedAssetBundleNames();</span><br><span class="line">        AssetDatabase.Refresh();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 清除AssetBundle设置</span><br><span class="line">    public static void ClearBundleName()</span><br><span class="line">    &#123;</span><br><span class="line">        var names &#x3D; AssetDatabase.GetAllAssetBundleNames();</span><br><span class="line">        foreach (string name in names)</span><br><span class="line">        &#123;</span><br><span class="line">            AssetDatabase.RemoveAssetBundleName(name, true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void ImportAll()</span><br><span class="line">    &#123;</span><br><span class="line">        ImportSubPath(&quot;Assets&#x2F;Data&#x2F;city&#x2F;sky&quot;, &quot;city&#x2F;sky&#x2F;&quot;, true);</span><br><span class="line">        ImportFilesInPath(&quot;Assets&#x2F;Data&#x2F;city&#x2F;buildingpart&quot;, &quot;city&#x2F;buildingpart&#x2F;&quot;, true);</span><br><span class="line">        ImportSingleFile(&quot;Assets&#x2F;Data&#x2F;city&#x2F;other&quot;, &quot;city&#x2F;other&quot;, true);</span><br><span class="line"></span><br><span class="line">        SaveBundleList(ms_uiBundles, &quot;BundleDefine&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static bool CheckStringInArray(string[] arrStr, string value)</span><br><span class="line">    &#123;</span><br><span class="line">        if (arrStr &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; arrStr.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (arrStr[i] &#x3D;&#x3D; value)</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;获取所有子文件</span><br><span class="line">    public static string[] GetAllChildFiles(string path, string suffix &#x3D; &quot;&quot;, SearchOption option &#x3D; SearchOption.AllDirectories)</span><br><span class="line">    &#123;</span><br><span class="line">        string strPattner &#x3D; &quot;*&quot;;</span><br><span class="line">        if (suffix.Length &gt; 0 &amp;&amp; suffix[0] !&#x3D; &#39;.&#39;)</span><br><span class="line">        &#123;</span><br><span class="line">            strPattner +&#x3D; &quot;.&quot; + suffix;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            strPattner +&#x3D; suffix;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        string[] files &#x3D; Directory.GetFiles(path, strPattner, option);</span><br><span class="line"></span><br><span class="line">        return files;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #region 导入功能函数</span><br><span class="line">    &#x2F;&#x2F; 将路径下的子路径，按目录设置Bundle</span><br><span class="line">    private static void ImportSubPath(string strPath, string abHead, bool bAddDefine, string[] excludes &#x3D; null)</span><br><span class="line">    &#123;</span><br><span class="line">        if (!Directory.Exists(strPath))</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        string[] allChilds &#x3D; Directory.GetDirectories(strPath);</span><br><span class="line">        for (int i &#x3D; 0; i &lt; allChilds.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string childPath &#x3D; allChilds[i];</span><br><span class="line">            if (excludes !&#x3D; null &amp;&amp; CheckStringInArray(excludes, childPath))</span><br><span class="line">            &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            string strPathName &#x3D; childPath.Replace(&#39;\\&#39;, &#39;&#x2F;&#39;);</span><br><span class="line">            strPathName &#x3D; strPathName.Substring(strPathName.LastIndexOf(&#39;&#x2F;&#39;) + 1);</span><br><span class="line">            string strAbName &#x3D; abHead + strPathName;</span><br><span class="line"></span><br><span class="line">            ImportSingleFile(childPath, strAbName, bAddDefine);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 将路径下的每个文件导出成独立的Bundle 只处理一级文件</span><br><span class="line">    private static void ImportFilesInPath(string path, string abHead, bool bAddDefine, string suffix &#x3D; &quot;&quot;, string[] excludes &#x3D; null, SearchOption option &#x3D; SearchOption.TopDirectoryOnly)</span><br><span class="line">    &#123;</span><br><span class="line">        if (!Directory.Exists(path))</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        string[] allFiles &#x3D; GetAllChildFiles(path, suffix, option);</span><br><span class="line">        for (int i &#x3D; 0; i &lt; allFiles.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string file &#x3D; allFiles[i];</span><br><span class="line">            if (file.EndsWith(&quot;.meta&quot;) || file.EndsWith(&quot;txt&quot;))</span><br><span class="line">            &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            string strFileName &#x3D; Path.GetFileNameWithoutExtension(file);</span><br><span class="line">            if (excludes !&#x3D; null &amp;&amp; CheckStringInArray(excludes, strFileName))</span><br><span class="line">            &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            string abName &#x3D; abHead + strFileName;</span><br><span class="line">            ImportSingleFile(file, abName, bAddDefine);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置单个文件（或目录）的ABName</span><br><span class="line">    private static void ImportSingleFile(string Path, string abName, bool bAddDefine)</span><br><span class="line">    &#123;</span><br><span class="line">        AssetImporter importer &#x3D; AssetImporter.GetAtPath(Path);</span><br><span class="line">        if (bAddDefine)</span><br><span class="line">        &#123;</span><br><span class="line">            AddBundleDefine(Path, abName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (importer &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        abName &#x3D; abName.Replace(&#39;\\&#39;, &#39;_&#39;).Replace(&#39;&#x2F;&#39;, &#39;_&#39;);</span><br><span class="line">        importer.SetAssetBundleNameAndVariant(abName, &quot;unity3d&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #endregion</span><br><span class="line"></span><br><span class="line">    private static void AddBundleDefine(string strPath, string strABName)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;如果是一个路径 才需要添加到字典</span><br><span class="line">        if (Directory.Exists(strPath))</span><br><span class="line">        &#123;</span><br><span class="line">            string[] files &#x3D; Directory.GetFiles(strPath, &quot;*&quot;, SearchOption.AllDirectories);</span><br><span class="line">            for (int i &#x3D; 0; i &lt; files.Length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                string filename &#x3D; files[i];</span><br><span class="line">                if (filename.EndsWith(&quot;.meta&quot;))</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                AddToBundleDic(filename, strABName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (File.Exists(strPath))</span><br><span class="line">        &#123;</span><br><span class="line">            AddToBundleDic(strPath, strABName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void AddToBundleDic(string strFileName, string strABName)</span><br><span class="line">    &#123;</span><br><span class="line">        string strExtension &#x3D; Path.GetExtension(strFileName);</span><br><span class="line">        string fullName &#x3D; strFileName.Replace(&quot;Assets&#x2F;Data&#x2F;&quot;, &quot;&quot;).Replace(strExtension, &quot;&quot;).Replace(&quot;\\&quot;, &quot;&#x2F;&quot;);</span><br><span class="line"></span><br><span class="line">        if (ms_uiBundles.ContainsKey(fullName))</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogWarningFormat(&quot;文件名字重复:&#123;0&#125;, strABName old:&#123;1&#125;, new:&#123;2&#125;&quot;, strFileName, ms_uiBundles[fullName], strABName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ms_uiBundles[fullName] &#x3D; strABName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void SaveBundleList(Dictionary&lt;string, string&gt; dicAB, string strFileName)</span><br><span class="line">    &#123;</span><br><span class="line">        string strSaveFile &#x3D; string.Format(&quot;Assets&#x2F;Lua&#x2F;game&#x2F;define&#x2F;&#123;0&#125;.lua&quot;, strFileName);</span><br><span class="line">        &#x2F;&#x2F; 保存到文件</span><br><span class="line">        StringBuilder builder &#x3D; new StringBuilder();</span><br><span class="line">        builder.AppendLine(&quot;-- Create by Tool, don&#96;t modify&quot;);</span><br><span class="line">        builder.AppendLine();</span><br><span class="line"></span><br><span class="line">        string strHeadLine &#x3D; strFileName + &quot; &#x3D; &#123;&quot;;</span><br><span class="line">        builder.AppendLine(strHeadLine);</span><br><span class="line">        &#123;</span><br><span class="line">            var iter &#x3D; dicAB.GetEnumerator();</span><br><span class="line">            while (iter.MoveNext())</span><br><span class="line">            &#123;</span><br><span class="line">                string prefabName &#x3D; iter.Current.Key.Replace(&quot;\\&quot;, &quot;&#x2F;&quot;).ToLower();</span><br><span class="line">                string abName &#x3D; iter.Current.Value.Replace(&quot;\\&quot;, &quot;&#x2F;&quot;).ToLower();</span><br><span class="line">                builder.AppendFormat(&quot;\t[\&quot;&#123;0&#125;\&quot;] &#x3D; \&quot;&#123;1&#125;\&quot;,\n&quot;, prefabName, abName);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        builder.AppendLine(&quot;&#125;&quot;);</span><br><span class="line">        builder.AppendLine();</span><br><span class="line">        builder.AppendLine(&quot;--EOF&quot;);</span><br><span class="line"></span><br><span class="line">        FileHelper.SaveTextToFile(builder.ToString(), strSaveFile);</span><br><span class="line">        EditorHelper.EditorSaveFile(strSaveFile);</span><br><span class="line"></span><br><span class="line">        ms_uiBundles.Clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>生成ab包：ab包的压缩模式选择：<a href="https://docs.unity3d.com/Manual/AssetBundles-Building.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/AssetBundles-Building.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> public static void BuildAssetBundle()</span><br><span class="line">&#123;</span><br><span class="line">   string pathDst &#x3D; AssetBundlePath;</span><br><span class="line">   FileHelper.CreateDirectory (pathDst);</span><br><span class="line"></span><br><span class="line">   BuildAssetBundleOptions options &#x3D; BuildAssetBundleOptions.DeterministicAssetBundle;</span><br><span class="line">   options |&#x3D; BuildAssetBundleOptions.ChunkBasedCompression;</span><br><span class="line"></span><br><span class="line">   BuildPipeline.BuildAssetBundles (pathDst, options, EditorUserBuildSettings.activeBuildTarget);</span><br><span class="line">   AssetDatabase.Refresh ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>md5生成：md5用于热更时判断一个文件是否需要更新（只有变化的文件md5才会变更改）</p>
+<p>FileStream fs = File.OpenRead(filePath)<br>MD5 md5 = MD5.Create();<br>byte[]　fileMd5Bytes=md5.ComputeHash(fs);//计算FileStream 对象的哈希值<br>fileMd5　＝　System.BitConverter.ToString(fileMd5Bytes).Replace(“-“, “”).ToLower();<br>七、如何导出包给两端使用</p>
+<p>获取当前项目的平台：BuildTarget target = EditorUserBuildSettings.activeBuildTarget;</p>
+<p>如果使用xcode\as等进行打包，options需要设置成BuildOptions options = BuildOptions.AcceptExternalModificationsToPlayer;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">On iOS, this setting will append an existing Xcode project. Existing Xcode project setting changes will be preserved. With the IL2CPP scripting backend, this setting will also allow incremental builds of the generated C++ code to work in Xcode.</span><br><span class="line"></span><br><span class="line">On Android, this setting will create a new Eclipse project. Existing Eclipse project setting changes will be discarded.</span><br></pre></td></tr></table></figure>
+<p>当然你也可以拼接多个option</p>
+<p>if (CommandHelper.IsDevelopment) {<br>    options |= BuildOptions.Development;<br>    options |= BuildOptions.AllowDebugging;<br>}<br>八、如何调用as命令生成apk，如何调用xcode生成ipa</p>
+<p>ipa生成参考文章：<a href="https://www.jianshu.com/p/3f43370437d2" target="_blank" rel="noopener">https://www.jianshu.com/p/3f43370437d2</a></p>
+<p>主要就是下面两行命令</p>
+<p>cmdBuild = ‘xcodebuild archive  -workspace Unity-iPhone.xcworkspace  -scheme Unity-iPhone -archivePath %s || exit ‘%(archivePath)<br>cmdIpa = ‘xcodebuild -exportArchive -archivePath %s -exportPath %s -exportOptionsPlist &quot;%s/config/ad-hoc.plist&quot;‘ % (archivePath, ipaDir, self.CurrPath)<br>archive参数如下，如果使用CocoaPod,workspace必须传，scheme不传则默认为项目第一个Target。archivePath为archive包存储路径。其余参数可不传</p>
+<p>exportArchive ，导出ipa，参数如下：archivePath上面的archivePath路径。exportPath ：ipa导出路径。exportOptionsPlist ：list文件</p>
+<p>android 端直接调用：./gradlew assembleNormal就好了</p>
+<p>九、如何导出配置给两个端使用</p>
+<p>1.ios直接修改info.plist文件和项目设置项</p>
+<p>首先我们需要了解OnPostprocessBuild方法。就是说unity每次build完后都会回调这个方法，该方法有两个参数，一个是xcode的Target，一个是导出的工程目录。我们可以在这个回调里设置证书、权限、白名单等信息</p>
+<p>Implement this function to receive a callback after the build is complete.<br>示例如下，具体可以参考API：<a href="https://docs.unity3d.com/ScriptReference/iOS.Xcode.PBXProject.html。主要是PBXProject这个API" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/iOS.Xcode.PBXProject.html。主要是PBXProject这个API</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">　　[PostProcessBuild]</span><br><span class="line">static void OnPostprocessBuild(BuildTarget target, string pathToBuildProject)&#123;</span><br><span class="line">    &#x2F;&#x2F;pathToBuildProject unity export路径</span><br><span class="line">    EditProject(pathToBuildProject);&#x2F;&#x2F;添加framework、设置证书</span><br><span class="line">    EditPlist (pathToBuildProject);&#x2F;&#x2F;配置appid等、设置白名单、权限</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">　　static void EditProject(string path)</span><br><span class="line">&#123;</span><br><span class="line">    string projPath &#x3D; PBXProject.GetPBXProjectPath(path);</span><br><span class="line">    PBXProject pbxProj &#x3D; new PBXProject();</span><br><span class="line">    pbxProj.ReadFromString(File.ReadAllText(projPath));</span><br><span class="line"></span><br><span class="line">    string target &#x3D; pbxProj.TargetGuidByName(&quot;Unity-iPhone&quot;);</span><br><span class="line">    if (!string.IsNullOrEmpty(target))</span><br><span class="line">    &#123;</span><br><span class="line">        pbxProj.RemoveFrameworkFromProject(target, &quot;libiconv.2.dylib&quot;);</span><br><span class="line">        pbxProj.AddFrameworkToProject(target, &quot;AdSupport.framework&quot;, true); &#x2F;&#x2F;用于firebase推送</span><br><span class="line"></span><br><span class="line">        pbxProj.SetBuildProperty(target, &quot;ENABLE_BITCODE&quot;, &quot;false&quot;);</span><br><span class="line">        pbxProj.SetBuildProperty(target, &quot;DEVELOPMENT_TEAM&quot;, GetTeamId());</span><br><span class="line">        pbxProj.SetBuildProperty(target, &quot;CODE_SIGN_IDENTITY&quot;, GetCertificate()); &#x2F;&#x2F;证书</span><br><span class="line">        pbxProj.SetBuildProperty(target, &quot;PROVISIONING_PROFILE&quot;, GetProfiles());&#x2F;&#x2F;描述文件</span><br><span class="line"></span><br><span class="line">        string googleServicedir &#x3D; ConfigHelper.IsDeveloper ? &quot;develop&quot; : &quot;release&quot;;</span><br><span class="line">        string rootGoogleServicepath &#x3D; string.Format(&quot;&#123;0&#125;&#x2F;..&#x2F;Config&#x2F;GoogleService&#x2F;&quot;, Application.dataPath) + googleServicedir;</span><br><span class="line">        FileCopy(rootGoogleServicepath, path);</span><br><span class="line">        pbxProj.AddFileToBuild(target, pbxProj.AddFile(path + &quot;&#x2F;GoogleService-Info.plist&quot;, &quot;GoogleService-Info.plist&quot;, PBXSourceTree.Build));</span><br><span class="line">        pbxProj.AddFileToBuild(target, pbxProj.AddFile(path + &quot;&#x2F;OMTService-Info.plist&quot;, &quot;OMTService-Info.plist&quot;, PBXSourceTree.Build));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    File.WriteAllText(projPath, pbxProj.WriteToString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 这是plist</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;pathToBuildProject&quot;&gt;Path to build project.&lt;&#x2F;param&gt;</span><br><span class="line">static void EditPlist(string pathToBuildProject)</span><br><span class="line">&#123;</span><br><span class="line">    string _plistPath &#x3D; pathToBuildProject + &quot;&#x2F;Info.plist&quot;;</span><br><span class="line">    PlistDocument _plist &#x3D; new PlistDocument();</span><br><span class="line"></span><br><span class="line">    _plist.ReadFromString(File.ReadAllText(_plistPath));</span><br><span class="line">    PlistElementDict _rootDic &#x3D; _plist.root;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;添加Scheme白名单</span><br><span class="line">    PlistElementArray _array2 &#x3D; _rootDic.CreateArray(&quot;LSApplicationQueriesSchemes&quot;);</span><br><span class="line">    _array2.AddString(&quot;fbapi&quot;);</span><br><span class="line">    _array2.AddString(&quot;fb-messenger-api&quot;);</span><br><span class="line">    _array2.AddString(&quot;fbauth2&quot;);</span><br><span class="line">    _array2.AddString(&quot;fbshareextension&quot;);</span><br><span class="line">    _array2.AddString(&quot;gamcoios&quot;);</span><br><span class="line">    _array2.AddString(&quot;whatsapp&quot;);</span><br><span class="line">    _array2.AddString(&quot;twitter&quot;);</span><br><span class="line">    _array2.AddString(&quot;twitterauth&quot;);</span><br><span class="line">    _array2.AddString(&quot;instagram&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;配置权限</span><br><span class="line">    _rootDic.SetString(&quot;NSPhotoLibraryUsageDescription&quot;, SDKConfig.PhotoDesc);</span><br><span class="line">    _rootDic.SetString(&quot;NSMicrophoneUsageDescription&quot;, SDKConfig.MicrophoneDes);</span><br><span class="line">    _rootDic.SetString(&quot;NSPhotoLibraryAddUsageDescription&quot;, SDKConfig.PhotoAddDesc);</span><br><span class="line">    _rootDic.SetString(&quot;NSCameraUsageDescription&quot;, SDKConfig.CameraDes);</span><br><span class="line">    _rootDic.SetString(&quot;NSLocationWhenInUseUsageDescription&quot;, SDKConfig.LocationDes);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;正式版&#x2F;测试版</span><br><span class="line">    _rootDic.SetBoolean(&quot;DebugMode&quot;, ConfigHelper.IsDeveloper);</span><br><span class="line"></span><br><span class="line">    File.WriteAllText(_plistPath, _plist.WriteToString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>2.Android端：通过json或.properties文件存储，然后拷贝到android目录下就好了。以下以.properties文件作为实例</p>
+<p>c#端存储：FileHelper.SaveTextToFile只是调用file.write方法，把字符串写进文件里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">System.Text.StringBuilder sb &#x3D; new System.Text.StringBuilder();</span><br><span class="line">sb.AppendFormat(&quot;GAME_NAME&#x3D;&#123;0&#125;\n&quot;, ConfigHelper.GameName);</span><br><span class="line">sb.AppendFormat(&quot;VERSION_NAME&#x3D;&#123;0&#125;\n&quot;, ConfigHelper.Version);</span><br><span class="line">sb.AppendFormat(&quot;VERSION_CODE&#x3D;&#123;0&#125;\n&quot;, ConfigHelper.BuildNo);</span><br><span class="line">sb.AppendFormat(&quot;BUNDLE_IDENTIFIER&#x3D;&#123;0&#125;\n&quot;, CommandHelper.BundleIdentifier);</span><br><span class="line">sb.AppendFormat(&quot;IS_DEVELOPER&#x3D;&#123;0&#125;\n&quot;, ConfigHelper.IsDeveloper);</span><br><span class="line">sb.AppendFormat(&quot;IABKEY&#x3D;&#123;0&#125;\n&quot;, SDKConfig.IABKey);</span><br><span class="line"></span><br><span class="line">FileHelper.SaveTextToFile(sb.ToString(), string.Format(&quot;&#123;0&#125;&#x2F;&#123;1&#125;&#x2F;version.properties&quot;, CommandHelper.OutputPath, CommandHelper.ProjectName));</span><br></pre></td></tr></table></figure>
+<p>android端读取：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">　　def verName &#x3D; &quot;1.0.0&quot;</span><br><span class="line">def verCode &#x3D; 8</span><br><span class="line">def bundleId &#x3D; &quot;and.onemt.sf.ar&quot;</span><br><span class="line">def isDeveloper &#x3D; false</span><br><span class="line">def iabKey &#x3D; &quot;&quot;</span><br><span class="line">def name &#x3D; &quot;@string&#x2F;app_name&quot;</span><br><span class="line"></span><br><span class="line">def versionPropsFile &#x3D; file(&#39;version.properties&#39;)</span><br><span class="line"></span><br><span class="line">if (versionPropsFile.canRead()) &#123;</span><br><span class="line">    def Properties versionProps &#x3D; new Properties()</span><br><span class="line">    versionProps.load(new FileInputStream(versionPropsFile))</span><br><span class="line">    verName &#x3D; versionProps[&#39;VERSION_NAME&#39;]</span><br><span class="line">    verCode &#x3D; versionProps[&#39;VERSION_CODE&#39;].toInteger()</span><br><span class="line">    bundleId &#x3D; versionProps[&#39;BUNDLE_IDENTIFIER&#39;]</span><br><span class="line">    isDeveloper &#x3D; versionProps[&#39;IS_DEVELOPER&#39;]</span><br><span class="line"></span><br><span class="line">    iabKey &#x3D; versionProps[&#39;IABKEY&#39;]</span><br><span class="line">    if (&quot;True&quot;.equalsIgnoreCase(isDeveloper)) &#123;</span><br><span class="line">        name &#x3D; &quot;@string&#x2F;app_name_test&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2025/07/10/2025-07-12/" data-id="cmd12rpt60005clz859vx7sit" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/07/11/2025-07-11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          框架之日志管理系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/07/10/2025-07-10/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Unity UI框架总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

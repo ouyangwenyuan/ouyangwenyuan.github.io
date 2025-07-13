@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="持续学习者————Just Do It！">
+<meta property="og:url" content="http://droidman.net/page/6/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Objective-c">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Unity3d">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Unix">
+<meta property="article:tag" content="Window">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Lua">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="xcode">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="eclicpse">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018-01-28" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/28/2018-01-28/" class="article-date">
+  <time datetime="2018-01-28T00:30:40.000Z" itemprop="datePublished">2018-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/28/2018-01-28/">MVC 模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：MVC 模式代表 Model-View-Controller（模型-视图-控制器） 模式。这种模式用于应用程序的分层开发。</p>
+<p>角色：<br>1.Model（模型） ：模型代表一个存取数据的对象或 JAVA POJO。它也可以带有逻辑，在数据变化时更新控制器。<br>2.View（视图） ：视图代表模型包含的数据的可视化，负责输出数据或UI。<br>3.Controller（控制器） ： 控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。</p>
+<p>优点：<br>1.有多个视图对应一个模型的能力。<br>2.由于一个应用被分离为三层，因此有时改变其中的一层就能满足应用的改变。一个应用的业务流程或者业务规则的改变只需改动MVC的模型层。<br>3.由于不同的层各司其职，每一层不同的应用具有某些相同的特征，有利于通过工程化、工具化产生管理程序代码。</p>
+<p>缺点：<br>（1）增加了系统结构和实现的复杂性。对于简单的界面，严格遵循MVC，使模型、视图与控制器分离，会增加结构的复杂性，并可能产生过多的更新操作，降低运行效率。<br>（2）视图与控制器间的过于紧密的连接。视图与控制器是相互分离，但却是联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。<br>（3）视图对模型数据的低效率访问。依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。<br>（4） 目前，一般高级的界面工具或构造器不支持MVC架构。改造这些工具以适应MVC需要和建立分离的部件的代价是很高的，从而造成使用MVC的困难。</p>
+<p>使用：<br>1.创建模型类(数据层)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class Student </span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">   private String rollNo;</span><br><span class="line"> </span><br><span class="line">   private String name;</span><br><span class="line"> </span><br><span class="line">   public String getRollNo() &#123;</span><br><span class="line"> </span><br><span class="line">      return rollNo;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public void setRollNo(String rollNo) &#123;</span><br><span class="line"> </span><br><span class="line">      this.rollNo &#x3D; rollNo;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public String getName() &#123;</span><br><span class="line"> </span><br><span class="line">      return name;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public void setName(String name) &#123;</span><br><span class="line"> </span><br><span class="line">      this.name &#x3D; name;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建视图类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class StudentView </span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">   public void printStudentDetails(String studentName, String studentRollNo)&#123;</span><br><span class="line"> </span><br><span class="line">      System.out.println(&quot;Student: &quot;);</span><br><span class="line"> </span><br><span class="line">      System.out.println(&quot;Name: &quot; + studentName);</span><br><span class="line"> </span><br><span class="line">      System.out.println(&quot;Roll No: &quot; + studentRollNo);</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.创建控制器类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class StudentController &#123;</span><br><span class="line"> </span><br><span class="line">   private Student model;</span><br><span class="line">   private StudentView view;</span><br><span class="line"></span><br><span class="line">   public StudentController(Student model, StudentView view)</span><br><span class="line">　　&#123;</span><br><span class="line">      this.model &#x3D; model;</span><br><span class="line">      this.view &#x3D; view;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setStudentName(String name)</span><br><span class="line">　　&#123;</span><br><span class="line">      model.setName(name); </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public String getStudentName()</span><br><span class="line">　　&#123;</span><br><span class="line">      return model.getName();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setStudentRollNo(String rollNo)&#123;</span><br><span class="line"> </span><br><span class="line">      model.setRollNo(rollNo);</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public String getStudentRollNo()</span><br><span class="line">　　&#123;</span><br><span class="line">      return model.getRollNo();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void updateView()</span><br><span class="line">　　&#123;</span><br><span class="line">      view.printStudentDetails(model.getName(), model.getRollNo());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class MVCPatternDemo &#123;</span><br><span class="line"> </span><br><span class="line">   public static void main(String[] args) </span><br><span class="line">　　&#123;</span><br><span class="line">      &#x2F;&#x2F;从数据可获取学生记录 </span><br><span class="line">      Student model  &#x3D; retriveStudentFromDatabase();</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;创建一个视图：把学生详细信息输出到控制台</span><br><span class="line">      StudentView view &#x3D; new StudentView();</span><br><span class="line"></span><br><span class="line">      StudentController controller &#x3D; new StudentController(model, view);</span><br><span class="line">      controller.updateView();</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F;更新模型数据</span><br><span class="line">      controller.setStudentName(&quot;John&quot;);</span><br><span class="line">      controller.updateView();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private static Student retriveStudentFromDatabase()</span><br><span class="line">　　&#123;</span><br><span class="line">      Student student &#x3D; new Student(); </span><br><span class="line">      student.setName(&quot;Robert&quot;);</span><br><span class="line">      student.setRollNo(&quot;10&quot;);</span><br><span class="line">      return student;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/28/2018-01-28/" data-id="cmcw1g2tp001pz4z8cdig7z79" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-27" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/27/2018-01-27/" class="article-date">
+  <time datetime="2018-01-27T00:30:35.000Z" itemprop="datePublished">2018-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/27/2018-01-27/">设计模式之原型模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：用原型实例指定创建对象的种类，并且通过拷贝这些原型来创建新的实例。换句话说，原型模式就是通过复制现在已经存在的对象来创建一个新的对象，而不是使用 new 来创建一个对象。这个复制的结果有2种，一种是是浅复制，另一种是深复制。</p>
+<p>浅复制：通过一个原型实例（这里暂称为老对象）克隆所得到的对象（这里暂时称为新对象），新对象中所有的值类型变量都含有与老对象相同的值，新对象所有的对其他对象的引用都和老对象指向同一个地方，即对引用类型来说，老对象和新对象指向同一个引用对象。</p>
+<p>深复制：和浅复制就一点不同，那就是，新对象所有的对其他对象的引用都是指向了复制过的对象，而不再是和老对象指向同一个对象，也就是说，克隆新对象的同时，克隆了老对象的所有引用并将新对象指向这些引用。</p>
+<p>优点：复制一个对象一般情况下会比创建一个对象性能更高。</p>
+<p>缺点： 1、配备克隆方法需要对类的功能进行通盘考虑，这对于全新的类不是很难，但对于已有的类不一定很容易，特别当一个类引用不支持串行化的间接对象，或者引用含有循环结构的时候。 2、必须实现 Cloneable 接口。 3、逃避构造函数的约束。</p>
+<p>结构图：</p>
+<p>应用：<br>1.定义一个接口， 用来表述所有的颜色对象接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface IColorDemo </span><br><span class="line">&#123; </span><br><span class="line">        IColorDemo Clone();</span><br><span class="line">        int Red  &#123;  get;  set;  &#125; </span><br><span class="line">        int Green  &#123;  get;   set;  &#125; </span><br><span class="line">        Quote quoteInstance&#123;get;set&#125;</span><br><span class="line">&#125;</span><br><span class="line">publc class Quote&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>2.具体类的实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> public class RedColor : IColorDemo </span><br><span class="line"> &#123; </span><br><span class="line">        private int red; </span><br><span class="line">        private int green; </span><br><span class="line">        Quote quoteInstance&#123;get;set&#125;</span><br><span class="line">        public int Red </span><br><span class="line">        &#123; </span><br><span class="line">            get &#123;  return this.red; &#125; </span><br><span class="line">            set  &#123;  this.red &#x3D; value; &#125; </span><br><span class="line">        &#125; </span><br><span class="line">        public int Green </span><br><span class="line">        &#123;</span><br><span class="line">            get  &#123;  return this.green;  &#125; </span><br><span class="line">            set &#123;  this.green &#x3D; value; &#125; </span><br><span class="line">        &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>//浅复制</p>
+<p> public Override IColorDemo Clone()<br>{<br>    return (IColorDemo)this.MemberwiseClone();<br>}<br>//深复制,获取浅表副本的同时复制引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> public Override IColorDemo Clone() </span><br><span class="line">&#123; </span><br><span class="line">    IColorDemo color &#x3D; this.MemberwiseClone(); </span><br><span class="line">    Quote q &#x3D; new Quote();</span><br><span class="line">    color.quoteIntance &#x3D; q;</span><br><span class="line">    return color; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/27/2018-01-27/" data-id="cmcw1g2tm001nz4z8h61y33if" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/21/2018-01-21/" class="article-date">
+  <time datetime="2018-01-21T12:44:56.000Z" itemprop="datePublished">2018-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/21/2018-01-21/">设计模式之建造者模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：建造者模式使用多个简单的对象一步一步构建成一个复杂的对象，修改时只需要修改其中相应的一小部分，避免牵一发而动全身。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+<p>角色：</p>
+<p>1.AbstractBuilder：抽象建造者<br>      为创建一个Product对象的各个部件指定抽象接口，将建造的具体过程交与它的子类来实现。一般会有两部分抽象方法，一部分用来建造产品，一个是用来返回产品。如下图，buildPart1和buildPart2用来构造产品，retrieveResult返回产品。<br> 2.ConcreteBuilder：具体建造者<br>     实现抽象建造者的抽象方法，之所以这样，是为了便于不同情况下的扩充。<br> 3.Director：导演者<br>      负责调用适当的建造者来组建产品，导演类一般不与产品类发生依赖关系，与导演类直接交互的是建造者类。一般来说，导演类被用来封装程序中易变的部分。<br> 4.Product:产品类<br>      表示被构造的复杂对象。ConcreteBuilder创建该产品的内部表示并定义它的装配过程。产品类是一个具体的类，而非抽象类。实际编程中，产品类可以是由一个抽象类与它的不同实现组成，也可以是由多个抽象类与他们的实现组成。<br>结构图：</p>
+<p>优点： 1、建造者独立，易扩展。 2、便于控制细节风险。</p>
+<p>缺点：1、产品必须有共同点，范围有限制。 2、如内部变化复杂，会有很多的建造类。</p>
+<p>应用：以下案例示范将一餐饭(product)拆解为每份食物、包装，更改单个食物的属性不需要修改这餐饭。<br>1.创建一个表示食物条目和食物包装的接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public interface Item</span><br><span class="line"> &#123;</span><br><span class="line">   public String name();</span><br><span class="line">   public Packing packing();</span><br><span class="line">   public float price();</span><br><span class="line">&#125;</span><br><span class="line">public interface Packing </span><br><span class="line">&#123; </span><br><span class="line">　　public String pack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建实现 Packing 接口的实体类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Wrapper implements Packing </span><br><span class="line">&#123;</span><br><span class="line">   public String pack() &#123;   return &quot;Wrapper&quot;;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Bottle implements Packing </span><br><span class="line">&#123;</span><br><span class="line">   public String pack() &#123; return &quot;Bottle&quot;;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.创建实现 Item 接口的抽象类，该类提供了默认的功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Burger ： Item </span><br><span class="line">&#123;</span><br><span class="line">   public Packing packing() &#123; return new Wrapper();  &#125;</span><br><span class="line">   public abstract float price();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public abstract class ColdDrink ： Item </span><br><span class="line">&#123;</span><br><span class="line">    public Packing packing() &#123; return new Bottle();&#125;</span><br><span class="line">    public abstract float price();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.创建扩展了 Burger 和 ColdDrink 的实体类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class VegBurger extends Burger </span><br><span class="line">&#123;</span><br><span class="line">   public float price() &#123; return 25.0f; &#125;</span><br><span class="line">   public String name() &#123; return &quot;Veg Burger&quot;; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ChickenBurger extends Burger </span><br><span class="line">&#123;</span><br><span class="line">   public float price() &#123; return 50.5f; &#125;</span><br><span class="line">   public String name() &#123; return &quot;Chicken Burger&quot;;&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Coke extends ColdDrink </span><br><span class="line">&#123;</span><br><span class="line">   public float price() &#123;  return 30.0f;&#125;</span><br><span class="line">   public String name() &#123; return &quot;Coke&quot;;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Pepsi extends ColdDrink </span><br><span class="line">&#123;</span><br><span class="line">   public float price() &#123;return 35.0f; &#125;</span><br><span class="line">   public String name() &#123; return &quot;Pepsi&quot;;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.建一个 Meal 类，带有上面定义的 Item 对象，类似定义一餐所包含的类目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Meal </span><br><span class="line">&#123;</span><br><span class="line">   private List&lt;Item&gt; items &#x3D; new ArrayList&lt;Item&gt;();</span><br><span class="line">   public void addItem(Item item)&#123;  items.add(item); &#125;</span><br><span class="line"></span><br><span class="line">   public float getCost()</span><br><span class="line">    &#123;</span><br><span class="line">      float cost &#x3D; 0.0f;</span><br><span class="line">      for (Item item : items) &#123;  cost +&#x3D; item.price(); &#125;</span><br><span class="line">      return cost;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.使用：</p>
+<p>Meal meal = new Meal();<br>meal.addItem(new VegBurger());<br>meal.addItem(new Coke());<br>meal.getcost()获取消费</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/21/2018-01-21/" data-id="cmcw1g2tl001lz4z883go52fx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/20/2018-01-20/" class="article-date">
+  <time datetime="2018-01-20T12:44:50.000Z" itemprop="datePublished">2018-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/20/2018-01-20/">设计模式之单例模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：对于一个软件系统的某些类而言，我们无须创建多个实例。为了节约系统资源，有时需要确保系统中某个类只有唯一一个实例，当这个唯一实例创建成功之后，我们无法再创建一个同类型的其他对象，所有的操作都只能基于这个唯一实例。为了确保对象的唯一性，我们可以通过单例模式来实现，这就是单例模式的需求所在。</p>
+<p>优点：<br>-单例模式提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它。</p>
+<ul>
+<li>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象单例模式无疑可以提高系统的性能。</li>
+<li>允许可变数目的实例。基于单例模式我们可以进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例，既节省系统资源，又解决了单例单例对象共享过多有损性能的问题。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</li>
+<li>单例类的职责过重，在一定程度上违背了“单一职责原则”。因为单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。</li>
+<li>现在很多面向对象语言(如Java、C#)的运行环境都提供了自动垃圾回收的技术，因此，如果实例化的共享对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致共享的单例对象状态的丢失。</li>
+</ul>
+<p>应用：<br>1.懒汉式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singleton</span><br><span class="line">&#123;</span><br><span class="line">     private staticSingleton _insance &#x3D; null;</span><br><span class="line">     private Singleton() &#123;……&#125; &#x2F;&#x2F;</span><br><span class="line">     public static Singleton getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        if (_insance &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">           _insance &#x3D; new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return _insance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.饿汉士：由于懒汉式_insance = new XXX();需要一定时间，当new未完成时调用会出现两个实例化，这就不满足单例模式了，以下写法在系统加载时由于需要创建单例对象，加载时间可能会比较长。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Singleton</span><br><span class="line">&#123;</span><br><span class="line">     private static Singleton _insance &#x3D; new Singleton();</span><br><span class="line">     private Singleton() &#123;……&#125; &#x2F;&#x2F;</span><br><span class="line">     public static Singleton getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        return _insance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.考虑多线程情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line"> </span><br><span class="line">    private volatile static Singleton singleton;  </span><br><span class="line"> </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line"> </span><br><span class="line">    public static Singleton getSingleton() &#123;  </span><br><span class="line"> </span><br><span class="line">    if (singleton &#x3D;&#x3D; null) &#123;  </span><br><span class="line"> </span><br><span class="line">        synchronized (Singleton.class) &#123;  </span><br><span class="line"> </span><br><span class="line">        if (singleton &#x3D;&#x3D; null) &#123;  </span><br><span class="line"> </span><br><span class="line">            singleton &#x3D; new Singleton();  </span><br><span class="line"> </span><br><span class="line">        &#125;  </span><br><span class="line"> </span><br><span class="line">        &#125;  </span><br><span class="line"> </span><br><span class="line">    &#125;  </span><br><span class="line"> </span><br><span class="line">    return singleton;  </span><br><span class="line"> </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/20/2018-01-20/" data-id="cmcw1g2tk001kz4z858rg4mx4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-14" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/14/2018-01-14/" class="article-date">
+  <time datetime="2018-01-14T12:44:46.000Z" itemprop="datePublished">2018-01-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/14/2018-01-14/">设计模式之抽象工厂模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。在工厂模式的基础上，在工厂层面在封装一层（简单工厂只在产品上包装一层）。抽象工厂模式适用于对“一系列相互依赖的对象”的创建工作，这些对象是相互依赖的，是有联系的。如果仅为一个对象的创建则用简单工厂模式或工厂方法模式完全可以实现，没有必要用抽象工厂模式。</p>
+<p>角色：<br>抽象工厂角色：这是工厂方法模式的核心，它与应用程序无关。是具体工厂角色必须实现的接口或者必须继承的父类。<br>具体工厂角色：它含有和具体业务逻辑有关的代码。由应用程序调用以创建对应的具体产品的对象，生成一系列具体的产品<br>抽象产品角色：它是具体产品继承的父类或者是实现的接口。<br>具体产品角色：具体工厂角色所创建的对象就是此角色的实例。</p>
+<p>优点：当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。</p>
+<p>缺点：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。这是因为抽象工厂几乎确定了可以被创建的产品集合，支持新种类的产品就需要扩展该工厂接口，这将涉及抽象工厂类及其所有子类的改变。 </p>
+<p>使用：以下例子，通过抽象工厂AbstractFactory实例化具体工厂，通过抽象产品Shape实例化具体产品，之间通过两个参数颜色、颜色值或者形状、形状值确定最终的产品。<br>1.为形状创建接口，创建实现接口的实体类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public interface Shape </span><br><span class="line">&#123; </span><br><span class="line">    void draw();</span><br><span class="line">&#125;</span><br><span class="line">public class Rectangle： Shape</span><br><span class="line"> &#123;</span><br><span class="line">       public void draw()</span><br><span class="line">        &#123;      </span><br><span class="line">            System.out.println(&quot;Inside Rectangle::draw() method.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Square： Shape</span><br><span class="line"> &#123;</span><br><span class="line">       public void draw()</span><br><span class="line">     &#123;      </span><br><span class="line">        System.out.println(&quot;Inside Square::draw() method.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.为颜色创建接口，创建实现接口的实体类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public interface Color </span><br><span class="line">&#123;</span><br><span class="line"> 　　void draw();</span><br><span class="line">&#125;</span><br><span class="line">public class Red： Color </span><br><span class="line">&#123;</span><br><span class="line">       public void draw() </span><br><span class="line">　　　　&#123;      </span><br><span class="line">　　　　　　System.out.println(&quot;Inside Red::draw() method.&quot;);</span><br><span class="line">　　　　&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Green： Color </span><br><span class="line">&#123;</span><br><span class="line">       public void draw() </span><br><span class="line">　　　　&#123;      </span><br><span class="line">　　　　　　System.out.println(&quot;Inside Green::draw() method.&quot;);</span><br><span class="line">　　　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 3.为 Color 和 Shape 对象创建抽象类来获取工厂。AbstractFactory</p>
+<p>public abstract class AbstractFactory<br>{<br>       abstract Color getColor(String color);<br>       abstract Shape getShape(String shape) ;<br>}<br>4.创建扩展了 AbstractFactory 的工厂类，基于给定的信息生成实体类的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class ShapeFactory : AbstractFactory</span><br><span class="line"> &#123;</span><br><span class="line">     public Override Shape getShape(String shapeType)</span><br><span class="line">    &#123;</span><br><span class="line">          if(shapeType &#x3D;&#x3D; null)&#123;        return null;  &#125;</span><br><span class="line"></span><br><span class="line">          if(shapeType.equalsIgnoreCase(&quot;CIRCLE&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">         return new Circle();</span><br><span class="line">        &#125; </span><br><span class="line">        else if(shapeType.equalsIgnoreCase(&quot;RECTANGLE&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">         return new Rectangle();</span><br><span class="line">        &#125; </span><br><span class="line">      return null;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Override Color getColor(String color) &#123;    return null; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ColorFactory extends AbstractFactory </span><br><span class="line">&#123;</span><br><span class="line">    public Override Shape getShape(String shapeType)</span><br><span class="line">    &#123;      return null; &#125;</span><br><span class="line"></span><br><span class="line">   Override Color getColor(String color)     </span><br><span class="line">    &#123;</span><br><span class="line">          if(color &#x3D;&#x3D; null)&#123;</span><br><span class="line">             return null;</span><br><span class="line">          &#125;</span><br><span class="line">          if(color.equalsIgnoreCase(&quot;RED&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">             return new Red();</span><br><span class="line">        &#125; </span><br><span class="line">        else if(color.equalsIgnoreCase(&quot;GREEN&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">         return new Green();</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">      return null;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.创建一个工厂创造器/生成器类，通过传递形状或颜色信息来获取工厂。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryProducer </span><br><span class="line">&#123;</span><br><span class="line">    public static AbstractFactory getFactory(String choice)</span><br><span class="line">    &#123;</span><br><span class="line">        if(choice.equalsIgnoreCase(&quot;SHAPE&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">             return new ShapeFactory();</span><br><span class="line">        &#125; </span><br><span class="line">        else if(choice.equalsIgnoreCase(&quot;COLOR&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">             return new ColorFactory();</span><br><span class="line">        &#125;</span><br><span class="line">      return null;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6.实例化：</p>
+<p>AbstractFactory shapeFactory = FactoryProducer.getFactory(“SHAPE”);<br>AbstractFactory colorFactory = FactoryProducer.getFactory(“COLOR”);</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/14/2018-01-14/" data-id="cmcw1g2si001ez4z8hmd47yha" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-13" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/13/2018-01-13/" class="article-date">
+  <time datetime="2018-01-13T12:44:41.000Z" itemprop="datePublished">2018-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/13/2018-01-13/">设计模式之-工厂模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类（抽象类）或接口。简单工厂模式又称为静态工厂方法模式，属于类的创建型模式，通常根据一个条件（参数）来返回不同的类的实例。<br>它由三种角色组成（关系见下面的类图）：<br>1、工厂类角色：这是本模式的核心，含有一定的商业逻辑和判断逻辑，负责通过不同条件创建不同产品。<br>2、抽象产品角色：它一般是具体产品继承的父类或者实现的接口。在java中由接口或者抽象类来实现。<br>3、具体产品角色：工厂类所创建的对象就是此角色的实例，是简单工厂模式的创建目标。</p>
+<p>结构图：</p>
+<p>优点：<br>· 简单工厂模式能够根据外界给定的信息，决定究竟应该创建哪个具体类的对象。通过它，外界可以从直接创建具体产品对  象的尴尬局面中摆脱出来。<br>· 外界与具体类隔离开来，偶合性低。<br>· 明确区分了各自的职责和权力，有利于整个软件体系结构的优化。<br>-在简单工厂模式中最核心的部分—-工厂类不要根据传来的条件去动态创建产品类，利用反射机制去创建。把要实例化的类名放在应用程序配置文件中， 可以让文件更好维护。</p>
+<p>缺点：<br>· 工厂类集中了所有实例的创建逻辑，容易违反GRASPR的高内聚的责任分配原则<br>· 虽然简单工厂模式能够适应一定的变化，但是它所能解决的问题是远远有限的。它所能创建的类只能是事先就考虑到的，如果需要添加新的类，则就需要改变工厂类了。<br>-在添加新产品时，需要编写新的具体产品类（其实这不算一个缺点，因为这是不可避免的），要增加与之对应的具体工厂类。 </p>
+<p>应用：工厂类通过传入的参数确定实例化那种形状，形状的（具体产品）类继承自shape(抽象产品类)。</p>
+<p>1.创建接口或抽象类：public interface Shape { void draw();}<br>2.创建实现接口的实体类，这些类最终会被工厂实例化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Rectangle： Shape </span><br><span class="line">&#123;</span><br><span class="line">   public void draw() </span><br><span class="line">　　&#123;      </span><br><span class="line">　　　　System.out.println(&quot;Inside Rectangle::draw() method.&quot;);</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Square： Shape </span><br><span class="line">&#123;</span><br><span class="line">   public void draw() </span><br><span class="line">　　&#123;      </span><br><span class="line">　　　　System.out.println(&quot;Inside Square::draw() method.&quot;);</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.创建工厂类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class ShapeFactory </span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;使用 getShape 方法获取形状类型的对象</span><br><span class="line">   public Shape getShape(String shapeType)</span><br><span class="line">　　&#123;</span><br><span class="line">      if(shapeType &#x3D;&#x3D; null)</span><br><span class="line">　　　　&#123;</span><br><span class="line">         return null;</span><br><span class="line">      &#125;</span><br><span class="line">      if(shapeType.equalsIgnoreCase(&quot;CIRCLE&quot;))</span><br><span class="line">　　　　&#123;</span><br><span class="line">         return new Circle();</span><br><span class="line">      &#125; </span><br><span class="line">　　　　else if(shapeType.equalsIgnoreCase(&quot;RECTANGLE&quot;))</span><br><span class="line">　　  &#123;</span><br><span class="line">         return new Rectangle();</span><br><span class="line">      &#125;</span><br><span class="line">      return null;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.通过传递类型信息创建并获取实例：<br>Shape shape1 = shapeFactory.getShape(“CIRCLE”);</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/13/2018-01-13/" data-id="cmcw1g2se001az4z87rpt51ni" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-01-07" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/07/2018-01-07/" class="article-date">
+  <time datetime="2018-01-07T12:44:36.000Z" itemprop="datePublished">2018-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/07/2018-01-07/">设计模式中类的关系</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>依赖（Dependence）</li>
+</ol>
+<p>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class People&#123;  </span><br><span class="line">    &#x2F;&#x2F;Book作为read方法的形参  </span><br><span class="line">     public void read(Book book)&#123;  </span><br><span class="line">        System.out.println(“读的书是”+book.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>2.关联（Association）<br>单向关联：</p>
+<p>双向关联：</p>
+<p> 对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Son&#123;  </span><br><span class="line">   &#x2F;&#x2F;关联关系中作为成员变量的类一般会在类中赋值  </span><br><span class="line">    Father father &#x3D; new Father();  </span><br><span class="line">    public void getGift()&#123;  </span><br><span class="line">        System.out.println(“从”+father.getName()+”获得礼物”);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">public class Father&#123;  </span><br><span class="line">    Son son &#x3D; new Son();  </span><br><span class="line">    public void giveGift()&#123;  </span><br><span class="line">       System.out.println(“送给”+son.getName()+“礼物”);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>3.聚合（Aggregation）</p>
+<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。没有车司机就不能发生开车这个行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class People&#123;  </span><br><span class="line">    Car car;  </span><br><span class="line">    House house;   </span><br><span class="line">    &#x2F;&#x2F;聚合关系中作为成员变量的类一般使用set方法赋值  </span><br><span class="line">     public void setCar(Car car)&#123;  </span><br><span class="line">        This.car &#x3D; car;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setHouse(House house)&#123;  </span><br><span class="line">        This.house &#x3D; house;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public void driver()&#123;  </span><br><span class="line">        System.out.println(“车的型号：”+car.getType());  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void sleep()&#123;  </span><br><span class="line">        System.out.println(“我在房子里睡觉：”+house.getAddress());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>4.组合（Composition）</p>
+<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Public class People&#123;  </span><br><span class="line">    Soul soul;  </span><br><span class="line">    Body body;   </span><br><span class="line">    &#x2F;&#x2F;组合关系中的成员变量一般会在构造方法中赋值  </span><br><span class="line">     Public People(Soul soul, Body body)&#123;   </span><br><span class="line">        This.soul &#x3D; soul;  </span><br><span class="line">        This.body &#x3D; body;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    Public void study()&#123;  </span><br><span class="line">        System.out.println(“学习要用灵魂”+soul.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">    Public void eat()&#123;  </span><br><span class="line">        System.out.println(“吃饭用身体：”+body.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>5.继承（Generalization）</p>
+<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。<br>6.实现（Implementation）</p>
+<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/01/07/2018-01-07/" data-id="cmcw1g2sg001cz4z877ff52ut" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/23/2017-12-23/" class="article-date">
+  <time datetime="2017-12-23T12:44:02.000Z" itemprop="datePublished">2017-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/23/2017-12-23/">C# 枚举 的用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>枚举是C#编程语言的一种类型，跟类、结构、密封类、分布类、委托、事件、抽象都是同一级别的类型。</p>
+<p>枚举本身可以有修饰符，但枚举的成员始终是公共的，不能有访问修饰符。枚举本身的修饰符仅能使用public和internal。</p>
+<p>枚举是值类型，隐式继承自System.Enum，不能手动修改。</p>
+<p>枚举成员不能相同，但枚举的值可以相同，默认情况下，枚举中的第一个变量被赋值为0，其他的变量的值按定义的顺序来递增(0,12,3…)，如果enum中的部分成员显式定义了值，而部分没有，那么没有定义值的成员还是会按照上一个成员的值来递增赋值。</p>
+<p>常用方法：</p>
+<p>枚举转换：</p>
+<p>Enum–&gt;String：</p>
+<p>1.利用Object.ToString()方法：如Colors.Green.ToString()的值是”Green”字符串；</p>
+<p>2.利用Enum的静态方法GetName与GetNames：例如：Enum.GetName(typeof(Colors),3))与Enum.GetName(typeof(Colors), Colors.Blue))的值都是”Blue”</p>
+<p>Enum–&gt;Int：</p>
+<p>因为枚举的基类型是除 Char 外的整型，所以可以进行强制转换。</p>
+<p>例如：(int)Colors.Red, (byte)Colors.Green</p>
+<p>String–&gt;Enum：</p>
+<p>public static Object Parse(Type enumType,string value)</p>
+<p>例如：(Colors)Enum.Parse(typeof(Colors), “Red”)</p>
+<p>Int–&gt;Enum：</p>
+<p>可以强制转换将整型转换成枚举类型。</p>
+<p>例如：Colors color = (Colors)2 ，那么color即为Colors.Blue</p>
+<p>判断某个整型是否定义在枚举中的方法：Enum.IsDefined</p>
+<p>public static bool IsDefined(Type enumType,Object value)</p>
+<p>例如：Enum.IsDefined(typeof(Colors), 3))</p>
+<p>枚举遍历：</p>
+<p>foreach (int good in Enum.GetValues(typeof(ItemCode)))<br>{<br>　　Debug.Log(Player.instance.GetGoodInfo().GetItemCountByItemCode(good) + “  “ + good);<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/23/2017-12-23/" data-id="cmcw1g2sd0018z4z8f88v3d86" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-17" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/17/2017-12-17/" class="article-date">
+  <time datetime="2017-12-17T12:43:59.000Z" itemprop="datePublished">2017-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/17/2017-12-17/">Unity Profiler 参数说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.CPU Usage：<br>　　WaitForTargetFPS:Vsync(垂直同步)功能所，即显示当前帧的CPU等待时间<br>　　Overhead：Profiler总体时间-所有单项的记录时间总和。用于记录尚不明确的时间消耗，以帮助进一步完善Profiler的统计。<br>　　Physics.Simulate：当前帧物理模拟的CPU占用时间。<br>　　Camera.Render：相机渲染准备工作的CPU占用量<br>　　RenderTexture.SetActive：设置RenderTexture操作.<br>       　　底层实现：</p>
+<p>　　　　 　　1.比对当前帧与前一帧的ColorSurface和DepthSurface.<br>                　   2.如果这两个Buffer一致则不生成新的RT，否则则生成新的RT，并设置与之相对应的Viewport和空间转换矩阵.<br>　　Monobehaviour.OnMouse_ ：用于检测鼠标的输入消息接收和反馈，主要包括：SendMouseEvents和DoSendMouseEvents。（只要Edtor开起来，这个就会存在）<br>       HandleUtility.SetViewInfo：仅用于Editor中，作用是将GUI和Editor中的显示看起来与发布版本的显示一致。<br>       GUI.Repaint： GUI的重绘(说明有在使用原生的OnGUI)<br>　　Event.Internal_MakeMasterEventCurrent：负责GUI的消息传送<br>       Cleanup Unused Cached Data：清空无用的缓存数据，主要包括RenderBuffer的垃圾回收和TextRendering的垃圾回收。<br>          1.RenderTexture.GarbageCollectTemporary:存在于RenderBuffer的垃圾回收中，清除临时的FreeTexture.<br>          2.TextRendering.Cleanup:TextMesh的垃圾回收操作<br>　　Application.Integrate Assets in Background：遍历预加载的线程队列并完成加载，同时，完成纹理的加载、Substance的Update等.<br>　　Application.LoadLevelAsync Integrate：加载场景的CPU占用，通常如果此项时间长的话70%的可能是Texture过长导致.<br>　　UnloadScene：卸载场景中的GameObjects、Component和GameManager，一般用在切换场景时.<br>　　CollectGameObjectObjects： 执行上面M项的同时，会将场景中的GameObject和Component聚集到一个Array中.然后执行下面的Destroy.<br>　　Destroy： 删除GameObject和Component的CPU占用.<br>　　AssetBundle.LoadAsync Integrate： 多线程加载AwakeQueue中的内容，即多线程执行资源的AwakeFromLoad函数.<br>　　Loading.AwakeFromLoad： 在资源被加载后调用，对每种资源进行与其对应用处理.</p>
+<p>2.GPU Usage：<br>     Device.Present:device.PresentFrame的耗时显示，该选项出现在发布版本中.<br>     Graphics.PresentAndSync：GPU上的显示和垂直同步耗时.该选项出现在发布版本中.<br>     Mesh.DrawVBO： GPU中关于Mesh的Vertex Buffer Object的渲染耗时.<br>     Shader.Parse：资源加入后引擎对Shader的解析过程.<br>     Shader.CreateGPUProgram：根据当前设备支持的图形库来建立GPU工程.</p>
+<p>3.Memory Profiler<br>     Used Total: 当前帧的Unity内存、Mono内存、GfxDriver内存、Profiler内存的总和.<br>     Reserved Total:系统在当前帧的申请内存.<br>     Total System Memory Usage:当前帧的虚拟内存使用量.（通常是我们当前使用内存的1.5~3倍)<br>     GameObjects in Scene:当前帧场景中的GameObject数量.<br>     Total Objects in Scene:当前帧场景中的Object数量(除GameObject外，还有Component等).<br>     Total Object Count: Object数据 + Asset数量</p>
+<p>4.Detail Memory Profiler<br>　　Texture2d:记录当前帧内存中所使用的纹理资源情况，包括各种GameObject的纹理、天空盒纹理以及场景中所用的Lightmap资源.<br>　　Scene Memory:  记录当前场景中各个方面的内存占用情况，包括GameObject、所用资源、各种组件以及GameManager等（天般情况通过AssetBundle加载的不会显示在这里).<br>       ManagedHeap.UseSize:代码在运行时造成的堆内存分配，表示上次GC到目前为止所分配的堆内存量.<br>       WebStream:这个是由WWW来进行加载的内存占用.<br>       System.ExecutableAndDlls:不同平台和不同硬件得到的值会不一样。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/17/2017-12-17/" data-id="cmcw1g2s90016z4z8e6u82ai6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/16/2017-12-16/" class="article-date">
+  <time datetime="2017-12-16T12:43:56.000Z" itemprop="datePublished">2017-12-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/16/2017-12-16/">C#泛型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：通过泛型可以定义类型安全类，而不会损害类型安全、性能或工作效率。</p>
+<p>泛型的好处 </p>
+<p>1、同样的代码，可以通过任何类型来重用它，减少重复代码</p>
+<p> 2、编译器支持和类型安全 </p>
+<p>3、不会强行对值类型进行装箱和取消装箱，或者对引用类型进行向下强制类型转换，性能提高。</p>
+<p>泛型继承：<br>1、泛型类继承中，父类的类型参数已被实例化，这种情况下子类不一定必须是泛型类；<br>2、父类的类型参数没有被实例化，由子类指定，也就是说父类和子类都是泛型类，并且二者有相同的类型参数；</p>
+<p>泛型写法：<br>泛型类</p>
+<p>public class TestChild : Test&lt; string, int&gt;{ }  </p>
+<p>public class TestChild&lt; T, S&gt; : Test&lt; T, S&gt; { }  </p>
+<p>public class TestChild&lt; T, S&gt; : Test&lt; String, int&gt; { }<br>泛型方法：C#的泛型机制只支持在方法申明上包含类型参数，也即是泛型方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public T getvalue&lt;T&gt;(T t)</span><br><span class="line">&#123;</span><br><span class="line">    return t;</span><br><span class="line">&#125;</span><br><span class="line">使用：  </span><br><span class="line">Int a &#x3D;  getvalue&lt;Int&gt;(10);</span><br></pre></td></tr></table></figure>
+<p>泛型接口：</p>
+<p>public interface IList<T><br>{<br>    T[] GetElements();<br>}<br>泛型委托：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass&lt;T&gt;</span><br><span class="line">&#123;</span><br><span class="line">    public delegate void GenericDelegate(T t);</span><br><span class="line">    public void SomeMethod(T t)</span><br><span class="line">    &#123; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public GenericMethodDemo()</span><br><span class="line">&#123;</span><br><span class="line">    MyClass&lt;int&gt; obj &#x3D; new MyClass&lt;int&gt;();</span><br><span class="line">    MyClass&lt;int&gt;.GenericDelegate del;</span><br><span class="line">    del &#x3D; new MyClass&lt;int&gt;.GenericDelegate(obj.SomeMethod);</span><br><span class="line">    del(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>泛型约束：C#中的泛型只支持显示的约束，因为这样才能保证C#所要求的类型安全，但显示的约束并非时必须的，如果不加约束，泛型类型参数将只能访问System.Object类型中的公有方法。“显式约束”由where子句表达，可以指定“基类约束”，“接口约束”，“构造器约束”，“值类型/引用类型约束”共四种约束</p>
+<p>构造器约束：</p>
+<p>public static T CreateObject<T>(out int objectId) where T : new()<br>public class CSingleton<T> where T : new()<br>基类约束，还包括基类和接口：</p>
+<p>public T FindControl<T>(string name) where T : Component<br>public class CSingleton<T> where T : IComparable<br>值约束：</p>
+<p>public class MyClass<T> where T : struct { }<br>引用约束：</p>
+<p>public class MyClass<T> where T : class { }<br>约束组合：</p>
+<p>public class MyClass<T> where T : IComparable, new() { }<br>public class MyClass<T> where T : struct, IComparable { }<br>public class MyClass<T> where T : B, IComparable, ICloneable { }<br>public class MyClass&lt;T, U&gt; where T : IComparable  where U : class { }<br>约束    说明<br>T：struct    类型参数必须是值类型。可以指定除 Nullable 以外的任何值类型。与接口约束同时使用，在最前面(不能与基类约束,构造函数约束一起使用)<br>T：class    类型参数必须是引用类型，包括任何类、接口、委托或数组类型。<br>T：new()    类型参数必须具有无参数的公共构造函数。当与其他约束一起使用时，new() 约束必须最后指定。<br>T：&lt;基类名&gt;    类型参数必须是指定的基类或派生自指定的基类。<br>T：&lt;接口名称&gt;    类型参数必须是指定的接口或实现指定的接口。可以指定多个接口约束。约束接口也可以是泛型的。<br>T：U    为 T 提供的类型参数必须是为 U 提供的参数或派生自为 U 提供的参数。这称为裸类型约束.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/16/2017-12-16/" data-id="cmcw1g2s40014z4z82kzeagz8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

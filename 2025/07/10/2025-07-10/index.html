@@ -5,44 +5,19 @@
   
 
   
-  <title>2025-07-10 | 持续学习者————Just Do It！</title>
+  <title>Unity UI框架总结 | 持续学习者————Just Do It！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+  <meta name="description" content="目前出海的手游的开发过程中，大部分业务玩法都是围绕着UI进行的。一个玩法业务不管是大型还是小型，UI上能占用40%-60%的工作量，不过当然也与玩法类型也有关系，玩法越偏3D，UI占有率越低，玩法越偏2D，UI占有率就越高，比如我们公司的Slot，甚至能达到99%。作为一个拥有8年多的U3D工作经验，曾经工作中大部分都跟UI息息相关，积累了不少的工作经验。趁现在空闲时间比较多，整理一下对UI框架的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2025-07-10">
+<meta property="og:title" content="Unity UI框架总结">
 <meta property="og:url" content="http://droidman.net/2025/07/10/2025-07-10/index.html">
 <meta property="og:site_name" content="持续学习者————Just Do It！">
-<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:description" content="目前出海的手游的开发过程中，大部分业务玩法都是围绕着UI进行的。一个玩法业务不管是大型还是小型，UI上能占用40%-60%的工作量，不过当然也与玩法类型也有关系，玩法越偏3D，UI占有率越低，玩法越偏2D，UI占有率就越高，比如我们公司的Slot，甚至能达到99%。作为一个拥有8年多的U3D工作经验，曾经工作中大部分都跟UI息息相关，积累了不少的工作经验。趁现在空闲时间比较多，整理一下对UI框架的">
 <meta property="og:locale" content="en,ZH">
 <meta property="article:published_time" content="2025-07-10T00:27:04.000Z">
-<meta property="article:modified_time" content="2025-07-10T00:27:04.672Z">
+<meta property="article:modified_time" content="2025-07-09T06:57:18.527Z">
 <meta property="article:author" content="OuyangWenyuan">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="Objective-c">
-<meta property="article:tag" content="Swift">
-<meta property="article:tag" content="Unity">
-<meta property="article:tag" content="Unity3d">
-<meta property="article:tag" content="Shader">
-<meta property="article:tag" content="Http">
-<meta property="article:tag" content="Web">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="Program">
-<meta property="article:tag" content="Mac OS">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Unix">
-<meta property="article:tag" content="Window">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Lua">
-<meta property="article:tag" content="Javascript">
-<meta property="article:tag" content="Android">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="xcode">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="eclicpse">
-<meta property="article:tag" content="blender">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="Unity, UI框架, UGUI">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
@@ -110,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      2025-07-10
+      Unity UI框架总结
     </h1>
   
 
@@ -118,23 +93,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>目前出海的手游的开发过程中，大部分业务玩法都是围绕着UI进行的。一个玩法业务不管是大型还是小型，UI上能占用40%-60%的工作量，不过当然也与玩法类型也有关系，玩法越偏3D，UI占有率越低，玩法越偏2D，UI占有率就越高，比如我们公司的Slot，甚至能达到99%。作为一个拥有8年多的U3D工作经验，曾经工作中大部分都跟UI息息相关，积累了不少的工作经验。趁现在空闲时间比较多，整理一下对UI框架的理解。</p>
+<p>一个好用的UI框架应该具备哪些功能呢？我认为应该具备以下功能：<br>支持UI的OnCreate，OnEnable，OnDisable，OnDestroy, Update等这些基本事件回调的编写，我们的日常工作大多也是基于这些回调进行功能上的开发。<br>支持多个不同的层次栈，多个栈可以处理不同层级需求。新界面一定处理层次栈节点的末尾。<br>支持多个不同的显示栈，每个显示栈只能有一个UI进行显示。控制打开新界面时，是否隐藏当前显示的界面。关闭新界面时，恢复对隐藏界面的显示。<br>尽量代码逻辑处理要做到同步，不要让业务人员去思考异步代码的编写，因为这还涉及异步资源的释放，会导致日常开发的困难。<br>UI自己申请的资源要自己做到释放，比如在Enable有自动注册一些功能，例如事件监听，需要在Disable去主动的解绑，避免业务人员在开发过程还要大量思考内存泄露问题。<br>需要有定时销毁UI的功能，避免一些关闭的UI长时间占据内存。<br>支持自定义参数传递，需要从父UI传递到子UI。在开发成就相关的功能时，常常需要我们跳转到相关的界面，并且还要在对应的界面进行一些展示处理。<br>同时打开多个UI时，要根据调用打开的接口的顺序按序显示UI，而非通过资源加载完成后的顺序去显示。<br>UI框架要维护好已打开界面的缓存和释放，避免界面频繁重新加载，以及不能释放导致的内存泄露问题。</p>
+<p>本文提出的UI架构，是基于Lua实现的，在Slot游戏中得到的充分的验证，支持全UI游戏。智能动态适配、高效资源管理、深度层级控制。<br>该架构采用”分层-分治”设计理念，通过界面生命周期管理、动态适配策略、资源优化机制三个维度的协同工作，构建了适应复杂交互需求的弹性UI框架。<br>简单说一下架构的组成：<br>1、核心类，UIManager, UIBaseView, UIConfig, UILayer<br>UIManager：提供UI操作、UI层级、UI消息、UI资源加载、UI调度、UI缓存等管理<br>注意：<br>1、Window包括：Model、Ctrl、View、和Active状态等构成的一个整体概念<br>2、所有带Window接口的都是操作整个窗口，如CloseWindow以后：整个窗口将不再活动<br>3、所有带View接口的都是操作视图层展示，如CloseView以后：View、Model依然活跃，只是看不见，可看做切入了后台<br>4、如果只是要监听数据，可以创建不带View、Ctrl的后台窗口，配置为nil，比如多窗口需要共享某控制model（配置为后台窗口）<br>5、可将UIManager看做一个挂载在UIRoot上的不完全UI组件，但是它是Singleton，不使用多重继承，UI组件特性隐式实现</p>
+<p>UIBaseView：提供UI基础功能，如生命周期函数（OnCreate，OnEnable，OnDisable，OnDestroy, Update）、UI消息传递、UI参数传递。<br>每个UI基础自UIBaseView，再配置一个Config，配置改UI的名字，层级，预制体名，控制器名。<br>注意：<br>1、被动刷新：所有界面刷新通过消息驱动—除了打开界面时的刷新<br>2、对Model层可读，不可写—调试模式下强制<br>3、所有写数据、游戏控制操作、网络相关操作全部放Ctrl层<br>4、Ctrl层不依赖View层，但是依赖Model层<br>5、任何情况下不要在游戏逻辑代码操作界面刷新—除了打开、关闭界面</p>
+<p>UIConfig：将游戏中的UI的Config注册到UIConfig中，由UIManager管理。</p>
+<p>UILayer：UI的显示层级。UIManager负责管理所有UI的层级关系，通过在Config中配置的View的显示层级，包括UI的显示顺序和层级。</p>
+<p>再好的设计最后还是需要人来执行，每个人的编码习惯不同，编码风格不同，编码能力不同，所以需要制定一套UI编码规范，让开发人员按照规范进行编码，提高代码的可读性，减少程序的出错率，提高程序的稳定性，降低维护成本。</p>
+<h3 id="监控指标体系"><a href="#监控指标体系" class="headerlink" title="监控指标体系"></a>监控指标体系</h3><p>监控项 阈值 应对策略<br>帧率稳定性     &lt; 30fps  优化合批策略<br>内存波动幅度   &gt;15%     调整对象池配置<br>加载延迟      &gt;200ms   优化资源预加载<br>输入响应延迟   &gt;50ms    改进事件分发机制</p>
+<h4 id="集成建议："><a href="#集成建议：" class="headerlink" title="集成建议："></a>集成建议：</h4><p>建立UI设计规范<br>实施自动化测试<br>集成性能分析工具链<br>制定多分辨率适配标准<br>建立UI组件库<br>持续优化输入响应链路</p>
+<h4 id="附录：设计规范"><a href="#附录：设计规范" class="headerlink" title="附录：设计规范"></a>附录：设计规范</h4><p>一：命名规范：<br>    1、类命名：驼峰式命名：单词首字母大写，如：PharaohsMagicView、SlotGameBoard<br>    2、函数命名：同类名，如：IsInFreeSpinBoard()、EnableAllButton()<br>    3、公有变量命名：首字母小写，其后驼峰式命名，如：boardConfigs、slotGameBoards、currentGameBoard<br>    4、私有变量命名：”_”开头，驼峰式命名，_fastMode、_autoSpin<br>    5、局部变量命名：小写，单词之间用“_”分隔，如：local action_list, local current_bet_Index<br>    6、参数名命名：同局部变量命名<br>    7、任何情况下不应该由外部访问的成员，使用双下划线打头，其它同私有变量命名，如：析构函数<strong>init，内部成员self.</strong>callback<br>    8、由于脚本语言没有跳转功能，最好在UI组件实例的名字末尾标识组件类型，提高可读性：<br>        a）基础组件（UIBaseComponent）：xxxCmp<br>        b）按钮（UIButton）：xxxBtn<br>        c）文本（UIText）：xxxTxt<br>        d）图片（UIImage）：xxxImg<br>        e）输入框（UIInput）：xxxInput<br>        f）标签组（UITabGroup）：xxxTabGroup<br>        g）按钮组（UIButtonGroup）：xxxBtnGroup<br>        h）可选中按钮（UIToggelButton）：xxxBtnToggle<br>        i）可复用组件（UIWrapGroup）：xxxWrapGroup<br>        j）滑动条组件（UISlider）：xxxSlider<br>        k）后续…<br>    9、所有UI脚本以UI打头，即UIxxxx<br>    10、系统功能扩展函数：全部使用小写，不用下划线，如对table的扩展：table.walksort<br>    11、所有协程函数体以”Co”打头，如：CoAsyncLoad，表示该函数必须运行在协程中，并且可以使用任意协程相关函数<br>    12、所有Unity Object均使用全局函数IsNull判空===&gt;***很重要<br>    13、所有热修复脚本放XLua目录下，由于以前写热修复脚本命名习惯沿用了XLua作者的命名习惯，现在不再去动它</p>
+<p>二：类定义和使用<br>    1、所有函数定义为local，在脚本最底部导出，导出的函数一定是公有的<br>    2、所有公有函数第一个参数是self，函数使用调用：instance:function(…)<br>    3、所有私有函数第一个参数是self，不导出，只能在脚本内访问，函数调用：function(self, …)<br>    4、所有私有函数一定要先定义，后调用<br>    5、override的使用有点特殊：先用base = baseClassType，然后override时使用：base.function(self)调用父类方法<br>    6、继承类时，如果不是等同于cs侧sealed的概念，那么必须把基类的参数列表填写完整，后面接上自己需要的参数<br>    7、函数需要重载时，一般通过判断参数个数和类型来实现，此时必须把最长参数列表填齐，除了回调绑定等不定参数的特俗情况，一般情况下不要使用可变参数（…）<br>    9、所有定义回调的地方，都需要预先声明回调和注释说明回调原型，让使用者一目了然<br>    10、<strong>init不需要调用base.</strong>init，底层会自动调用基类构造函数，__delete也一样</p>
+<p>三：单例类定义和使用<br>    1、单例类从Singleton继承，不要重写GetInstance、Delete方法<br>    2、单例类定义时内部函数书写规范同上：类定义和使用<br>    3、单例类调用一律使用singletonClass:GetInstance():function/.var访问<br>    4、除了局部变量，不要使用成员变量或者全局变量缓存单例类引用，如：inst = singletonClass:GetInstance(),inst:function/.var，因为单例类销毁后inst还会存在引用<br>    5、单例类的Instace只用来查询该单例类是否已经被创建，如：if singletonClass.Instance ~= nil then singletonClass:Delete() end</p>
+<p>四：数据类定义和使用<br>    1、数据类：对普通类增加访问限制，具体为：不能对不存在的域进行读写。目的：减少因为笔误而造成的不可察Bug<br>    2、定义格式使用：DataClass(“dataClassName”, dataTable)<br>    3、dataTable是一张普通表，定义了该数据成员的域，必须初始化，不能有nil值<br>    4、定义以后不能新增数据域，访问不存在的域会提示错误，New新的数据实例同New新的类实例</p>
+<p>五：常量类定义和使用<br>    1、常量类：对普通类增加访问限制，具体为：不能对不存在的域进行读写，数据域只读，不可写。目的：减少因为笔误而造成的不可察Bug<br>    2、定义格式使用：ConstClass(“constClassName”, constTable)，一般用于配置表等数据，一旦生成只能查表，不能写表<br>    3、定义以后查询不存在的域、写不存在的域、写存在的域都会有错误提示</p>
+<p>六：UI窗口代码规范<br>    1、严格遵守MVC架构：Model层数据、View层窗口组件操作、Ctrl层数据操作<br>    2、View层直接依赖Ctrl层，间接依赖Model层（只读）；Ctrl层依赖Model层；Model层不依赖Ctrl和View层<br>    3、Ctrl层没有状态，可以操作游戏逻辑和Model层数据；View层除了读取配置表，不能直接操作任何游戏逻辑<br>    4、逻辑的运行不能依赖窗口的Ctrl层，如果需要这样的控制代码，写到游戏逻辑模块中<br>    5、窗口Model层不存游戏数据，它的生命周期是和窗口绑定在一起的，只能缓存用户操作，比如：当前选择了那个服务器做登陆服务器<br>    6、窗口Model层是针对窗口的数据，是游戏数据中心的一个抽取，比如数据中心UserData可能包括用户名、背包、Vip、英雄等等数据，但是用于界面可能只是从用户名、Vip提取部分数据展示</p>
+<p>七：UI组件代码规范<br>    1、所有需要调度和管理的UI组件最好使用Lua侧封装的各种UIComponent，不要直接使用Unity侧的UI原生组件，否则不受Lua侧组件系统调度管理，需自行管理<br>    2、原则上尽量对UI组件执行封装：一是可以简化逻辑层脚本使用方式，二是可以利用缓存尽量减少lua与cs交换，提升性能<br>    3、原则上游戏逻辑代码中（包括窗口View层代码）不对UI组件做任何假设，即不假设Unity侧使用的是NGUI还是UGUI<br>    4、虽然目前这套框架是针对UGUI编写，但是如果要扩展（或者要替换插件），只需要另外针对NGUI写一个Lua侧的各种UIComponent<br>    5、所有UI组件最好先封装，后使用，以尽量使用Lua侧组件管理系统来简化写View层脚本的工作量，各个使用到的组件现在还不是很完善，后续…<br>    6、一个窗口（window.view）下的所有组件持有对窗口view脚本的引用，方便访问window.view，或者window.model层数据<br>    7、当设计通用组件时，不能直接依赖window.view，需要数据刷新最好提供函数回调<br>    8、UI组件代码所有函数的执行规律同Unity脚本，UI组件代码不要使用<strong>init、</strong>delete函数，由OnCreate、OnDestory代替<br>    9、最好不要自己去New组件，使用AddComponent替代，否则必须自己管理生命周期—在OnDestory中调用组件的Delete方法</p>
+<p>八：工具类代码规范<br>    1、所有和UI界面相关的公共函数添加到UIUtil<br>    2、所有和Lua语言直接相关的公共函数添加到LuaUtil<br>    3、所有对table操作的扩展函数添加到TableUtil<br>    4、其它待续…</p>
+<p>九：框架代码规范<br>    1、原则：保证框架代码的可迁移，如果需要迁移到新项目，可以不修改任何代码，或者修改很少的粘合代码即可使用<br>    2、如果需要完善框架，框架内的代码理论山不要牵涉任何游戏逻辑，一般只提供管理类和基类，和业务相关的子类不要放在框架中</p>
+<p>十：性能<br>    1、性能瓶颈出现在两点：lua作为脚本语言本身的速度问题、lua与cs的频繁交互造成高频率堆栈操作和Marshall操作<br>    2、原则1：单次调用，内部执行性能要求高的函数，比如寻路计算，考虑放CS侧，或者用C/CPP写—要求：函数执行时间要高于lua与cs调用交互时间，否则得不偿失<br>    3、原则2：尽量避免与cs的交互，交互越少越好，如tolua作者对Vector3在lua侧的实现，就是为了避免Vector3操作调用cs接口，其它实现的数据结构类似<br>    4、不要使用cs侧协程，lua这边我已经实现了一套，Unity支持的所有协程功能这里都支持，而且进行了很大的性能优化<br>    5、更新频率低的函数（如UI界面倒计时）使用定时器，尽量不要用Updater<br>    6、虽然Lua采用分步GC，不需要太关注GC造成游戏Lag的问题，但是分配、回收频率很高的table，还是要做缓存，参考定时器管理模块</p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://droidman.net/2025/07/10/2025-07-10/" data-id="cmcvdrdx3000occz8gsquhgv9" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
+    <a href="/2025/07/10/2025-07-12/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          unity 一键打包
+        
+      </div>
+    </a>
   
-    <a href="/2025/07/09/2025-07-09-1/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2025/07/09/2025-07-09/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2025-07-09</div>
+      <div class="article-nav-title">Unity 打android 包报错总结</div>
     </a>
   
 </nav>
@@ -153,7 +158,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -163,7 +168,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
     </div>
   </div>
 
@@ -172,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -185,23 +190,23 @@
       <ul>
         
           <li>
-            <a href="/2025/07/10/2025-07-10/">2025-07-10</a>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
           </li>
         
           <li>
-            <a href="/2025/07/09/2025-07-09-1/">2025-07-09</a>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
           </li>
         
           <li>
-            <a href="/2025/07/09/2025-07-09/">2025-07-09</a>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
           </li>
         
           <li>
-            <a href="/2025/07/08/2025-07-08/">2025-07-08</a>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
           </li>
         
           <li>
-            <a href="/2025/07/07/2025-07-07/">2025-07-07</a>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
           </li>
         
       </ul>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="持续学习者————Just Do It！">
+<meta property="og:url" content="http://droidman.net/page/7/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Objective-c">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Unity3d">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Unix">
+<meta property="article:tag" content="Window">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Lua">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="xcode">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="eclicpse">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2017-12-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/10/2017-12-10/" class="article-date">
+  <time datetime="2017-12-10T12:43:53.000Z" itemprop="datePublished">2017-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/10/2017-12-10/">C# 中的深拷贝和浅拷贝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public GoodItem CloneItem()</span><br><span class="line">&#123;</span><br><span class="line">    MemoryStream stream &#x3D; new MemoryStream();</span><br><span class="line">    BinaryFormatter formatter &#x3D; new BinaryFormatter();</span><br><span class="line">    formatter.Serialize(stream, this);</span><br><span class="line">    stream.Position &#x3D; 0;</span><br><span class="line">    return formatter.Deserialize(stream) as GoodItem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.利用xml序列化和反序列化实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public T DeepCopy&lt;T&gt;(T obj)</span><br><span class="line">&#123;</span><br><span class="line">    object retval;</span><br><span class="line">    MemoryStream ms &#x3D; new MemoryStream()</span><br><span class="line">    XmlSerializer xml &#x3D; new XmlSerializer(typeof(T));</span><br><span class="line">    xml.Serialize(ms, obj);</span><br><span class="line">    ms.Seek(0, SeekOrigin.Begin);</span><br><span class="line">    retval &#x3D; xml.Deserialize(ms);</span><br><span class="line">    ms.Close();</span><br><span class="line">    return (T)retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.利用反射实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static T DeepCopy&lt;T&gt;(T obj)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;如果是字符串或值类型则直接返回</span><br><span class="line">    if (obj is string || obj.GetType().IsValueType) return obj;</span><br><span class="line"></span><br><span class="line">    object retval &#x3D; Activator.CreateInstance(obj.GetType());</span><br><span class="line">    FieldInfo[] fields &#x3D; obj.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);</span><br><span class="line">    foreach (FieldInfo field in fields)</span><br><span class="line">    &#123;</span><br><span class="line">        try &#123; field.SetValue(retval, DeepCopy(field.GetValue(obj))); &#125;</span><br><span class="line">        catch &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return (T)retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/10/2017-12-10/" data-id="cmcw1g2s30013z4z8c1abhxci" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-09" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/09/2017-12-09/" class="article-date">
+  <time datetime="2017-12-09T12:43:49.000Z" itemprop="datePublished">2017-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/09/2017-12-09/">C#中的值类型和引用类型区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>区别：</p>
+<p>1：在存储区上的区别： 值类型是存储在栈上面的，引用类型是存储在堆上面的。<br> 2：在赋值上，值类型是直接赋新值给变量，但是引用类型是开辟一块新的空间来存放新值，并将之前指向旧的值的那个地址改成指向新的值的地址。这就完成了一次赋值的操作。<br>在对应用类型进行赋值的时候：  首先，我们先从定义和赋初始值开始说起， 引用类型在被申明的时候，首先在堆中开辟一块内存空间，然后将其在堆中的地址赋值给 栈 中的一快空间，这块空间就是来放一个引用类型在堆中的地址的。然后我 对其进行重新赋值的时候，并不是将堆中的值给改变了，而是在堆中重新开辟了一块新的空间，然后将堆中的这个地址赋值给  之前这个变量在栈中开辟那块存堆中的地址的那个地址，所以之前的那个最先开辟在堆中的空间是不会被消除的，除非.Net FrameWork这个框架中的垃圾回收站自动帮我们完成释放内存的功能，但这是在程序运行结束后才会做，所以我们如果对引用类型的变量  的话，我们应该尽量减少对其的重新赋值，就想string这个引用类型一样，我们如果需要对字符串进行重复的赋值和处理，我们一般不会用string这个字符串来处理，   我们一般使用stringBuild 来处理字符串重新赋值的问题。</p>
+<p>值类型：C#的所有值类型均隐式派生自System.ValueType;判断是否为值类型：Type.IsValueType<br>1.所有整形：sbyte(System.SByte)、short(System.Int16)、、int(System.Int32)、long(System.Int64)、byte(System.Byte)、ushort(System.UInt16)、uint(System.UInt32)、ulong(System.UInt64)、char(System.Char)。<br>2.所有浮点型：float (System.Single)、double(System.Double)。<br>3.高精度类型：decimal(System.Decimal)。<br>4.bool(System.Boolean)；<br>5.结构体、枚举类型。</p>
+<p>引用类型：<br>1.数组(派生于System.Array)<br>2.类:class(派生于System.Object)<br>3.接口:interface<br>4.委托类型:delegate(派生于System.Delegate)<br>5.字符串:string(System.String的别名)<br>6.Lambda表达式：C#的Lambda 表达式都使用 Lambda 运算符 =&gt;，该运算符读为“goes to”。语法如下：形参列表=&gt;函数体函数体多于一条语句的可用大括号括起。如下：<br>delegate int del(int i);<br>    del myDelegate = x=&gt;{return x*x;};<br>   int j = myDelegate(5);//j=25</p>
+<p>装箱：将值类型转换为引用类型 。装箱时，生成的是全新的引用对象，这会有时间损耗，也就是造成效率降低，尽量避免装箱。<br>拆箱：将引用类型转换为值类型。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/09/2017-12-09/" data-id="cmcw1g2rv000wz4z83pxb8pny" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/03/2017-12-03/" class="article-date">
+  <time datetime="2017-12-03T12:43:45.000Z" itemprop="datePublished">2017-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/03/2017-12-03/">Unity CanvasGroup 组件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Canvas Group可以用来控制一组不需要个别控制的UI元素的某些方面，CanvasGroup的属性会影响他所有children的GameObject</p>
+<p>其中有四个选项：<br>-Alpha：这个选项很多组件都有，用处也是一样的，在美术中，这个叫做Alpha通道的东东是用来控制透明度的，他的值从0到1.0是完全透明，1是完全不透明；<br>-Interactable确认该组件是否接受输入，当他被设置为false时，交互功能将被禁用；<br>-Block Raycasts是否让该组件像collider一样接受射线检测？你需要在依赖于Canvas的图形射线检测者上唤醒射线检测方法。这个不会作用于Physics.Raycast;<br>-Ignore Parent Groups(忽略父级团)是否响应父级group的方法</p>
+<p>细节：<br>Canvas Group的经典使用：<br>-在窗口的GameObject上添加一个CanvasGroup，通过控制它的Alpha值来淡入或淡出整个窗口；<br>-通过给父级GameObject添加一个CanvasGroup并设置它的Interactable值为false来制作一整套没有交互（灰色）的控制；<br>-通过将元素或元素的一个父级添加CanvasGroup并设置BlockRaycasts值为false来制作一个或多个不阻止鼠标事件的UI元素<br>应用：（重要的地方写大字）<br>结合后面两点或者1,3点，都可以实现很牛叉的功能<br>比如说游戏里某些情况某个按钮（或者其他UI）是不能点的，而另外一些情况可以点，这样就可以通过动态改变这个组件的BlocksRaycasts值以及Interactable来实现<br>再比如说游戏里点击某个按钮要让这个按钮不可点并逐渐消失掉，当然啦，也可以让别的东西消失啦，这就可以通过改变alpha值来实现</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/03/2017-12-03/" data-id="cmcw1g2rk000tz4z86ep0fr8d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-12-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/02/2017-12-02/" class="article-date">
+  <time datetime="2017-12-02T12:43:41.000Z" itemprop="datePublished">2017-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/2017-12-02/">UGUI系统中Image与RawImage</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UGUI系统中提供了2种显示图片的组件即Image与RawImage。本篇文章主要是介绍这2个组件含义与使用。<br>1.Image</p>
+<p>（1）SourceImage:指定要显示的目标图片资源。需要注意的是，它只支持Sprite类型的图片，因此需要将目标图片资源的格式改成如下图所示的格式：</p>
+<p>（2）Color：设置Color属性值，会改变图片显示的色调。类似给图片开了某种颜色的“灯”照射该图片。</p>
+<p>（3）Material：设定用于渲染图片的材质。<br>（4）RaycastTarget：决定是否接收射线碰撞检测。换句话说，就是是否能够成为事件监听目标。<br>（5）Image Type：用于设定图片的显示类型，如Simple/Sliced/Tiled/Filled。不同的显示类型会导致Sprite“填充”Image组件的方式不同。<br>a.Simple，此模式下如果Image控件大小与Sprite的不相同时，Sprite将会被拉伸到与Image控件一般大。</p>
+<p>值得注意的是，如果勾选上PreserveAspect选项时，Sprite将会根据Sprite原宽高比例进行拉伸。</p>
+<p>b.Sliced俗称九宫格，需要做成九宫格的图片一般都是当做背景用的（如很多游戏中都有黑色的背景）。经过九宫格处理的Sprite，在缩放过程中，会保持4个角的切片不做缩放，4个边的切片只完成拉伸，只有中间的切片做缩放操作。Fill Center选项，如果取消勾选，Image不能完整显示，只会显示切片的边缘图片。</p>
+<p>c.Tiled俗称“地面砖平铺”，此种情况下，Sprite本身大小会保持不变，Sprite会像铺地面砖那样填充满整个Image控件。</p>
+<p>d.Filled俗称“呈现方式”，一般设置此模式的Image，都是用做有“CD”效果的技能按钮等，让Image以一定地展现方式一部分一部分地完全展示出来。</p>
+<p>属性<br>作用<br>Fill Method<br>指定填充呈现方式，选项有Horizontal[水平方向]、Vertical[竖直方向]、Radial90[1/4圆呈现]、Radial180[半圆呈现]、Radial360[整圆显现]<br>Fill Origin<br>指定填充显现操作的起点。<br>Fill Amount<br>指定了填充的进度。<br>Clock Wise<br>针对Radial90/180/190类型的填充显示方式，取消与勾选该项，会“翻转”填充显示“方向”<br>Preserve Aspect<br>根据Sprite宽高比，缩放Image</p>
+<p>举例：设定Fill Method为Radial360，当改变FillAmount值，从0到1时，会发现图片会以圆形的方式从中间向外逐渐显示出来。</p>
+<p>（6） SetNative Size：按下此按钮后，会发现Image控件的大小会变成与Sprite图片本身大小一致。</p>
+<p>2.RawImage<br>RawImage功能上与Image组件类似，但属性并不完全相同。</p>
+<p>属性    作用<br>Textture    指定要显示的图片，注意：图片类型可以是任何类型<br>Color    设置图片的主颜色<br>Material    设定Image控件的渲染材质<br>Raycast Target    决定是否可接收射线碰撞事件检测（取消勾选不会挡住下层UI事件）<br>UV Rect    可以让图片的一部分显示在RawImage组件中，x、y属性用于控制UV左右、上下偏移，W、H用于控制UV的重复次数。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/12/02/2017-12-02/" data-id="cmcw1g2rj000rz4z8alv96awl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-26" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/26/2017-11-26/" class="article-date">
+  <time datetime="2017-11-26T00:43:28.000Z" itemprop="datePublished">2017-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/26/2017-11-26/">UGUI sprite图九宫格设置和切割</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很多时候美术给的背景图很小，需要程序进行放大（但要保持边角不模糊），这时候九宫格就有用了<del>~</del></p>
+<p>例如下图放大10倍，如果不用九宫格图会变得很模糊(你可以试下吧transform  的scale都设为10，效果太美。。。。。)</p>
+<p>不扯淡了，开搞</p>
+<p>一、九宫格<br>九宫格的主要目的是处理图片拉伸效果，我们知道图片一旦被拉伸，它就会出现形变、模糊等问题，但是，有的图片它的某一些部分又是允许被拉伸的。例如，一个UI背景框，它的中间部分几乎是一个纯色，允许被拉伸(纯色被拉伸不会发生质量问题)，但是，边缘的4个角可能有一些特殊花纹或者倒角不允许被任意拉伸，这个时候就可以使用九宫格，来使4个角不进行拉伸放大，只让中间部分进行拉伸放大，达到将一个小框拉大成一个大背景框，既节省了资源，又不会降低图片质量。<br>原理：</p>
+<p>把纹理用4条线分割成9部分（如上图），通过观察可以发现，5是最规则的形状（矩形），其次是2,6,8,4（矩形，但是和四个角有公共边），最后是四个角1,3,9,7（圆角矩形）<br>规则的图形在拉伸之后的效果是比较好的，如果是不规则的图形，则会在拉伸之后变形！</p>
+<p>根据上图做拉伸制定规则：<br>（1）保证四个角1,3,9,7不做任何拉伸<br>（2）与四个角有公共边的四个矩形2,6,8,4做单向拉伸，即保证与四个角的公共边不拉伸，例如2,8只进行横向拉伸，4,6只进行纵向拉伸<br>（3）中间部分5做双向拉伸，即横向，纵向同时拉伸<br>unity 中设置九宫格：<br>1.选中图片，在Inspector面板里将Texture Type改为Sprite，点击Sprite Editor按钮，通过拖动绿色的点来设置九宫格大小。<br>2.将Image组件的Image Type改为Sliced。</p>
+<p>二：图片切割<br>图片切割使用场景有：1.美术将多张图打包到同一张图里，例如UI都放在一张图里。2.做类型地砖的时候，美术给的图是9x9的大图，程序的单元格却是1x1的，这时候就需要把图片切成九张大小一样图片并在程序中拼接成一张大图。3.UGUI要做帧动画时。<br>unity 中设置：<br>1.选中图片，在Inspector面板里将Texture Type改为Sprite或Advance。<br>2.图片模式sprite修改为multiple模式。<br>3.进入图片编辑器，点击左上角的Slice按钮，其中的Type有三种，第一种时自动的，就是不切割。<br>第二种是按单元格切割 就是每个单元格大小一样，如图：</p>
+<p>通过对单元格的name的命名规则，我们可以再程序中拼接出整张大图，例如切成三行三列的图，可以命名为行数_列数或者行数*总的列数+当前列数，<br>取值的时候通过便利行和列就可以取到并拼接成正张图。<br>第三种，按行或列的count切割，适用于美术的小的ui或者帧动画，如图</p>
+<p>4.每个切割的小图可以单独设置九宫格进行拉伸。<br>5.使用的时候需要将image的imageType设置成Slice</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/26/2017-11-26/" data-id="cmcw1g2rh000oz4z829n5d1w6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-25" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/25/2017-11-25/" class="article-date">
+  <time datetime="2017-11-25T00:43:23.000Z" itemprop="datePublished">2017-11-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/25/2017-11-25/">Unity后台计时器不运行问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题：最近在做一个倒计时的功能，发现倒计时在程序切换到后台是会停止计时，发现unity 安卓后台运行时，计时器不在运行，再次切回App时从切到后台的时间点计时，例如切到后台时位10，后台切回app还是从10开始</p>
+<p>，原因是unity在安卓后台环境下，Update和协程不会执行。<br>解决：<br>1.在Update和协程中，计算计时器的时间用当前的Time.realtimeSinceStartup减去上一次计时的Time.realtimeSinceStartup，而不是直接减去固定数值，例如减去1<br>2.使用unity自带的方法void OnApplicationFocus(bool hasFocus)，该方法会在App进入后台和进入程序的时候调用，当进入程序时hasFocus = true,否则hasFocus=false;(参考Start()方法)</p>
+<p>3.使用unity自带的方法</p>
+<p>void OnApplicationPause(bool pauseStatus)<br>该方法会在App暂停和停止暂停的时候调用，当暂停时pauseStatus= true,否则pauseStatus=false;</p>
+<p>OnApplicationFocus is called when the application loses or gains focus. Alt-tabbing or Cmd-tabbing can take focus away from the Unity application to another desktop application. This causes the GameObjects to receive an OnApplicationFocus call with the argument set to false. When the user switches back to the Unity application, the GameObjects receive an OnApplicationFocus call with the argument set to true.<br>hasFocus True if the GameObjects have focus, else False.</p>
+<p>代码如下：只需要监听OnApplicationEnterFocus和OnApplicationQuitFocus事件即可，FocusContinueTime为进入后台的总时间，计算倒计时时只要减掉这个数就可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">public static float FocusContinueTime</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return focusContinueTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static float PauseContinueTime</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return pauseContinueTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        private static float preFocusTime &#x3D; 0;</span><br><span class="line">        private static float prePauseTime &#x3D; 0;</span><br><span class="line">        private static float focusContinueTime &#x3D; 0;</span><br><span class="line">        private static float pauseContinueTime &#x3D; 0;</span><br><span class="line"></span><br><span class="line">        void Awake()</span><br><span class="line">        &#123;</span><br><span class="line">            this.gameObject.name &#x3D; &quot;ApplicationEvent&quot;;</span><br><span class="line">            prePauseTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">            preFocusTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">            DontDestroyOnLoad(this);</span><br><span class="line">        &#125;</span><br><span class="line">        public void Init()</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        public void Release()</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        void OnApplicationFocus(bool hasFocus)</span><br><span class="line">        &#123;</span><br><span class="line">            if (hasFocus)</span><br><span class="line">            &#123;</span><br><span class="line">                focusContinueTime &#x3D; Time.realtimeSinceStartup - preFocusTime;</span><br><span class="line">                if (OnApplicationEnterFocus !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationEnterFocus(); </span><br><span class="line">                &#125;                         </span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;                </span><br><span class="line">                preFocusTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">                if (OnApplicationQuitFocus !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationQuitFocus();</span><br><span class="line">                &#125;     </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void OnApplicationPause(bool pauseStatus)</span><br><span class="line">        &#123;</span><br><span class="line">            if (pauseStatus)</span><br><span class="line">            &#123;</span><br><span class="line">                prePauseTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">                if (OnApplicationEnterPause !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationEnterPause();</span><br><span class="line">                &#125;   </span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                pauseContinueTime &#x3D; Time.realtimeSinceStartup - prePauseTime;</span><br><span class="line">                if (OnApplicationQuitPause !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationQuitPause();</span><br><span class="line">                &#125;                                          </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/25/2017-11-25/" data-id="cmcw1g2rg000mz4z876qjhe1a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/19/2017-11-19/" class="article-date">
+  <time datetime="2017-11-19T00:43:19.000Z" itemprop="datePublished">2017-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/19/2017-11-19/">Unity 小技巧总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定时重复处理，比如， 启动0.5秒后每隔1秒执行一次 DoSomeThing 函数：<br>1.用InvokeRepeating 函数实现<br>void Start() { InvokeRepeating(“DoSomeThing”, 0.5, 1.0); }<br>CancelInvoke(“你调用的方法”); 停止InvokeRepeating</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void Start()</span><br><span class="line">&#123;</span><br><span class="line">     StartCoroutine(&quot;Repeating&quot;);开始调用</span><br><span class="line">     StopCoroutine(&quot;Repeating&quot;);停止调用</span><br><span class="line">&#125;</span><br><span class="line">IEnumerator Repeating()</span><br><span class="line">    &#123;</span><br><span class="line">        yield return new WaitForSeconds(0.5f);</span><br><span class="line"></span><br><span class="line">        while (true)</span><br><span class="line">        &#123;</span><br><span class="line">            yield return new WaitForSeconds(1f);</span><br><span class="line">            DoSomeThing();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>尽量避免每帧处理,可以每隔几帧处理一次<br>比如：<br>void Update() { DoSomeThing(); }</p>
+<p>可改为每5帧处理一次：<br>void Update() { if(Time.frameCount % 5 == 0) { DoSomeThing(); } }</p>
+<p>主动回收垃圾<br>给某个 GameObject 绑上以下的代码：<br>void Update() { if(Time.frameCount % 50 == 0) { System.GC.Collect(); } }</p>
+<p>不要使用SendMessage之类的方法，他比直接调用方法慢了100倍，你可以直接调用或通过C#的委托来实现。</p>
+<p>关于渲染队列和Batch的非官方经验总结是，一帧的渲染队列的生成，依次决定于每个渲染物体的：<br>Shader的RenderType tag,<br>Renderer.SortingLayerID,<br>Renderer.SortingOrder,<br>Material.renderQueue（默认值为Shader里的”Queue”）,<br>Transform.z(ViewSpace)（默认为按z值从前到后，但当Queue是“Transparent”的时候，按z值从后到前）。<br>这个渲染队列决定了之后（可能有dirty flag的机制？）渲染器再依次遍历这个渲染队列，“同一种”材质的渲染物体合到一个Batch里。</p>
+<p>Unity渲染路径（Rendering Path）种类<br>概述<br>开发者可以在Unity工程的PlayerSettings设置对渲染路径进行3选1：<br>Deferred Lighting，延迟光照路径。3者中最高质量地还原光照阴影。光照性能只与最终像素数目有关，光源数量再多都不会影响性能。<br>Forward Rendering，顺序渲染路径。能发挥出Shader全部特性的渲染路径，当然也就支持像素级光照。最常用、功能最自由，性能与光源数目*受光照物体数目有关，具体性能视乎其具体使用到的Shader的复杂度。<br>Vertex Lit，顶点光照路径。顶点级光照。性能最高、兼容性最强、支持特性最少、品质最差。</p>
+<p>unity 点击2D物体<br>1.给物体添加对应的2D碰撞体，例如Box Collider 2D;<br>2.Update检测鼠标是否点下；<br>3.如果鼠标点下，创建一条射线，通过Physics2D.Raycast获取点击时鼠标处的对象；</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Input.GetMouseButtonDown(<span class="number">0</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 mousePos = Input.mousePosition;</span><br><span class="line">        Ray ray = Camera.main.ScreenPointToRay(mousePos);</span><br><span class="line">        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);</span><br><span class="line">        <span class="keyword">if</span> (hit.collider != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(hit.collider.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>从游戏开始到当前帧经历的时间 Time.realtimeSinceStartup;<br>从游戏开始到当前帧经历的帧总数 Time.frameCount;</p>
+<p>计算FPS：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">_countFrame += <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> time = Time.realtimeSinceStartup;</span><br><span class="line">    <span class="keyword">if</span> (time - _lastTime &gt;= <span class="number">1.0f</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _fps = (<span class="keyword">float</span>)(_countFrame/(time - _lastTime));</span><br><span class="line">        Debug.Log(<span class="string">"FPS: "</span> + _countFrame);</span><br><span class="line">        _countFrame = <span class="number">0</span>;</span><br><span class="line">        _lastTime = time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得到当前帧鼠标的位移量：Input.GetAxis()</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Input.GetMouseButton(<span class="number">0</span>) &amp;&amp; _isRotation)&#123;</span><br><span class="line">        <span class="keyword">float</span> x = Input.GetAxis(<span class="string">"Mouse X"</span>)*<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">float</span> y = Input.GetAxis(<span class="string">"Mouse Y"</span>)*<span class="number">10</span>;</span><br><span class="line">        Debug.Log(<span class="string">"x: "</span> + x + <span class="string">" y: "</span> + y);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>对象跟随鼠标运动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vector3 wp &#x3D; Camera.main.WorldToScreenPoint(transform.position);</span><br><span class="line">Vector3 sp &#x3D; Input.mousePosition;</span><br><span class="line">sp.z &#x3D; wp.z;</span><br><span class="line"></span><br><span class="line">if (Input.GetMouseButton(0))</span><br><span class="line">&#123;</span><br><span class="line">transform.position &#x3D; Camera.main.ScreenToWorldPoint(sp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>协同程序的开启与终止：<br>       在Unity3D中，使用MonoBehaviour.StartCoroutine方法即可开启一个协同程序，也就是说该方法必须在MonoBehaviour或继承于MonoBehaviour的类中调用。<br>       在Unity3D中，使用StartCoroutine(string methodName)和StartCoroutine(IEnumerator routine)都可以开启一个线程。区别在于使用字符串作为参数可以开启线程并在线程结束前终止线程，相反使用IEnumerator 作为参数只能等待线程的结束而不能随时终止(除非使用StopAllCoroutines()方法)；另外使用字符串作为参数时，开启线程时最多只能传递一个参数，并且性能消耗会更大一点，而使用IEnumerator 作为参数则没有这个限制。<br>        在Unity3D中，使用StopCoroutine(string methodName)来终止一个协同程序，使用StopAllCoroutines()来终止所有可以终止的协同程序，但这两个方法都只能终止该MonoBehaviour中的协同程序。<br>        还有一种方法可以终止协同程序，即将协同程序所在gameobject的active属性设置为false，当再次设置active为ture时，协同程序并不会再开启；如是将协同程序所在脚本的enabled设置为false则不会生效。这是因为协同程序被开启后作为一个线程在运行，而MonoBehaviour也是一个线程，他们成为互不干扰的模块，除非代码中用调用，他们共同作用于同一个对象，只有当对象不可见才能同时终止这两个线程。然而，为了管理我们额外开启的线程，Unity3D将协同程序的调用放在了MonoBehaviour中，这样我们在编程时就可以方便的调用指定脚本中的协同程序，而不是无法去管理，特别是对于只根据方法名来判断线程的方式在多人开发中很容易出错，这样的设计保证了对象、脚本的条理化管理，并防止了重名。</p>
+<p>ＵＧＵＩ空格导致换行：将空格转换为全角空格，半角空格会使Text自动换行。</p>
+<p>实现text显示不同颜色的字，如我是程序员小白，其中程序员为红色，其余自为黑色。使用透明颜色标签&lt;color=#0000ff00&gt;111</color>，其中的１１１不会显示在Text上但会占据格子，作用类似于空格，通过这个标签的颜色值可以改变相应的字体颜色。</p>
+<p>unity 编辑状态下暂停：</p>
+<p>1.Debug.Break();或者UnityEditor.EditorApplication.isPaused = false;</p>
+<p>2.使用编辑器类：EditorApplication.ExecuteMenuItem(“Edit/Play”);<br>3.UnityEditor.EditorApplication.isPlaying = false;</p>
+<p>问题：<br>unity中通过Application.dataPath + “/Resources/Config/xxx”)作为将要读取文件的路径时，在编辑器上正常运行，但在打包后却无法正确读取文件<br>解决：<br>这是因为不同平台Application.dataPath所指定的路径不一样，editor模式下代表的是Asset,打包后对应的路径是打包时生成的文件夹“xxx_data”，这是需要把对应的文件拷贝到“xxx_data”文件夹下，例如打包后文件路径“E:\Unity\TowerDefense\Build\塔防_Data\Resources\Config”对应编辑器下的“E:\Unity\TowerDefense\Assets\Resources\Config”。</p>
+<p>问题：<br>UNITY 无法导入视频解决方法<br>解决<br>1.unity 导入视频时无法转换成movieTexture， 这时候unity会提示影片导入失败，这时候需要安转QuickTime Player，这个软件可以把unity的影片转换成unity能用的材质。<br>2.QuickTime 无法正常运行时并且提示 “please install apple application support”时，打开下载的QuickTime安装包，选择安装“apple application support.msi”,安装选择“修复”。<br>3.unity支持的影片格式有.mov .mpg .mpeg .mp4 .avi .asf。<br>4.成功导入的影片会生成一个对应的Movie Audio，这个文件是该影片的声音文件。</p>
+<p>问题：Scroll Rect中滑动事件是通过EventTrigger响应，所以当item也是通过EventTrigger响应点击事件时，就会遮挡住后面的Scroll Rect的滑动事件。<br>UGUI的ScrollRect组件会和放在它上面的button或者toggle等组件有事件响应的冲突，具体体现为上面的组件会遮挡下面的响应，在button或者toggle等组件上出现只能点击不能滑动的效果，要想滑动必须点旁边才行。<br>解决：<br>（1）.Button: Button.onClick.AddListener(delegate () {ButtonOnClick(Button.gameObject); }); onClick回调函数 是继承自UnityEngine.Events.UnityAction.委托。由于同一个点击事件通过不同的事件模块去响应，很好的处理了item挡住Scroll Rect 事件的问题。委托格式为不带任何参数和返回的函数。<br>这里的Button是指你要按下的那个按钮，ButtonOnClick是该按钮按下时要触发的事件。<br>第二种解决方案是：不用按钮，1.新建一个继承MonoBehaviour和IPointerClickHandler接口的脚本（例如ClickObject），2.这个脚本实现public void OnPointerClick(PointerEventData eventData)方法：3.创建一个名为Panel_IPointer的空对象，这个空对象就是你的按钮。并且将ClickObject脚本附加到对象上。这时候点击这个对象就会调用OnPointerClick方法。<br>第三种：创建一个Image（例如名为Btn），Btn对象添加EventTrigger组件，” Add New” -&gt; 选择” PointerClick”。将Btn对象拖拽到触发者位置。然后点击”No Function”选择我们要触发的OnTestClick事件。<br>（2）toggle：使用isOn的方法，例如if（toggle.ison）{debug.log(“click”)};</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/19/2017-11-19/" data-id="cmcw1g2re000kz4z8gp1mdesz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-18" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/18/2017-11-18/" class="article-date">
+  <time datetime="2017-11-18T00:43:14.000Z" itemprop="datePublished">2017-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/18/2017-11-18/">Unity 物理引擎 学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>刚体：</p>
+<p>刚体是模拟物理效果的对象。添加了刚体组件的游戏物体，会受重力影响，可以被玩家四处推动，或者直接用脚本添加力给对象来让他四处移动。通常情况下，对同一物体，要么通过刚体操纵，要么通过变换（transform）操纵。但添加刚体组件之后直接通过Transform组件更改物体位置，它和其他对象的碰撞可能出问题（除非Is Kinematic 选项被选中，选中该选项，则没法通过物理模拟来改变物体运动状态）。应避免同时使用两种方式。正确地方法应该是通过施加力或者扭矩来移动刚体。</p>
+<p>属性：</p>
+<p>Mass 质量：物体的质量(任意单位)。建议一个物体的质量不要多于或少于其他单位的100倍。<br>Drag 阻力：移动时物体受到的空气阻力。0表示没有,极大时物体立即停止运动。<br>Angular Drag：角阻力 当受扭力旋转时物体受到的空气阻力。0表示没有，极大时物体立即停止旋转。<br>Use Gravity 是否使用重力<br>Is Kinematic 是否是运动学：若激活，该物体不再受物理引擎驱动，而只能通过transform来操作。适用于模拟运动的平台或者模拟与铰链关节连接的刚体。<br>Interpolate 插值<br>当你发现刚体运动时抖动，可以尝试下面的选项。<br>None 无 不应用插值。<br>Interpolate 内插值 基于上一帧的变换来平滑本帧变换。<br>Extrapolate 外插值 基于下一帧的预估变换来平滑本帧变换。</p>
+<p>Collision Detection 碰撞检测模式。用于避免高速物体穿过其他物体，却未触发碰撞。<br>Discrete 离散</p>
+<p>离散碰撞检测。使用离散碰撞检测模式来与场景中其他碰撞器进行碰撞检测。其他物体与它的碰撞检测，也会应用这种模式。适用于普通碰撞（这是默认的模式）。<br>Continuous 连续<br>连续碰撞检测。使用离散碰撞检测来检测与动态碰撞器（刚体）的碰撞，使用连续碰撞检测来检测与静态网格（非刚体）的碰撞检测。采用连续动态碰撞检测模式的刚体碰见这类物体也将采用连续碰撞检测模式。而与其他刚体将采用离散碰撞检测模式。这种模式适用于那些采用动态连续碰撞模式的物体碰撞的物体。（这对物理表现有很大的影响，如果你不关心与高速物体的碰撞，那么就让其为默认的离散模式。）<br>Continuous Dynamic    动态连续<br>连续动态碰撞检测。使用连续动态碰撞检测模式来检测与连续模式和连续动态模式的物体间的碰撞。也适用于与静态网格（非刚体）的碰撞检测。而与之碰撞的其他模式的物体，采用的是离散动态碰撞检测模式。适用于高速物体。<br>Constraints 约束 对刚体运动的约束。 限制刚体在某些维度上的移动或|和旋转。</p>
+<p>Freeze Position 冻结位置，刚体在世界中沿所选X，Y，Z轴的移动，将无效。<br>Freeze Rotation 冻结旋转，刚体在世界中沿所选的X,Y,Z轴的旋转，将无效。<br>velocity:刚体的速度向量,最好不要直接修改它，可以通过它的大小判断撞击的强度。</p>
+<p>方法：<br>Rigibody.AddForce(Vector3)，在物体的中心点位置添加一个Vector3的力，使物体朝该Vector3方向运动，运动速度为该向量的模。<br>Rigibody.AddTorque(Vector3)，在物体中心添加一个力矩Vector3，力矩可以使物体旋转，刚体将绕着torque轴旋转。<br>Rigibody.AddForceAtPosition(Vector3,Vector3),在物体某个位置添加一个力，对于真实的效果，位置应大约在刚体表面的范围。<br>Rigibody.AddExplosionForce（float forceStrength，Vector3 postion，float range）,在某个位置添加一个大小为float，半径为range的爆炸力（向爆炸范围内各个方向的对象施加一个力），用来模拟爆炸效果。爆炸力将随着到刚体的距离线形衰减。。</p>
+<p>提示：两个刚体 (Rigidbody) 的相对质量 (Mass) 确定它们在互相碰撞时的反应方式。<br>使一个刚体 (Rigidbody) 的 质量 (Mass) 大于另一个刚体 (Rigidbody) 不会使其在自由落体过程中下落得更快。请使用阻力 (Drag) 实现此目的。<br>较小阻力 (Drag)值会使对象看起来较重。较高值会使对象看起来较轻。阻力 (Drag) 的典型值介于 0.001（实心金属块）与 10（羽毛）之间。<br>如果直接处理对象的变换 (Transform) 组件 (Component) ，但是仍需要物理，请附加刚体 (Rigidbody) 并将其设为运动学 (Kinematic)。<br>如果通过其变换 (Transform) 组件 (Component) 移动某个游戏对象 (GameObject)，但是希望接收碰撞体 (Collider)/触发器 (Trigger) 消息，则必须将刚体 (Rigidbody) 附加到移动的对象。<br>不能仅仅通过将其“角阻力”(Angular Drag) 设置为无穷大使对象停止旋转。</p>
+<p>碰撞体、触发器<br>发生碰撞条件：两个物体都必须带有碰撞器(Collider)，其中一个物体还必须带有Rigidbody刚体，没有碰撞体的刚体会彼此相互穿过。发生碰撞时，当两个物体都是碰撞器（Is Trigger都未勾选）时触发OnCollisionXXX，否则触发OnTriggerxxx。</p>
+<p>属性：<br>Is Trigger 是否触发器，勾选后会触发OnTriggerxxx方法，会穿过刚体<br>Material 材质，后面再讲<br>Center 中心点，用于调整碰撞盒的位置<br>Size 大小 在X、Y、Z三维上的碰撞器尺寸。<br>Convex 凸起的 如激活，该网格碰撞器将会和其他网格碰撞器碰撞。凸起的网格碰撞器限制在255个三角形面内。网格碰撞器之间通常不相互碰撞，但如果一个网格碰撞器被标记为凸起的（Convex ），那么它就可以与其他网格碰撞器碰撞。典型的解决方案是，对移动的对象使用基本碰撞器，而对静态环境对象使用网格碰撞器。<br>碰撞方法：<br>OnTriggerEnter( Collider other )当进入触发器<br>OnTriggerExit( Collider other )当退出触发器<br>OnTriggerStay( Collider other )当逗留触发器<br>OnCollisionEnter( Collision collisionInfo ) 当进入碰撞器<br>OnCollisionExit( Collision collisionInfo ) 当退出碰撞器<br>OnCollisionStay( Collision collisionInfo ) 当逗留碰撞器</p>
+<p>Static Colliders 静态碰撞器，包含碰撞器但不含刚体的游戏对象。你不要逐帧移动 一个静态碰撞器，移动静态碰撞器将导致PhysX引擎的内部重置，非常耗费资源，而且会造成性能的极大下降。<br> 基于层的碰撞检测：Edit-&gt;Project Settings-&gt;Physics.，打开物理引用界面. 在碰撞矩阵中选择要与其他层相互作用的层，勾选即可.（前提是先设置好层）</p>
+<p>物理材质 Physic Material<br>物理材质用来调节碰撞物体的摩擦力和弹力效果。要创建物理材质从菜单栏选择Assets-&gt;Create-&gt;Physic Material。然后从项目视图拖拽物理材质到场景的一个碰撞器上。</p>
+<p>属性：<br>Dynamic Friction 动力摩擦力，对象在运动时的摩擦力，取值范围0<del>1，该值越大，物体受到阻力越大，越快停止运动。<br>Static Friction 静态摩擦力，对象被放置在表面时的摩擦力，取值范围0</del>1，该值越大，物体受到阻力越大，开始运动所需力也越大，取值接近0时可模拟冰的效果。<br>Bouncyness 弹力 0值将不反弹。1值反弹将没有任何能量损失。<br>Friction Combine Mode 摩擦力结合模式 ，两个碰撞物体的摩擦力是如何结合起来。<br>Average 使用两个摩擦力的平均值<br>Min 使用两个摩擦力的最小值<br>Max 使用两个摩擦力的最大值<br>Multiply 使用两个摩擦力的乘积</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/18/2017-11-18/" data-id="cmcw1g2rd000jz4z873px4boh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/12/2017-11-12/" class="article-date">
+  <time datetime="2017-11-12T00:43:11.000Z" itemprop="datePublished">2017-11-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/12/2017-11-12/">AssetBundle加载到内存和释放研究</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AssetBundle运行时加载:<br><img src="/img/assetbundle_load.jpg" alt="img"><br>来自文件就用CreateFromFile(注意这种方法只能用于standalone程序：PC/MAC端）这是最快的加载方法<br>也可以来自Memory,用CreateFromMemory(byte[]),这个byte[]可以来自文件读取的缓冲，www的下载或者其他可能的方式。<br>其实WWW的assetBundle就是内部数据读取完后自动创建了一个assetBundle而已<br>Create完以后，等于把硬盘或者网络的一个文件读到内存一个区域，这时候只是个AssetBundle内存镜像数据块，还没有Assets的概念。<br>Assets加载:<br>用AssetBundle.Load(同Resources.Load) 这才会从AssetBundle的内存镜像里读取并创建一个Asset对象，创建Asset对象同时也会分配相应内存用于存放(反序列化)<br>异步读取用AssetBundle.LoadAsync<br>也可以一次读取多个用AssetBundle.LoadAll，加载完后立即AssetBundle.Unload(false),释放AssetBundle文件本身的内存镜像，但不销毁加载的Asset对象。（这样你不用保存AssetBundle的引用并且可以立即释放一部分内存）<br>AssetBundle.CreateFrom…..：创建一个AssetBundle内存镜像，注意同一个assetBundle文件在没有Unload之前不能再次被使用<br><a href="WWW.AssetBundle：同上，当然要先new一个再">WWW.AssetBundle：同上，当然要先new一个再</a> yield return 然后才能使用<br>AssetBundle.Load(name)：从AssetBundle读取一个指定名称的Asset并生成Asset内存对象，如果多次Load同名对象，除第一次外都只会返回已经生成的Asset对象，也就是说多次Load一个Asset并不会生成多个副本（singleton）。<br>Resources.Load(path;name)：同上,只是从默认的位置加载。<br>Instantiate（object)：Clone一个object的完整结构，包括其所有Component和子物体（详见官方文档）,浅Copy，并不复制所有引用类型。有个特别用法，虽然很少这样用，其实可以用Instantiate来完整的拷贝一个引用类型的Asset,比如Texture等，要拷贝的Texture必须类型设置为Read/Write able。</p>
+<p>释放：<br>AssetBundle的释放：<br>AssetBundle.Unload(flase)是释放AssetBundle文件的内存镜像，不包含Load创建的Asset内存对象。<br>AssetBundle.Unload(true)是释放那个AssetBundle文件内存镜像和并销毁所有用Load创建的Asset内存对象。</p>
+<p>一个Prefab从assetBundle里Load出来 里面可能包括：Gameobject transform mesh texture material shader script和各种其他Assets。<br>你Instantiate一个Prefab，是一个对Assets进行Clone(复制)+引用结合的过程，GameObject transform 是Clone是新生成的。其他mesh / texture / material / shader 等，这其中有些是纯引用的关系的，包括：Texture和TerrainData，还有引用和复制同时存在的，包括：Mesh/material/PhysicMaterial。引用的Asset对象不会被复制，只是一个简单的指针指向已经Load的Asset对象。所以你Load出来的Assets其实就是个数据源，用于生成新对象或者被引用，生成的过程可能是复制（clone)也可能是引用（指针）<br>当你Destroy一个实例时，只是释放那些Clone对象，并不会释放引用对象和Clone的数据源对象，Destroy并不知道是否还有别的object在引用那些对象。<br>等到没有任何游戏场景物体在用这些Assets以后，这些assets就成了没有引用的游离数据块了，是UnusedAssets了，这时候就可以通过Resources.UnloadUnusedAssets来释放,Destroy不能完成这个任务，AssetBundle.Unload(false)也不行，AssetBundle.Unload(true)可以但不安全，除非你很清楚没有任何对象在用这些Assets了。<br>Destroy:主要用于销毁克隆对象，也可以用于场景内的静态物体，不会自动释放该对象的所有引用。虽然也可以用于Asset,但是概念不一样要小心，如果用于销毁从文件加载的Asset对象会销毁相应的资源文件！但是如果销毁的Asset是Copy的或者用脚本动态生成的，只会销毁内存对象。<br>AssetBundle.Unload(false):释放AssetBundle文件内存镜像<br>AssetBundle.Unload(true):释放AssetBundle文件内存镜像同时销毁所有已经Load的Assets内存对象<br>Reources.UnloadAsset(Object):显式的释放已加载的Asset对象，只能卸载磁盘文件加载的Asset对象<br>Resources.UnloadUnusedAssets:用于释放所有没有引用的Asset对象<br>GC.Collect()强制垃圾收集器立即释放内存 Unity的GC功能不算好，没把握的时候就强制调用一下<br>静态引用和Resources.Load引用对象texture是在instantiate时加载，用到时才会加载，会导致第一次加载卡顿，而assetBundle.Load会把perfab的全部assets都加载，instantiate时只是生成Clone。Unity系统在加载新场景时，所有的内存对象都会被自动销毁，包括你用AssetBundle.Load加载的对象和Instaniate克隆的。<br>但是不包括AssetBundle文件自身的内存镜像，那个必须要用Unload来释放，用.net的术语，这种数据缓存是非托管的。<br>既然加载场景不会释放AssetBundle文件自身的内存镜像，那我们就手动释放。<br>Destroy:主要用于销毁克隆对象，也可以用于场景内的静态物体，不会自动释放该对象的所有引用。虽然也可以用于Asset,但是概念不一样要小心，如果用于销毁从文件加载的Asset对象会销毁相应的资源文件！但是如果销毁的Asset是Copy的或者用脚本动态生成的，只会销毁内存对象。<br>AssetBundle.Unload(false):释放AssetBundle文件内存镜像<br>AssetBundle.Unload(true):释放AssetBundle文件内存镜像同时销毁所有已经Load的Assets内存对象<br>Reources.UnloadAsset(Object):显式的释放已加载的Asset对象，只能卸载磁盘文件加载的Asset对象<br>Resources.UnloadUnusedAssets:用于释放所有没有引用的Asset对象<br>GC.Collect()强制垃圾收集器立即释放内存 Unity的GC功能不算好，没把握的时候就强制调用一下<br>例如：场景A切换到场景B，使用同步加载Application.LoadLevel(sceneName)或者异步加载Application.LoadLevelAsync(sceneName)都可以。<br>我们可以在场景A和场景B之间插入一个清理内存的场景X，场景X就是一个空场景，它的主要作用是承上启下，把场景A留下的资源清理，然在切换到场景B。<br>具体就是在Awake方法里清空内存，Start方法里切换下一个场景，如下：　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void Awake()</span><br><span class="line"> &#123;</span><br><span class="line">        object[] objAry &#x3D; Resources.FindObjectsOfTypeAll();</span><br><span class="line"> </span><br><span class="line">        for (int i &#x3D; 0; i &lt; objAry.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            objAry[i] &#x3D; null;&#x2F;&#x2F;解除资源引用</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F;卸载没有被引用的资源</span><br><span class="line">        Resources.UnloadUnusedAssets();</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F;进行垃圾回收</span><br><span class="line">        GC.Collect();</span><br><span class="line">        GC.waitForPendingFinalizers();&#x2F;&#x2F;</span><br><span class="line">        GC.Collect();</span><br><span class="line">&#125;</span><br><span class="line">void Start()</span><br><span class="line">&#123;</span><br><span class="line">   StartCoroutine(&quot;AsyncLoadScene&quot;, nextSceneName);</span><br><span class="line">&#125;</span><br><span class="line">IEnumerator AsyncLoadScene(string sceneName)</span><br><span class="line">&#123;</span><br><span class="line">   async &#x3D; Application.LoadLevelAsync(sceneName);</span><br><span class="line">   yield return async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/12/2017-11-12/" data-id="cmcw1g2rc000iz4z8apdahavh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-11-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/11/2017-11-11/" class="article-date">
+  <time datetime="2017-11-11T00:43:07.000Z" itemprop="datePublished">2017-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/11/2017-11-11/">Lerp线性插值 用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Unity3D中经常用线性插值函数Lerp()来在两者之间插值，两者之间可以是两个材质之间、两个向量之间、两个浮点数之间、两个颜色之间，其函数原型如下：<br>1.Material.Lerp 插值<br>function Lerp(start : Material, end : Material, t : float) : void<br>在两个材质之间插值</p>
+<p>2.Vector2.Lerp 插值<br>static functionLerp (from : Vector2, to : Vector2, t : float) : Vector2<br>两个向量之间的线性插值。按照数字t在form到to之间插值。<br>t是夹在0到1之间。当t=0时，返回from。当t=1时，返回to。当t=0.5时放回from和to之间的平均数。</p>
+<p>3.Vector3.Lerp 插值<br>static functionLerp (from : Vector3, to :Vector3, t : float) :Vector3<br>两个向量之间的线性插值。按照数字t在from到to之间插值。</p>
+<p>4.Vector4.Lerp 插值<br>static functionLerp (from : Vector4, to : Vector4, t : float) : Vector4<br>两个向量之间的线形插值。按照数字t在from到to之间插值。t是夹在[0…1]之间的值。，当t = 0时，返回from。当t = 1时，返回to。当t = 0.5 返回from和to的平均数。</p>
+<p>5.Mathf.Lerp 插值<br>static functionLerp (from : float, to : float, t : float) : float<br>基于浮点数t返回a到b之间的插值，t限制在0～1之间。当t = 0返回from，当t = 1 返回to。当t = 0.5 返回from和to的平均值。</p>
+<p>6.Color.Lerp 插值<br>static functionLerp (a : Color, b : Color, t : float) : Color<br>通过t在颜色a和b之间插值。<br>“t”是夹在0到1之间的值。当t是0时返回颜色a。当t是1时返回颜色b。</p>
+<p>插值，从字面意思上看，就是在其间插入一个数值，其原理为a=from + (to - from) * t</p>
+<p>例如Mathf.Lerp(100.0f, 200.0f,0.2f) = 100 + （200 - 100）*0.2 = 100 + 100 * 0.2 = 120</p>
+<p>应用例子：</p>
+<p>1.几秒内移动到目标点，其中smooth为移动时间</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>         public Transform target;<br>         public float smooth = 5.0F;<br>         void Update()<br>         {<br>                   transform.position =Vector3.Lerp(transform.position, target.position, Time.deltaTime * smooth);<br>         }<br>　　2.我们以前所玩的游戏中，主人公身上依附着一只宠物如鹰，主人公移动时，鹰会跟随着飞动，主人公移动得快它就飞行跟动得快，始终不会离开主人公，使用Lerp插值函数就可实现。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/11/11/2017-11-11/" data-id="cmcw1g2r7000gz4z85l5he753" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

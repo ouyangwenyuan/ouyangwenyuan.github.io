@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>常用的Bash 命令 整理 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="常用的Bash 命令 整理 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的Bash 命令 整理">
+<meta property="og:url" content="http://droidman.net/2019/10/04/2019-10-04/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="常用的Bash 命令 整理 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2019-10-04T12:49:12.000Z">
+<meta property="article:modified_time" content="2025-07-09T08:33:05.194Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Objective-c">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Unity3d">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Unix">
+<meta property="article:tag" content="Window">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Lua">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="xcode">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="eclicpse">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-10-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/2019-10-04/" class="article-date">
+  <time datetime="2019-10-04T12:49:12.000Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常用的Bash 命令 整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>常用的Bash 命令 整理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">current_time = $(date <span class="string">"+%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">replace_str_in_file</span></span>()&#123;</span><br><span class="line">    sed -i <span class="string">"s/<span class="variable">$1</span>/<span class="variable">$2</span>/g"</span> <span class="variable">$3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">replace_str_in_file <span class="string">'result.displayType= "YourName"'</span> <span class="string">'result.displayType="$&#123;DISPLAY_NAME&#125;"'</span> applocalInfo.lua </span><br><span class="line"></span><br><span class="line">wget 下载整站</span><br><span class="line">wget -r -p -np -k https://raw.githubusercontent.com/</span><br><span class="line"></span><br><span class="line">通过ssh备份</span><br><span class="line">tar zcvf - back/ | ssh root@www.jb51.net tar xzf - -C /root/back/</span><br><span class="line"></span><br><span class="line"><span class="built_in">kill</span></span><br><span class="line">pstree -ap 10277 |grep -oP <span class="string">'[0-9]&#123;4,6&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line"></span><br><span class="line">导出最后一列非空数据</span><br><span class="line">awk -f <span class="string">"|"</span> <span class="string">'&#123;if($NF!="")print $NF&#125;'</span></span><br><span class="line"></span><br><span class="line">行前或行后插入</span><br><span class="line">sed <span class="string">'p;s/^.*$/----/'</span> file</span><br><span class="line">awk <span class="string">'&#123;print $0;print "----"&#125;'</span> file</span><br><span class="line"></span><br><span class="line">sed <span class="string">'s/^/new/g'</span> file</span><br><span class="line">sed <span class="string">'s/$/new/g'</span> file</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成sshkey 并上传服务器</span></span><br><span class="line">ssh-keygen -y -f ~/.ssh/id_rsa &amp;&amp;　cat ~/.ssh/id_rsa.pub | ssh root@host <span class="string">"cat - &gt;&gt; ~/.ssh/authorized_keys"</span></span><br><span class="line"></span><br><span class="line">简单列出当前目录文件</span><br><span class="line">python -m SimpleHTTPServer </span><br><span class="line">python3 -m http.server</span><br><span class="line"></span><br><span class="line">查看内存使用情况</span><br><span class="line">ps aux --sort=rss |sort -k 6 -rn</span><br><span class="line"></span><br><span class="line">查看ip</span><br><span class="line">ifconfig |awk -F<span class="string">"[ ]+|[:]"</span> <span class="string">'NR==2 &#123;print $4&#125;'</span></span><br><span class="line"></span><br><span class="line">查找并杀进程</span><br><span class="line">pgrep nginx|xargs <span class="built_in">kill</span> </span><br><span class="line">pidof nginx|xargs <span class="built_in">kill</span></span><br><span class="line"></span><br><span class="line">删除注释</span><br><span class="line">sed -i <span class="string">'s/#.*$//g'</span> filename</span><br><span class="line"></span><br><span class="line">查看代码，除掉注释和空行</span><br><span class="line">egrep -v <span class="string">"^#|^$"</span>  filename</span><br><span class="line">sed <span class="string">'/#.*$/d; /^ *$/d'</span></span><br><span class="line"></span><br><span class="line">按大小列出文件</span><br><span class="line">ls|xargs du -h|sort -rn </span><br><span class="line"><span class="comment">#不递归下级目录使用du -sh</span></span><br><span class="line"></span><br><span class="line">在somefile.sh 文件里加上<span class="built_in">set</span>+x <span class="built_in">set</span>-x</span><br><span class="line">1. 用 &amp;&amp; || 简化<span class="keyword">if</span> <span class="keyword">else</span></span><br><span class="line">判断是否为空文件</span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="variable">$file</span> ]]; <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"not empty"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">获取文件大小</span><br><span class="line"><span class="built_in">stat</span> -c %s <span class="variable">$file</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">stat</span> --<span class="built_in">printf</span>=<span class="string">'%s\n'</span> <span class="variable">$file</span></span><br><span class="line"></span><br><span class="line">wc -c <span class="variable">$file</span></span><br><span class="line"></span><br><span class="line">rsync 备份</span><br><span class="line">rsync -r -t -v /source_folder /destination_folder</span><br><span class="line"></span><br><span class="line">rsync -r -t -v /source_folder [user@host:/destination_folder</span><br><span class="line"></span><br><span class="line">为所有txt文件加上.bak</span><br><span class="line">rename <span class="string">'.txt'</span> <span class="string">'.txt.bak'</span> *.txt</span><br><span class="line">去掉所有的bak</span><br><span class="line">rename <span class="string">'*.bak'</span> <span class="string">''</span> *.bak</span><br><span class="line"></span><br><span class="line">空格替换成下划线</span><br><span class="line">find path -<span class="built_in">type</span> f -<span class="built_in">exec</span> rename <span class="string">'s/ /_/g'</span> &#123;&#125; \;</span><br><span class="line">文件名改成大写</span><br><span class="line">find path -<span class="built_in">type</span> f -<span class="built_in">exec</span> rename <span class="string">'y/a-z/A-Z/'</span> &#123;&#125; \;</span><br><span class="line">文件名改成小写</span><br><span class="line">find path -<span class="built_in">type</span> f -<span class="built_in">exec</span> rename <span class="string">'y/A-Z/a-z/'</span> &#123;&#125; \;</span><br><span class="line"></span><br><span class="line"><span class="comment"># for while 循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ((i=0; i &lt; 10; i++)); <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> $(cat a.txt); <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$line</span>; <span class="keyword">done</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> *.txt; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$f</span>; <span class="keyword">done</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> line ; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$line</span>; <span class="keyword">done</span> &lt; a.txt </span><br><span class="line"></span><br><span class="line">cat a.txt | <span class="keyword">while</span> <span class="built_in">read</span> line; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$line</span>; <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">删除空行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat a.txt | sed -e <span class="string">'/^$/d'</span></span><br><span class="line"></span><br><span class="line">(<span class="built_in">echo</span> <span class="string">"abc"</span>; <span class="built_in">echo</span> <span class="string">""</span>; <span class="built_in">echo</span> <span class="string">"ddd"</span>;) | awk <span class="string">'&#123;if (0 != NF) print $0;&#125;'</span></span><br><span class="line"></span><br><span class="line">字典结构</span><br><span class="line"><span class="function"><span class="title">hput</span></span>() &#123; </span><br><span class="line"></span><br><span class="line">        <span class="built_in">eval</span> <span class="string">"hkey_<span class="variable">$1</span>"</span>=<span class="string">"<span class="variable">$2</span>"</span> </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">hget</span></span>() &#123; </span><br><span class="line"></span><br><span class="line">        <span class="built_in">eval</span> <span class="built_in">echo</span> <span class="string">'$&#123;'</span><span class="string">"hkey_<span class="variable">$1</span>"</span><span class="string">'&#125;'</span> </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">$ hput k1 aaa</span><br><span class="line"></span><br><span class="line">$ hget k1</span><br><span class="line"></span><br><span class="line">aaa</span><br><span class="line">遍历数组</span><br><span class="line">array=( one two three ) </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$&#123;array[@]&#125;</span> </span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$i</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">获取路径和文件名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ dirname ‘/home/lalor/a.txt<span class="string">'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/home/lalor</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$ basename ‘/home/lalor/a.txt'</span></span><br><span class="line"></span><br><span class="line">a.txt</span><br><span class="line"></span><br><span class="line">获取文件名和扩展</span><br><span class="line">var=hack.fun.book.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var%.*&#125;</span></span><br><span class="line"></span><br><span class="line">hack.fun.book</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var%%.*&#125;</span></span><br><span class="line"></span><br><span class="line">hack</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var#.*&#125;</span></span><br><span class="line"></span><br><span class="line">fun.book.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var##.*&#125;</span></span><br><span class="line"></span><br><span class="line">txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">清理僵尸进程</span><br><span class="line">ps -eal | awk <span class="string">'&#123; if ($2 == "Z")&#123; print $4&#125;&#125;'</span> | <span class="built_in">kill</span> -9</span><br><span class="line"></span><br><span class="line">创建函数库</span><br><span class="line"></span><br><span class="line">将函数定一个在另一个文件，然后通过<span class="built_in">source</span> 命令加载到当前文件</span><br><span class="line"></span><br><span class="line">在命令行使用函数</span><br><span class="line"></span><br><span class="line">将函数定义在~/.bashrc 中即可</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2019/10/04/2019-10-04/" data-id="cmcvp18en000d0mz83cj7b9ou" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/25/2020-01-25/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unity AssetBundle 官方文档整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/03/2019-05-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">掌控谈话读书笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
