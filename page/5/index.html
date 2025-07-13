@@ -96,6 +96,206 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2018-02-25" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/25/2018-02-25/" class="article-date">
+  <time datetime="2018-02-25T11:33:11.000Z" itemprop="datePublished">2018-02-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/25/2018-02-25/">设计模式之备忘录模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：所谓备忘录模式就是在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。备忘录模式将要保存的细节给封装在备忘录中，就是哪天要改变保存的细节也不会影响到客户端。类似存档和撤销的功能。</p>
+<p>角色：<br>1.发起人：记录当前时刻的内部状态，负责定义哪些属于备份范围的状态，负责创建和恢复备忘录数据。<br>2.备忘录：负责存储发起人对象的内部状态，在需要的时候提供发起人需要的内部状态。<br>3.管理角色：对备忘录进行管理，保存和提供备忘录。</p>
+<p>优点：<br>1.当发起人角色中的状态改变时，有可能这是个错误的改变，我们使用备忘录模式就可以把这个错误的改变还原。<br>2.备份的状态是保存在发起人角色之外的，这样，发起人角色就不需要对各个备份的状态进行管理。</p>
+<p>缺点：在实际应用中，备忘录模式都是多状态和多备份的，发起人角色的状态需要存储到备忘录对象中，对资源的消耗是比较严重的。</p>
+<p>使用：Memento 包含了要被恢复的对象的状态。Originator 创建并在 Memento 对象中存储状态。Caretaker 对象负责从 Memento 中恢复对象的状态。<br>1.创建 Memento 类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Memento </span><br><span class="line">&#123;</span><br><span class="line">   private String state;</span><br><span class="line"></span><br><span class="line">   public Memento(String state)</span><br><span class="line">   &#123;</span><br><span class="line">      this.state &#x3D; state;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public String getState()</span><br><span class="line">   &#123;</span><br><span class="line">      return state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建 Originator 类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Originator &#123;</span><br><span class="line">   private String state;</span><br><span class="line"></span><br><span class="line">   public void setState(String state)</span><br><span class="line">   &#123;</span><br><span class="line">      this.state &#x3D; state;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public String getState()</span><br><span class="line">   &#123;</span><br><span class="line">      return state;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public Memento saveStateToMemento()</span><br><span class="line">   &#123;</span><br><span class="line">      return new Memento(state);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void getStateFromMemento(Memento Memento)</span><br><span class="line">   &#123;</span><br><span class="line">      state &#x3D; Memento.getState();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.创建 CareTaker 类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class CareTaker </span><br><span class="line">&#123;</span><br><span class="line">   private List&lt;Memento&gt; mementoList &#x3D; new ArrayList&lt;Memento&gt;();</span><br><span class="line"></span><br><span class="line">   public void add(Memento state)</span><br><span class="line">   &#123;</span><br><span class="line">      mementoList.add(state);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public Memento get(int index)</span><br><span class="line">   &#123;</span><br><span class="line">      return mementoList.get(index);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.使用 CareTaker 和 Originator 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class MementoPatternDemo </span><br><span class="line">&#123;</span><br><span class="line">   public static void main(String[] args) </span><br><span class="line">  &#123;</span><br><span class="line">      Originator originator &#x3D; new Originator();</span><br><span class="line">      CareTaker careTaker &#x3D; new CareTaker();</span><br><span class="line">      originator.setState(&quot;State #1&quot;);</span><br><span class="line">      originator.setState(&quot;State #2&quot;);</span><br><span class="line">      careTaker.add(originator.saveStateToMemento());</span><br><span class="line">      originator.setState(&quot;State #3&quot;);</span><br><span class="line">      careTaker.add(originator.saveStateToMemento());</span><br><span class="line">      originator.setState(&quot;State #4&quot;);</span><br><span class="line"></span><br><span class="line">      System.out.println(&quot;Current State: &quot; + originator.getState());</span><br><span class="line">      originator.getStateFromMemento(careTaker.get(0));</span><br><span class="line">      System.out.println(&quot;First saved State: &quot; + originator.getState());</span><br><span class="line">      originator.getStateFromMemento(careTaker.get(1));</span><br><span class="line">      System.out.println(&quot;Second saved State: &quot; + originator.getState());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/02/25/2018-02-25/" data-id="cmcw1g2ue002lz4z86w6b7nvw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/20/2018-02-20/" class="article-date">
+  <time datetime="2018-02-20T11:32:59.000Z" itemprop="datePublished">2018-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/20/2018-02-20/">设计模式之中介者模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：用一个中介对象来封装一系列的对象交互，用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护。多个对象可以互相通信，建立一个中间的中介类完成彼此间的通信，类似于QQ功能，链接多个类似的对象。</p>
+<p>优点：</p>
+<p>1、降低了类的复杂度，将一对多转化成了一对一。</p>
+<p>2、各个类之间的解耦。</p>
+<p>3、符合迪米特原则。</p>
+<p>缺点：中介者会庞大，变得复杂难以维护。</p>
+<p>实现：以下案例建立一个类似于QQ的功能。单个对象通过QQMeditor于其他对象通信。</p>
+<p>1.创建单个的对象的抽象类和实现类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Colleage</span><br><span class="line">&#123;</span><br><span class="line">    private string _name;</span><br><span class="line">    private string _content;</span><br><span class="line">    public Colleage(string n) &#123; _name &#x3D; n; &#125;</span><br><span class="line">    public string Name</span><br><span class="line">    &#123;</span><br><span class="line">        get &#123;  return _name;&#125;</span><br><span class="line">        set &#123; _name &#x3D; value; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public string Content</span><br><span class="line">    &#123;</span><br><span class="line">        get &#123; return _content;&#125;</span><br><span class="line">        set&#123;  _content &#x3D; value; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public virtual void Talk()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ColleageA : Colleage</span><br><span class="line">&#123;</span><br><span class="line">    public ColleageA(string name): base(name)&#123; &#125;</span><br><span class="line">    public override void Talk()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Talk();</span><br><span class="line">        Debug.Log(&quot;ColleageA说: &quot; + Content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line">                                                                           </span><br><span class="line">public class ColleageB : Colleage</span><br><span class="line">&#123;</span><br><span class="line">    public ColleageB(string name) : base(name) &#123; &#125;</span><br><span class="line">    public override void Talk()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Talk();</span><br><span class="line">        Debug.Log(&quot;ColleageB说: &quot; + Content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ColleageC : Colleage</span><br><span class="line">&#123;</span><br><span class="line">    public ColleageC(string name) : base(name) &#123; &#125;</span><br><span class="line">    public override void Talk()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Talk();</span><br><span class="line">        Debug.Log(&quot;ColleageC说: &quot; + Content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建中介类的抽象类和实现类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Meaditor</span><br><span class="line">&#123;</span><br><span class="line">    protected List&lt;Colleage&gt; Colleages &#x3D; new List&lt;Colleage&gt;();</span><br><span class="line">    public virtual void AddColleage(Colleage c)&#123;&#125;</span><br><span class="line">    public virtual void RemoveColleage(Colleage c)&#123;&#125;</span><br><span class="line">    public  virtual void Notify(Colleage student)&#123;&#125;</span><br><span class="line">    public virtual void Chart(Colleage A, Colleage B)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class QQMeaditor:Meaditor</span><br><span class="line">&#123;</span><br><span class="line">    public override void AddColleage(Colleage c)</span><br><span class="line">    &#123;</span><br><span class="line">        Colleages.Add(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void RemoveColleage(Colleage c)</span><br><span class="line">    &#123;</span><br><span class="line">        Colleages.Remove(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void Notify(Colleage student)</span><br><span class="line">    &#123;</span><br><span class="line">        int count &#x3D; Colleages.Count;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; count; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Colleages[i].Talk();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void Chart(Colleage A, Colleage B)</span><br><span class="line">    &#123;</span><br><span class="line">        A.Talk();</span><br><span class="line">        B.Talk();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.创建客户端类，实现具体调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Client:MonoBehaviour</span><br><span class="line">&#123;  </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">    &#x2F;&#x2F;创建单个对象和中介对象QQ</span><br><span class="line">        QQMeditor qq &#x3D; new QQMeditor();</span><br><span class="line">        ColleageA a &#x3D; new ColleageA(&quot;A&quot;);</span><br><span class="line">        ColleageB b &#x3D; new ColleageB(&quot;B&quot;);</span><br><span class="line">        ColleageB c &#x3D; new ColleageB(&quot;C&quot;);</span><br><span class="line"></span><br><span class="line">        a.Content &#x3D; &quot;加油！&quot;;</span><br><span class="line">        b.Content &#x3D; &quot;-----&quot;;</span><br><span class="line">        c.Content &#x3D; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;;</span><br><span class="line">    &#x2F;&#x2F;添加多个对象进管理数组</span><br><span class="line"></span><br><span class="line">        qq.AddColleage(a);</span><br><span class="line">        qq.AddColleage(b);</span><br><span class="line">        qq.AddColleage(c);</span><br><span class="line"></span><br><span class="line">        qq.Notify(a);</span><br><span class="line">        b.Content &#x3D; &quot;_________&quot;;</span><br><span class="line">        c.Content &#x3D; &quot;+++++++++&quot;;</span><br><span class="line">        qq.Chart(b, c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/02/20/2018-02-20/" data-id="cmcw1g2u8002ez4z81cy24i54" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/19/2018-02-19/" class="article-date">
+  <time datetime="2018-02-19T11:32:54.000Z" itemprop="datePublished">2018-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/2018-02-19/">设计模式之迭代器模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：提供一种方法顺序一个聚合对象中各个元素，而又不暴露该对象内部表示。类似于foreach遍历的功能。提到迭代器，首先它是与集合相关的，集合也叫聚集、容器等，我们可以将集合看成是一个可以包容对象的容器，例如List，Set，Map，甚至数组都可以叫做集合，而迭代器的作用就是把容器中的对象一个一个地遍历出来。</p>
+<p>优点：<br>1.简化了遍历方式，对于对象集合的遍历，还是比较麻烦的，对于数组或者有序列表，我们尚可以通过游标来取得，但用户需要在对集合了解很清楚的前提下，自行遍历对象，但是对于hash表来说，用户遍历起来就比较麻烦了。而引入了迭代器方法后，用户用起来就简单的多了。<br>2.可以提供多种遍历方式，比如说对有序列表，我们可以根据需要提供正序遍历，倒序遍历两种迭代器，用户用起来只需要得到我们实现好的迭代器，就可以方便的对集合进行遍历了。<br>3.封装性良好，用户只需要得到迭代器就可以遍历，而对于遍历算法则不用去关心。</p>
+<p>缺点：</p>
+<p>1.对于比较简单的遍历（像数组或者有序列表），使用迭代器方式遍历较为繁琐，大家可能都有感觉，像ArrayList，我们宁可愿意使用for循环和get方法来遍历集合。<br>2.由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</p>
+<p>实现：以下将创建一个叙述导航方法的 Iterator 接口和一个返回迭代器的 Container 接口。实现了 Container 接口的实体类将负责实现 Iterator 接口。<br>1.创建集合抽象类：</p>
+<p>abstract class Aggregate<br>{<br>    public abstract Iterator CreateIterator();<br>}<br>2.聚集实现类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ConcreteAggregate:Aggregate</span><br><span class="line">&#123;</span><br><span class="line">    private IList&lt;object&gt; items &#x3D; new List&lt;object&gt;();</span><br><span class="line"></span><br><span class="line">    public override Iterator CreateIterator()</span><br><span class="line">    &#123;</span><br><span class="line">    return new ConcreteIterator(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int Count </span><br><span class="line">    &#123;</span><br><span class="line">        get &#123; return items.Count; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public object this[int index] </span><br><span class="line">    &#123;</span><br><span class="line">        get &#123; return items[index]; &#125;</span><br><span class="line">        set &#123; items.Insert(index, value); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.迭代器抽象类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">abstract class Iterator</span><br><span class="line">&#123;</span><br><span class="line">    public abstract object First();</span><br><span class="line">    public abstract object Next();</span><br><span class="line">    public abstract bool IsDone();</span><br><span class="line">    public abstract object CurrentItem();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.迭代器实现类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">class ConcreteIterator:Iterator</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 定义了一个具体聚集对象</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    private ConcreteAggregate aggregate;</span><br><span class="line"></span><br><span class="line">    private int current &#x3D; 0;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 初始化对象将具体聚集类传入</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;aggregate&quot;&gt;&lt;&#x2F;param&gt;</span><br><span class="line">    public ConcreteIterator(ConcreteAggregate aggregate) </span><br><span class="line">    &#123;</span><br><span class="line">        this.aggregate &#x3D; aggregate;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 第一个对象</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">    public override object First()</span><br><span class="line">    &#123;</span><br><span class="line">        return aggregate[0];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 得到聚集的下一对象</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">    public override object Next()</span><br><span class="line">    &#123;</span><br><span class="line">        object ret &#x3D; null;</span><br><span class="line">        current++;</span><br><span class="line">        if(current&lt;aggregate.Count)</span><br><span class="line">        &#123;</span><br><span class="line">            ret &#x3D; aggregate[current];</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 是否到结尾</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">    public override bool IsDone()</span><br><span class="line">    &#123;</span><br><span class="line">        return current &gt;&#x3D; aggregate.Count ? true : false;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 返回当前聚集对象</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">    public override object CurrentItem()</span><br><span class="line">    &#123;</span><br><span class="line">        return aggregate[current];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">static void TestIterator() </span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;聚集对象</span><br><span class="line">    ConcreteAggregate a &#x3D; new ConcreteAggregate();</span><br><span class="line"></span><br><span class="line">    a[0] &#x3D; &quot;张三&quot;;</span><br><span class="line">    a[1] &#x3D; &quot;李四&quot;; </span><br><span class="line">    a[2] &#x3D; &quot;叶鹏&quot;;</span><br><span class="line">    &#x2F;&#x2F;声明迭代器对象</span><br><span class="line">    Iterator i &#x3D; new ConcreteIterator(a);</span><br><span class="line"></span><br><span class="line">    object item &#x3D; i.First();</span><br><span class="line">    while(!i.IsDone())</span><br><span class="line">    &#123;</span><br><span class="line">    Console.WriteLine(&quot;&#123;0&#125;回家吃饭&quot;,i.CurrentItem());</span><br><span class="line">    i.Next();</span><br><span class="line">    &#125;</span><br><span class="line">    Console.Read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/02/19/2018-02-19/" data-id="cmcw1g2u7002cz4z8efcw49ny" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-18" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/18/2018-02-18/" class="article-date">
+  <time datetime="2018-02-18T11:32:50.000Z" itemprop="datePublished">2018-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/18/2018-02-18/">设计模式之解释器模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定义：给定一种语言，定义他的文法的一种表示，并定义一个解释器，该解释器用来解释语言中句子，解析表达式。例如a+b，用户输入a+b，解析式负责处理并返回数据，类似于运算类。<br>角色：<br>1.AbstractExpression(抽象表达式)<br>2.TerminalExpression(终结符表达式)<br>3.N*nterminalExpression(非终结符表达式)<br>Context（上下文）</p>
+<p>优点： </p>
+<p>1、可扩展性比较好，灵活。</p>
+<p>2、增加了新的解释表达式的方式。</p>
+<p>3、易于实现简单文法。<br>缺点：</p>
+<p>1、可利用场景比较少。</p>
+<p>2、对于复杂的文法比较难维护。</p>
+<p>3、解释器模式会引起类膨胀。</p>
+<p>4、解释器模式采用递归调用方法。</p>
+<p>实现：创建一个接口 Expression 和实现了 Expression 接口的实体类。定义作为上下文中主要解释器的 TerminalExpression类、 OrExpression、AndExpression 用于创建组合式表达式。<br>1.创建一个表达式接口（抽象表达式）。</p>
+<p>public interface Expression { public boolean interpret(String context);}<br>2.创建抽象表达式的实体类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class TerminalExpression implements Expression </span><br><span class="line">&#123;</span><br><span class="line">   private String data;</span><br><span class="line"></span><br><span class="line">   public TerminalExpression(String data)</span><br><span class="line">  &#123;</span><br><span class="line">      this.data &#x3D; data;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public Override  boolean interpret(String context) </span><br><span class="line">  &#123;</span><br><span class="line">      if(context.contains(data))</span><br><span class="line">     &#123;</span><br><span class="line">         return true;</span><br><span class="line">      &#125;</span><br><span class="line">      return false;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class OrExpression implements Expression </span><br><span class="line">&#123;</span><br><span class="line">   private Expression expr1 &#x3D; null;</span><br><span class="line">   private Expression expr2 &#x3D; null;</span><br><span class="line"></span><br><span class="line">   public OrExpression(Expression expr1, Expression expr2) </span><br><span class="line">  &#123;</span><br><span class="line">      this.expr1 &#x3D; expr1;</span><br><span class="line">      this.expr2 &#x3D; expr2;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public Override boolean interpret(String context) </span><br><span class="line">  &#123;</span><br><span class="line">      return expr1.interpret(context) || expr2.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class AndExpression implements Expression </span><br><span class="line">&#123;</span><br><span class="line">   private Expression expr1 &#x3D; null;</span><br><span class="line">   private Expression expr2 &#x3D; null;</span><br><span class="line"></span><br><span class="line">   public AndExpression(Expression expr1, Expression expr2) </span><br><span class="line">  &#123;</span><br><span class="line">      this.expr1 &#x3D; expr1;</span><br><span class="line">      this.expr2 &#x3D; expr2;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public Override boolean interpret(String context) </span><br><span class="line">   &#123;</span><br><span class="line">      return expr1.interpret(context) &amp;&amp; expr2.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.使用 Expression 类来创建规则，并解析它们。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;规则：Robert 和 John 是男性</span><br><span class="line">   public static Expression getMaleExpression()&#123;</span><br><span class="line">      Expression robert &#x3D; new TerminalExpression(&quot;Robert&quot;);</span><br><span class="line">      Expression john &#x3D; new TerminalExpression(&quot;John&quot;);</span><br><span class="line">      return new OrExpression(robert, john);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;规则：Julie 是一个已婚的女性</span><br><span class="line">   public static Expression getMarriedWomanExpression()&#123;</span><br><span class="line">      Expression julie &#x3D; new TerminalExpression(&quot;Julie&quot;);</span><br><span class="line">      Expression married &#x3D; new TerminalExpression(&quot;Married&quot;);</span><br><span class="line">      return new AndExpression(julie, married);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">      Expression isMale &#x3D; getMaleExpression();</span><br><span class="line">      Expression isMarriedWoman &#x3D; getMarriedWomanExpression();</span><br><span class="line">      System.out.println(&quot;John is male? &quot; + isMale.interpret(&quot;John&quot;));</span><br><span class="line">      System.out.println(&quot;Julie is a married women? &quot;</span><br><span class="line">      + isMarriedWoman.interpret(&quot;Married Julie&quot;));</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2018/02/18/2018-02-18/" data-id="cmcw1g2u5002az4z82dmvd0w4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2018-02-17" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/17/2018-02-17/" class="article-date">
@@ -380,200 +580,11 @@
 
 
   
-    <article id="post-2018-02-11" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/11/2018-02-11/" class="article-date">
-  <time datetime="2018-02-11T00:31:20.000Z" itemprop="datePublished">2018-02-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/2018-02-11/">设计模式之适配器模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>定义：两个不兼容的接口之间的桥梁，这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
-<p>角色：<br>1.Target：定义Client使用的与特定领域相关的接口；<br>2.Adaptee：现在需要适配的已经存在的接口；<br>3.Adapter：对Adaptee 的接口与Target接口进行适配</p>
-<p>优点：适配器模式主要应用于“希望复用一些现存的类，但是接口又与复用环境要求不一致的情况”，在遗留代码复用、类库迁移等方面非常有用。<br>使用：以下案例实现：旧系统中提供一个查询服务方法Query();但是我新系统定义底层的数据访问服务层的时候，却是使用的GetList()方法，通过适配器完成在新系统GetList()时调用并返回旧系统的Query();。</p>
-<p>1.旧系统的查询服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　public class Query ：IQuery </span><br><span class="line">&#123; </span><br><span class="line">    public object Query() </span><br><span class="line">    &#123; </span><br><span class="line">        return new object(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.新系统的的查询服务接口：</p>
-<p>public interface ISelect<br>{<br>    object GetList();<br>}<br>3.通过类适配器完成转配操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class QueryAdapter : Query, ISelect </span><br><span class="line">&#123; </span><br><span class="line">        public object GetList() </span><br><span class="line">        &#123; </span><br><span class="line">            return base.Query(); </span><br><span class="line">        &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.通过对象适配器完成转配操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class QueryAdapter :  ISelect </span><br><span class="line">&#123; </span><br><span class="line">        private Query query &#x3D; new Query();</span><br><span class="line">        public object GetList() </span><br><span class="line">        &#123; </span><br><span class="line">            return query.Query(); </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对象适配器：不是通过继承的方式，而是通过对象组合的方式来进行处理的，我们只要学过OO的设计原则的都知道，组合相比继承是推荐的方式。<br>类适配器：通过继承的方式来实现，将旧系统的方法进行封装。对象适配器在进行适配器之间的转换过程中，无疑类适配器也能完成，但是依赖性会加大，并且随着适配要求的灵活性，可能通过继承膨胀的难以控制。 一般来说类适配器的灵活性较差，对象适配器较灵活，是我们推荐的方式，可以通过依赖注入的方式，或者是配置的方式来做。类适配器需要继承自要适配的旧系统的类，无疑这不是一个好的办法。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://droidman.net/2018/02/11/2018-02-11/" data-id="cmcw1g2tu001uz4z8eqwo52ax" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2018-02-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/10/2018-02-10/" class="article-date">
-  <time datetime="2018-02-10T00:31:06.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/2018-02-10/">设计模式之组合模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>定义：组合模式就是把一些现有的对象或者元素，经过组合后组成新的对象，新的对象提供内部方法，可以让我们很方便的完成这些元素或者内部对象的访问和操作。组合模式是将一系列对象组合成树形结构用来表示整体和部分之间的关系，组合模式的主要目的是达到，访问组合对象和访问单个对象具有一致性。这里的组合对象比较特殊，本身他可以是由其他的对象组合而成，同时，这个组合对象又可以是组成更复杂对象的一个部分。如下结构图：日期等单个对象组合成查询组件，查询组件和其他组件或对象组合成分页组件。组合模式以不遵守单一责任原则换取透明性，让Client将组合和叶节点一视同仁。</p>
-<p>角色：<br>1.Component:组合对象或叶子节点的接口<br>2.Leaf：叶子节点，最末节。<br>3.Composite：组合节点。<br>4.Client客户端</p>
-<p>优点：组合模式可以降低系统的复杂度，因为我们可以把复杂的组件看作另一个组件的组成部分来处理。组合模式可以很容易的增加新的构件。使用组合模式可以使客户端变的很容易设计，因为客户端可以对组合和叶节点一视同仁。</p>
-<p>缺点：使用组合模式后，控制树枝构件的类型不太容易。用继承的方法来增加新的行为很困难。</p>
-<p>应用：以下实例中，客户端可单独获取叶子对象，也可以通过组合获取叶子对象。<br>1.声明Component接口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Component </span><br><span class="line">&#123;</span><br><span class="line">    public void add(Component component) </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void remove(Component component) </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Component getChild(int i) </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void operation() </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.声明叶子节点，叶子节点没有添加和删除节点功能，只实现自身的operation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Leaf extends Component</span><br><span class="line">&#123;</span><br><span class="line">     public Override void operation()</span><br><span class="line">    &#123;</span><br><span class="line">    &#x2F; &#x2F;your code</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.声明组合节点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">public class Composite extends Component</span><br><span class="line">&#123;</span><br><span class="line">    ArrayList&lt;Component&gt; components &#x3D; new ArrayList&lt;Component&gt;();</span><br><span class="line"></span><br><span class="line">    public Override void add(Component component)</span><br><span class="line">    &#123;</span><br><span class="line">    　　components.add(component);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Override void remove(Component component)</span><br><span class="line">    &#123;</span><br><span class="line">    　　components.remove(component);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Override Component getChild(int i)</span><br><span class="line">    &#123;</span><br><span class="line">    　　return components.get(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Override void operation()</span><br><span class="line">    &#123;</span><br><span class="line">        for (Component component : components)</span><br><span class="line">        &#123;</span><br><span class="line">            component.operation();       </span><br><span class="line">        &#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>```</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://droidman.net/2018/02/10/2018-02-10/" data-id="cmcw1g2tv001wz4z8hhqy41dv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2018-02-04" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/04/2018-02-04/" class="article-date">
-  <time datetime="2018-02-04T00:30:58.000Z" itemprop="datePublished">2018-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/04/2018-02-04/">设计模式之外观模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>定义：将细粒度的对象包装成粗粒度的对象，应用程序通过访问这个外观对象，来完成细粒度对象的调用，我们通过外观的包装，使应用程序只能看到外观对象，而不会看到具体的细节对象，这样无疑会降低应用程序的复杂度，并且提高了程序的可维护性。</p>
-<p>优点：1、减少系统相互依赖。 2、提高灵活性。 3、提高了安全性。</p>
-<p>缺点：不符合开闭原则，如果要改东西很麻烦，继承重写都不合适。</p>
-<p>结构图：通过外观对象来组织细粒度的服务的调用，外观对象提供给外部应用程序可以使用的服务，而具体的调用细粒度的过程则被外观对象给封装起来，当然这个过程就是封装变化的部分，而将变化的部分与应用程序进行隔离，无疑对程序的易用性和可维护性都是很大的提高。</p>
-<p>应用：一下案例通过客户端通过外观对象调用不同的形状对象的服务,减少了客户端和应用端的交互，简化的步骤，将外观对象做成单例类，可以在使用对象时减少内存的分配。<br>1.创建一个接口。</p>
-<p>public interface Shape { void draw();}<br>2.创建接口的实现类（对象）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Rectangle : Shape</span><br><span class="line">&#123;</span><br><span class="line">    public void Draw() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Square : Shape</span><br><span class="line">&#123;</span><br><span class="line">    public void Draw()&#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Circle : Shape</span><br><span class="line">&#123;</span><br><span class="line">   public void Draw() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.创建外观对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class ShapeMaker &#123;</span><br><span class="line">   private Shape circle;</span><br><span class="line">   private Shape rectangle;</span><br><span class="line">   private Shape square;</span><br><span class="line"></span><br><span class="line">   public ShapeMaker() &#123;</span><br><span class="line">      circle &#x3D; new Circle();</span><br><span class="line">      rectangle &#x3D; new Rectangle();</span><br><span class="line">      square &#x3D; new Square();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void drawCircle()&#123;</span><br><span class="line">      circle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">   public void drawRectangle()&#123;</span><br><span class="line">      rectangle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">   public void drawSquare()&#123;</span><br><span class="line">      square.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.创建客户端，调用外观对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">      ShapeMaker shapeMaker &#x3D; new ShapeMaker();</span><br><span class="line"></span><br><span class="line">      shapeMaker.drawCircle();</span><br><span class="line">      shapeMaker.drawRectangle();</span><br><span class="line">      shapeMaker.drawSquare();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://droidman.net/2018/02/04/2018-02-04/" data-id="cmcw1g2tq001rz4z8ehzj292i" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2018-02-03" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/03/2018-02-03/" class="article-date">
-  <time datetime="2018-02-03T00:30:51.000Z" itemprop="datePublished">2018-02-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/03/2018-02-03/">Unity 单例模版</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>c#：使用泛型实现单例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">using System; </span><br><span class="line">using System.Collections.Generic; </span><br><span class="line">using System.Text; using System.Reflection;</span><br><span class="line"> &#x2F;&#x2F;&#x2F; &lt;summary&gt; &#x2F;&#x2F;&#x2F; 1.泛型 &#x2F;&#x2F;&#x2F; 2.反射 &#x2F;&#x2F;&#x2F; 3.抽象类 &#x2F;&#x2F;&#x2F; 4.命名空间 &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line"> namespace QFramework </span><br><span class="line">&#123;</span><br><span class="line">　　public abstract class QSingleton&lt;T&gt; where T : QSingleton&lt;T&gt; </span><br><span class="line">　　&#123;</span><br><span class="line">　　　　protected static T instance &#x3D; null; protected QSingleton() &#123; &#125; </span><br><span class="line">    　 public static T Instance() </span><br><span class="line">    　 &#123;</span><br><span class="line">　　　　　　if (instance &#x3D;&#x3D; null) </span><br><span class="line">　　　　　　&#123;</span><br><span class="line">             &#x2F;&#x2F; 先获取所有非public的构造方法</span><br><span class="line">             ConstructorInfo[] ctors &#x3D; typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic); </span><br><span class="line">            &#x2F;&#x2F; 从ctors中获取无参的构造方法 </span><br><span class="line">            ConstructorInfo ctor &#x3D; Array.Find(ctors, c &#x3D;&gt; c.GetParameters().Length &#x3D;&#x3D; 0);</span><br><span class="line">             if (ctor &#x3D;&#x3D; null)</span><br><span class="line">                 throw new Exception(&quot;Non-public ctor() not found!&quot;); </span><br><span class="line">            &#x2F;&#x2F; 调用构造方法</span><br><span class="line">             instance &#x3D; ctor.Invoke(null) as T; </span><br><span class="line">　　　　　　&#125; </span><br><span class="line">　　　　return instance; </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>unity实现MonoBehaviour 单例,约束GameObject的个数,这个需求,还没有思路,只好在游戏运行时判断有多少个GameObject已经挂上了该脚本,然后如果个数大于1抛出错误即可。在脚本销毁时,把静态实例置空。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"> &#x2F;&#x2F;&#x2F; &lt;summary&gt; &#x2F;&#x2F;&#x2F; 需要使用Unity生命周期的单例模式 &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt; </span><br><span class="line">namespace QFramework</span><br><span class="line">&#123; </span><br><span class="line">　　public abstract class QMonoSingleton&lt;T&gt; : MonoBehaviour where T : QMonoSingleton&lt;T&gt; </span><br><span class="line">　　&#123; </span><br><span class="line">    　　protected static T instance &#x3D; null;</span><br><span class="line">　　　　public static T Instance() </span><br><span class="line">　　　　&#123; </span><br><span class="line">        　　if (instance &#x3D;&#x3D; null) </span><br><span class="line">        　　&#123; </span><br><span class="line">            　instance &#x3D; FindObjectOfType&lt;T&gt;();</span><br><span class="line">　　　　　　　　if (FindObjectsOfType&lt;T&gt;().Length &gt; 1)</span><br><span class="line">             &#123; </span><br><span class="line">                QPrint.FrameworkError (&quot;More than 1!&quot;); </span><br><span class="line">                return instance; </span><br><span class="line">　　　　　　　　&#125;</span><br><span class="line">             if (instance &#x3D;&#x3D; null) </span><br><span class="line">　　　　　　　　&#123;</span><br><span class="line">                 string instanceName &#x3D; typeof(T).Name; QPrint.FrameworkLog (&quot;Instance Name: &quot; + instanceName); </span><br><span class="line">                GameObject instanceGO &#x3D; GameObject.Find(instanceName);</span><br><span class="line">                if (instanceGO &#x3D;&#x3D; null) instanceGO &#x3D; new GameObject(instanceName); </span><br><span class="line">                instance &#x3D; instanceGO.AddComponent&lt;T&gt;(); </span><br><span class="line">                DontDestroyOnLoad(instanceGO);</span><br><span class="line">                 &#x2F;&#x2F;保证实例不会被释放 </span><br><span class="line">                QPrint.FrameworkLog (&quot;Add New Singleton &quot; + instance.name + &quot; in Game!&quot;); </span><br><span class="line">            &#125;</span><br><span class="line">             else &#123;</span><br><span class="line">                 QPrint.FrameworkLog (&quot;Already exist: &quot; + instance.name); </span><br><span class="line">            &#125;</span><br><span class="line">         &#125; </span><br><span class="line">        return instance; </span><br><span class="line">    &#125;</span><br><span class="line"> 　　protected virtual void OnDestroy() </span><br><span class="line">　　&#123;</span><br><span class="line">     instance &#x3D; null; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://droidman.net/2018/02/03/2018-02-03/" data-id="cmcw1g2tt001sz4z8hqi9azgf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -606,7 +617,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 

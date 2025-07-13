@@ -1,5 +1,5 @@
-month=$1
-sudo date ${month}08272025.03
+mhmys=$1
+sudo date ${mhmys}
 
 # if [ $# -eq 0 ]; then
     FileName=`date "+%Y-%m-%d"`
