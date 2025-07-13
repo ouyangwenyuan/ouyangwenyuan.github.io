@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>文件的读写存储操作 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当程序运行时，变量时保存数据的好方法，如果希望程序结束了数据仍能保持，就需要将数据存储到文件中（序列化），你可以认为文件的内容是一个字符串值，那如何使用python 在硬盘上创建，读取和保存呢。 文件关键属性： - 文件名 - 文件路径 - 文件扩展名 - 文件权限 - 文件显示隐藏属性 - 文件大小在不同的平台路径分隔符不一致：在window上是反斜杠，在OSX 和linux上是斜杠，附加卷诸如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件的读写存储操作">
+<meta property="og:url" content="http://droidman.net/2017/05/07/2017-05-07/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="当程序运行时，变量时保存数据的好方法，如果希望程序结束了数据仍能保持，就需要将数据存储到文件中（序列化），你可以认为文件的内容是一个字符串值，那如何使用python 在硬盘上创建，读取和保存呢。 文件关键属性： - 文件名 - 文件路径 - 文件扩展名 - 文件权限 - 文件显示隐藏属性 - 文件大小在不同的平台路径分隔符不一致：在window上是反斜杠，在OSX 和linux上是斜杠，附加卷诸如">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2017-05-07T00:35:47.000Z">
+<meta property="article:modified_time" content="2017-05-07T20:13:20.688Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-05-07" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/07/2017-05-07/" class="article-date">
+  <time datetime="2017-05-07T00:35:47.000Z" itemprop="datePublished">2017-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件的读写存储操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当程序运行时，变量时保存数据的好方法，如果希望程序结束了数据仍能保持，就需要将数据存储到文件中（序列化），你可以认为文件的内容是一个字符串值，那如何使用python 在硬盘上创建，读取和保存呢。</p>
+<p>文件关键属性：</p>
+<pre><code>- 文件名
+- 文件路径
+- 文件扩展名
+- 文件权限
+- 文件显示隐藏属性
+- 文件大小</code></pre><p>在不同的平台路径分隔符不一致：在window上是反斜杠，在OSX 和linux上是斜杠，附加卷诸如DVD或USB在不同的操作系统上显示也不同，在window上显示的新的带字符的跟驱动器，在osx表示位/Volumes下的新文件夹，在linux上显示的是/mnt下的新文件夹</p>
+<p>import os<br>os.listdir() #列出当前目录的所有文件<br>os.getcwd() #获取当前目录<br>os.chdir(‘path’) #切好当前工作目录<br>os.makedirs(‘path’) #创建文件夹<br>os.path.join(‘path’,’file’) #目录和文件拼接</p>
+<p>绝对路径和相对路径<br>绝对路径总是从根文件夹开始‘/’<br>相对路径相对的是程序当前的工作目录<br>‘.’ 当前目录<br>‘..’ 当前目录的父目录<br>os.path.abspath(‘path’) #将目录转为绝对目录<br>os.path.isabs(‘path’) #判断目录是否是绝对路径<br>os.path.relpath(path1,path2) #传人参数是俩个绝对路径，返回path1 相对 path2的相对路径<br>os.path.dirname(‘path’) #返回path 参数重最后一个斜杆之前的所有内容， （文件夹路径）<br>os.path.basename(‘path’) #返回path参数最后一个斜杆之后的内容。（文件或者文件夹名）<br>os.path.split(‘path’) #返回（os.path.dirname(),os.path.basename()）</p>
+<p>检查路径有效性<br>os.path.exists(‘path’) #路径是否存在或者正确<br>os.path.isdir(‘path’) #路径是否是一个目录<br>os.path.isfile(‘path’) #路径是否是一个文件</p>
+<p>文件的读写<br>open(‘path’,’r/w/a/) #打开文件读，写，追加，返回一个File对象<br>close(‘path’) #关闭文件</p>
+<p>用shelve 模块保存变量<br>import shelve<br>shelveFile = shelve.open(‘mydata’)<br>cats =[‘zoophix’,’bbb’,’ccc’]<br>shelveFile[‘cats’]=cats<br>shelveFile.close()</p>
+<p>list(shelveFile.keys)<br>list(shelveFile.values)</p>
+<p>用pprint.pformat()函数保存变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import pprint</span><br><span class="line">cats &#x3D;[&#123;&#39;name&#39;:&#39;hello&#39;,&#39;desc&#39;:&#39;world&#39;&#125;,&#123;&#39;name:&#39;ouyang&#39;,&#39;desc&#39;:&#39;haha&#39;&#125;]</span><br><span class="line">pprint.pformat(cats)</span><br><span class="line">fileobj &#x3D; open(&#39;myCats.py&#39;,&#39;w&#39;)</span><br><span class="line">fileobj.write(&#39;cats&#x3D;&#39; + pprint.pformat(cats) + &#39;\n&#39;)</span><br><span class="line">fileobj.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import myCats</span><br><span class="line">myCats.cats</span><br><span class="line">myCats.cats[0]</span><br><span class="line">myCats.cats[0][name]</span><br></pre></td></tr></table></figure>
+<p>创建一个.py文件而不是利用shelve模块保存变量的好处在于他是一个文本文件，所以任何人都可以用一个简单的文本编辑器读取和修改该文件的内容，但是对于大多数应用，利用shelve模块来保存数据，是将变量保存到文本的最佳方式，因为只有基本数据类型，诸如整形，浮点型，字符串，列表和字典，可以作为简单文本写入一个文件。而对象就不能编码为简单文本，比如File对象。</p>
+<p>从剪切板取得文本<br>将文本张贴到剪切板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import pyperclip,re</span><br><span class="line">text &#x3D; str(pyperclip.paste())</span><br><span class="line">matchs &#x3D;[]</span><br><span class="line">for groups in phoneRx.findall(text):</span><br><span class="line">	phonenum &#x3D; &#39;-&#39;.join([group[1],group[3],group[5])</span><br><span class="line">	matchs.append(phonenum</span><br><span class="line">	</span><br><span class="line">if len(matchs)&gt;0:</span><br><span class="line">	pyperclip.copy(&#39;\n&#39;.join(matchs))</span><br><span class="line">	print(Copied to clipboard:)</span><br><span class="line">	print(&#39;\n&#39;.join(matchs))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/07/2017-05-07/" data-id="cmcvdrdxl000tccz8hnnv0ex3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/13/2017-05-13/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          三消游戏的一些算法总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/06/2017-05-06/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python 正则表达式练习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">2025-07-10</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09-1/">2025-07-09</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">2025-07-09</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/08/2025-07-08/">2025-07-08</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/07/2025-07-07/">2025-07-07</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

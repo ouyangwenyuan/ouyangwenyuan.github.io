@@ -14,14 +14,18 @@
 <meta property="og:site_name" content="持续学习者————Just Do It！">
 <meta property="og:description" content="Spring框架—控制反转（IOC）1 Spring框架概述1.1 什么是Spring1.2 Spring的优点1.3 Spring的体系结构2 入门案例:（IoC）2.1导入jar包2.2目标类2.3 配置文件2.4测试3 入门案例：DI3.1 目标类3.2 dao3.3 service3.4 配置文件3.5 测试4 依赖注入装配Bean 基于xml4.1属性依赖注入4.1.1 构造方法4.1.">
 <meta property="og:locale" content="en,ZH">
+<meta property="og:image" content="http://droidman.net/img/spring-frame.png">
+<meta property="og:image" content="http://droidman.net/img/spring-jar.png">
+<meta property="og:image" content="http://droidman.net/img/aop-2017-04-23-3.png">
 <meta property="article:published_time" content="2017-04-22T00:35:02.000Z">
-<meta property="article:modified_time" content="2017-04-22T01:42:48.491Z">
+<meta property="article:modified_time" content="2017-04-23T02:15:23.792Z">
 <meta property="article:author" content="OuyangWenyuan">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="IOC">
 <meta property="article:tag" content="AOP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://droidman.net/img/spring-frame.png">
   
     <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
   
@@ -102,7 +106,8 @@
 <p>[TOC]</p>
 <h2 id="Spring框架—控制反转（IOC）"><a href="#Spring框架—控制反转（IOC）" class="headerlink" title="Spring框架—控制反转（IOC）"></a>Spring框架—控制反转（IOC）</h2><h3 id="1-Spring框架概述"><a href="#1-Spring框架概述" class="headerlink" title="1 Spring框架概述"></a>1 Spring框架概述</h3><h4 id="1-1-什么是Spring"><a href="#1-1-什么是Spring" class="headerlink" title="1.1 什么是Spring"></a>1.1 什么是Spring</h4><p>Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。Spring的核心是控制反转（IoC）和面向切面（AOP）。简单来说，Spring是一个分层的JavaSE/EE full-stack(一站式) 轻量级开源框架。</p>
 <h4 id="1-2-Spring的优点"><a href="#1-2-Spring的优点" class="headerlink" title="1.2 Spring的优点"></a>1.2 Spring的优点</h4><p>方便解耦，简化开发 （高内聚低耦合）<br>Spring就是一个大工厂（容器），可以将所有对象创建和依赖关系维护，交给Spring管理<br>spring工厂是用于生成bean<br>AOP编程的支持<br>Spring提供面向切面编程，可以方便的实现对程序进行权限拦截、运行监控等功能<br>声明式事务的支持<br>只需要通过配置就可以完成对事务的管理，而无需手动编程<br>方便程序的测试<br>Spring对Junit4支持，可以通过注解方便的测试Spring程序<br>方便集成各种优秀框架<br>Spring不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如：Struts、Hibernate、MyBatis、Quartz等）的直接支持<br>降低JavaEE API的使用难度<br>Spring 对JavaEE开发中非常难用的一些API（JDBC、JavaMail、远程调用等），都提供了封装，使这些API应用难度大大降低</p>
-<h4 id="1-3-Spring的体系结构"><a href="#1-3-Spring的体系结构" class="headerlink" title="1.3 Spring的体系结构"></a>1.3 Spring的体系结构</h4><h3 id="2-入门案例-（IoC）"><a href="#2-入门案例-（IoC）" class="headerlink" title="2 入门案例:（IoC）"></a>2 入门案例:（IoC）</h3><h4 id="2-1导入jar包"><a href="#2-1导入jar包" class="headerlink" title="2.1导入jar包"></a>2.1导入jar包</h4><p>4 + 1 ： 4个核心（beans、core、context、expression） + 1个依赖（commons-loggins…jar）</p>
+<h4 id="1-3-Spring的体系结构"><a href="#1-3-Spring的体系结构" class="headerlink" title="1.3 Spring的体系结构"></a>1.3 Spring的体系结构</h4><p><img src="/img/spring-frame.png" alt="spring-frame"></p>
+<h3 id="2-入门案例-（IoC）"><a href="#2-入门案例-（IoC）" class="headerlink" title="2 入门案例:（IoC）"></a>2 入门案例:（IoC）</h3><h4 id="2-1导入jar包"><a href="#2-1导入jar包" class="headerlink" title="2.1导入jar包"></a>2.1导入jar包</h4><p>4 + 1 ： 4个核心（beans、core、context、expression） + 1个依赖（commons-loggins…jar）<br><img src="/img/spring-jar.png" alt="spring-jar"></p>
 <h4 id="2-2目标类"><a href="#2-2目标类" class="headerlink" title="2.2目标类"></a>2.2目标类</h4><p>提供UserService接口和实现类<br>获得UserService实现类的实例<br>之前开发中，直接new一个对象即可。学习spring之后，将由Spring创建对象实例–&gt; IoC 控制反转（Inverse of Control）<br>之后需要实例对象时，从spring工厂（容器）中获得，需要将实现类的全限定名称配置到xml文件中</p>
 <h4 id="2-3-配置文件"><a href="#2-3-配置文件" class="headerlink" title="2.3 配置文件"></a>2.3 配置文件</h4><p>位置：任意，开发中一般在classpath下（src）<br>名称：任意，开发中常用applicationContext.xml<br>内容：添加schema约束<br>约束文件位置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">spring-framework-3.2.0.RELEASE\docs\spring-framework-reference\html\ xsd-config.html</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans </span><br><span class="line">                           http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line">    &lt;!-- 配置service </span><br><span class="line">        &lt;bean&gt; 配置需要创建的对象</span><br><span class="line">            id ：用于之后从spring容器获得实例时使用的</span><br><span class="line">            class ：需要创建实例的全限定类名</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;bean id&#x3D;&quot;userServiceId&quot; class&#x3D;&quot;com.itheima.a_ioc.UserServiceImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
@@ -134,7 +139,7 @@
 </ol>
 <p>普通值：@Value(“ “)<br>引用值：<br>方式1：按照【类型】注入<br>@Autowired<br>方式2：按照【名称】注入1<br>@Autowired<br>@Qualifier(“名称”)<br>方式3：按照【名称】注入2<br>@Resource(“名称”)<br>4. 生命周期<br>初始化：@PostConstruct<br>销毁：@PreDestroy<br>5. 作用域<br>@Scope(“prototype”) 多例<br>注解使用前提，添加命名空间，让spring扫描含有注解类</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">   xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">   xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;</span><br><span class="line">   xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans </span><br><span class="line">                       http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd</span><br><span class="line">                       http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context </span><br><span class="line">                       http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context.xsd&quot;&gt;</span><br><span class="line">&lt;!-- 组件扫描，扫描含有注解的类 --&gt;</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;com.itheima.g_annotation.a_ioc&quot;&gt;&lt;&#x2F;context:component-scan&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="Spring框架—面向切面编程（AOP）"><a href="#Spring框架—面向切面编程（AOP）" class="headerlink" title="Spring框架—面向切面编程（AOP）"></a>Spring框架—面向切面编程（AOP）</h2><h3 id="1-什么是AOP"><a href="#1-什么是AOP" class="headerlink" title="1 什么是AOP"></a>1 什么是AOP</h3><p>在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。<br>AOP采取横向抽取机制，取代了传统纵向继承体系重复性代码<br>经典应用：事务管理、性能监视、安全检查、缓存 、日志等<br>Spring AOP使用纯Java实现，不需要专门的编译过程和类加载器，在运行期通过代理方式向目标类织入增强代码<br>AspectJ是一个基于Java语言的AOP框架，Spring2.0开始，Spring AOP引入对Aspect的支持，AspectJ扩展了Java语言，提供了一个专门的编译器，在编译时提供横向代码的织入</p>
+<h2 id="Spring框架—面向切面编程（AOP）"><a href="#Spring框架—面向切面编程（AOP）" class="headerlink" title="Spring框架—面向切面编程（AOP）"></a>Spring框架—面向切面编程（AOP）</h2><h3 id="1-什么是AOP"><a href="#1-什么是AOP" class="headerlink" title="1 什么是AOP"></a>1 什么是AOP</h3><p>在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。<br>AOP采取横向抽取机制，取代了传统纵向继承体系重复性代码<br>经典应用：事务管理、性能监视、安全检查、缓存 、日志等<br>Spring AOP使用纯Java实现，不需要专门的编译过程和类加载器，在运行期通过代理方式向目标类织入增强代码<br>AspectJ是一个基于Java语言的AOP框架，Spring2.0开始，Spring AOP引入对Aspect的支持，AspectJ扩展了Java语言，提供了一个专门的编译器，在编译时提供横向代码的织入<br><img src="/img/aop-2017-04-23-3.png" alt="aop"></p>
 <h3 id="2-AOP实现原理"><a href="#2-AOP实现原理" class="headerlink" title="2 AOP实现原理"></a>2 AOP实现原理</h3><p>aop底层将采用代理机制进行实现。<br>接口 + 实现类 ：spring采用 jdk 的动态代理Proxy。<br>实现类：spring 采用 cglib字节码增强。</p>
 <h3 id="3-AOP术语【掌握】"><a href="#3-AOP术语【掌握】" class="headerlink" title="3 AOP术语【掌握】"></a>3 AOP术语【掌握】</h3><p>1.target：目标类，需要被代理的类。例如：UserService<br>2.Joinpoint(连接点):所谓连接点是指那些可能被拦截到的方法。例如：所有的方法<br>3.PointCut 切入点：已经被增强的连接点。例如：addUser()<br>4.advice 通知/增强，增强代码。例如：after、before<br>5. Weaving(织入):是指把增强advice应用到目标对象target来创建新的代理对象proxy的过程.<br>6.proxy 代理类<br>7. Aspect(切面): 是切入点pointcut和通知advice的结合<br>一个线是一个特殊的面。<br>一个切入点和一个通知，组成成一个特殊的面。</p>
 <h3 id="4-AOP实现方式"><a href="#4-AOP实现方式" class="headerlink" title="4 AOP实现方式"></a>4 AOP实现方式</h3><h4 id="4-1手动方式"><a href="#4-1手动方式" class="headerlink" title="4.1手动方式"></a>4.1手动方式</h4><h5 id="4-1-1JDK动态代理"><a href="#4-1-1JDK动态代理" class="headerlink" title="4.1.1JDK动态代理"></a>4.1.1JDK动态代理</h5><p>JDK动态代理 对“装饰者”设计模式 简化。使用前提：必须有接口<br>1.目标类：接口 + 实现类</p>
@@ -179,6 +184,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/04/23/2017-04-23/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java 并发面试总结
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/04/16/2017-04-16/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -201,7 +215,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -211,7 +225,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
     </div>
   </div>
 
@@ -220,7 +234,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
     </div>
   </div>
 
@@ -233,23 +247,23 @@
       <ul>
         
           <li>
-            <a href="/2017/04/22/2017-04-22/">Spring框架介绍及使用</a>
+            <a href="/2025/07/10/2025-07-10/">2025-07-10</a>
           </li>
         
           <li>
-            <a href="/2017/04/16/2017-04-16/">编程中的基本数据结构与算法思想</a>
+            <a href="/2025/07/09/2025-07-09-1/">2025-07-09</a>
           </li>
         
           <li>
-            <a href="/2017/04/15/2017-04-15/">MySQL面试题总结</a>
+            <a href="/2025/07/09/2025-07-09/">2025-07-09</a>
           </li>
         
           <li>
-            <a href="/2017/04/09/2017-04-09/">MySQL常用优化指南，及大表优化思路</a>
+            <a href="/2025/07/08/2025-07-08/">2025-07-08</a>
           </li>
         
           <li>
-            <a href="/2017/04/08/2017-04-08/">MySQL 学习笔记</a>
+            <a href="/2025/07/07/2025-07-07/">2025-07-07</a>
           </li>
         
       </ul>
@@ -264,7 +278,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 OuyangWenyuan<br>
+      &copy; 2025 OuyangWenyuan<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

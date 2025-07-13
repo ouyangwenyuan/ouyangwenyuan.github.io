@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>python 正则表达式练习 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知道【正则表达式】可能意味着用3步解决一个问题，而不是用3000步，如果你是一个技术怪侠，别忘了你用几次快捷键就能解决的问题，其他人需要数天的繁琐工作才能解决，而且他们还容易犯错。                                        —- Cory Doctorow   正则表达式总结：  ()添加小括号将在正则表达式中创建分组， ？匹配[0,1]次前面的分组 *匹配[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 正则表达式练习">
+<meta property="og:url" content="http://droidman.net/2017/05/06/2017-05-06/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="知道【正则表达式】可能意味着用3步解决一个问题，而不是用3000步，如果你是一个技术怪侠，别忘了你用几次快捷键就能解决的问题，其他人需要数天的繁琐工作才能解决，而且他们还容易犯错。                                        —- Cory Doctorow   正则表达式总结：  ()添加小括号将在正则表达式中创建分组， ？匹配[0,1]次前面的分组 *匹配[">
+<meta property="og:locale" content="en,ZH">
+<meta property="article:published_time" content="2017-05-06T00:35:40.000Z">
+<meta property="article:modified_time" content="2017-05-06T18:01:00.203Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="正则表达式">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-05-06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/06/2017-05-06/" class="article-date">
+  <time datetime="2017-05-06T00:35:40.000Z" itemprop="datePublished">2017-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python 正则表达式练习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>知道【正则表达式】可能意味着用3步解决一个问题，而不是用3000步，如果你是一个技术怪侠，别忘了你用几次快捷键就能解决的问题，其他人需要数天的繁琐工作才能解决，而且他们还容易犯错。<br>                                        —- Cory Doctorow </p>
+</blockquote>
+<p>正则表达式总结：</p>
+<ul>
+<li>()添加小括号将在正则表达式中创建分组，</li>
+<li>？匹配[0,1]次前面的分组</li>
+<li>*匹配[0,多]次前面的分组</li>
+<li>+匹配[1,多]次前面的分组</li>
+<li>{}匹配特定次数或者特定范围次数的前面的分组</li>
+<li>{N} 匹配 N 次前面的分组</li>
+<li>{N，}匹配[N, 多]次前面的分组</li>
+<li>{,N}匹配[0,N]次前面的分组</li>
+<li>{N,M}匹配[N,M]次前面的分组进行贪心（最大）匹配</li>
+<li>{N,M}?匹配[N,M]次前面的分组进行非贪心（最小）匹配</li>
+<li>*？或+？对前面的分组进行最小匹配。</li>
+<li>^span匹配的字符串必须以span开头</li>
+<li>span$匹配的字符串必须以span结束</li>
+<li>. 匹配所有字符（一个字符），换行符除外</li>
+<li>\d,\w和\s分别匹配数字（0-9），单词（任意字母，数字或下划线），和空格（空格，制表符，换行符），</li>
+<li>\D,\W,\S分别匹配出除数字，单词（任意字母，数字或下划线），空格（空格，制表符，换行符）以外的所有字符</li>
+<li>[abca-zA-Z0-9]匹配方括号中的任意字符</li>
+<li>[^abc]匹配不在方括号内的任意字符</li>
+</ul>
+<p>python中使用正则表达式<br>import re #导入模块<br>x = re.compile(r’(\d\d\d)-(\d\d\d-\d\d\d\d) ‘) # 创建一个匹配对象 ，python 的转义字符要加<br>mo = x.search(‘My number is 415-555-4242. ‘) # 搜索匹配正则<br>mo.group() #匹配的结果</p>
+<p>使用group（）匹配对象的方法从一个分组中获取匹配的文本，查找的是第一个匹配对象<br>group（）和group（0）返回完整的匹配<br>group(1),group(2) 返回对应第几个括号中的匹配值<br>groups() 返回多个匹配值的元组<br>mo.groups()<br>(‘415’,’555-4242’)<br>areacode,mainNumber = mo.groups()<br>areacode = 415<br>mainNumber = 5555-4242</p>
+<p>用管道匹配多个分组（｜）<br>字符‘｜’称为管道，希望匹配多个值时使用r’a|b|c’将匹配a或b或c</p>
+<p>使用findall（） 可以找出所有的匹配结果<br>只有正则表达式中没有分组，返回的是一个字符串列表。<br>如果有分组，findall将返回一个匹配的元组的列表。</p>
+<p>用问号？实现可选匹配<br>re.compile(r’[aeiouAEIOU]’)匹配单词中的元音字母<br>re.compile(r’[^aeiouAEIOU]’)匹配单词中的非元音字母<br>在[]中的普通的正则表达式符合不会被解释，所以不要在前面(.,*,?,(,),)加转义的反斜杠（\）</p>
+<p>点-星（.*）能匹配除换行外的所有字符，通过对re.comile()的第二个参数传人re.DOTALL,可以让句点字符匹配包括换行字符。</p>
+<p>用sub（）方法替换字符串</p>
+<p>管理复杂的正则表达式<br>比较复杂的需要长的费解的正则表达式，可以传人re.VERBOSE 作为re.compile()的第二个参数，可以忽略正则表达式中的空白符和注释。从而缓解复杂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">eg： phoneRx &#x3D; re.compile(r&#39;((\d&#123;3&#125;|\(\d3\))?(\s|-|\.)?\d&#123;3&#125;(\s|-|\.)\d&#123;4&#125;(\s*(ext|x|ext.)\s*\d&#123;2,5&#125;)?)&#39;)</span><br><span class="line"></span><br><span class="line">phoneRx &#x3D; re.compile(r&#39;&#39;&#39;(</span><br><span class="line">	(\d&#123;3&#125;|\(d&#123;3&#125;\))? #区号</span><br><span class="line">	(\s|-|\.)? #分隔</span><br><span class="line">	\d&#123;3&#125; #前三</span><br><span class="line">	(\s|-\.) #分隔</span><br><span class="line">	\d&#123;4&#125; #后四</span><br><span class="line">	(\s*(ext|x|ext.)\s*\d&#123;2,5&#125;)? #扩展</span><br><span class="line">)&#39;&#39;&#39;,re.VERBOSE)</span><br></pre></td></tr></table></figure>
+
+<p>使用re.IGNORECASE 忽略大小写<br>someRx = re.compile(‘foo’,re.IGNORECASE|re.DOTALL|re.VERBOSE) #按位或来组合使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2017/05/06/2017-05-06/" data-id="cmcvdrdxh000qccz888ul71o4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/07/2017-05-07/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          文件的读写存储操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/02/2017-05-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不要急于学习编程语言，先学会如何解决问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.33px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/10/2025-07-10/">2025-07-10</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09-1/">2025-07-09</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/09/2025-07-09/">2025-07-09</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/08/2025-07-08/">2025-07-08</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/07/2025-07-07/">2025-07-07</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
