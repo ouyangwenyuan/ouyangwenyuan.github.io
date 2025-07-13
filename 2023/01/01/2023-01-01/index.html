@@ -5,44 +5,19 @@
   
 
   
-  <title>2023-01-01 | 持续学习者————Just Do It！</title>
+  <title>2D游戏相关 | 持续学习者————Just Do It！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+  <meta name="description" content="2D渲染Camera相机设置Projection（投影方式）：修改为Orthographic（正交）Size：改变相机的视野大小 Sprite“精灵图”一词首次作为图形术语出现，是在德州仪器的9918(A)视频显示处理器上。使用“精灵图”作为术语，是因为精灵图并不是帧缓冲中位图数据的一部分，而是“悬浮”于帧缓冲中数据之上，不影响其中数据，就像精灵飘在上面一样。 在Unity中：png &#x2F; jpg等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023-01-01">
+<meta property="og:title" content="2D游戏相关">
 <meta property="og:url" content="http://droidman.net/2023/01/01/2023-01-01/index.html">
 <meta property="og:site_name" content="持续学习者————Just Do It！">
-<meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
+<meta property="og:description" content="2D渲染Camera相机设置Projection（投影方式）：修改为Orthographic（正交）Size：改变相机的视野大小 Sprite“精灵图”一词首次作为图形术语出现，是在德州仪器的9918(A)视频显示处理器上。使用“精灵图”作为术语，是因为精灵图并不是帧缓冲中位图数据的一部分，而是“悬浮”于帧缓冲中数据之上，不影响其中数据，就像精灵飘在上面一样。 在Unity中：png &#x2F; jpg等">
 <meta property="og:locale" content="en,ZH">
 <meta property="article:published_time" content="2023-01-01T01:30:01.000Z">
-<meta property="article:modified_time" content="2023-01-01T01:30:01.904Z">
+<meta property="article:modified_time" content="2025-07-13T21:48:10.107Z">
 <meta property="article:author" content="OuyangWenyuan">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="Objective-c">
-<meta property="article:tag" content="Swift">
-<meta property="article:tag" content="Unity">
-<meta property="article:tag" content="Unity3d">
-<meta property="article:tag" content="Shader">
-<meta property="article:tag" content="Http">
-<meta property="article:tag" content="Web">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="Program">
-<meta property="article:tag" content="Mac OS">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Unix">
-<meta property="article:tag" content="Window">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Lua">
-<meta property="article:tag" content="Javascript">
-<meta property="article:tag" content="Android">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="xcode">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="eclicpse">
-<meta property="article:tag" content="blender">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="unity">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
@@ -110,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      2023-01-01
+      2D游戏相关
     </h1>
   
 
@@ -118,13 +93,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>2D渲染<br>Camera相机设置<br>Projection（投影方式）：修改为Orthographic（正交）<br>Size：改变相机的视野大小</p>
+<p>Sprite<br>“精灵图”一词首次作为图形术语出现，是在德州仪器的9918(A)视频显示处理器上。使用“精灵图”作为术语，是因为精灵图并不是帧缓冲中位图数据的一部分，而是“悬浮”于帧缓冲中数据之上，不影响其中数据，就像精灵飘在上面一样。</p>
+<p>在Unity中：png / jpg等常规图片，一般不在Unity中直接使用,而是转为Sprite</p>
+<p>SpriteRender<br>顾名思义，用来渲染Sprite的渲染器</p>
+<p>属性    功能<br>Sprite    定义该组件应渲染的精灵纹理。单击右侧的小圆点可打开对象选择器窗口，然后从可用精灵资源列表中进行选择。<br>Color    定义精灵的顶点颜色，用于对精灵的图像进行着色或重新着色。使用拾色器设置渲染的精灵纹理的顶点颜色。请参阅此表下方的颜色部分以查看示例。<br>Flip    沿选定的轴翻转精灵纹理。这不会翻转游戏对象的变换位置。<br>Sorting Layer    设置精灵的排序图层（Sorting Layer），此图层用于控制渲染期间的精灵优先级。从下拉框中选择现有的排序图层，或创建新的排序图层。<br>Order In Layer    设置精灵在其排序图层中的渲染优先级。首先渲染编号较低的精灵,编号较高的精灵叠加在前者之上。<br>Sprite Sort Point    在计算精灵和摄像机之间的距离时,在精灵中心（Center）或其轴心点（Pivot Point）之间进行选择。<br>Unity输入系统<br>这里调用的Input类是由命名空间UnityEngine提供的，如果有using Input = UnityEngine.Windows.Input;的话将会导致这里的Input不能直接调用</p>
+<p>监听键盘输入<br>键盘输入有三种状态：</p>
+<p>按下的瞬间<br>持续按下中<br>弹起的瞬间<br>下方三个函数返回都是bool类型，参数都是KeyCode枚举类型</p>
+<p>Input.GetKeyDown(KeyCode.A);<br>Input.GetKey(KeyCode.A);<br>Input.GetKeyUp(KeyCode.A);<br>监听键盘输入<br>和键盘差不多，不过0是鼠标左键、1是鼠标右键、2是鼠标中键</p>
+<p>Input.GetMouseButtonDown(0);<br>Input.GetMouseButton(0);<br>Input.GetMouseButtonUp(0);<br>Input Manager<br>Unity提供了一种常见且方便的使用方式：</p>
+<p>大多数游戏中使用键盘A和D来控制玩家在水平方向上的移动，这里提供一个函数：</p>
+<p>按下A，函数的返回值会偏向-1；按下D，函数的返回值会偏向1；如果不按A或D则偏向0（使用“偏向”是因为会缓动效果，例如按下A后，数值会慢慢减到-1，按下D后，数值会慢慢加到1，不按会慢慢回到0，可以模拟出启动、惯性的效果）</p>
+<p>Input.GetAxis(“Horizontal”);<br>Input.GetAxisRaw(“Horizontal”);//不进行缓动，只有三种结果：-1，0，1<br>Horizontal是水平方向轴（X轴），Vertical是纵向方向轴（Y轴）</p>
+<p>他们都在Unity界面中的Edit -&gt; Project Settings -&gt; Input Manager中配置</p>
+<p>Unity2D动画概览<br>Unity的2D动画和3D动画在操作层面上用的是同一个组件，操作方式也类似，但是相关知识点有所不同，所以不能武断地认为2D动画等于3D动画</p>
+<p>Animator：动画组件（组件）<br>用来持有AnimatorController的组件，注意可以多个Aniamtor持有一份AnimatorController</p>
+<p>AnimatorController：动画控制器（文件）<br>动画控制器相当于是一个配置文件，配置的是一个角色有哪些动画，动画和动画之间如何跳转</p>
+<p>状态：当前角色处于的状态，状态会持有具体的AnimationClip</p>
+<p>条件：动画之间的切换基于什么条件</p>
+<p>参数：条件基于参数来判断是否满足，满足则切换</p>
+<p>int、float、bool和代码中的类似<br>Trigger：触发一次，bool相当于是一种状态，但是Trigger是一个一次性使用的条件<br>AnimationClip：动画片段（文件）<br>动画片段，就是动画文件，记录了每一帧的信息。Unity内可以制作动画，但是从其他建模类软件导入的情况也比较多（尤其是3D动画）</p>
+<p>2D动画也分为帧动画和骨骼动画</p>
+<p>帧动画就是通过切换图片形成动画</p>
+<p>而骨骼是通过旋转、缩放、移动关节点进行变化的动画</p>
+<p>动画切换<br>Unity动画组件本质上是引用了一个“动画状态机”（AnimationController）的配置文件</p>
+<p>状态：当前角色处于的状态，状态会持有具体的AnimationClip<br>条件：参数在“发生何等变化”时会进行状态切换<br>Has Exit Time：即使条件满足也需要等待当前状态的播放完毕才能进行切换（后摇）<br>参数：提供给脚本去访问、修改的“值”，这些值变化则状态变化，则动画发生改变<br>无视参数、条件的动画播放<br>CrossFadenInFixedTime：此函数</p>
+<p>//参数1：状态名称<br>//参数2：过度时间（秒）<br>animator.CrossFadenInFixedTime(“Move”, 0.25f);<br>角色移动动画<br>想要角色移动，就要搞定三个基本点：</p>
+<p>角色待机与移动动画的切换<br>角色向不同方向移动时的贴图方向<br>角色实现物理位移<br>要解决第一个问题，就要在Animator中选中两个动画直接的切换连线，添加判断变量（Parameters）和合适的条件（Conditions）（因为是角色移动所以这里设置的是bool变量和真假判断）</p>
+<p>然后在脚本中获取Animator组件并为变量Move判断赋值</p>
+<p>第二个问题直接在脚本中调用localScale，并根据不同方向将X轴的数值置正数或负数即可实现</p>
+<p>第三个问题前面有提</p>
+<p>脚本如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestAnimator</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> moveSpace = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">public</span> Animator animator;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Update is called once per frame</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">float</span> inputX = UnityEngine.Input.GetAxis(<span class="string">"Horizontal"</span>);</span><br><span class="line">        <span class="keyword">float</span> inputY = UnityEngine.Input.GetAxis(<span class="string">"Vertical"</span>);</span><br><span class="line">        <span class="comment">//动画切换</span></span><br><span class="line">        <span class="keyword">bool</span> isMoving = (inputX!= <span class="number">0</span> || inputY!= <span class="number">0</span>);</span><br><span class="line">        animator.SetBool(<span class="string">"Move"</span>, isMoving);</span><br><span class="line">		<span class="comment">//移动方向</span></span><br><span class="line">        <span class="keyword">if</span> (inputX &gt; <span class="number">0</span>) transform.localScale = <span class="keyword">new</span> Vector3(<span class="number">10</span>, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (inputX &lt; <span class="number">0</span>) transform.localScale = <span class="keyword">new</span> Vector3(<span class="number">-10</span>, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//角色移动</span></span><br><span class="line">        Vector3 moveDirection = <span class="keyword">new</span> Vector3(inputX, inputY, <span class="number">0</span>);</span><br><span class="line">        transform.Translate(moveDirection * moveSpace * Time.deltaTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>动画事件<br>可以在动画中的某一帧插入一个事件来执行想要的效果（如落地时播放音效）</p>
+<p>动画事件可以调用脚本中的函数或方法来执行效果</p>
+<p>2D物理系统<br>碰撞体（Collider）<br>决定物理单位作为物体碰撞时的形状，可以是矩形、圆形亦或是自定义的多边形</p>
+<p>参数解释</p>
+<p>Edit Collider：编辑碰撞体大小<br>Material：物理材质，决定物体的碰撞特性<br>Is Trigger：是否为触发器<br>Auto Tiling：碰撞体大小自动贴合物理单位边框<br>刚体（Rigidbody 2D）<br>物理单位的物理特性，也就是定义物理单位怎样受到物理的控制，如重力等</p>
+<p>参数解释</p>
+<p>Body Type：<br>Dynamic：动力学体。默认选项，受物理引擎影响，会主动响应重力、碰撞和其他外力。用于需要物理交互和自然运动的物体（玩家、敌人或可以被推动的物体）<br>Kinematic：运动体。运动体不会主动受到外力的影响，但可以通过代码控制其位置和旋转。这意味着你可以手动设置其速度和方向，但它不会响应重力或碰撞力。运动体可以推动其他动力学刚体，但自身不会因碰撞而移动。<br>Static：静态体。当设置为静态体时，物体不会受到物理力的影响，它不会移动或旋转，除非通过代码直接改变其位置或旋转。这通常用于不需要物理交互的物体，例如背景元素或固定结构。</p>
+<p>如果你想要一个物体能够自然地掉落并在碰撞时反弹，你会选择Dynamic。如果你想要一个物体保持固定位置，但仍然能够通过代码进行移动，你会选择Kinematic。如果你完全不希望物体参与物理计算，你会选择Static。</p>
+<p>Material：物理材质，决定物体的碰撞特性<br>Friction：摩擦力<br>Bounciness：弹力</p>
+<p>Simulated：模拟效果（编辑时展示模拟效果）</p>
+<p>Mass：质量，影响着物体的惯性和加速度</p>
+<p>Gravity Scale：重力，影响重力加速度（0 = 无重力，1 = 标准重力，2 = 两倍标准重力）</p>
+<p>Linear Drag：线性阻力，影响位置移动时的阻力参数</p>
+<p>Angular Drag：角阻力，影响旋转运动时的阻力参数</p>
+<p>Collider Detection：碰撞检测，用于确定物体是否互相碰撞的一个关键机制<br>Discrete：离散，计算成本较低。在离散碰撞检测中，物理引擎会在固定的时间步长（通常是FixedUpdate周期）检查物体的位置并确定他们是否发生碰撞。如果物体移动的速度过快将会穿越应该与之碰撞的物体，俗称“隧穿”。<br>Continuous：连续，计算成本较高。连续碰撞检测适用于处理快速移动的物体，以免出现“隧穿”问题。在连续碰撞检测中，物理引擎会考虑物体在时间步长内的运动，并尝试找到第一个接触点。这种检测方式比离散碰撞检测消耗更多的CPU资源，因此通常只对那些需要它的物体使用。</p>
+<p>constraints：定义对 2D 刚体运动的任何限制。<br>Freeze Position：选择性地阻止2D刚体沿世界X和Y轴移动。这不会阻止刚体的旋转，但会锁定其在特定轴上的平移运动 。<br>Freeze Rotation：选择性地阻止2D刚体围绕Z轴旋转。刚体仍然可以自由移动，但旋转将被限制</p>
+<p>事件<br>碰撞事件<br>当两个物理单位相撞时会调用的逻辑</p>
+<p>前提条件：双方都有碰撞体，其中一个有刚体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;发生碰撞</span><br><span class="line">private void OnCollisionEnter2D(Collision2D collision)</span><br><span class="line">&#123;</span><br><span class="line">	Debug.Log(&quot;发生碰撞&quot;);</span><br><span class="line">    if(cllision.gameObject.name &#x3D;&#x3D; &quot;S1&quot;)</span><br><span class="line">    &#123;</span><br><span class="line">        Destory(gameObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;持续碰撞</span><br><span class="line">private void OnCollisionStay(Collision collision)</span><br><span class="line">&#123;</span><br><span class="line">	Debug.Log(&quot;持续碰撞&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;结束碰撞</span><br><span class="line">private void OnCollisionExit2D(Collision2D collision)</span><br><span class="line">&#123;</span><br><span class="line">	Debug.Log(&quot;结束碰撞&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>触发事件<br>当两个物理单位其中一个碰撞体设置为触发器时调用的逻辑</p>
+<p>前提条件：双方都有碰撞体，一方为触发器，另一方有刚体</p>
+<p>//发生触发<br>    private void OnTriggerEnter2D(Collider2D collision)<br>    {<br>       Debug.Log(“发生触发”);<br>    }<br>    //持续触发<br>    private void OnTriggerStay2DStay(Collision collision)<br>    {<br>        Debug.Log(“持续触发”);<br>    }<br>    //结束触发<br>    private void OnTriggerExit2D(Collision2D collision)<br>    {<br>        Debug.Log(“结束触发”);<br>    }<br>碰撞事件与触发事件的区别<br>碰撞事件和触发事件不能同时发生<br>碰撞事件：会导致物理力的计算和应用，例如动量转移和碰撞响应。触发事件：不会导致物理力的计算，它们仅作为检测机制，用于检测物体是否进入或离开特定区域。<br>碰撞事件：因为涉及到物理计算，可能会对性能有更高的要求。触发事件：通常用于优化，因为它们避免了物理力的计算，特别是在需要频繁检测物体是否穿过区域的场景中。<br>碰撞事件：适用于需要物理交互和响应的场景，如球撞击地面或车辆碰撞。触发事件：适用于不需要物理力但需要检测物体进入特定区域的场景，如触发门的开关、检测玩家进入特定区域等。</p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://droidman.net/2023/01/01/2023-01-01/" data-id="cmd1cywb7000116z87y7f75ze" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/" rel="tag">unity</a></li></ul>
+
     </footer>
   </div>
   
@@ -143,7 +174,7 @@
   
     <a href="/2022/01/01/2022-01-01/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2022-01-01</div>
+      <div class="article-nav-title">粒子系统基础</div>
     </a>
   
 </nav>
@@ -162,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Particle-System/" rel="tag">Particle System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -172,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.67px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.33px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.67px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.67px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.67px;">面试</a>
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15.71px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Particle-System/" style="font-size: 10px;">Particle System</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.43px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.57px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 12.86px;">mysql</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 17.14px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.43px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.43px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.43px;">面试</a>
     </div>
   </div>
 
