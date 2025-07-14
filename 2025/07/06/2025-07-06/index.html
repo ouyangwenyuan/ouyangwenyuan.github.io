@@ -15,7 +15,7 @@
 <meta property="og:description" content="1.界面的加载、卸载 2.打开、关闭、隐藏、显示界面，这边隐藏是指界面被遮挡的意思，一般来说，界面被遮住时，应该关闭界面的更新 3.界面栈的管理，主要是用于场景切换时需要回到上一个场景打开的界面栈 4.需要的功能：图片镜像（节省资源）、滑动列表（复用）、模糊背景等 注意点： 1.界面的生成：class的生成、预制体的实例化，类和实例的关联。 业务打开一个界面需要传入界面的标识（枚举、或者字符串），">
 <meta property="og:locale" content="en,ZH">
 <meta property="article:published_time" content="2025-07-06T00:27:04.000Z">
-<meta property="article:modified_time" content="2025-07-13T06:51:16.840Z">
+<meta property="article:modified_time" content="2025-07-14T01:01:19.252Z">
 <meta property="article:author" content="OuyangWenyuan">
 <meta property="article:tag" content="unity">
 <meta name="twitter:card" content="summary">
@@ -111,7 +111,6 @@
 <p>5.界面特效控制：游戏会有很多进入界面播放一次的特效，如果你的界面关闭不是使用SetActive处理的（例如设置layer、移到屏幕外等），那么在你的界面再次打开时特效不会再次被播放。</p>
 <p>6.界面内使用的对象怎么获取？（例如要修改界面的某个text）</p>
 <p>每个需要在脚本内加载的对象都挂载一个UIExportItem对象，在界面初始化时统一收集这些对象，并存储在一个map里给界面使用</p>
-<p>7.界面的模糊效果怎么做？可以参考：<a href="https://blog.csdn.net/zhaoguanghui2012/article/details/51462284，原理就是使用一个shader均值周围的像素。" target="_blank" rel="noopener">https://blog.csdn.net/zhaoguanghui2012/article/details/51462284，原理就是使用一个shader均值周围的像素。</a></p>
 <p>UI模块分以下几部分：</p>
 <p>1.界面类：负责界面的逻辑，提供生命周期方法供业务使用，如OnOpen、OnClose等。负责界面的生成、销毁（以及界面ab包的加载、卸载）。子窗口、子item的管理（生成、缓存、销毁）</p>
 <p>2.管理类：提供界面的生命周期管理，如打开、关闭、显示（获得焦点，显示在最上层）、隐藏（失去焦点，可以理解成被其他界面挡住了）一个界面、打开、关闭一堆界面（场景切入、切出时）。缓存界面。维护窗体中间的层级关系。</p>

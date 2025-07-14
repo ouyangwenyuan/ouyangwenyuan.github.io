@@ -15,7 +15,7 @@
 <meta property="og:description" content="这篇只涉及基础原理，下篇会讲如何实现一个简单的资源管理框架。 一、Assets和Objects 资源(Asset)是存储在Unity项目的 Assets 文件夹中的磁盘文件。有些资源的数据格式是Unity原生支持的，有些资源则需要转换为原生的数据格式后才能被使用。对象(UnityEngine.Object)，代表序列化数据的集合，表示某个资源的具体实例。它可以是Unity使用的任何类型的资源，所有">
 <meta property="og:locale" content="en,ZH">
 <meta property="article:published_time" content="2025-07-04T00:27:04.000Z">
-<meta property="article:modified_time" content="2025-07-13T03:03:48.134Z">
+<meta property="article:modified_time" content="2025-07-14T00:58:14.536Z">
 <meta property="article:author" content="OuyangWenyuan">
 <meta property="article:tag" content="unity">
 <meta name="twitter:card" content="summary">
@@ -135,7 +135,7 @@
 <p>在工程构建的时候，所有名字为”Resources”的目录下的所有资源都会被合并为一个序列化文件。像AssetBundle文件一样，这个文件同时也包含了元数据(metadata)和索引信息(indexing information)。索引信息包含了一个序列化的、将对象的名称映射为 文件GUID+本地ID 查找树(lookup tree)。同时这个索引信息也包含了对象在序列化文件中的偏移位置信息。</p>
 <p>因为这个查找树的数据结构是（在大部分平台上）一个平衡搜索树(balanced search tree)[注1].它的构建时间复杂度是 O(N log(N))，这里的 N 是树中对象的数量。随着Resources文件夹下资源的增长，索引信息的加载时间也会超过线性的速度增长。</p>
 <p>这个操作是发生在应用启动的过程中的Unity闪屏(splash screen)出现的时候，并且是不可跳过的。如果Resources 系统包含了 10000 个资源，那么在低端移动设备上面这个过程将会达到数秒之久，尽管绝大部分的Resources下面的资源在第一个场景当中都是不需要加载的。</p>
-<p>3.AssetBundle：参考<a href="https://www.cnblogs.com/wang-jin-fu/p/11171626.html，支持热更，但是每次资源变化都得重新打ab包（奇慢），所以适合发布模式，但开发模式千万别用。" target="_blank" rel="noopener">https://www.cnblogs.com/wang-jin-fu/p/11171626.html，支持热更，但是每次资源变化都得重新打ab包（奇慢），所以适合发布模式，但开发模式千万别用。</a></p>
+<p>3.AssetBundle：支持热更，但是每次资源变化都得重新打ab包（奇慢），所以适合发布模式，但开发模式千万别用。</p>
 <p>4.UnityWebRequest：从网络端下载</p>
 <p>UnityWebRequest功能分三块：</p>
 <p>　　◾上传文件到服务器</p>
@@ -220,7 +220,7 @@ IEnumerator GetRequest(string uri)
     if (resultList.Count == 0) {
         Debug.Log(string.Format(&quot;资源{0}没有被引用,可以删除&quot;, targetPath));
     }
-}　　</code></pre><p>　　2-2.压缩资源包：本人项目采用的是lzma压缩方式，可以参考雨松的文章<a href="https://www.xuanyusong.com/archives/3095" target="_blank" rel="noopener">https://www.xuanyusong.com/archives/3095</a></p>
+}　　</code></pre><p>　　2-2.压缩资源包：</p>
 <p>　　AssetBundle自带压缩模式，但是lzma使用时需要整包解压缩，所以我当前项目采用的是AssetBundle采用lz4压缩，在对所有的ab包进行lzma压缩，也就是压缩了两层。</p>
 <p>　　2-3.上传部分高清资源：有部分资源需要某特定的模块才会用到，那么这部分比较大的文件可以上传到服务器按需下载。例如商城的资源一般引用高清资源，但用户初次进游戏的时候并不会使用到（有些用户甚至很长一段时间都不会打开这些界面）,unity 上传资源到服务器参考UnityWebRequest接口</p>
 <p>3.内存的控制，内存占用太高会导致程序崩溃，频繁加载、卸载又会引起卡顿。在内存占用和加载之间取一个平衡点（卸载无用资源）</p>
