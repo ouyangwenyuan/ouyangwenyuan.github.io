@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>二维旋转、缩放、错切：为什么矩阵能表示线性变换 | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一篇把点、向量、坐标系这些基础概念捋了一遍，这一篇开始真正进入“矩阵到底在变什么”。 如果说上一篇是在清理术语，这一篇更像是在补 Unity 开发里一条很关键的底层直觉：你对轴的理解一旦错了，后面看旋转、缩放和顺序就只会越看越乱。 如果只停留在“矩阵乘向量会得到一个新向量”，其实还是比较空。 更重要的问题是：  为什么旋转能写成矩阵？ 为什么缩放也能写成矩阵？ 为什么矩阵乘法顺序一换，结果就完全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维旋转、缩放、错切：为什么矩阵能表示线性变换">
+<meta property="og:url" content="http://droidman.net/2023/01/22/2023-01-22/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="上一篇把点、向量、坐标系这些基础概念捋了一遍，这一篇开始真正进入“矩阵到底在变什么”。 如果说上一篇是在清理术语，这一篇更像是在补 Unity 开发里一条很关键的底层直觉：你对轴的理解一旦错了，后面看旋转、缩放和顺序就只会越看越乱。 如果只停留在“矩阵乘向量会得到一个新向量”，其实还是比较空。 更重要的问题是：  为什么旋转能写成矩阵？ 为什么缩放也能写成矩阵？ 为什么矩阵乘法顺序一换，结果就完全">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-01-22T14:00:01.000Z">
+<meta property="article:modified_time" content="2026-06-28T09:39:44.590Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="矩阵">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2023-01-22" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/01/22/2023-01-22/" class="article-date">
+  <time datetime="2023-01-22T14:00:01.000Z" itemprop="datePublished">2023-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二维旋转、缩放、错切：为什么矩阵能表示线性变换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇把点、向量、坐标系这些基础概念捋了一遍，这一篇开始真正进入“矩阵到底在变什么”。</p>
+<p>如果说上一篇是在清理术语，这一篇更像是在补 Unity 开发里一条很关键的底层直觉：你对轴的理解一旦错了，后面看旋转、缩放和顺序就只会越看越乱。</p>
+<p>如果只停留在“矩阵乘向量会得到一个新向量”，其实还是比较空。</p>
+<p>更重要的问题是：</p>
+<ul>
+<li>为什么旋转能写成矩阵？</li>
+<li>为什么缩放也能写成矩阵？</li>
+<li>为什么矩阵乘法顺序一换，结果就完全不同？</li>
+</ul>
+<p>把这些问题弄清楚，你后面再看 Unity 里的 TRS、相机矩阵、MVP 链，就不会只是在背 API。</p>
+<h2 id="一、线性变换的关键特征是什么"><a href="#一、线性变换的关键特征是什么" class="headerlink" title="一、线性变换的关键特征是什么"></a>一、线性变换的关键特征是什么</h2><p>所谓线性变换，可以先粗暴理解成两件事：</p>
+<ol>
+<li>直线还是直线</li>
+<li>原点保持不动</li>
+</ol>
+<p>所以像旋转、缩放、错切，都满足这个特点。</p>
+<p>但平移不满足，因为平移会把原点从 <code>(0, 0)</code> 挪走。</p>
+<p>这也是为什么二维的 2x2 矩阵，能很好地表示旋转、缩放、错切，却不能直接表示平移。</p>
+<h2 id="二、缩放矩阵最好理解"><a href="#二、缩放矩阵最好理解" class="headerlink" title="二、缩放矩阵最好理解"></a>二、缩放矩阵最好理解</h2><p>如果一个二维点 <code>(x, y)</code>，我们想让它在 x 方向放大 <code>sx</code> 倍，在 y 方向放大 <code>sy</code> 倍，那么目标结果就是：</p>
+<p>$$<br>(x’, y’) &#x3D; (sx \cdot x, sy \cdot y)<br>$$</p>
+<p>写成矩阵就是：</p>
+<h1 id="begin-bmatrix-sx-0-0-sy-end-bmatrix-begin-bmatrix-x-y-end-bmatrix"><a href="#begin-bmatrix-sx-0-0-sy-end-bmatrix-begin-bmatrix-x-y-end-bmatrix" class="headerlink" title="$$\begin{bmatrix}sx &amp; 0 \0 &amp; sy\end{bmatrix}\begin{bmatrix}x \y\end{bmatrix}"></a>$$<br>\begin{bmatrix}<br>sx &amp; 0 \<br>0 &amp; sy<br>\end{bmatrix}<br>\begin{bmatrix}<br>x \<br>y<br>\end{bmatrix}</h1><p>\begin{bmatrix}<br>sx \cdot x \<br>sy \cdot y<br>\end{bmatrix}<br>$$</p>
+<p>这说明矩阵并不神秘，它只是把“每个轴怎么变”写成统一形式。</p>
+<p>当 <code>sx = sy</code> 时，就是等比缩放。</p>
+<p>当 <code>sx != sy</code> 时，就是非等比缩放。</p>
+<p>这个区别在 Unity 里很重要，因为非等比缩放后，很多方向、法线、碰撞和子节点表现都会开始变微妙。</p>
+<h2 id="三、旋转矩阵为什么长那个样子"><a href="#三、旋转矩阵为什么长那个样子" class="headerlink" title="三、旋转矩阵为什么长那个样子"></a>三、旋转矩阵为什么长那个样子</h2><p>二维旋转通常是很多人第一次觉得“公式开始抽象”的地方。</p>
+<p>绕原点逆时针旋转角度 $\theta$ 后，结果写成矩阵是：</p>
+<p>$$<br>\begin{bmatrix}<br>\cos\theta &amp; -\sin\theta \<br>\sin\theta &amp; \cos\theta<br>\end{bmatrix}<br>$$</p>
+<p>如果硬背，很快就忘。</p>
+<p>更好的记法还是上一篇提过的那条：看矩阵的列向量。</p>
+<p>原来的 x 轴 <code>(1, 0)</code> 旋转后，会变成：</p>
+<p>$$<br>(\cos\theta, \sin\theta)<br>$$</p>
+<p>原来的 y 轴 <code>(0, 1)</code> 旋转后，会变成：</p>
+<p>$$<br>(-\sin\theta, \cos\theta)<br>$$</p>
+<p>把这两个新基向量按列摆进去，就是旋转矩阵。</p>
+<p>这个理解方式比背公式稳得多，因为它直接告诉你：</p>
+<p>旋转矩阵，本质上是在重定义一组新的坐标轴。</p>
+<h2 id="四、错切矩阵最容易在-UI-和-2D-工具里见到"><a href="#四、错切矩阵最容易在-UI-和-2D-工具里见到" class="headerlink" title="四、错切矩阵最容易在 UI 和 2D 工具里见到"></a>四、错切矩阵最容易在 UI 和 2D 工具里见到</h2><p>错切不像旋转和缩放那么常见，但它很适合帮助理解“矩阵不一定只是转和缩”。</p>
+<p>比如一个简单的 x 方向错切：</p>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; k \<br>0 &amp; 1<br>\end{bmatrix}<br>$$</p>
+<p>它会让点 <code>(x, y)</code> 变成：</p>
+<p>$$<br>(x + ky, y)<br>$$</p>
+<p>也就是说，y 越大，x 被推得越多。</p>
+<p>图形会像被侧向拉斜一样。</p>
+<p>在 Unity 日常业务里你不一定直接手写错切矩阵，但当你处理一些自定义 UI 网格、2D 变形、特殊动效时，这种思路是会用到的。</p>
+<h2 id="五、矩阵乘法顺序为什么不能乱"><a href="#五、矩阵乘法顺序为什么不能乱" class="headerlink" title="五、矩阵乘法顺序为什么不能乱"></a>五、矩阵乘法顺序为什么不能乱</h2><p>这是工程里最容易出错的点之一。</p>
+<p>先旋转再缩放，和先缩放再旋转，结果通常不一样。</p>
+<p>原因很简单：</p>
+<p>前一个变换的输出，会成为后一个变换的输入。</p>
+<p>如果你先把物体拉宽，再去旋转，旋转的是“已经被拉宽过的局部基向量”。</p>
+<p>如果你先旋转，再缩放，缩放发生在旋转后的轴方向上。</p>
+<p>这两个过程不是一回事。</p>
+<p>所以矩阵乘法虽然看起来只是把几个矩阵连乘起来，但它其实是在描述一条有先后顺序的变换流水线。</p>
+<h2 id="六、Unity-里最常见的误解：以为旋转永远绕世界轴发生"><a href="#六、Unity-里最常见的误解：以为旋转永远绕世界轴发生" class="headerlink" title="六、Unity 里最常见的误解：以为旋转永远绕世界轴发生"></a>六、Unity 里最常见的误解：以为旋转永远绕世界轴发生</h2><p>很多人一开始看 <code>transform.Rotate</code>，或者自己做插值动画时，会把“旋转”理解成一个单一动作。</p>
+<p>但真正影响结果的是：</p>
+<ul>
+<li>你绕的是局部轴还是世界轴</li>
+<li>变换是在父节点之前还是之后</li>
+<li>当前对象是否已经有缩放</li>
+</ul>
+<p>只要把矩阵乘法的顺序意识带进来，就会知道：</p>
+<p>同样叫“旋转 30 度”，放在不同变换链位置里，结果可以完全不同。</p>
+<h2 id="七、用一个二维例子把顺序差异看直观"><a href="#七、用一个二维例子把顺序差异看直观" class="headerlink" title="七、用一个二维例子把顺序差异看直观"></a>七、用一个二维例子把顺序差异看直观</h2><p>假设一个点先执行：</p>
+<ol>
+<li>x 方向放大 2 倍</li>
+<li>再逆时针旋转 90 度</li>
+</ol>
+<p>和先：</p>
+<ol>
+<li>逆时针旋转 90 度</li>
+<li>再 x 方向放大 2 倍</li>
+</ol>
+<p>结果不会一样。</p>
+<p>因为“x 方向”这个概念，在旋转前后本来就变了。</p>
+<p>这个例子对应到 Unity 里，就是为什么父节点缩放 + 子节点旋转，经常让人觉得“不符合直觉”。</p>
+<p>其实不是引擎错，是你正在对一组已经变化过的坐标轴继续操作。</p>
+<p>如果你想把这个差异在 Unity 里直接打出来，可以写一个最小实验：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vector3 point = <span class="keyword">new</span> Vector3(<span class="number">1f</span>, <span class="number">0f</span>, <span class="number">0f</span>);</span><br><span class="line"></span><br><span class="line">Matrix4x4 scaleFirst = Matrix4x4.Rotate(Quaternion.Euler(<span class="number">0f</span>, <span class="number">0f</span>, <span class="number">90f</span>))</span><br><span class="line">	* Matrix4x4.Scale(<span class="keyword">new</span> Vector3(<span class="number">2f</span>, <span class="number">1f</span>, <span class="number">1f</span>));</span><br><span class="line"></span><br><span class="line">Matrix4x4 rotateFirst = Matrix4x4.Scale(<span class="keyword">new</span> Vector3(<span class="number">2f</span>, <span class="number">1f</span>, <span class="number">1f</span>))</span><br><span class="line">	* Matrix4x4.Rotate(Quaternion.Euler(<span class="number">0f</span>, <span class="number">0f</span>, <span class="number">90f</span>));</span><br><span class="line"></span><br><span class="line">Debug.Log(scaleFirst.MultiplyPoint3x4(point));</span><br><span class="line">Debug.Log(rotateFirst.MultiplyPoint3x4(point));</span><br></pre></td></tr></table></figure>
+
+<p>哪怕只是看两行输出，也会比背“顺序不同结果不同”这句话更有体感。</p>
+<h2 id="八、学到这里，应该建立什么工程直觉"><a href="#八、学到这里，应该建立什么工程直觉" class="headerlink" title="八、学到这里，应该建立什么工程直觉"></a>八、学到这里，应该建立什么工程直觉</h2><p>这篇最重要的不是记住所有矩阵形式，而是形成下面几条直觉：</p>
+<ol>
+<li>矩阵描述的是基向量怎么变。</li>
+<li>缩放、旋转、错切都是在线性框架里重排坐标轴。</li>
+<li>变换顺序不同，结果通常不同。</li>
+<li>只要原点移动了，就已经不再是单纯的线性变换。</li>
+</ol>
+<p>这最后一点，正好会把我们带到下一篇。</p>
+<h2 id="九、为什么下一步一定要学齐次坐标"><a href="#九、为什么下一步一定要学齐次坐标" class="headerlink" title="九、为什么下一步一定要学齐次坐标"></a>九、为什么下一步一定要学齐次坐标</h2><p>你会发现，到目前为止，我们能描述很多事情，但还有一个最常见的动作没纳入统一框架：平移。</p>
+<p>而游戏开发里，平移又偏偏是最高频的。</p>
+<p>所以图形学里才会引入齐次坐标和 3x3、4x4 矩阵，把位移也装进一套统一表达方式里。</p>
+<p>下一篇就专门讲这个桥是怎么搭起来的。</p>
+<h2 id="十、总结"><a href="#十、总结" class="headerlink" title="十、总结"></a>十、总结</h2><p>如果只看公式，旋转矩阵、缩放矩阵、错切矩阵很容易越学越散。</p>
+<p>但如果你始终盯着“坐标轴怎么变、顺序怎么串”，这些矩阵就会开始统一起来。</p>
+<p>后面进入 Unity 的 <code>Matrix4x4</code> 之前，这个理解是必须有的。否则你看到 4x4 只会更晕，不会更清楚。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2023/01/22/2023-01-22/" data-id="cuidkW2QKovOUmgKZ_3O9lnVO" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/30/2023-01-30/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          从 3x3 到 4x4：齐次坐标如何把平移装进矩阵
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/08/2023-01-08/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">矩阵和线性变换入门：先把点、向量和坐标系说清楚</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bingo/" rel="tag">Bingo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cash-Club/" rel="tag">Cash Club</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Review/" rel="tag">Code Review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matrix4x4/" rel="tag">Matrix4x4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Particle-System/" rel="tag">Particle System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Profiler/" rel="tag">Profiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDK/" rel="tag">SDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transform/" rel="tag">Transform</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" rel="tag">二合游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" rel="tag">任务系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" rel="tag">低端机适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" rel="tag">出海项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" rel="tag">前后端协作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E7%94%BB/" rel="tag">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" rel="tag">反作弊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" rel="tag">商店系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" rel="tag">回归测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%88%98/" rel="tag">实战</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" rel="tag">对象池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag">工作流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" rel="tag">工具链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag">工程化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" rel="tag">工程流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag">工程设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" rel="tag">开发效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" rel="tag">弱联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" rel="tag">成就系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" rel="tag">支付系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" rel="tag">数值设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" rel="tag">数学模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" rel="tag">数据埋点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" rel="tag">新手引导</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" rel="tag">框架设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%95%E7%BA%BF/" rel="tag">法线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" rel="tag">活动系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" rel="tag">测试清单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" rel="tag">游戏设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">热更新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" rel="tag">特效优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">玩法设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" rel="tag">研发复盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" rel="tag">系列导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" rel="tag">经济设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" rel="tag">编辑器工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" rel="tag">网络同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" rel="tag">调试工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" rel="tag">资源打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" rel="tag">资源规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" rel="tag">运营框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" rel="tag">运营系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" rel="tag">配置系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" rel="tag">配置表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%87%8D%E6%9E%84/" rel="tag">重构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 18.46px;">AI</a> <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/AssetBundle/" style="font-size: 10px;">AssetBundle</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/Bingo/" style="font-size: 10px;">Bingo</a> <a href="/tags/C/" style="font-size: 13.08px;">C#</a> <a href="/tags/Cash-Club/" style="font-size: 10.77px;">Cash Club</a> <a href="/tags/Code-Review/" style="font-size: 10px;">Code Review</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 12.31px;">Java</a> <a href="/tags/Lua/" style="font-size: 15.38px;">Lua</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Matrix4x4/" style="font-size: 10px;">Matrix4x4</a> <a href="/tags/Particle-System/" style="font-size: 10px;">Particle System</a> <a href="/tags/Profiler/" style="font-size: 10px;">Profiler</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SDK/" style="font-size: 10px;">SDK</a> <a href="/tags/Shader/" style="font-size: 11.54px;">Shader</a> <a href="/tags/Slot/" style="font-size: 16.92px;">Slot</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Transform/" style="font-size: 10px;">Transform</a> <a href="/tags/UGUI/" style="font-size: 11.54px;">UGUI</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10.77px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 11.54px;">mysql</a> <a href="/tags/python/" style="font-size: 11.54px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.15px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xLua/" style="font-size: 11.54px;">xLua</a> <a href="/tags/xlua-lua-framework/" style="font-size: 10.77px;">xlua, lua, framework</a> <a href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" style="font-size: 17.69px;">二合游戏</a> <a href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">任务系统</a> <a href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" style="font-size: 10px;">低端机适配</a> <a href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">出海项目</a> <a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" style="font-size: 10px;">前后端协作</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" style="font-size: 10px;">反作弊</a> <a href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">商店系统</a> <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">回归测试</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10px;">图形学</a> <a href="/tags/%E5%AE%9E%E6%88%98/" style="font-size: 10px;">实战</a> <a href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" style="font-size: 10px;">对象池</a> <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">导航</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 10.77px;">小游戏</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="font-size: 10px;">工作流</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" style="font-size: 13.85px;">工具链</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 10px;">工程化</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">工程流程</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">工程设计</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 10px;">开发效率</a> <a href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" style="font-size: 10.77px;">弱联网</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 14.62px;">性能优化</a> <a href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">成就系统</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%94%AF%E4%BB%98/" style="font-size: 10px;">支付</a> <a href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">支付系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">数值设计</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">数学模型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" style="font-size: 10.77px;">数据埋点</a> <a href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" style="font-size: 10px;">新手引导</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 12.31px;">架构设计</a> <a href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">框架设计</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%95%E7%BA%BF/" style="font-size: 10px;">法线</a> <a href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" style="font-size: 10.77px;">活动系统</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" style="font-size: 10px;">测试清单</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10.77px;">游戏开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">游戏设计</a> <a href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">热更新</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" style="font-size: 10px;">特效优化</a> <a href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">玩法设计</a> <a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 16.15px;">矩阵</a> <a href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" style="font-size: 10px;">研发复盘</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10.77px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">系列导航</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10.77px;">系统设计</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 10.77px;">线性代数</a> <a href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">经济设计</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" style="font-size: 11.54px;">编辑器工具</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" style="font-size: 10px;">网络同步</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">自动化测试</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 19.23px;">设计模式</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">读书笔记</a> <a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 10px;">调试</a> <a href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">调试工具</a> <a href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" style="font-size: 10px;">资源打包</a> <a href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" style="font-size: 10px;">资源规范</a> <a href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">运营框架</a> <a href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">运营系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">配置系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" style="font-size: 10px;">配置表</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 10px;">重构</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10.77px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">January 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/06/28/2026-06-28/">这半年我把二合开发和 Unity + AI 踩坑都写下来了，这里给你一份导航</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/19/2026-06-19/">让 AI 先帮你列 Code Review 清单，比每次拍脑袋看提交靠谱多了</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/13/2026-06-13/">编辑器批处理脚本总是又长又烦？这类活真的很适合先让 AI 打个底</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/30/2026-05-30/">埋点设计最怕事后补锅，AI 倒是很适合先帮你把埋点草图铺出来</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/01/2026-05-01/">打包前总怕漏资源？AI 很适合先帮你做那层资源发布前检查</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

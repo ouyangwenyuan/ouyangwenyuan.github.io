@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>用 AI 帮 Unity 写编辑器工具挺香，但前提是你别只会说“帮我写个工具” | 持续学习者————Just Do It！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这两年我对 AI 在 Unity 开发里最稳定的判断之一是： 别一上来就指望它帮你写完整玩法。 但让它帮你写编辑器工具，很多时候是真的顺手。 原因很简单。 编辑器工具通常有几个特点：  输入输出边界清楚 交互流程不算太复杂 很多代码是重复样板 容易人工 review  这几条刚好都比较适合 AI 发挥。 所以如果让我选一个最值得先落地的 Unity + AI 场景，我通常会把编辑器工具排得很靠前。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 AI 帮 Unity 写编辑器工具挺香，但前提是你别只会说“帮我写个工具”">
+<meta property="og:url" content="http://droidman.net/2025/11/09/2025-11-09/index.html">
+<meta property="og:site_name" content="持续学习者————Just Do It！">
+<meta property="og:description" content="这两年我对 AI 在 Unity 开发里最稳定的判断之一是： 别一上来就指望它帮你写完整玩法。 但让它帮你写编辑器工具，很多时候是真的顺手。 原因很简单。 编辑器工具通常有几个特点：  输入输出边界清楚 交互流程不算太复杂 很多代码是重复样板 容易人工 review  这几条刚好都比较适合 AI 发挥。 所以如果让我选一个最值得先落地的 Unity + AI 场景，我通常会把编辑器工具排得很靠前。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-11-09T14:00:01.000Z">
+<meta property="article:modified_time" content="2026-06-28T07:42:26.512Z">
+<meta property="article:author" content="OuyangWenyuan">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="工作流">
+<meta property="article:tag" content="编辑器工具">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续学习者————Just Do It！</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://droidman.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2025-11-09" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/11/09/2025-11-09/" class="article-date">
+  <time datetime="2025-11-09T14:00:01.000Z" itemprop="datePublished">2025-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用 AI 帮 Unity 写编辑器工具挺香，但前提是你别只会说“帮我写个工具”
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两年我对 AI 在 Unity 开发里最稳定的判断之一是：</p>
+<p>别一上来就指望它帮你写完整玩法。</p>
+<p>但让它帮你写编辑器工具，很多时候是真的顺手。</p>
+<p>原因很简单。</p>
+<p>编辑器工具通常有几个特点：</p>
+<ul>
+<li>输入输出边界清楚</li>
+<li>交互流程不算太复杂</li>
+<li>很多代码是重复样板</li>
+<li>容易人工 review</li>
+</ul>
+<p>这几条刚好都比较适合 AI 发挥。</p>
+<p>所以如果让我选一个最值得先落地的 Unity + AI 场景，我通常会把编辑器工具排得很靠前。</p>
+<h2 id="一、为什么-AI-特别适合帮忙写-Unity-编辑器工具"><a href="#一、为什么-AI-特别适合帮忙写-Unity-编辑器工具" class="headerlink" title="一、为什么 AI 特别适合帮忙写 Unity 编辑器工具"></a>一、为什么 AI 特别适合帮忙写 Unity 编辑器工具</h2><p>因为这类代码，很多时候难点不在“算法有多深”，而在于：</p>
+<ul>
+<li>API 记不记得全</li>
+<li>细节是否写完整</li>
+<li>UI、菜单、选择集、Undo、AssetDatabase 这些样板有没有漏</li>
+</ul>
+<p>而这些恰好是 AI 擅长补齐的地方。</p>
+<p>比如你脑子里已经很清楚要做一个工具：</p>
+<ul>
+<li>扫描场景里的 Image</li>
+<li>找出没关 Raycast Target 的组件</li>
+<li>一键修复</li>
+<li>输出修改日志</li>
+</ul>
+<p>这种任务如果手写，当然也不难。</p>
+<p>但你得自己把菜单入口、滚动列表、按钮事件、批量修改、脏标记这些细节都补上。</p>
+<p>AI 在这里最大的价值，就是先帮你把 60 分版本快速搭起来。</p>
+<h2 id="二、最常见的低效提示词：帮我写个-Unity-工具"><a href="#二、最常见的低效提示词：帮我写个-Unity-工具" class="headerlink" title="二、最常见的低效提示词：帮我写个 Unity 工具"></a>二、最常见的低效提示词：帮我写个 Unity 工具</h2><p>这类提示词的问题不是 AI 完全写不出来。</p>
+<p>而是它太模糊了。</p>
+<p>模糊输入通常会得到一个“看上去像能跑，但细节不太贴项目”的答案。</p>
+<p>比如它可能：</p>
+<ul>
+<li>UI 入口不对</li>
+<li>API 用法过时</li>
+<li>没考虑 Undo</li>
+<li>没考虑 Prefab 资源修改</li>
+<li>没考虑场景对象和资源对象的区别</li>
+</ul>
+<p>最后你不是省事，而是在帮它返工。</p>
+<p>所以提示词别太偷懒。</p>
+<h2 id="三、我更推荐的提示词写法：把上下文和约束一次说清楚"><a href="#三、我更推荐的提示词写法：把上下文和约束一次说清楚" class="headerlink" title="三、我更推荐的提示词写法：把上下文和约束一次说清楚"></a>三、我更推荐的提示词写法：把上下文和约束一次说清楚</h2><p>如果我要让 AI 帮我写一个 Unity 编辑器工具，我通常会把这些东西直接说出来：</p>
+<ol>
+<li>Unity 版本</li>
+<li>要跑在运行时还是 Editor</li>
+<li>操作对象是什么</li>
+<li>输入和输出是什么</li>
+<li>需要哪些按钮或界面元素</li>
+<li>是否要支持 Undo</li>
+<li>是否要兼容批量处理</li>
+<li>返回代码时希望的结构</li>
+</ol>
+<p>比如这个提示词，我觉得就比“帮我写个工具”强很多：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">你是资深 Unity 工具开发工程师。</span><br><span class="line">请帮我写一个 Unity EditorWindow，Unity 版本 2021 LTS，C#。</span><br><span class="line"></span><br><span class="line">工具目标：扫描当前打开场景中所有 Graphic 组件，找出 Raycast Target = true 但不在 Button、Toggle、Slider 等交互链路上的对象。</span><br><span class="line"></span><br><span class="line">要求：</span><br><span class="line">1. 提供 Scan 和 Fix Selected 两个按钮。</span><br><span class="line">2. 扫描结果用滚动列表展示，显示对象路径、组件类型、当前 Raycast Target 状态。</span><br><span class="line">3. 修复时要支持 Undo.RecordObject。</span><br><span class="line">4. 修复后调用 EditorUtility.SetDirty。</span><br><span class="line">5. 代码拆成一个 EditorWindow 和必要的辅助方法，不要写成一个超长函数。</span><br><span class="line">6. 先给完整代码，再解释关键实现点和可能遗漏的边界情况。</span><br></pre></td></tr></table></figure>
+
+<p>这种提示词的好处很直接。</p>
+<p>AI 不是在猜你想干什么，而是在补实现。</p>
+<h2 id="四、一个比较实用的例子：扫描并修复无效-Raycast-Target"><a href="#四、一个比较实用的例子：扫描并修复无效-Raycast-Target" class="headerlink" title="四、一个比较实用的例子：扫描并修复无效 Raycast Target"></a>四、一个比较实用的例子：扫描并修复无效 Raycast Target</h2><p>下面这段代码，就是典型适合让 AI 先起草、再人工审一下的编辑器工具类型。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.SceneManagement;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RaycastTargetScannerWindow</span> : <span class="title">EditorWindow</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">readonly</span> List&lt;Graphic&gt; _results = <span class="keyword">new</span> List&lt;Graphic&gt;();</span><br><span class="line">	<span class="keyword">private</span> Vector2 _scroll;</span><br><span class="line"></span><br><span class="line">	[<span class="meta">MenuItem(<span class="string">&quot;Tools/UI/Raycast Target Scanner&quot;</span>)</span>]</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Open</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		GetWindow&lt;RaycastTargetScannerWindow&gt;(<span class="string">&quot;Raycast Scanner&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		EditorGUILayout.BeginHorizontal();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;Scan&quot;</span>, GUILayout.Height(<span class="number">30</span>)))</span><br><span class="line">		&#123;</span><br><span class="line">			ScanScene();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">using</span> (<span class="keyword">new</span> EditorGUI.DisabledScope(_results.Count == <span class="number">0</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;Fix Selected&quot;</span>, GUILayout.Height(<span class="number">30</span>)))</span><br><span class="line">			&#123;</span><br><span class="line">				FixResults();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EditorGUILayout.EndHorizontal();</span><br><span class="line"></span><br><span class="line">		EditorGUILayout.Space();</span><br><span class="line">		EditorGUILayout.LabelField(<span class="string">$&quot;Result Count: <span class="subst">&#123;_results.Count&#125;</span>&quot;</span>, EditorStyles.boldLabel);</span><br><span class="line"></span><br><span class="line">		_scroll = EditorGUILayout.BeginScrollView(_scroll);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">foreach</span> (<span class="keyword">var</span> graphic <span class="keyword">in</span> _results)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (graphic == <span class="literal">null</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			EditorGUILayout.BeginVertical(<span class="string">&quot;box&quot;</span>);</span><br><span class="line">			EditorGUILayout.ObjectField(<span class="string">&quot;Target&quot;</span>, graphic, <span class="keyword">typeof</span>(Graphic), <span class="literal">true</span>);</span><br><span class="line">			EditorGUILayout.LabelField(<span class="string">&quot;Path&quot;</span>, GetHierarchyPath(graphic.transform));</span><br><span class="line">			EditorGUILayout.LabelField(<span class="string">&quot;Type&quot;</span>, graphic.GetType().Name);</span><br><span class="line">			EditorGUILayout.EndVertical();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EditorGUILayout.EndScrollView();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ScanScene</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		_results.Clear();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> graphics = SceneManager.GetActiveScene()</span><br><span class="line">			.GetRootGameObjects()</span><br><span class="line">			.SelectMany(root =&gt; root.GetComponentsInChildren&lt;Graphic&gt;(<span class="literal">true</span>));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">foreach</span> (<span class="keyword">var</span> graphic <span class="keyword">in</span> graphics)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!graphic.raycastTarget)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (HasInteractiveParent(graphic.transform))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			_results.Add(graphic);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">FixResults</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">foreach</span> (<span class="keyword">var</span> graphic <span class="keyword">in</span> _results)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (graphic == <span class="literal">null</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			Undo.RecordObject(graphic, <span class="string">&quot;Disable Raycast Target&quot;</span>);</span><br><span class="line">			graphic.raycastTarget = <span class="literal">false</span>;</span><br><span class="line">			EditorUtility.SetDirty(graphic);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">HasInteractiveParent</span>(<span class="params">Transform target</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> target.GetComponentInParent&lt;Button&gt;(<span class="literal">true</span>) != <span class="literal">null</span></span><br><span class="line">			   || target.GetComponentInParent&lt;Toggle&gt;(<span class="literal">true</span>) != <span class="literal">null</span></span><br><span class="line">			   || target.GetComponentInParent&lt;Slider&gt;(<span class="literal">true</span>) != <span class="literal">null</span></span><br><span class="line">			   || target.GetComponentInParent&lt;Scrollbar&gt;(<span class="literal">true</span>) != <span class="literal">null</span></span><br><span class="line">			   || target.GetComponentInParent&lt;InputField&gt;(<span class="literal">true</span>) != <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">GetHierarchyPath</span>(<span class="params">Transform current</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (current == <span class="literal">null</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">string</span>.Empty;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> names = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (current != <span class="literal">null</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			names.Add(current.name);</span><br><span class="line">			current = current.parent;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		names.Reverse();</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">string</span>.Join(<span class="string">&quot;/&quot;</span>, names);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这类代码最适合 AI 先给骨架，再由人补边界。</p>
+<h2 id="五、AI-给出的第一版，通常最该人工检查哪几件事"><a href="#五、AI-给出的第一版，通常最该人工检查哪几件事" class="headerlink" title="五、AI 给出的第一版，通常最该人工检查哪几件事"></a>五、AI 给出的第一版，通常最该人工检查哪几件事</h2><p>这是重点。</p>
+<p>别因为工具代码看上去短，就直接复制进项目。</p>
+<p>至少先看这几条：</p>
+<h3 id="1-API-是否符合你项目的-Unity-版本"><a href="#1-API-是否符合你项目的-Unity-版本" class="headerlink" title="1. API 是否符合你项目的 Unity 版本"></a>1. API 是否符合你项目的 Unity 版本</h3><p>有些回答会混进旧版或新版 API，表面没问题，实际一编译就报错。</p>
+<h3 id="2-是否正确处理-Undo-和脏标记"><a href="#2-是否正确处理-Undo-和脏标记" class="headerlink" title="2. 是否正确处理 Undo 和脏标记"></a>2. 是否正确处理 Undo 和脏标记</h3><p>这是很多 AI 初稿容易漏的地方。</p>
+<h3 id="3-是否区分了场景对象和-Prefab-资源"><a href="#3-是否区分了场景对象和-Prefab-资源" class="headerlink" title="3. 是否区分了场景对象和 Prefab 资源"></a>3. 是否区分了场景对象和 Prefab 资源</h3><p>这两个处理路径经常不一样，别混着改。</p>
+<h3 id="4-是否有明显的空引用和边界遗漏"><a href="#4-是否有明显的空引用和边界遗漏" class="headerlink" title="4. 是否有明显的空引用和边界遗漏"></a>4. 是否有明显的空引用和边界遗漏</h3><p>比如目标对象被删了、结果列表没刷新、组件类型判断太粗。</p>
+<h3 id="5-是否把“项目规则”偷换成了“通用猜测”"><a href="#5-是否把“项目规则”偷换成了“通用猜测”" class="headerlink" title="5. 是否把“项目规则”偷换成了“通用猜测”"></a>5. 是否把“项目规则”偷换成了“通用猜测”</h3><p>比如它默认某些 Graphic 不该开 Raycast，但你项目里恰好有特殊交互用法。</p>
+<p>这时候就得你自己拍板。</p>
+<h2 id="六、AI-在这类任务里的真正价值，是压缩“从想法到首版工具”的时间"><a href="#六、AI-在这类任务里的真正价值，是压缩“从想法到首版工具”的时间" class="headerlink" title="六、AI 在这类任务里的真正价值，是压缩“从想法到首版工具”的时间"></a>六、AI 在这类任务里的真正价值，是压缩“从想法到首版工具”的时间</h2><p>我觉得这件事要说清楚。</p>
+<p>AI 不是在替你做技术判断。</p>
+<p>它更像一个能先把机械部分铺开的工具助手。</p>
+<p>尤其这些任务，它特别合适：</p>
+<ul>
+<li>批量扫描类工具</li>
+<li>配置校验类工具</li>
+<li>资源规范检查工具</li>
+<li>一次性数据整理窗口</li>
+<li>简单的可视化辅助面板</li>
+</ul>
+<p>这些东西过去也能手写。</p>
+<p>但现在完全可以先让 AI 起一版，再自己把结构和边界收紧。</p>
+<h2 id="七、我自己比较常用的第二轮提示词"><a href="#七、我自己比较常用的第二轮提示词" class="headerlink" title="七、我自己比较常用的第二轮提示词"></a>七、我自己比较常用的第二轮提示词</h2><p>很多人第一次让 AI 生成代码后，就直接结束了。</p>
+<p>其实第二轮追问经常更值钱。</p>
+<p>比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请继续审查你刚才给出的 Unity 编辑器工具代码。</span><br><span class="line">从以下角度补充：</span><br><span class="line">1. 哪些地方可能在大型项目里误伤资源。</span><br><span class="line">2. 哪些地方应该补 null 检查或异常保护。</span><br><span class="line">3. 如果要支持 Prefab Stage，需要改哪些逻辑。</span><br><span class="line">4. 如果扫描对象数量很多，界面卡顿可以怎么优化。</span><br><span class="line">5. 请只输出改进建议和需要替换的函数，不要重写整份代码。</span><br></pre></td></tr></table></figure>
+
+<p>这种问法会比“再优化一下”有效得多。</p>
+<p>因为它逼着 AI 往工程边界上靠，而不是继续空泛表演。</p>
+<h2 id="八、最后一句"><a href="#八、最后一句" class="headerlink" title="八、最后一句"></a>八、最后一句</h2><p>AI 帮 Unity 写编辑器工具，真正好用的地方，不是“一句话生成神器”。</p>
+<p>而是它能把很多原本机械、琐碎、容易拖延的小工具开发，先推到一个能 review、能修改、能落地的起点。</p>
+<p>前提是你自己得把需求说清楚。</p>
+<p>不然 AI 也只能一边猜，一边认真地胡说八道。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://droidman.net/2025/11/09/2025-11-09/" data-id="cuidY3pDoaXARAeRZGaIJBztP" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag">工作流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" rel="tag">编辑器工具</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/11/16/2025-11-16/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AI 能不能帮你查 Unity 卡顿？能，但你得先把现场证据喂明白
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/11/01/2025-11-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">二合游戏优化别只看体感，埋点和性能回归没跟上，很多“优化”其实只是心理安慰</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bingo/" rel="tag">Bingo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cash-Club/" rel="tag">Cash Club</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Review/" rel="tag">Code Review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matrix4x4/" rel="tag">Matrix4x4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Particle-System/" rel="tag">Particle System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Profiler/" rel="tag">Profiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDK/" rel="tag">SDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transform/" rel="tag">Transform</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" rel="tag">二合游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" rel="tag">任务系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" rel="tag">低端机适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" rel="tag">出海项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" rel="tag">前后端协作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E7%94%BB/" rel="tag">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" rel="tag">反作弊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" rel="tag">商店系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" rel="tag">回归测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%88%98/" rel="tag">实战</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" rel="tag">对象池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag">工作流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" rel="tag">工具链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag">工程化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" rel="tag">工程流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag">工程设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" rel="tag">开发效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" rel="tag">弱联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" rel="tag">成就系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" rel="tag">支付系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" rel="tag">数值设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" rel="tag">数学模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" rel="tag">数据埋点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" rel="tag">新手引导</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" rel="tag">框架设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%95%E7%BA%BF/" rel="tag">法线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" rel="tag">活动系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" rel="tag">测试清单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" rel="tag">游戏设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">热更新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" rel="tag">特效优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">玩法设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" rel="tag">研发复盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" rel="tag">系列导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" rel="tag">经济设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" rel="tag">编辑器工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" rel="tag">网络同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" rel="tag">调试工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" rel="tag">资源打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" rel="tag">资源规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" rel="tag">运营框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" rel="tag">运营系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" rel="tag">配置系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" rel="tag">配置表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%87%8D%E6%9E%84/" rel="tag">重构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 18.46px;">AI</a> <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/AssetBundle/" style="font-size: 10px;">AssetBundle</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/Bingo/" style="font-size: 10px;">Bingo</a> <a href="/tags/C/" style="font-size: 13.08px;">C#</a> <a href="/tags/Cash-Club/" style="font-size: 10.77px;">Cash Club</a> <a href="/tags/Code-Review/" style="font-size: 10px;">Code Review</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 12.31px;">Java</a> <a href="/tags/Lua/" style="font-size: 15.38px;">Lua</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Matrix4x4/" style="font-size: 10px;">Matrix4x4</a> <a href="/tags/Particle-System/" style="font-size: 10px;">Particle System</a> <a href="/tags/Profiler/" style="font-size: 10px;">Profiler</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SDK/" style="font-size: 10px;">SDK</a> <a href="/tags/Shader/" style="font-size: 11.54px;">Shader</a> <a href="/tags/Slot/" style="font-size: 16.92px;">Slot</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Transform/" style="font-size: 10px;">Transform</a> <a href="/tags/UGUI/" style="font-size: 11.54px;">UGUI</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10.77px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 11.54px;">mysql</a> <a href="/tags/python/" style="font-size: 11.54px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.15px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xLua/" style="font-size: 11.54px;">xLua</a> <a href="/tags/xlua-lua-framework/" style="font-size: 10.77px;">xlua, lua, framework</a> <a href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" style="font-size: 17.69px;">二合游戏</a> <a href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">任务系统</a> <a href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" style="font-size: 10px;">低端机适配</a> <a href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">出海项目</a> <a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" style="font-size: 10px;">前后端协作</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" style="font-size: 10px;">反作弊</a> <a href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">商店系统</a> <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">回归测试</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10px;">图形学</a> <a href="/tags/%E5%AE%9E%E6%88%98/" style="font-size: 10px;">实战</a> <a href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" style="font-size: 10px;">对象池</a> <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">导航</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 10.77px;">小游戏</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="font-size: 10px;">工作流</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" style="font-size: 13.85px;">工具链</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 10px;">工程化</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">工程流程</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">工程设计</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 10px;">开发效率</a> <a href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" style="font-size: 10.77px;">弱联网</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 14.62px;">性能优化</a> <a href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">成就系统</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%94%AF%E4%BB%98/" style="font-size: 10px;">支付</a> <a href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">支付系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">数值设计</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">数学模型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" style="font-size: 10.77px;">数据埋点</a> <a href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" style="font-size: 10px;">新手引导</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 12.31px;">架构设计</a> <a href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">框架设计</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%95%E7%BA%BF/" style="font-size: 10px;">法线</a> <a href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" style="font-size: 10.77px;">活动系统</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" style="font-size: 10px;">测试清单</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10.77px;">游戏开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">游戏设计</a> <a href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">热更新</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" style="font-size: 10px;">特效优化</a> <a href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">玩法设计</a> <a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 16.15px;">矩阵</a> <a href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" style="font-size: 10px;">研发复盘</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10.77px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">系列导航</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10.77px;">系统设计</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 10.77px;">线性代数</a> <a href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">经济设计</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" style="font-size: 11.54px;">编辑器工具</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" style="font-size: 10px;">网络同步</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">自动化测试</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 19.23px;">设计模式</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">读书笔记</a> <a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 10px;">调试</a> <a href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">调试工具</a> <a href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" style="font-size: 10px;">资源打包</a> <a href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" style="font-size: 10px;">资源规范</a> <a href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">运营框架</a> <a href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">运营系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">配置系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" style="font-size: 10px;">配置表</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 10px;">重构</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10.77px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">January 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/06/28/2026-06-28/">这半年我把二合开发和 Unity + AI 踩坑都写下来了，这里给你一份导航</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/19/2026-06-19/">让 AI 先帮你列 Code Review 清单，比每次拍脑袋看提交靠谱多了</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/13/2026-06-13/">编辑器批处理脚本总是又长又烦？这类活真的很适合先让 AI 打个底</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/30/2026-05-30/">埋点设计最怕事后补锅，AI 倒是很适合先帮你把埋点草图铺出来</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/01/2026-05-01/">打包前总怕漏资源？AI 很适合先帮你做那层资源发布前检查</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 OuyangWenyuan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

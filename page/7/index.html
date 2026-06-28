@@ -13,34 +13,9 @@
 <meta property="og:url" content="http://droidman.net/page/7/index.html">
 <meta property="og:site_name" content="持续学习者————Just Do It！">
 <meta property="og:description" content="看，听，学，记，练；读，思，写，说，教。读书百遍，其义自现，熟能生巧，巧能升精，精能升华，华能出奇，出奇方能制胜。">
-<meta property="og:locale" content="en,ZH">
+<meta property="og:locale">
 <meta property="article:author" content="OuyangWenyuan">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="Objective-c">
-<meta property="article:tag" content="Swift">
-<meta property="article:tag" content="Unity">
-<meta property="article:tag" content="Unity3d">
-<meta property="article:tag" content="Shader">
-<meta property="article:tag" content="Http">
-<meta property="article:tag" content="Web">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="Program">
-<meta property="article:tag" content="Mac OS">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Unix">
-<meta property="article:tag" content="Window">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Lua">
-<meta property="article:tag" content="Javascript">
-<meta property="article:tag" content="Android">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="xcode">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="eclicpse">
-<meta property="article:tag" content="blender">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="Java,C,C#,Objective-c,Swift,Unity,Unity3d,Shader,Http,Web,Blog,Program,Mac OS,Linux,Unix,Window,Python,Lua,Javascript,Android,iOS,xcode,IDEA,eclicpse,blender,MVC">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="持续学习者————Just Do It！" type="application/atom+xml">
@@ -54,7 +29,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 <body>
   <div id="container">
@@ -66,10 +41,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">持续学习者————Just Do It！</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">学无止境————不怕你不会，就怕你不学！</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -96,10 +67,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2018-01-07" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-03-03" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/07/2018-01-07/" class="article-date">
-  <time datetime="2018-01-07T12:44:36.000Z" itemprop="datePublished">2018-01-07</time>
+    <a href="/2024/03/03/2024-03-03/" class="article-date">
+  <time datetime="2024-03-03T14:00:01.000Z" itemprop="datePublished">2024-03-03</time>
 </a>
     
   </div>
@@ -110,7 +81,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/07/2018-01-07/">设计模式中类的关系</a>
+      <a class="article-title" href="/2024/03/03/2024-03-03/">Python 主题玩法后端和 Unity 客户端怎么分工：别让客户端替服务端做决定</a>
     </h1>
   
 
@@ -118,40 +89,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>依赖（Dependence）</li>
+        <p>前面几篇一直在讲客户端怎么分层，但真到 Cash Club 这类强联网 Slot 项目里，很多核心问题其实都绕不过一个现实：主题玩法并不是完全由客户端说了算。</p>
+<p>尤其当后端使用 Python 来实现主题玩法相关能力时，前后端边界如果不清楚，项目很容易进入一种很尴尬的状态：客户端想多做一点来补体验，服务端又必须守住可信结果，最后两边都很累。</p>
+<h2 id="一、先说结论：客户端负责表现和流程，服务端负责可信结果和关键状态"><a href="#一、先说结论：客户端负责表现和流程，服务端负责可信结果和关键状态" class="headerlink" title="一、先说结论：客户端负责表现和流程，服务端负责可信结果和关键状态"></a>一、先说结论：客户端负责表现和流程，服务端负责可信结果和关键状态</h2><p>这句话听起来很普通，但很多线上问题都是因为没有真正照着它做。</p>
+<p>在 Slot 项目里，我会优先把这些东西交给服务端：</p>
+<ul>
+<li>spin 结果</li>
+<li>奖励结算</li>
+<li>免费局或 bonus 相关的关键状态</li>
+<li>任务和活动累计的可信进度</li>
+<li>资产变更</li>
+</ul>
+<p>客户端可以预测流程、优化体验、组织表现，但不要替服务端做关键决定。</p>
+<h2 id="二、为什么主题玩法更适合让服务端掌握关键结果"><a href="#二、为什么主题玩法更适合让服务端掌握关键结果" class="headerlink" title="二、为什么主题玩法更适合让服务端掌握关键结果"></a>二、为什么主题玩法更适合让服务端掌握关键结果</h2><p>因为主题玩法往往不只是“播一个动画”。</p>
+<p>它会直接影响：</p>
+<ul>
+<li>玩家资产</li>
+<li>活动进度</li>
+<li>任务统计</li>
+<li>付费转化节奏</li>
+<li>风控和日志审计</li>
+</ul>
+<p>如果这些关键状态都主要依赖客户端本地控制，后面不论是对账、排查还是运营活动联动，都会很难做。</p>
+<h2 id="三、客户端真正应该承担的部分"><a href="#三、客户端真正应该承担的部分" class="headerlink" title="三、客户端真正应该承担的部分"></a>三、客户端真正应该承担的部分</h2><p>客户端不是被动播放器，它同样很重要。</p>
+<p>我更认可客户端承担这几类职责：</p>
+<ul>
+<li>机台表现和交互反馈</li>
+<li>服务端结果的可视化展开</li>
+<li>bonus 或小游戏过程中的本地演出节奏</li>
+<li>页面状态切换和入口控制</li>
+<li>异常情况提示和重试处理</li>
+</ul>
+<p>也就是说，客户端负责把“服务端给出的结果”变成一段流畅、可信、可感知的体验。</p>
+<h2 id="四、为什么前后端最容易在-bonus-和小游戏这里打架"><a href="#四、为什么前后端最容易在-bonus-和小游戏这里打架" class="headerlink" title="四、为什么前后端最容易在 bonus 和小游戏这里打架"></a>四、为什么前后端最容易在 bonus 和小游戏这里打架</h2><p>因为这些内容同时包含：</p>
+<ul>
+<li>规则判断</li>
+<li>状态推进</li>
+<li>强表现需求</li>
+</ul>
+<p>比如一个 bonus 游戏，客户端会希望把演出做得更连贯，但服务端又必须知道玩家最终拿到了什么、下一步是否还能继续、奖励是否已经入账。</p>
+<p>这时最危险的做法就是客户端自己先把关键结果走完，再假设服务端会认。</p>
+<p>这类写法短期可能省事，长期一定埋坑。</p>
+<h2 id="五、我更推荐的一种协作思路"><a href="#五、我更推荐的一种协作思路" class="headerlink" title="五、我更推荐的一种协作思路"></a>五、我更推荐的一种协作思路</h2><p>比较稳的模式通常是：</p>
+<ol>
+<li>服务端给出可信结果或可信结果范围。</li>
+<li>客户端按结果组织演出和流程。</li>
+<li>关键阶段切换仍然以服务端状态为准。</li>
+<li>客户端只对局部表现做柔性处理，不更改最终结论。</li>
 </ol>
-<p>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class People&#123;  </span><br><span class="line">    &#x2F;&#x2F;Book作为read方法的形参  </span><br><span class="line">     public void read(Book book)&#123;  </span><br><span class="line">        System.out.println(“读的书是”+book.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>2.关联（Association）<br>单向关联：</p>
-<p>双向关联：</p>
-<p> 对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Son&#123;  </span><br><span class="line">   &#x2F;&#x2F;关联关系中作为成员变量的类一般会在类中赋值  </span><br><span class="line">    Father father &#x3D; new Father();  </span><br><span class="line">    public void getGift()&#123;  </span><br><span class="line">        System.out.println(“从”+father.getName()+”获得礼物”);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">public class Father&#123;  </span><br><span class="line">    Son son &#x3D; new Son();  </span><br><span class="line">    public void giveGift()&#123;  </span><br><span class="line">       System.out.println(“送给”+son.getName()+“礼物”);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>3.聚合（Aggregation）</p>
-<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。没有车司机就不能发生开车这个行为。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class People&#123;  </span><br><span class="line">    Car car;  </span><br><span class="line">    House house;   </span><br><span class="line">    &#x2F;&#x2F;聚合关系中作为成员变量的类一般使用set方法赋值  </span><br><span class="line">     public void setCar(Car car)&#123;  </span><br><span class="line">        This.car &#x3D; car;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setHouse(House house)&#123;  </span><br><span class="line">        This.house &#x3D; house;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public void driver()&#123;  </span><br><span class="line">        System.out.println(“车的型号：”+car.getType());  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void sleep()&#123;  </span><br><span class="line">        System.out.println(“我在房子里睡觉：”+house.getAddress());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>4.组合（Composition）</p>
-<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Public class People&#123;  </span><br><span class="line">    Soul soul;  </span><br><span class="line">    Body body;   </span><br><span class="line">    &#x2F;&#x2F;组合关系中的成员变量一般会在构造方法中赋值  </span><br><span class="line">     Public People(Soul soul, Body body)&#123;   </span><br><span class="line">        This.soul &#x3D; soul;  </span><br><span class="line">        This.body &#x3D; body;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    Public void study()&#123;  </span><br><span class="line">        System.out.println(“学习要用灵魂”+soul.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">    Public void eat()&#123;  </span><br><span class="line">        System.out.println(“吃饭用身体：”+body.getName());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>5.继承（Generalization）</p>
-<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。<br>6.实现（Implementation）</p>
-<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
+<p>这样既能保证体验，又不会让前后端责任混乱。</p>
+<h2 id="六、Python-后端带来的一个现实好处"><a href="#六、Python-后端带来的一个现实好处" class="headerlink" title="六、Python 后端带来的一个现实好处"></a>六、Python 后端带来的一个现实好处</h2><p>从协作角度看，Python 对主题玩法和活动服务来说有个很实际的优势：</p>
+<p>规则和数据处理能力强，服务端迭代效率也不错。</p>
+<p>只要前后端协议和状态定义清楚，很多玩法规则、活动结算、阶段推进放到服务端会更稳，也更方便后续扩展。</p>
+<p>客户端这边则可以专心把机台体验、页面链路和性能问题做好。</p>
+<h2 id="七、客户端最容易踩的几个边界坑"><a href="#七、客户端最容易踩的几个边界坑" class="headerlink" title="七、客户端最容易踩的几个边界坑"></a>七、客户端最容易踩的几个边界坑</h2><ul>
+<li>把服务端返回的关键状态重新解释一遍</li>
+<li>为了赶进度在本地偷偷补一段结算逻辑</li>
+<li>页面上为了表现方便缓存过多关键结果</li>
+<li>某个 bonus 流程只在客户端本地有完整状态</li>
+</ul>
+<p>这些写法最大的问题不是当下能不能跑，而是后面一旦出线上问题，很难知道责任到底在前端还是后端。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>Python 后端和 Unity 客户端的分工，不应该是“谁更方便谁来做”，而应该是“谁更适合承担可信责任”。</p>
+<p>服务端守住关键结果和资产状态，客户端负责体验和流程组织，这条线越清楚，项目越稳。</p>
+<p>下一篇我会继续讲主题机台开发里另一个很现实的问题：从一个通用模板出发，怎么让新主题接入速度真正提起来，而不是每次都从复制旧机台开始。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2018/01/07/2018-01-07/" data-id="cmcw1g2sg001cz4z877ff52ut" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/03/03/2024-03-03/" data-id="cuidvUIXQ26m_rI1tAGILMiL6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" rel="tag">前后端协作</a></li></ul>
 
     </footer>
   </div>
@@ -160,10 +168,10 @@
 
 
   
-    <article id="post-2017-12-23" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-02-25" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/23/2017-12-23/" class="article-date">
-  <time datetime="2017-12-23T12:44:02.000Z" itemprop="datePublished">2017-12-23</time>
+    <a href="/2024/02/25/2024-02-25/" class="article-date">
+  <time datetime="2024-02-25T14:00:01.000Z" itemprop="datePublished">2024-02-25</time>
 </a>
     
   </div>
@@ -174,7 +182,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/23/2017-12-23/">C# 枚举 的用法</a>
+      <a class="article-title" href="/2024/02/25/2024-02-25/">多主题老虎机台怎么做客户端抽象：既要共用框架，也要保留主题差异</a>
     </h1>
   
 
@@ -182,37 +190,87 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>枚举是C#编程语言的一种类型，跟类、结构、密封类、分布类、委托、事件、抽象都是同一级别的类型。</p>
-<p>枚举本身可以有修饰符，但枚举的成员始终是公共的，不能有访问修饰符。枚举本身的修饰符仅能使用public和internal。</p>
-<p>枚举是值类型，隐式继承自System.Enum，不能手动修改。</p>
-<p>枚举成员不能相同，但枚举的值可以相同，默认情况下，枚举中的第一个变量被赋值为0，其他的变量的值按定义的顺序来递增(0,12,3…)，如果enum中的部分成员显式定义了值，而部分没有，那么没有定义值的成员还是会按照上一个成员的值来递增赋值。</p>
-<p>常用方法：</p>
-<p>枚举转换：</p>
-<p>Enum–&gt;String：</p>
-<p>1.利用Object.ToString()方法：如Colors.Green.ToString()的值是”Green”字符串；</p>
-<p>2.利用Enum的静态方法GetName与GetNames：例如：Enum.GetName(typeof(Colors),3))与Enum.GetName(typeof(Colors), Colors.Blue))的值都是”Blue”</p>
-<p>Enum–&gt;Int：</p>
-<p>因为枚举的基类型是除 Char 外的整型，所以可以进行强制转换。</p>
-<p>例如：(int)Colors.Red, (byte)Colors.Green</p>
-<p>String–&gt;Enum：</p>
-<p>public static Object Parse(Type enumType,string value)</p>
-<p>例如：(Colors)Enum.Parse(typeof(Colors), “Red”)</p>
-<p>Int–&gt;Enum：</p>
-<p>可以强制转换将整型转换成枚举类型。</p>
-<p>例如：Colors color = (Colors)2 ，那么color即为Colors.Blue</p>
-<p>判断某个整型是否定义在枚举中的方法：Enum.IsDefined</p>
-<p>public static bool IsDefined(Type enumType,Object value)</p>
-<p>例如：Enum.IsDefined(typeof(Colors), 3))</p>
-<p>枚举遍历：</p>
-<p>foreach (int good in Enum.GetValues(typeof(ItemCode)))<br>{<br>　　Debug.Log(Player.instance.GetGoodInfo().GetItemCountByItemCode(good) + “  “ + good);<br>}</p>
+        <p>前一篇把 Slot 的基础概念先铺了一层，这一篇开始进入 Cash Club 这类项目最现实的问题：同一个产品里有很多主题机台，客户端到底应该怎么抽象。</p>
+<p>如果只有一个机台，很多问题都不是问题。</p>
+<p>但一旦产品进入长期运营阶段，主题机台会越来越多，这时候真正考验研发质量的，不是能不能把某个主题做出来，而是新主题接入时到底要改多少旧代码。</p>
+<h2 id="一、多主题-Slot-项目最容易失控的地方"><a href="#一、多主题-Slot-项目最容易失控的地方" class="headerlink" title="一、多主题 Slot 项目最容易失控的地方"></a>一、多主题 Slot 项目最容易失控的地方</h2><p>多主题项目最怕的是两种极端。</p>
+<p>第一种是所有主题都按独立项目来做，每个机台自己写一套页面、演出和逻辑。</p>
+<p>第二种是为了复用过度抽象，导致所有主题都被框架绑死，稍微做点差异就要打补丁。</p>
+<p>真正可用的方案，通常是在“通用骨架”和“主题差异”之间找到平衡。</p>
+<h2 id="二、我会先划清哪些是通用层，哪些是主题层"><a href="#二、我会先划清哪些是通用层，哪些是主题层" class="headerlink" title="二、我会先划清哪些是通用层，哪些是主题层"></a>二、我会先划清哪些是通用层，哪些是主题层</h2><h3 id="通用层"><a href="#通用层" class="headerlink" title="通用层"></a>通用层</h3><p>这些内容应该尽量稳定：</p>
+<ul>
+<li>进机台和退机台流程</li>
+<li>spin 请求和结果回包链路</li>
+<li>下注面板基础结构</li>
+<li>通用弹窗和结算界面</li>
+<li>公共音频控制</li>
+<li>资源加载与释放策略</li>
+<li>通用任务或活动入口</li>
+</ul>
+<h3 id="主题层"><a href="#主题层" class="headerlink" title="主题层"></a>主题层</h3><p>这些内容允许高度差异化：</p>
+<ul>
+<li>reel 布局和 symbol 美术</li>
+<li>特殊 symbol 行为</li>
+<li>bonus 触发和演出流程</li>
+<li>主题小游戏</li>
+<li>主题专属引导和演出节奏</li>
+</ul>
+<p>只要这条边界划不清，后面做第 5 个、第 10 个机台时就会越来越慢。</p>
+<h2 id="三、客户端最需要的是“机台模板”，不是“机台复制体”"><a href="#三、客户端最需要的是“机台模板”，不是“机台复制体”" class="headerlink" title="三、客户端最需要的是“机台模板”，不是“机台复制体”"></a>三、客户端最需要的是“机台模板”，不是“机台复制体”</h2><p>我更推荐把一个主题机台理解成：</p>
+<p>通用框架 + 主题配置 + 主题逻辑扩展 + 主题资源包</p>
+<p>而不是“从旧机台复制一份再改”。</p>
+<p>复制的短期成本低，长期维护成本极高。尤其当修一个通用 bug 时，如果要改 8 个主题脚本，说明抽象已经出问题了。</p>
+<h2 id="四、Lua-在多主题机台里最适合做差异流程层"><a href="#四、Lua-在多主题机台里最适合做差异流程层" class="headerlink" title="四、Lua 在多主题机台里最适合做差异流程层"></a>四、Lua 在多主题机台里最适合做差异流程层</h2><p>这类项目里，Lua 非常适合承接主题差异逻辑。</p>
+<p>例如：</p>
+<ul>
+<li>哪些 symbol 触发特殊流程</li>
+<li>免费局阶段怎么切</li>
+<li>bonus 阶段的状态流转</li>
+<li>某个主题小游戏结束后怎么回主循环</li>
+</ul>
+<p>这些逻辑经常变化，而且和具体主题强相关，用 Lua 组织会比直接写死在 C# 页面控制里更灵活。</p>
+<h2 id="五、C-层则更适合承接统一表现骨架"><a href="#五、C-层则更适合承接统一表现骨架" class="headerlink" title="五、C# 层则更适合承接统一表现骨架"></a>五、C# 层则更适合承接统一表现骨架</h2><p>我通常会把这些能力固定在 C# 通用层：</p>
+<ul>
+<li>滚轴表现基础组件</li>
+<li>通用 UI 结构</li>
+<li>特效挂载点与动画承载</li>
+<li>音效播放框架</li>
+<li>资源加载卸载</li>
+<li>性能监控与低端机降级</li>
+</ul>
+<p>主题层可以调用这些能力，但不应该每个机台自己再实现一遍。</p>
+<h2 id="六、主题差异真正多的时候，配置比代码更重要"><a href="#六、主题差异真正多的时候，配置比代码更重要" class="headerlink" title="六、主题差异真正多的时候，配置比代码更重要"></a>六、主题差异真正多的时候，配置比代码更重要</h2><p>多主题机台做久了会发现，很多所谓差异，其实是配置差异而不是代码差异。</p>
+<p>比如：</p>
+<ul>
+<li>下注档位</li>
+<li>paytable 展示</li>
+<li>symbol 资源映射</li>
+<li>bonus 入口条件</li>
+<li>引导文案和弹窗资源</li>
+</ul>
+<p>如果这些内容都直接写在逻辑代码里，后续维护会很痛。</p>
+<p>所以我更倾向于让“主题长什么样”和“主题流程怎么走”尽量配置化，而让代码只负责组织规则和表现。</p>
+<h2 id="七、为什么新主题接入速度，本质上是工程能力问题"><a href="#七、为什么新主题接入速度，本质上是工程能力问题" class="headerlink" title="七、为什么新主题接入速度，本质上是工程能力问题"></a>七、为什么新主题接入速度，本质上是工程能力问题</h2><p>很多团队觉得新主题接入慢，是因为美术太重或者玩法复杂。</p>
+<p>这些当然会影响工期，但真正拉开差距的通常是工程能力：</p>
+<ul>
+<li>有没有成熟的主题模板</li>
+<li>资源命名和目录是否规范</li>
+<li>配置导入是否顺手</li>
+<li>通用逻辑是不是已经抽出来</li>
+<li>主题接入后是否容易验证和回归</li>
+</ul>
+<p>这些能力一旦成型，后面加新主题才会越来越快，而不是越来越累。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>多主题老虎机台的核心，不是“共用多少代码”，而是能不能把通用骨架和主题差异拆清楚。</p>
+<p>通用层稳，主题层活，配置层清楚，才是这类项目能长期迭代的关键。</p>
+<p>下一篇我会把这个问题继续往前推一步，聊聊当主题玩法结果由 Python 后端控制时，前后端应该怎么分工，客户端又该在什么地方停手。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/23/2017-12-23/" data-id="cmcw1g2sd0018z4z8f88v3d86" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/02/25/2024-02-25/" data-id="cuidIhQu2BdI-DAmKJ_I65CZw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a></li></ul>
 
     </footer>
   </div>
@@ -221,10 +279,10 @@
 
 
   
-    <article id="post-2017-12-17" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-02-18" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/17/2017-12-17/" class="article-date">
-  <time datetime="2017-12-17T12:43:59.000Z" itemprop="datePublished">2017-12-17</time>
+    <a href="/2024/02/18/2024-02-18/" class="article-date">
+  <time datetime="2024-02-18T14:00:01.000Z" itemprop="datePublished">2024-02-18</time>
 </a>
     
   </div>
@@ -235,7 +293,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/17/2017-12-17/">Unity Profiler 参数说明</a>
+      <a class="article-title" href="/2024/02/18/2024-02-18/">写 Slot 玩法前先把这些概念讲清楚：reel、symbol、wild、RTP 和波动性</a>
     </h1>
   
 
@@ -243,19 +301,87 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.CPU Usage：<br>　　WaitForTargetFPS:Vsync(垂直同步)功能所，即显示当前帧的CPU等待时间<br>　　Overhead：Profiler总体时间-所有单项的记录时间总和。用于记录尚不明确的时间消耗，以帮助进一步完善Profiler的统计。<br>　　Physics.Simulate：当前帧物理模拟的CPU占用时间。<br>　　Camera.Render：相机渲染准备工作的CPU占用量<br>　　RenderTexture.SetActive：设置RenderTexture操作.<br>       　　底层实现：</p>
-<p>　　　　 　　1.比对当前帧与前一帧的ColorSurface和DepthSurface.<br>                　   2.如果这两个Buffer一致则不生成新的RT，否则则生成新的RT，并设置与之相对应的Viewport和空间转换矩阵.<br>　　Monobehaviour.OnMouse_ ：用于检测鼠标的输入消息接收和反馈，主要包括：SendMouseEvents和DoSendMouseEvents。（只要Edtor开起来，这个就会存在）<br>       HandleUtility.SetViewInfo：仅用于Editor中，作用是将GUI和Editor中的显示看起来与发布版本的显示一致。<br>       GUI.Repaint： GUI的重绘(说明有在使用原生的OnGUI)<br>　　Event.Internal_MakeMasterEventCurrent：负责GUI的消息传送<br>       Cleanup Unused Cached Data：清空无用的缓存数据，主要包括RenderBuffer的垃圾回收和TextRendering的垃圾回收。<br>          1.RenderTexture.GarbageCollectTemporary:存在于RenderBuffer的垃圾回收中，清除临时的FreeTexture.<br>          2.TextRendering.Cleanup:TextMesh的垃圾回收操作<br>　　Application.Integrate Assets in Background：遍历预加载的线程队列并完成加载，同时，完成纹理的加载、Substance的Update等.<br>　　Application.LoadLevelAsync Integrate：加载场景的CPU占用，通常如果此项时间长的话70%的可能是Texture过长导致.<br>　　UnloadScene：卸载场景中的GameObjects、Component和GameManager，一般用在切换场景时.<br>　　CollectGameObjectObjects： 执行上面M项的同时，会将场景中的GameObject和Component聚集到一个Array中.然后执行下面的Destroy.<br>　　Destroy： 删除GameObject和Component的CPU占用.<br>　　AssetBundle.LoadAsync Integrate： 多线程加载AwakeQueue中的内容，即多线程执行资源的AwakeFromLoad函数.<br>　　Loading.AwakeFromLoad： 在资源被加载后调用，对每种资源进行与其对应用处理.</p>
-<p>2.GPU Usage：<br>     Device.Present:device.PresentFrame的耗时显示，该选项出现在发布版本中.<br>     Graphics.PresentAndSync：GPU上的显示和垂直同步耗时.该选项出现在发布版本中.<br>     Mesh.DrawVBO： GPU中关于Mesh的Vertex Buffer Object的渲染耗时.<br>     Shader.Parse：资源加入后引擎对Shader的解析过程.<br>     Shader.CreateGPUProgram：根据当前设备支持的图形库来建立GPU工程.</p>
-<p>3.Memory Profiler<br>     Used Total: 当前帧的Unity内存、Mono内存、GfxDriver内存、Profiler内存的总和.<br>     Reserved Total:系统在当前帧的申请内存.<br>     Total System Memory Usage:当前帧的虚拟内存使用量.（通常是我们当前使用内存的1.5~3倍)<br>     GameObjects in Scene:当前帧场景中的GameObject数量.<br>     Total Objects in Scene:当前帧场景中的Object数量(除GameObject外，还有Component等).<br>     Total Object Count: Object数据 + Asset数量</p>
-<p>4.Detail Memory Profiler<br>　　Texture2d:记录当前帧内存中所使用的纹理资源情况，包括各种GameObject的纹理、天空盒纹理以及场景中所用的Lightmap资源.<br>　　Scene Memory:  记录当前场景中各个方面的内存占用情况，包括GameObject、所用资源、各种组件以及GameManager等（天般情况通过AssetBundle加载的不会显示在这里).<br>       ManagedHeap.UseSize:代码在运行时造成的堆内存分配，表示上次GC到目前为止所分配的堆内存量.<br>       WebStream:这个是由WWW来进行加载的内存占用.<br>       System.ExecutableAndDlls:不同平台和不同硬件得到的值会不一样。</p>
+        <p>聊 Cash Club 这类项目，如果不把 Slot 的基础概念先讲清楚，后面无论是多主题机台、Python 主题玩法，还是任务和活动与机台的结合，都会显得很飘。</p>
+<p>这一篇不去堆太多公式，重点还是站在项目实现视角，把常见概念放回真实开发语境里。</p>
+<h2 id="一、reel-和-symbol-不是美术概念，而是玩法组织单位"><a href="#一、reel-和-symbol-不是美术概念，而是玩法组织单位" class="headerlink" title="一、reel 和 symbol 不是美术概念，而是玩法组织单位"></a>一、reel 和 symbol 不是美术概念，而是玩法组织单位</h2><p>很多人第一次看 Slot，会把它理解成“几个滚轴滚一下，停下来比图案”。</p>
+<p>这种理解只说到了表层。</p>
+<p>在项目里，reel 和 symbol 更重要的意义是：</p>
+<ul>
+<li>reel 决定玩法的基础结构</li>
+<li>symbol 决定玩法的奖励载体和主题表达</li>
+</ul>
+<p>一个 3x5、4x5、6x4 的窗口，本质上不是“界面排版不同”，而是玩法密度、命中节奏和主题演出空间都不同。</p>
+<h2 id="二、基础-symbol-和高价值-symbol-的区别，不只是赔率高低"><a href="#二、基础-symbol-和高价值-symbol-的区别，不只是赔率高低" class="headerlink" title="二、基础 symbol 和高价值 symbol 的区别，不只是赔率高低"></a>二、基础 symbol 和高价值 symbol 的区别，不只是赔率高低</h2><p>低价值 symbol 往往承担的是命中率和基础反馈。</p>
+<p>高价值 symbol 更像是拉开奖励层级，让玩家在少数时刻获得更大的正反馈。</p>
+<p>从项目实现角度看，这会直接影响：</p>
+<ul>
+<li>paytable 配置</li>
+<li>演出优先级</li>
+<li>音效和特效资源组织</li>
+<li>自动机台测试时的重点验证样本</li>
+</ul>
+<h2 id="三、Wild、Scatter、Bonus-为什么是最常见的三个特殊符号"><a href="#三、Wild、Scatter、Bonus-为什么是最常见的三个特殊符号" class="headerlink" title="三、Wild、Scatter、Bonus 为什么是最常见的三个特殊符号"></a>三、Wild、Scatter、Bonus 为什么是最常见的三个特殊符号</h2><h3 id="Wild"><a href="#Wild" class="headerlink" title="Wild"></a>Wild</h3><p>Wild 最核心的作用是替代普通符号，帮助形成更多中奖组合。</p>
+<p>它的设计会直接影响命中率和爽感。</p>
+<p>客户端实现上，要特别注意 Wild 参与连线时的显示优先级和赔付表现，因为玩家最容易感知到的就是“为什么这次算中了，另一次没算”。</p>
+<h3 id="Scatter"><a href="#Scatter" class="headerlink" title="Scatter"></a>Scatter</h3><p>Scatter 不一定要求沿赔付线连续出现，而是只要达到数量条件就可能触发奖励或免费局。</p>
+<p>它的触发条件不同于常规连线，因此在表现层和结算层都需要单独看待。</p>
+<h3 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h3><p>Bonus 更多是把玩家带入主题玩法或额外小游戏的入口。</p>
+<p>比如开箱子、抽格子、点泡泡、Bingo、轮盘等，很多扩展玩法都是通过 Bonus 符号进入的。</p>
+<h2 id="四、赔付线多不代表-RTP-高"><a href="#四、赔付线多不代表-RTP-高" class="headerlink" title="四、赔付线多不代表 RTP 高"></a>四、赔付线多不代表 RTP 高</h2><p>这是很多非 Slot 开发最容易误解的地方。</p>
+<p>赔付线数量提升，首先改变的是命中体验和下注结构，而不是简单地把 RTP 抬高。</p>
+<p>因为真正决定长期回报率的是整体数学模型，不是页面上看得到多少条线。</p>
+<p>所以在项目里讨论赔付线时，我更关心的是：</p>
+<ul>
+<li>命中率怎么变</li>
+<li>玩家投注感知怎么变</li>
+<li>主题表现空间够不够</li>
+<li>低价值奖励是不是太碎</li>
+</ul>
+<h2 id="五、RTP-在研发里真正该怎么理解"><a href="#五、RTP-在研发里真正该怎么理解" class="headerlink" title="五、RTP 在研发里真正该怎么理解"></a>五、RTP 在研发里真正该怎么理解</h2><p>RTP 当然重要，但它不是一个单独存在的数字。</p>
+<p>它必须和下面这些东西一起看：</p>
+<ul>
+<li>命中率</li>
+<li>波动性</li>
+<li>免费局贡献</li>
+<li>bonus 游戏贡献</li>
+<li>大奖分布</li>
+</ul>
+<p>同样都是 92% 或 95% 的 RTP，玩家体感可能完全不同。</p>
+<p>一个命中更频繁但每次回报更小，另一个长时间不出但一旦出就更高，这就是波动性的差异。</p>
+<h2 id="六、波动性为什么会直接影响客户端表现设计"><a href="#六、波动性为什么会直接影响客户端表现设计" class="headerlink" title="六、波动性为什么会直接影响客户端表现设计"></a>六、波动性为什么会直接影响客户端表现设计</h2><p>很多人以为波动性只是数学同学关心的事情，其实客户端也会被它影响。</p>
+<p>如果一个机台是高波动：</p>
+<ul>
+<li>大奖时刻更珍贵</li>
+<li>演出层级要更拉开</li>
+<li>失败过程的体验不能太干</li>
+</ul>
+<p>如果一个机台是低波动：</p>
+<ul>
+<li>小奖反馈要更顺滑</li>
+<li>节奏要更稳定</li>
+<li>奖励动画不能把每次小命中都做得过重</li>
+</ul>
+<p>也就是说，数学模型会反过来影响客户端的节奏设计和资源投入方式。</p>
+<h2 id="七、从研发协作角度看，Slot-基础概念最怕“大家都懂一点，但没有统一定义”"><a href="#七、从研发协作角度看，Slot-基础概念最怕“大家都懂一点，但没有统一定义”" class="headerlink" title="七、从研发协作角度看，Slot 基础概念最怕“大家都懂一点，但没有统一定义”"></a>七、从研发协作角度看，Slot 基础概念最怕“大家都懂一点，但没有统一定义”</h2><p>项目里最危险的不是没人懂，而是每个人都按自己的理解在做。</p>
+<p>比如：</p>
+<ul>
+<li>策划说 bonus，程序理解成免费局</li>
+<li>客户端把 scatter 当普通 symbol 处理</li>
+<li>服务端的赔付优先级和客户端演出理解不同</li>
+</ul>
+<p>这些问题一旦进入多主题机台阶段，成本会翻倍。</p>
+<p>所以我一直认为，Slot 项目初期把基础术语和规则口径统一下来，是非常值的投入。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>reel、symbol、wild、scatter、bonus、paytable、RTP、波动性，这些词看起来像基础概念，但它们其实决定了后面所有系统怎么协作。</p>
+<p>一旦这些概念在团队里口径不统一，多主题机台、主题玩法后端、活动结合和小游戏接入都会反复返工。</p>
+<p>下一篇我会往实现层走一步，专门聊多主题老虎机台在客户端应该怎么做抽象，才能既保留主题差异，又不把通用逻辑写散。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/17/2017-12-17/" data-id="cmcw1g2s90016z4z8e6u82ai6" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/02/18/2024-02-18/" data-id="cuid-YJ9yyGkZXV-jw_M8wW-d" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" rel="tag">数学模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" rel="tag">游戏设计</a></li></ul>
 
     </footer>
   </div>
@@ -264,10 +390,10 @@
 
 
   
-    <article id="post-2017-12-16" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-02-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/16/2017-12-16/" class="article-date">
-  <time datetime="2017-12-16T12:43:56.000Z" itemprop="datePublished">2017-12-16</time>
+    <a href="/2024/02/10/2024-02-10/" class="article-date">
+  <time datetime="2024-02-10T14:00:02.000Z" itemprop="datePublished">2024-02-10</time>
 </a>
     
   </div>
@@ -278,7 +404,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/16/2017-12-16/">C#泛型</a>
+      <a class="article-title" href="/2024/02/10/2024-02-10/">强联网 Slot 客户端怎么做：登录、大厅、入机台和断线重连的链路拆解</a>
     </h1>
   
 
@@ -286,37 +412,103 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>定义：通过泛型可以定义类型安全类，而不会损害类型安全、性能或工作效率。</p>
-<p>泛型的好处 </p>
-<p>1、同样的代码，可以通过任何类型来重用它，减少重复代码</p>
-<p> 2、编译器支持和类型安全 </p>
-<p>3、不会强行对值类型进行装箱和取消装箱，或者对引用类型进行向下强制类型转换，性能提高。</p>
-<p>泛型继承：<br>1、泛型类继承中，父类的类型参数已被实例化，这种情况下子类不一定必须是泛型类；<br>2、父类的类型参数没有被实例化，由子类指定，也就是说父类和子类都是泛型类，并且二者有相同的类型参数；</p>
-<p>泛型写法：<br>泛型类</p>
-<p>public class TestChild : Test&lt; string, int&gt;{ }  </p>
-<p>public class TestChild&lt; T, S&gt; : Test&lt; T, S&gt; { }  </p>
-<p>public class TestChild&lt; T, S&gt; : Test&lt; String, int&gt; { }<br>泛型方法：C#的泛型机制只支持在方法申明上包含类型参数，也即是泛型方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public T getvalue&lt;T&gt;(T t)</span><br><span class="line">&#123;</span><br><span class="line">    return t;</span><br><span class="line">&#125;</span><br><span class="line">使用：  </span><br><span class="line">Int a &#x3D;  getvalue&lt;Int&gt;(10);</span><br></pre></td></tr></table></figure>
-<p>泛型接口：</p>
-<p>public interface IList<T><br>{<br>    T[] GetElements();<br>}<br>泛型委托：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass&lt;T&gt;</span><br><span class="line">&#123;</span><br><span class="line">    public delegate void GenericDelegate(T t);</span><br><span class="line">    public void SomeMethod(T t)</span><br><span class="line">    &#123; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public GenericMethodDemo()</span><br><span class="line">&#123;</span><br><span class="line">    MyClass&lt;int&gt; obj &#x3D; new MyClass&lt;int&gt;();</span><br><span class="line">    MyClass&lt;int&gt;.GenericDelegate del;</span><br><span class="line">    del &#x3D; new MyClass&lt;int&gt;.GenericDelegate(obj.SomeMethod);</span><br><span class="line">    del(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>泛型约束：C#中的泛型只支持显示的约束，因为这样才能保证C#所要求的类型安全，但显示的约束并非时必须的，如果不加约束，泛型类型参数将只能访问System.Object类型中的公有方法。“显式约束”由where子句表达，可以指定“基类约束”，“接口约束”，“构造器约束”，“值类型/引用类型约束”共四种约束</p>
-<p>构造器约束：</p>
-<p>public static T CreateObject<T>(out int objectId) where T : new()<br>public class CSingleton<T> where T : new()<br>基类约束，还包括基类和接口：</p>
-<p>public T FindControl<T>(string name) where T : Component<br>public class CSingleton<T> where T : IComparable<br>值约束：</p>
-<p>public class MyClass<T> where T : struct { }<br>引用约束：</p>
-<p>public class MyClass<T> where T : class { }<br>约束组合：</p>
-<p>public class MyClass<T> where T : IComparable, new() { }<br>public class MyClass<T> where T : struct, IComparable { }<br>public class MyClass<T> where T : B, IComparable, ICloneable { }<br>public class MyClass&lt;T, U&gt; where T : IComparable  where U : class { }<br>约束    说明<br>T：struct    类型参数必须是值类型。可以指定除 Nullable 以外的任何值类型。与接口约束同时使用，在最前面(不能与基类约束,构造函数约束一起使用)<br>T：class    类型参数必须是引用类型，包括任何类、接口、委托或数组类型。<br>T：new()    类型参数必须具有无参数的公共构造函数。当与其他约束一起使用时，new() 约束必须最后指定。<br>T：&lt;基类名&gt;    类型参数必须是指定的基类或派生自指定的基类。<br>T：&lt;接口名称&gt;    类型参数必须是指定的接口或实现指定的接口。可以指定多个接口约束。约束接口也可以是泛型的。<br>T：U    为 T 提供的类型参数必须是为 U 提供的参数或派生自为 U 提供的参数。这称为裸类型约束.</p>
+        <p>如果说前两篇还在讲客户端框架边界，这一篇就进入真实线上项目里最容易出事故的部分：强联网链路。</p>
+<p>Cash Club 这类社交博彩项目，虽然不是传统意义上的 MMO，但它也绝不是一个“本地转一下动画，再把结果上传”的轻联网产品。</p>
+<p>登录、资产、活动进度、主题玩法结果、支付状态、排行榜、奖励发放，这些核心内容都依赖前后端协作。</p>
+<p>所以客户端真正要解决的问题不是“怎么请求接口”，而是怎么把一整条状态链路跑稳。</p>
+<h2 id="一、这类项目的网络问题，重点不在协议，而在状态一致性"><a href="#一、这类项目的网络问题，重点不在协议，而在状态一致性" class="headerlink" title="一、这类项目的网络问题，重点不在协议，而在状态一致性"></a>一、这类项目的网络问题，重点不在协议，而在状态一致性</h2><p>很多网络问题表面看是超时、断线、丢包，实际上真正难的是状态一致性。</p>
+<p>比如下面这些问题：</p>
+<ul>
+<li>玩家登录成功了，但大厅初始化数据不完整</li>
+<li>机台已经进去了，但活动入口还没刷新</li>
+<li>断线重连回来后，奖励状态和服务端不一致</li>
+<li>支付成功回调到了，但客户端本地 UI 还停留在旧状态</li>
+</ul>
+<p>这些问题如果没有一条稳定的数据刷新路径，排查起来会非常慢。</p>
+<h2 id="二、我会把客户端链路拆成四段"><a href="#二、我会把客户端链路拆成四段" class="headerlink" title="二、我会把客户端链路拆成四段"></a>二、我会把客户端链路拆成四段</h2><h3 id="1-登录链路"><a href="#1-登录链路" class="headerlink" title="1. 登录链路"></a>1. 登录链路</h3><p>登录阶段最重要的不是把账号登录成功，而是把会影响全局状态的初始化数据拉齐。</p>
+<p>通常包括：</p>
+<ul>
+<li>玩家基础信息</li>
+<li>货币资产</li>
+<li>大厅入口状态</li>
+<li>活动状态摘要</li>
+<li>支付相关基础配置</li>
+<li>推送或本地通知开关状态</li>
+</ul>
+<p>这一阶段如果漏了某些全局数据，后面进入大厅以后就会到处补拉，逻辑会越来越乱。</p>
+<h3 id="2-大厅链路"><a href="#2-大厅链路" class="headerlink" title="2. 大厅链路"></a>2. 大厅链路</h3><p>大厅是 Slot 项目的流量分发中心。</p>
+<p>机台入口、活动入口、商店入口、限时礼包、红点、弹窗、引导，很多事情都从这里发生。</p>
+<p>所以大厅不是单一页面，而是一个状态聚合层。</p>
+<p>客户端要做的是把这些状态组织好，而不是把所有刷新都写成页面里的 if else。</p>
+<h3 id="3-入机台链路"><a href="#3-入机台链路" class="headerlink" title="3. 入机台链路"></a>3. 入机台链路</h3><p>从大厅进入机台时，我更在意三件事：</p>
+<ul>
+<li>当前主题资源是否可用</li>
+<li>玩家资产和下注配置是否同步</li>
+<li>当前机台相关活动状态是否已准备好</li>
+</ul>
+<p>如果这三个前置条件没理顺，进机台后出现的任何问题都可能被误判成“主题逻辑 bug”。</p>
+<h3 id="4-断线重连链路"><a href="#4-断线重连链路" class="headerlink" title="4. 断线重连链路"></a>4. 断线重连链路</h3><p>断线重连最容易被低估。</p>
+<p>因为它不是简单地“重连 socket 然后继续发包”。</p>
+<p>它真正要恢复的是：</p>
+<ul>
+<li>玩家当前所在上下文</li>
+<li>关键缓存状态</li>
+<li>是否存在待领奖或待结算结果</li>
+<li>当前页面要不要强制刷新</li>
+<li>某些高风险操作是否需要重新请求服务端确认</li>
+</ul>
+<h2 id="三、Cash-Club-这类项目里，客户端不要假设自己永远是对的"><a href="#三、Cash-Club-这类项目里，客户端不要假设自己永远是对的" class="headerlink" title="三、Cash Club 这类项目里，客户端不要假设自己永远是对的"></a>三、Cash Club 这类项目里，客户端不要假设自己永远是对的</h2><p>这句话看起来像废话，但在强联网项目里非常重要。</p>
+<p>客户端可以缓存状态，可以先做交互反馈，但关键结果不能靠客户端自己认定。</p>
+<p>例如：</p>
+<ul>
+<li>spin 最终结果</li>
+<li>奖励到账</li>
+<li>任务完成</li>
+<li>支付到账</li>
+<li>活动阶段切换</li>
+</ul>
+<p>这些状态一定要以服务端返回为准。</p>
+<p>客户端的职责更像是把状态同步、过程表现和异常恢复做好。</p>
+<h2 id="四、断线重连为什么最容易和-Lua-业务逻辑打架"><a href="#四、断线重连为什么最容易和-Lua-业务逻辑打架" class="headerlink" title="四、断线重连为什么最容易和 Lua 业务逻辑打架"></a>四、断线重连为什么最容易和 Lua 业务逻辑打架</h2><p>因为很多页面状态其实是 Lua 层在管。</p>
+<p>一旦断线重连回来，如果没有统一的恢复入口，就会出现：</p>
+<ul>
+<li>有的页面重新拉数据了，有的没有</li>
+<li>某些倒计时重复启动</li>
+<li>红点和入口状态没有刷新</li>
+<li>页面还停留在旧上下文，但服务端状态已经前进了</li>
+</ul>
+<p>所以我更倾向于给重连设计一个统一恢复流程，而不是让每个业务模块各自猜怎么恢复。</p>
+<h2 id="五、客户端应该怎样组织这条数据刷新链路"><a href="#五、客户端应该怎样组织这条数据刷新链路" class="headerlink" title="五、客户端应该怎样组织这条数据刷新链路"></a>五、客户端应该怎样组织这条数据刷新链路</h2><p>比较稳的方式通常是：</p>
+<ol>
+<li>网络层只负责连接、发包、回包和基础错误处理。</li>
+<li>数据层负责把服务端状态写回本地缓存。</li>
+<li>事件层负责通知哪些模块需要刷新。</li>
+<li>页面层只响应刷新，不负责直接判断所有业务状态。</li>
+</ol>
+<p>这样一来，登录、大厅、活动、机台虽然业务不同，但数据路径会相对统一。</p>
+<h2 id="六、我在项目里更在意的几个网络设计细节"><a href="#六、我在项目里更在意的几个网络设计细节" class="headerlink" title="六、我在项目里更在意的几个网络设计细节"></a>六、我在项目里更在意的几个网络设计细节</h2><h3 id="请求要有明确归属"><a href="#请求要有明确归属" class="headerlink" title="请求要有明确归属"></a>请求要有明确归属</h3><p>请求是登录阶段的、大厅阶段的，还是机台内部的，要分清楚。不然排查问题时会不知道谁触发了谁。</p>
+<h3 id="页面不要直接持有过多网络状态"><a href="#页面不要直接持有过多网络状态" class="headerlink" title="页面不要直接持有过多网络状态"></a>页面不要直接持有过多网络状态</h3><p>页面直接保存太多临时网络状态，很容易在关闭重开或断线重连时出错。</p>
+<h3 id="异常路径要先想清楚"><a href="#异常路径要先想清楚" class="headerlink" title="异常路径要先想清楚"></a>异常路径要先想清楚</h3><p>不是只有成功路径才叫设计。</p>
+<p>超时、重试、取消、重连、回包顺序错乱，这些异常路径如果不提前考虑，线上问题一定很多。</p>
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>强联网 Slot 项目的重点，从来不是“接口有多少”，而是状态链路能不能稳定。</p>
+<p>登录、大厅、入机台、断线重连看起来是四段，其实是一整条链。</p>
+<p>只要这条链路里：</p>
+<ul>
+<li>服务端状态可信</li>
+<li>客户端缓存分层清楚</li>
+<li>页面刷新路径统一</li>
+<li>重连恢复有总入口</li>
+</ul>
+<p>后面的任务、活动、支付、小游戏接入都会轻松很多。</p>
+<p>下一篇我会开始从玩法角度拆，先把 Slot 项目最基础但又最容易被说空的那部分讲清楚：reel、symbol、wild、scatter、RTP、波动性这些概念，放到真实项目里到底怎么理解。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/16/2017-12-16/" data-id="cmcw1g2s40014z4z82kzeagz8" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/02/10/2024-02-10/" data-id="cuidNaoKlOFyBeP2f529XjHcq" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" rel="tag">网络同步</a></li></ul>
 
     </footer>
   </div>
@@ -325,10 +517,10 @@
 
 
   
-    <article id="post-2017-12-10" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-01-28" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/10/2017-12-10/" class="article-date">
-  <time datetime="2017-12-10T12:43:53.000Z" itemprop="datePublished">2017-12-10</time>
+    <a href="/2024/01/28/2024-01-28/" class="article-date">
+  <time datetime="2024-01-28T14:00:02.000Z" itemprop="datePublished">2024-01-28</time>
 </a>
     
   </div>
@@ -339,7 +531,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/10/2017-12-10/">C# 中的深拷贝和浅拷贝</a>
+      <a class="article-title" href="/2024/01/28/2024-01-28/">在 Slot 项目里怎么用 Lua：哪些逻辑该下沉，哪些能力必须留在 C#</a>
     </h1>
   
 
@@ -347,18 +539,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public GoodItem CloneItem()</span><br><span class="line">&#123;</span><br><span class="line">    MemoryStream stream &#x3D; new MemoryStream();</span><br><span class="line">    BinaryFormatter formatter &#x3D; new BinaryFormatter();</span><br><span class="line">    formatter.Serialize(stream, this);</span><br><span class="line">    stream.Position &#x3D; 0;</span><br><span class="line">    return formatter.Deserialize(stream) as GoodItem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.利用xml序列化和反序列化实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public T DeepCopy&lt;T&gt;(T obj)</span><br><span class="line">&#123;</span><br><span class="line">    object retval;</span><br><span class="line">    MemoryStream ms &#x3D; new MemoryStream()</span><br><span class="line">    XmlSerializer xml &#x3D; new XmlSerializer(typeof(T));</span><br><span class="line">    xml.Serialize(ms, obj);</span><br><span class="line">    ms.Seek(0, SeekOrigin.Begin);</span><br><span class="line">    retval &#x3D; xml.Deserialize(ms);</span><br><span class="line">    ms.Close();</span><br><span class="line">    return (T)retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.利用反射实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static T DeepCopy&lt;T&gt;(T obj)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;如果是字符串或值类型则直接返回</span><br><span class="line">    if (obj is string || obj.GetType().IsValueType) return obj;</span><br><span class="line"></span><br><span class="line">    object retval &#x3D; Activator.CreateInstance(obj.GetType());</span><br><span class="line">    FieldInfo[] fields &#x3D; obj.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);</span><br><span class="line">    foreach (FieldInfo field in fields)</span><br><span class="line">    &#123;</span><br><span class="line">        try &#123; field.SetValue(retval, DeepCopy(field.GetValue(obj))); &#125;</span><br><span class="line">        catch &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return (T)retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>上一篇讲了 xLua-framework 更像业务框架，而不只是热更新方案。这一篇继续把边界拆细一点：在 Cash Club 这种项目里，Lua 到底应该做什么。</p>
+<p>这件事如果不提前想清楚，项目很容易走向两个极端。</p>
+<p>一个极端是“既然有 Lua，那就尽量都写 Lua”。另一个极端是“Lua 只当胶水，核心逻辑还是全塞 C#”。</p>
+<p>我更认可的做法，是把 Lua 当成高频业务层，而不是底层能力层。</p>
+<h2 id="一、为什么-Lua-很适合做-Slot-项目的业务逻辑层"><a href="#一、为什么-Lua-很适合做-Slot-项目的业务逻辑层" class="headerlink" title="一、为什么 Lua 很适合做 Slot 项目的业务逻辑层"></a>一、为什么 Lua 很适合做 Slot 项目的业务逻辑层</h2><p>Slot 项目有大量规则并不复杂，但变化很频繁的内容。</p>
+<p>比如：</p>
+<ul>
+<li>页面入口显示条件</li>
+<li>活动状态切换</li>
+<li>领奖流程</li>
+<li>任务目标统计</li>
+<li>红点刷新</li>
+<li>新手引导步骤控制</li>
+<li>主题玩法中的流程串联</li>
+</ul>
+<p>这些逻辑通常具备三个特点：</p>
+<ol>
+<li>配置驱动成分很重。</li>
+<li>需要反复迭代和调整。</li>
+<li>比起极致性能，更看重维护效率。</li>
+</ol>
+<p>这种内容放在 Lua 层是比较合适的。</p>
+<h2 id="二、我会优先下沉到-Lua-的逻辑"><a href="#二、我会优先下沉到-Lua-的逻辑" class="headerlink" title="二、我会优先下沉到 Lua 的逻辑"></a>二、我会优先下沉到 Lua 的逻辑</h2><h3 id="1-页面流程控制"><a href="#1-页面流程控制" class="headerlink" title="1. 页面流程控制"></a>1. 页面流程控制</h3><p>页面什么时候打开、打开后先拉什么数据、看到什么入口、什么条件下弹什么弹窗，这类控制流放在 Lua 更容易读，也更容易改。</p>
+<h3 id="2-业务状态机"><a href="#2-业务状态机" class="headerlink" title="2. 业务状态机"></a>2. 业务状态机</h3><p>比如活动进行中、已完成、待领奖、已过期这类状态切换，本质上是规则判断，不依赖 Unity 底层能力。</p>
+<h3 id="3-配置解析和组装"><a href="#3-配置解析和组装" class="headerlink" title="3. 配置解析和组装"></a>3. 配置解析和组装</h3><p>很多活动或者主题玩法，本质上是把服务端数据和本地配置拼起来再呈现给玩家。</p>
+<p>这类逻辑放脚本层可维护性通常更好。</p>
+<h3 id="4-主题玩法流程编排"><a href="#4-主题玩法流程编排" class="headerlink" title="4. 主题玩法流程编排"></a>4. 主题玩法流程编排</h3><p>注意这里强调的是“流程编排”，不是底层动画实现。</p>
+<p>例如：</p>
+<ul>
+<li>哪个 bonus 先触发</li>
+<li>免费局结束后进入哪个结算阶段</li>
+<li>某个小游戏完成后回到哪里</li>
+</ul>
+<p>这些都适合放在 Lua 层做流程控制。</p>
+<h2 id="三、我不会轻易下沉到-Lua-的部分"><a href="#三、我不会轻易下沉到-Lua-的部分" class="headerlink" title="三、我不会轻易下沉到 Lua 的部分"></a>三、我不会轻易下沉到 Lua 的部分</h2><h3 id="1-资源加载和释放"><a href="#1-资源加载和释放" class="headerlink" title="1. 资源加载和释放"></a>1. 资源加载和释放</h3><p>AssetBundle、图集、资源引用、异步加载这些事情最好留在 C#。这类能力既靠近引擎，又直接关系到性能和内存。</p>
+<h3 id="2-原生-SDK-和平台能力"><a href="#2-原生-SDK-和平台能力" class="headerlink" title="2. 原生 SDK 和平台能力"></a>2. 原生 SDK 和平台能力</h3><p>支付、推送、评分、Deeplink、通知、广告、日志，这些明显属于平台接入层，应该由 C# 和 Native 对接来承接。</p>
+<h3 id="3-重性能路径"><a href="#3-重性能路径" class="headerlink" title="3. 重性能路径"></a>3. 重性能路径</h3><p>如果某段逻辑执行频率高、和渲染或资源管理贴得很近，就不应该为了统一而强行搬到 Lua。</p>
+<h3 id="4-需要强约束的底层通用能力"><a href="#4-需要强约束的底层通用能力" class="headerlink" title="4. 需要强约束的底层通用能力"></a>4. 需要强约束的底层通用能力</h3><p>像网络封装、通用缓存、对象池、底层事件系统，如果全交给脚本层，不仅容易失控，也更难做统一规范。</p>
+<h2 id="四、Cash-Club-里最常见的一种误区：把-Lua-当成“方便写”的地方"><a href="#四、Cash-Club-里最常见的一种误区：把-Lua-当成“方便写”的地方" class="headerlink" title="四、Cash Club 里最常见的一种误区：把 Lua 当成“方便写”的地方"></a>四、Cash Club 里最常见的一种误区：把 Lua 当成“方便写”的地方</h2><p>Lua 的确方便，但方便和无约束不是一回事。</p>
+<p>如果团队习惯把所有“赶时间”的需求都往 Lua 丢，最后一定会出现这些问题：</p>
+<ul>
+<li>页面脚本越来越大</li>
+<li>跨模块调用越来越随意</li>
+<li>某些状态只有写脚本的人自己知道</li>
+<li>线上 bug 很难顺着链路查</li>
+</ul>
+<p>尤其活动和任务这种高频改动模块，一旦一开始没有把脚本层结构定住，后面会充满复制代码和隐式依赖。</p>
+<h2 id="五、我更推荐的-Lua-模块组织方式"><a href="#五、我更推荐的-Lua-模块组织方式" class="headerlink" title="五、我更推荐的 Lua 模块组织方式"></a>五、我更推荐的 Lua 模块组织方式</h2><p>在这类项目里，Lua 模块最好不要只按“页面名”来分，而应该同时考虑职责。</p>
+<p>比较稳的一种拆法是：</p>
+<ul>
+<li>页面控制器</li>
+<li>数据模块</li>
+<li>网络请求封装</li>
+<li>配置访问模块</li>
+<li>主题玩法逻辑模块</li>
+<li>通用工具模块</li>
+</ul>
+<p>这样当任务系统和成就系统都要做领奖时，可以共用通用逻辑，而不是互相复制。</p>
+<h2 id="六、Lua-层最该重视的是可读性，而不是技巧"><a href="#六、Lua-层最该重视的是可读性，而不是技巧" class="headerlink" title="六、Lua 层最该重视的是可读性，而不是技巧"></a>六、Lua 层最该重视的是可读性，而不是技巧</h2><p>我不太喜欢在业务脚本里玩很花的写法。</p>
+<p>因为这种项目真正花时间维护的人，往往不是写第一版的人，而是后面接手迭代的人。</p>
+<p>Lua 层最重要的是：</p>
+<ul>
+<li>命名直白</li>
+<li>状态清楚</li>
+<li>数据来源明确</li>
+<li>页面刷新路径固定</li>
+</ul>
+<p>一个脚本如果看不出来“谁改了数据、谁发了事件、谁刷了 UI”，后面出问题一定很难查。</p>
+<h2 id="七、Lua-在主题机台里最适合承担什么角色"><a href="#七、Lua-在主题机台里最适合承担什么角色" class="headerlink" title="七、Lua 在主题机台里最适合承担什么角色"></a>七、Lua 在主题机台里最适合承担什么角色</h2><p>主题机台是最容易让边界变模糊的地方。</p>
+<p>因为它既有表现层，也有规则层，还有和服务端的状态协作。</p>
+<p>我的经验是：</p>
+<ul>
+<li>演出资源和底层表现能力交给 C#</li>
+<li>主题流程、状态切换、奖励阶段控制交给 Lua</li>
+<li>关键结果、概率和可信状态交给服务端</li>
+</ul>
+<p>这个三段式边界是比较稳的。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>Lua 在 Cash Club 这类项目里，最适合承担的是高频业务逻辑层，而不是底层能力层。</p>
+<p>只要把边界抓住：</p>
+<ul>
+<li>业务流程放 Lua</li>
+<li>引擎能力留 C#</li>
+<li>可信结果留服务端</li>
+</ul>
+<p>脚本层就会成为迭代效率的放大器，而不是技术债堆积地。</p>
+<p>下一篇继续往后走，聊聊这类强联网 Slot 项目的前后端交互模型，尤其是登录、大厅、入机台和断线重连这些真正容易出问题的链路。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/10/2017-12-10/" data-id="cmcw1g2s30013z4z8c1abhxci" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/01/28/2024-01-28/" data-id="cuidnOEcqBzLspUZuT7m6gnzw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li></ul>
 
     </footer>
   </div>
@@ -367,10 +641,10 @@
 
 
   
-    <article id="post-2017-12-09" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-01-20" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/09/2017-12-09/" class="article-date">
-  <time datetime="2017-12-09T12:43:49.000Z" itemprop="datePublished">2017-12-09</time>
+    <a href="/2024/01/20/2024-01-20/" class="article-date">
+  <time datetime="2024-01-20T14:00:01.000Z" itemprop="datePublished">2024-01-20</time>
 </a>
     
   </div>
@@ -381,7 +655,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/09/2017-12-09/">C#中的值类型和引用类型区别</a>
+      <a class="article-title" href="/2024/01/20/2024-01-20/">xLua-framework 在 Cash Club 里的落地方式：业务框架不是热更两个字</a>
     </h1>
   
 
@@ -389,19 +663,137 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>区别：</p>
-<p>1：在存储区上的区别： 值类型是存储在栈上面的，引用类型是存储在堆上面的。<br> 2：在赋值上，值类型是直接赋新值给变量，但是引用类型是开辟一块新的空间来存放新值，并将之前指向旧的值的那个地址改成指向新的值的地址。这就完成了一次赋值的操作。<br>在对应用类型进行赋值的时候：  首先，我们先从定义和赋初始值开始说起， 引用类型在被申明的时候，首先在堆中开辟一块内存空间，然后将其在堆中的地址赋值给 栈 中的一快空间，这块空间就是来放一个引用类型在堆中的地址的。然后我 对其进行重新赋值的时候，并不是将堆中的值给改变了，而是在堆中重新开辟了一块新的空间，然后将堆中的这个地址赋值给  之前这个变量在栈中开辟那块存堆中的地址的那个地址，所以之前的那个最先开辟在堆中的空间是不会被消除的，除非.Net FrameWork这个框架中的垃圾回收站自动帮我们完成释放内存的功能，但这是在程序运行结束后才会做，所以我们如果对引用类型的变量  的话，我们应该尽量减少对其的重新赋值，就想string这个引用类型一样，我们如果需要对字符串进行重复的赋值和处理，我们一般不会用string这个字符串来处理，   我们一般使用stringBuild 来处理字符串重新赋值的问题。</p>
-<p>值类型：C#的所有值类型均隐式派生自System.ValueType;判断是否为值类型：Type.IsValueType<br>1.所有整形：sbyte(System.SByte)、short(System.Int16)、、int(System.Int32)、long(System.Int64)、byte(System.Byte)、ushort(System.UInt16)、uint(System.UInt32)、ulong(System.UInt64)、char(System.Char)。<br>2.所有浮点型：float (System.Single)、double(System.Double)。<br>3.高精度类型：decimal(System.Decimal)。<br>4.bool(System.Boolean)；<br>5.结构体、枚举类型。</p>
-<p>引用类型：<br>1.数组(派生于System.Array)<br>2.类:class(派生于System.Object)<br>3.接口:interface<br>4.委托类型:delegate(派生于System.Delegate)<br>5.字符串:string(System.String的别名)<br>6.Lambda表达式：C#的Lambda 表达式都使用 Lambda 运算符 =&gt;，该运算符读为“goes to”。语法如下：形参列表=&gt;函数体函数体多于一条语句的可用大括号括起。如下：<br>delegate int del(int i);<br>    del myDelegate = x=&gt;{return x*x;};<br>   int j = myDelegate(5);//j=25</p>
-<p>装箱：将值类型转换为引用类型 。装箱时，生成的是全新的引用对象，这会有时间损耗，也就是造成效率降低，尽量避免装箱。<br>拆箱：将引用类型转换为值类型。</p>
+        <p>上一篇先把 Cash Club 的技术栈分层铺开了，这一篇单独收拢客户端业务框架。</p>
+<p>很多人提到 xLua，第一反应都是热更新。但在我参与的 Cash Club 项目里，xLua-framework 真正重要的价值不是“能不能热更”，而是它帮我们把 Unity 运行时能力和高频变化的业务逻辑拆开了。</p>
+<p>如果没有这层抽象，后面机台越来越多、活动越来越密、外围系统越来越复杂时，客户端很容易变成一个难以收拾的大泥球。</p>
+<h2 id="一、为什么这类项目需要脚本层业务框架"><a href="#一、为什么这类项目需要脚本层业务框架" class="headerlink" title="一、为什么这类项目需要脚本层业务框架"></a>一、为什么这类项目需要脚本层业务框架</h2><p>Cash Club 的客户端不是单一玩法产品，而是一个长期运营的平台型项目。</p>
+<p>它有几个很典型的特征：</p>
+<ul>
+<li>主题机台持续增加</li>
+<li>日常活动和节日活动上线频繁</li>
+<li>大厅、商店、任务、成就、支付这些模块一直在扩展</li>
+<li>同一套界面逻辑会反复出现在不同系统中</li>
+</ul>
+<p>这种项目最怕的是所有业务都直接绑在 MonoBehaviour 上。</p>
+<p>短期开发看起来快，长期维护会很痛：</p>
+<ul>
+<li>页面控制逻辑散在多个组件里</li>
+<li>网络回包更新谁负责不清楚</li>
+<li>生命周期跟着 GameObject 乱跑</li>
+<li>稍微重构就牵一大片引用</li>
+</ul>
+<p>脚本层框架的意义，就是给业务逻辑一个稳定的落点。</p>
+<h2 id="二、我更看重的不是“Lua-能写功能”，而是“边界能否稳定”"><a href="#二、我更看重的不是“Lua-能写功能”，而是“边界能否稳定”" class="headerlink" title="二、我更看重的不是“Lua 能写功能”，而是“边界能否稳定”"></a>二、我更看重的不是“Lua 能写功能”，而是“边界能否稳定”</h2><p>在这个项目里，C# 负责的是基础能力，Lua 负责的是高频业务控制。</p>
+<p>这个边界如果不稳定，项目很快会出现两种极端：</p>
+<ol>
+<li>什么都塞 Lua，导致底层能力失控。</li>
+<li>什么都留 C#，导致业务改动成本越来越高。</li>
+</ol>
+<p>比较合理的分工是：</p>
+<h3 id="C-层"><a href="#C-层" class="headerlink" title="C# 层"></a>C# 层</h3><ul>
+<li>资源加载</li>
+<li>网络封装</li>
+<li>原生 SDK</li>
+<li>UI 基础组件</li>
+<li>动画、音效、特效承载</li>
+<li>性能敏感的底层能力</li>
+</ul>
+<h3 id="Lua-层"><a href="#Lua-层" class="headerlink" title="Lua 层"></a>Lua 层</h3><ul>
+<li>页面打开关闭流程</li>
+<li>业务状态控制</li>
+<li>红点和入口逻辑</li>
+<li>活动倒计时和领奖规则</li>
+<li>配置驱动的表现控制</li>
+<li>主题玩法流程编排</li>
+</ul>
+<p>这样拆以后，团队讨论问题会简单很多。大家会更明确地知道，某个问题应该落在引擎层、框架层还是业务层。</p>
+<h2 id="三、客户端业务框架最核心的是这三件事"><a href="#三、客户端业务框架最核心的是这三件事" class="headerlink" title="三、客户端业务框架最核心的是这三件事"></a>三、客户端业务框架最核心的是这三件事</h2><h3 id="1-模块化"><a href="#1-模块化" class="headerlink" title="1. 模块化"></a>1. 模块化</h3><p>一个能长期使用的业务框架，必须让模块边界清晰。</p>
+<p>我在项目里会优先把这些模块拆开：</p>
+<ul>
+<li>页面模块</li>
+<li>数据模块</li>
+<li>网络协议模块</li>
+<li>事件模块</li>
+<li>配置模块</li>
+<li>主题机台模块</li>
+</ul>
+<p>这样做的好处是，任务系统和成就系统即便都要响应领奖，也不需要彼此直接耦合。</p>
+<h3 id="2-生命周期可控"><a href="#2-生命周期可控" class="headerlink" title="2. 生命周期可控"></a>2. 生命周期可控</h3><p>页面什么时候初始化、什么时候绑定事件、什么时候请求数据、什么时候释放资源，这些事情如果只靠“打开界面时顺手写一下”，后面必出问题。</p>
+<p>尤其是大厅、弹窗、活动入口这类会高频打开关闭的模块，如果生命周期不统一，最常见的问题就是：</p>
+<ul>
+<li>事件重复注册</li>
+<li>旧数据没清掉</li>
+<li>倒计时重复跑</li>
+<li>红点状态异常</li>
+</ul>
+<p>业务框架最好给页面生命周期一套固定节奏，比如：</p>
+<ul>
+<li>创建</li>
+<li>初始化视图</li>
+<li>绑定事件</li>
+<li>拉取数据</li>
+<li>刷新显示</li>
+<li>关闭释放</li>
+</ul>
+<p>这比“想到哪写到哪”稳定得多。</p>
+<h3 id="3-数据流清楚"><a href="#3-数据流清楚" class="headerlink" title="3. 数据流清楚"></a>3. 数据流清楚</h3><p>Cash Club 这种项目里，很多 bug 不是逻辑本身写错，而是数据从服务端回来以后，谁该更新、更新到哪一层、UI 什么时候刷新，没有统一规范。</p>
+<p>一个成熟的框架至少要让下面这条链路清楚：</p>
+<p>网络回包 -&gt; 数据更新 -&gt; 事件派发 -&gt; 页面刷新</p>
+<p>只要这条链路稳定，后面无论是任务、支付、活动还是大奖提醒，接入方式都会一致很多。</p>
+<h2 id="四、为什么活动系统特别依赖这一层框架"><a href="#四、为什么活动系统特别依赖这一层框架" class="headerlink" title="四、为什么活动系统特别依赖这一层框架"></a>四、为什么活动系统特别依赖这一层框架</h2><p>活动系统是最能检验客户端框架质量的地方。</p>
+<p>因为活动有几个典型特点：</p>
+<ul>
+<li>类型多</li>
+<li>生命周期短</li>
+<li>配置变化快</li>
+<li>入口和奖励逻辑重复度高</li>
+</ul>
+<p>如果没有脚本层框架做中间层，每上一个活动都容易变成一次小型硬编码工程。</p>
+<p>而有了统一框架以后，很多活动其实只是在复用：</p>
+<ul>
+<li>活动基类</li>
+<li>倒计时组件</li>
+<li>领奖弹窗</li>
+<li>入口注册</li>
+<li>配置解析</li>
+<li>状态刷新</li>
+</ul>
+<p>这也是为什么我后来越来越倾向于先把基础框架写扎实，再去谈具体业务功能。</p>
+<h2 id="五、xLua-framework-在团队协作上的实际收益"><a href="#五、xLua-framework-在团队协作上的实际收益" class="headerlink" title="五、xLua-framework 在团队协作上的实际收益"></a>五、xLua-framework 在团队协作上的实际收益</h2><p>从项目推进角度看，这套框架至少带来了三个直接收益。</p>
+<h3 id="1-新系统接入更快"><a href="#1-新系统接入更快" class="headerlink" title="1. 新系统接入更快"></a>1. 新系统接入更快</h3><p>登录、大厅、任务、成就、活动这些模块虽然业务不同，但接入方式逐渐统一之后，开发节奏会明显更稳定。</p>
+<h3 id="2-重构成本更低"><a href="#2-重构成本更低" class="headerlink" title="2. 重构成本更低"></a>2. 重构成本更低</h3><p>当某个系统需要重构时，只要边界清楚，就不至于把底层能力和业务流程混在一起一起动刀。</p>
+<h3 id="3-更适合长期运营"><a href="#3-更适合长期运营" class="headerlink" title="3. 更适合长期运营"></a>3. 更适合长期运营</h3><p>长期运营项目比拼的不是一开始能不能堆出来，而是半年后、一年后还能不能持续迭代。</p>
+<p>xLua-framework 在这里的作用，本质上是在给长期维护争取空间。</p>
+<h2 id="六、这套框架最容易踩的坑"><a href="#六、这套框架最容易踩的坑" class="headerlink" title="六、这套框架最容易踩的坑"></a>六、这套框架最容易踩的坑</h2><p>用了 Lua 业务层，不代表天然就会更优雅。</p>
+<p>几个常见坑我基本都见过：</p>
+<ul>
+<li>Lua 和 C# 职责越写越模糊</li>
+<li>页面模块里塞太多状态逻辑</li>
+<li>事件中心被滥用，谁都能发谁都能收</li>
+<li>为了图快直接跨模块取数据</li>
+<li>活动系统复制已有脚本，越堆越多</li>
+</ul>
+<p>这些问题的根源都一样：框架存在，但没有被当成边界约束去用。</p>
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>xLua-framework 在 Cash Club 里最重要的价值，不是“Lua 可以写多少代码”，而是它让客户端业务逻辑有了稳定的组织方式。</p>
+<p>对强运营 Slot 项目来说，真正稀缺的是可持续迭代能力。</p>
+<p>只有当：</p>
+<ul>
+<li>底层能力留在 C#</li>
+<li>高频业务放到 Lua</li>
+<li>生命周期统一</li>
+<li>数据流清楚</li>
+<li>活动和机台遵守同一套模块边界</li>
+</ul>
+<p>这套框架才算真正落地。</p>
+<p>下一篇我会继续往下拆，聊聊 Lua 在这类项目里到底应该负责什么，不该负责什么。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/09/2017-12-09/" data-id="cmcw1g2rv000wz4z83pxb8pny" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/01/20/2024-01-20/" data-id="cuid3Q_4zQHQYBAE-vi7bN9fb" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" rel="tag">框架设计</a></li></ul>
 
     </footer>
   </div>
@@ -410,10 +802,10 @@
 
 
   
-    <article id="post-2017-12-03" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2024-01-06" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/03/2017-12-03/" class="article-date">
-  <time datetime="2017-12-03T12:43:45.000Z" itemprop="datePublished">2017-12-03</time>
+    <a href="/2024/01/06/2024-01-06/" class="article-date">
+  <time datetime="2024-01-06T14:00:02.000Z" itemprop="datePublished">2024-01-06</time>
 </a>
     
   </div>
@@ -424,7 +816,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/2017-12-03/">Unity CanvasGroup 组件</a>
+      <a class="article-title" href="/2024/01/06/2024-01-06/">Cash Club 项目回顾：从 Unity + xLua 到多主题 Slot 的技术分层</a>
     </h1>
   
 
@@ -432,17 +824,135 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Canvas Group可以用来控制一组不需要个别控制的UI元素的某些方面，CanvasGroup的属性会影响他所有children的GameObject</p>
-<p>其中有四个选项：<br>-Alpha：这个选项很多组件都有，用处也是一样的，在美术中，这个叫做Alpha通道的东东是用来控制透明度的，他的值从0到1.0是完全透明，1是完全不透明；<br>-Interactable确认该组件是否接受输入，当他被设置为false时，交互功能将被禁用；<br>-Block Raycasts是否让该组件像collider一样接受射线检测？你需要在依赖于Canvas的图形射线检测者上唤醒射线检测方法。这个不会作用于Physics.Raycast;<br>-Ignore Parent Groups(忽略父级团)是否响应父级group的方法</p>
-<p>细节：<br>Canvas Group的经典使用：<br>-在窗口的GameObject上添加一个CanvasGroup，通过控制它的Alpha值来淡入或淡出整个窗口；<br>-通过给父级GameObject添加一个CanvasGroup并设置它的Interactable值为false来制作一整套没有交互（灰色）的控制；<br>-通过将元素或元素的一个父级添加CanvasGroup并设置BlockRaycasts值为false来制作一个或多个不阻止鼠标事件的UI元素<br>应用：（重要的地方写大字）<br>结合后面两点或者1,3点，都可以实现很牛叉的功能<br>比如说游戏里某些情况某个按钮（或者其他UI）是不能点的，而另外一些情况可以点，这样就可以通过动态改变这个组件的BlocksRaycasts值以及Interactable来实现<br>再比如说游戏里点击某个按钮要让这个按钮不可点并逐渐消失掉，当然啦，也可以让别的东西消失啦，这就可以通过改变alpha值来实现</p>
+        <p>2024 年准备系统复盘一下我在 Cash Club 这条产品线里的开发工作。</p>
+<p>这不是一篇产品介绍，也不是把所有模块列一遍的流水账，而是给后面几个月的文章先打一个地基：这个项目为什么会采用 Unity + xLua-framework + Lua 的组合，客户端和 Python 后端分别承担什么职责，多主题老虎机和周边系统又是怎么被组织起来的。</p>
+<p>我在这个项目里前后做过登录、大厅、商店、任务、大师任务、活动框架、礼物系统、好友系统、部分小游戏接入，以及一系列性能优化和 SDK 集成工作。回头看，真正值得总结的不是某个单点功能，而是这类强运营 Slot 项目为什么必须把“通用层”和“主题层”拆开。</p>
+<h2 id="一、为什么-Cash-Club-这类项目不适合只靠纯-Unity-场景思维来做"><a href="#一、为什么-Cash-Club-这类项目不适合只靠纯-Unity-场景思维来做" class="headerlink" title="一、为什么 Cash Club 这类项目不适合只靠纯 Unity 场景思维来做"></a>一、为什么 Cash Club 这类项目不适合只靠纯 Unity 场景思维来做</h2><p>很多刚接触 Slot 项目的人，容易把它理解成“很多机台 + 很多 UI + 一些数值玩法”。</p>
+<p>这个理解不算错，但如果只按 Unity 常规页面开发的思路推进，很快就会遇到两个问题：</p>
+<ol>
+<li>新主题上线频率高，机台之间既有共性又有差异。</li>
+<li>活动、任务、支付、推送、通知这些外围系统和核心玩法耦合得很深。</li>
+</ol>
+<p>也就是说，这类项目不是做完一个玩法就结束，而是长期运营、持续迭代、频繁换皮、不断加活动。</p>
+<p>如果一开始没有把客户端技术栈拆层，后面最常见的问题就是：</p>
+<ul>
+<li>新机台接入越来越慢</li>
+<li>活动代码散在各个页面里</li>
+<li>同一套领奖、倒计时、状态同步逻辑重复出现</li>
+<li>某个主题改 UI 时把通用逻辑一起改坏</li>
+</ul>
+<p>Cash Club 能长期稳定迭代，一个很重要的前提就是把“会反复复用的部分”和“主题差异化的部分”尽量隔开。</p>
+<h2 id="二、项目里的技术栈分层"><a href="#二、项目里的技术栈分层" class="headerlink" title="二、项目里的技术栈分层"></a>二、项目里的技术栈分层</h2><p>当时项目的主要技术栈可以粗分成四层。</p>
+<h3 id="1-Unity-C-：运行时壳子和基础能力层"><a href="#1-Unity-C-：运行时壳子和基础能力层" class="headerlink" title="1. Unity + C#：运行时壳子和基础能力层"></a>1. Unity + C#：运行时壳子和基础能力层</h3><p>Unity 这一层主要负责：</p>
+<ul>
+<li>资源加载与 AssetBundle 管理</li>
+<li>UI 基础框架</li>
+<li>动画、粒子、音效、场景切换</li>
+<li>原生 SDK 对接</li>
+<li>网络封装、平台差异处理</li>
+<li>编辑器工具和部分自动化流程</li>
+</ul>
+<p>这层更像地基。它不直接承载大量高频变化的玩法逻辑，但负责把运行时环境和工程能力兜住。</p>
+<p>我自己在这个阶段做得最多的是通用系统框架、商店框架、部分大厅能力，以及后续大量围绕包体、内存和 UI 性能的优化工作。</p>
+<h3 id="2-xLua-framework：C-和-Lua-之间的桥"><a href="#2-xLua-framework：C-和-Lua-之间的桥" class="headerlink" title="2. xLua-framework：C# 和 Lua 之间的桥"></a>2. xLua-framework：C# 和 Lua 之间的桥</h3><p>xLua-framework 在这个项目里的价值，不只是“支持 Lua 热更新”这么简单。</p>
+<p>它更重要的作用是把客户端业务逻辑从 Unity 运行时里抽出来，让页面状态、流程控制、数据驱动逻辑可以在更轻量的脚本层迭代。</p>
+<p>对这种强运营项目来说，这个抽象非常关键，因为：</p>
+<ul>
+<li>新活动和新机台的业务逻辑更新频繁</li>
+<li>很多页面流程本质上是状态机和配置驱动</li>
+<li>脚本层更适合快速试错和持续维护</li>
+</ul>
+<p>后面我会单独写一篇，专门拆 xLua-framework 在业务项目里到底怎么分模块、怎么管生命周期、怎么处理 C# 和 Lua 的边界。</p>
+<h3 id="3-Lua：大部分业务逻辑和主题玩法层"><a href="#3-Lua：大部分业务逻辑和主题玩法层" class="headerlink" title="3. Lua：大部分业务逻辑和主题玩法层"></a>3. Lua：大部分业务逻辑和主题玩法层</h3><p>项目里大量基础业务逻辑最终落在 Lua 层，包括：</p>
+<ul>
+<li>大厅和机台入口流程</li>
+<li>任务、活动、领奖等状态控制</li>
+<li>主题玩法的流程编排</li>
+<li>部分小游戏规则层实现</li>
+<li>配置驱动的页面展示逻辑</li>
+</ul>
+<p>把这些逻辑放在 Lua，不是为了追求“全脚本化”，而是因为这类内容变化快、复用多、容易被活动系统反复调用。</p>
+<p>如果全部放到 C# MonoBehaviour 里，后面维护成本会迅速上升。</p>
+<h3 id="4-Python-后端：主题玩法结果和服务端业务能力"><a href="#4-Python-后端：主题玩法结果和服务端业务能力" class="headerlink" title="4. Python 后端：主题玩法结果和服务端业务能力"></a>4. Python 后端：主题玩法结果和服务端业务能力</h3><p>服务端不是只负责发一个 spin 结果回来这么简单。</p>
+<p>在实际项目里，后端往往要承担：</p>
+<ul>
+<li>主题玩法结果生成</li>
+<li>奖励发放和状态校验</li>
+<li>活动进度累计</li>
+<li>支付相关状态同步</li>
+<li>用户资产、安全和日志链路</li>
+</ul>
+<p>前端负责表现、流程和交互，后端负责结果、规则和可信状态，这样分工才能让项目既能高频运营，又不至于把关键逻辑压在客户端本地。</p>
+<h2 id="三、这类-Slot-项目为什么一定要拆“核心玩法层”和“周边系统层”"><a href="#三、这类-Slot-项目为什么一定要拆“核心玩法层”和“周边系统层”" class="headerlink" title="三、这类 Slot 项目为什么一定要拆“核心玩法层”和“周边系统层”"></a>三、这类 Slot 项目为什么一定要拆“核心玩法层”和“周边系统层”</h2><p>从用户角度看，大家玩的当然是机台。</p>
+<p>但从研发角度看，真正支撑留存和付费的并不只是机台本身，而是机台外那一整圈系统：</p>
+<ul>
+<li>商店和支付系统</li>
+<li>任务和大师任务</li>
+<li>成就和阶段目标</li>
+<li>每日、每周、每月活动</li>
+<li>礼物、好友、社交反馈</li>
+<li>岛屿挑战、宠物系统、Bingo 等扩展玩法</li>
+</ul>
+<p>如果把这些东西都写进某个主题机台自己的代码里，代码会很快失控。</p>
+<p>更合理的做法是拆成两块：</p>
+<h3 id="核心玩法层"><a href="#核心玩法层" class="headerlink" title="核心玩法层"></a>核心玩法层</h3><p>关注每个机台真正不同的部分：</p>
+<ul>
+<li>reel 布局</li>
+<li>symbol 规则</li>
+<li>bonus 触发流程</li>
+<li>免费局、乘数、特殊演出</li>
+<li>主题专属小游戏</li>
+</ul>
+<h3 id="周边系统层"><a href="#周边系统层" class="headerlink" title="周边系统层"></a>周边系统层</h3><p>关注所有机台共享、并会被频繁复用的部分：</p>
+<ul>
+<li>商品售卖和支付</li>
+<li>任务统计</li>
+<li>活动入口和倒计时</li>
+<li>通用领奖流程</li>
+<li>通知、推送、分享、评分等外部能力</li>
+</ul>
+<p>这个边界划清楚以后，团队协作效率会高很多。</p>
+<p>策划加活动时，不需要总去碰核心机台代码。</p>
+<p>客户端接新主题时，也不需要每次都重新发明一套领奖、引导、入口管理和数据刷新逻辑。</p>
+<h2 id="四、我在项目里体感最深的，其实不是“做功能”，而是“做框架化”"><a href="#四、我在项目里体感最深的，其实不是“做功能”，而是“做框架化”" class="headerlink" title="四、我在项目里体感最深的，其实不是“做功能”，而是“做框架化”"></a>四、我在项目里体感最深的，其实不是“做功能”，而是“做框架化”</h2><p>回头看 Cash Club 这类项目，最有价值的工作往往不是把某个页面堆出来，而是把重复问题变成框架能力。</p>
+<p>比如这些事情，一旦做成通用能力，后面收益会持续放大：</p>
+<ul>
+<li>页面模板和主题模板</li>
+<li>UI 找控件与自动生成代码工具</li>
+<li>配置表导出和校验流程</li>
+<li>活动基类和活动入口管理</li>
+<li>资源依赖分析和包体控制</li>
+<li>场景流式加载和低端机降级策略</li>
+</ul>
+<p>这些工作单独看都不算“显眼功能”，但它们会直接决定项目的迭代速度和线上稳定性。</p>
+<p>也是因为这一点，我后来越来越倾向于把技术复盘写成系列文章，而不是只记录某个功能点的实现细节。</p>
+<h2 id="五、这个系列后面准备怎么写"><a href="#五、这个系列后面准备怎么写" class="headerlink" title="五、这个系列后面准备怎么写"></a>五、这个系列后面准备怎么写</h2><p>后面这组文章，我准备按下面的顺序展开：</p>
+<ol>
+<li>先讲客户端业务框架和 Lua 分层。</li>
+<li>再讲 Slot 核心玩法、多主题机台和前后端协作边界。</li>
+<li>然后拆商店、支付、任务、成就、活动这些周边系统。</li>
+<li>最后再回到 Bingo、Coin Master 风格小游戏，以及整个阶段的研发复盘。</li>
+</ol>
+<p>这样写的好处是，每篇文章都聚焦一个问题，但又不会脱离真实项目上下文。</p>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>如果只从表面看，Cash Club 像是一个“主题很多、活动很多”的社交博彩项目。</p>
+<p>但从研发角度看，它更像一个长期运营的平台型产品：</p>
+<ul>
+<li>Unity 和 C# 负责底层运行时与工程能力</li>
+<li>xLua-framework 负责搭起业务脚本层</li>
+<li>Lua 承担高频变化的客户端逻辑</li>
+<li>Python 后端负责可信结果和服务端状态</li>
+</ul>
+<p>而真正让这个项目能持续跑下去的，不是单个机台做得多炫，而是有没有把通用系统、主题差异和运营活动三者的边界拆清楚。</p>
+<p>这也是我准备把这一段开发经历完整写下来的原因。</p>
+<p>后面几篇文章，就从客户端业务框架开始拆。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/03/2017-12-03/" data-id="cmcw1g2rk000tz4z86ep0fr8d" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2024/01/06/2024-01-06/" data-id="cuid7PoUhHDkvcyEHxrYpI-th" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cash-Club/" rel="tag">Cash Club</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li></ul>
 
     </footer>
   </div>
@@ -451,10 +961,10 @@
 
 
   
-    <article id="post-2017-12-02" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2023-05-28" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/02/2017-12-02/" class="article-date">
-  <time datetime="2017-12-02T12:43:41.000Z" itemprop="datePublished">2017-12-02</time>
+    <a href="/2023/05/28/2023-05-28/" class="article-date">
+  <time datetime="2023-05-28T14:00:02.000Z" itemprop="datePublished">2023-05-28</time>
 </a>
     
   </div>
@@ -465,7 +975,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/2017-12-02/">UGUI系统中Image与RawImage</a>
+      <a class="article-title" href="/2023/05/28/2023-05-28/">矩阵与线性变换系列导航：给 Unity 开发的学习路径与实战索引</a>
     </h1>
   
 
@@ -473,27 +983,96 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>UGUI系统中提供了2种显示图片的组件即Image与RawImage。本篇文章主要是介绍这2个组件含义与使用。<br>1.Image</p>
-<p>（1）SourceImage:指定要显示的目标图片资源。需要注意的是，它只支持Sprite类型的图片，因此需要将目标图片资源的格式改成如下图所示的格式：</p>
-<p>（2）Color：设置Color属性值，会改变图片显示的色调。类似给图片开了某种颜色的“灯”照射该图片。</p>
-<p>（3）Material：设定用于渲染图片的材质。<br>（4）RaycastTarget：决定是否接收射线碰撞检测。换句话说，就是是否能够成为事件监听目标。<br>（5）Image Type：用于设定图片的显示类型，如Simple/Sliced/Tiled/Filled。不同的显示类型会导致Sprite“填充”Image组件的方式不同。<br>a.Simple，此模式下如果Image控件大小与Sprite的不相同时，Sprite将会被拉伸到与Image控件一般大。</p>
-<p>值得注意的是，如果勾选上PreserveAspect选项时，Sprite将会根据Sprite原宽高比例进行拉伸。</p>
-<p>b.Sliced俗称九宫格，需要做成九宫格的图片一般都是当做背景用的（如很多游戏中都有黑色的背景）。经过九宫格处理的Sprite，在缩放过程中，会保持4个角的切片不做缩放，4个边的切片只完成拉伸，只有中间的切片做缩放操作。Fill Center选项，如果取消勾选，Image不能完整显示，只会显示切片的边缘图片。</p>
-<p>c.Tiled俗称“地面砖平铺”，此种情况下，Sprite本身大小会保持不变，Sprite会像铺地面砖那样填充满整个Image控件。</p>
-<p>d.Filled俗称“呈现方式”，一般设置此模式的Image，都是用做有“CD”效果的技能按钮等，让Image以一定地展现方式一部分一部分地完全展示出来。</p>
-<p>属性<br>作用<br>Fill Method<br>指定填充呈现方式，选项有Horizontal[水平方向]、Vertical[竖直方向]、Radial90[1/4圆呈现]、Radial180[半圆呈现]、Radial360[整圆显现]<br>Fill Origin<br>指定填充显现操作的起点。<br>Fill Amount<br>指定了填充的进度。<br>Clock Wise<br>针对Radial90/180/190类型的填充显示方式，取消与勾选该项，会“翻转”填充显示“方向”<br>Preserve Aspect<br>根据Sprite宽高比，缩放Image</p>
-<p>举例：设定Fill Method为Radial360，当改变FillAmount值，从0到1时，会发现图片会以圆形的方式从中间向外逐渐显示出来。</p>
-<p>（6） SetNative Size：按下此按钮后，会发现Image控件的大小会变成与Sprite图片本身大小一致。</p>
-<p>2.RawImage<br>RawImage功能上与Image组件类似，但属性并不完全相同。</p>
-<p>属性    作用<br>Textture    指定要显示的图片，注意：图片类型可以是任何类型<br>Color    设置图片的主颜色<br>Material    设定Image控件的渲染材质<br>Raycast Target    决定是否可接收射线碰撞事件检测（取消勾选不会挡住下层UI事件）<br>UV Rect    可以让图片的一部分显示在RawImage组件中，x、y属性用于控制UV左右、上下偏移，W、H用于控制UV的重复次数。</p>
+        <p>这一组文章最初是想解决一个很实际的问题：</p>
+<p>很多 Unity 程序员知道 <code>Transform</code>、知道 <code>localPosition</code>、也知道 Shader 里有 <code>MVP</code>，但一旦项目里同时出现挂点、UI 跟随、程序化摆放、法线、相机空间这些问题，脑子里的知识点就会散掉。</p>
+<p>所以我把这段内容整理成了一条从基础到实战的路线，不追求学院化推导，重点放在 Unity 项目里真正会遇到的落点上。</p>
+<p>如果你最近正好在补矩阵、线性变换、坐标空间这块，可以直接按下面的顺序看。</p>
+<h2 id="一、这个系列适合谁"><a href="#一、这个系列适合谁" class="headerlink" title="一、这个系列适合谁"></a>一、这个系列适合谁</h2><p>我觉得这组文章比较适合下面几类 Unity 开发者：</p>
+<ul>
+<li>做客户端业务，但经常碰到坐标、朝向、挂点、跟随问题</li>
+<li>想看懂 <code>Matrix4x4.TRS</code>、<code>MultiplyPoint</code> 这些 API 到底在干什么</li>
+<li>写 Shader 时总觉得 Object、World、View、Clip 这些空间名很绕</li>
+<li>在做棋盘、地块、程序化摆放、技能范围这些系统时，感觉空间关系总容易出错</li>
+</ul>
+<p>如果你只是临时查某个 API，也可以直接跳到后面对应的专题。</p>
+<h2 id="二、推荐阅读顺序"><a href="#二、推荐阅读顺序" class="headerlink" title="二、推荐阅读顺序"></a>二、推荐阅读顺序</h2><h3 id="1-先把基础概念站稳"><a href="#1-先把基础概念站稳" class="headerlink" title="1. 先把基础概念站稳"></a>1. 先把基础概念站稳</h3><ol>
+<li><a href="/2023/01/08/2023-01-08/" title="矩阵和线性变换入门：先把点、向量和坐标系说清楚">矩阵、点、向量和坐标系：Unity 程序员怎么理解线性变换</a></li>
+<li><a href="/2023/01/22/2023-01-22/" title="二维旋转、缩放、错切：为什么矩阵能表示线性变换">旋转、缩放、错切与顺序：从二维线性变换开始理解矩阵</a></li>
+<li><a href="/2023/01/30/2023-01-30/" title="从 3x3 到 4x4：齐次坐标如何把平移装进矩阵">齐次坐标、3x3 到 4x4：为什么平移也能写进矩阵</a></li>
+</ol>
+<p>这一段解决的是“矩阵到底是什么”以及“为什么平移、旋转、缩放能被统一处理”。</p>
+<h3 id="2-再把-Unity-里的坐标空间串起来"><a href="#2-再把-Unity-里的坐标空间串起来" class="headerlink" title="2. 再把 Unity 里的坐标空间串起来"></a>2. 再把 Unity 里的坐标空间串起来</h3><ol start="4">
+<li><a href="/2023/02/14/2023-02-14/" title="Unity 里的局部坐标和世界坐标：Transform 背后的矩阵">local、world 和 parent-child：Unity Transform 背后的矩阵关系</a></li>
+<li><a href="/2023/02/26/2023-02-26/" title="TRS 的顺序为什么重要：Matrix4x4.TRS 在项目中的用法">Matrix4x4.TRS、顺序和程序化摆放：Unity 里怎么真正用矩阵</a></li>
+</ol>
+<p>这一段开始从纯概念切回 Unity 代码。看到这里，你基本就能把 <code>Transform</code>、父子层级和 <code>TRS</code> 这几个最常见落点串起来了。</p>
+<h3 id="3-接着补图形与渲染侧的空间意识"><a href="#3-接着补图形与渲染侧的空间意识" class="headerlink" title="3. 接着补图形与渲染侧的空间意识"></a>3. 接着补图形与渲染侧的空间意识</h3><ol start="6">
+<li><a href="/2023/03/12/2023-03-12/" title="Shader 里的 MVP：顶点从模型空间到裁剪空间经历了什么">Shader 里的 MVP：顶点从模型空间到裁剪空间经历了什么</a></li>
+<li><a href="/2023/03/26/2023-03-26/" title="非等比缩放为什么会搞坏法线：normal matrix 与渲染细节">非等比缩放为什么会搞坏法线：normal matrix 与渲染细节</a></li>
+</ol>
+<p>这一段不是为了让客户端程序员转图形程序员，而是为了把很多“知道名词但没连起来”的空间概念打通。</p>
+<h3 id="4-最后看最常落到业务和排查里的场景"><a href="#4-最后看最常落到业务和排查里的场景" class="headerlink" title="4. 最后看最常落到业务和排查里的场景"></a>4. 最后看最常落到业务和排查里的场景</h3><ol start="8">
+<li><a href="/2023/04/16/2023-04-16/" title="UI、屏幕、世界坐标来回转换：Unity 常见矩阵应用">UI、屏幕、世界坐标来回转换：Unity 常见矩阵应用</a></li>
+<li><a href="/2023/04/30/2023-04-30/" title="InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧">InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧</a></li>
+<li><a href="/2023/05/04/2023-05-04/" title="把矩阵知识真正用进项目：动画、相机、地块和程序化摆放">把矩阵知识真正用进项目：动画、相机、地块和程序化摆放</a></li>
+</ol>
+<p>这一段更偏工程实战。很多真正让人头疼的问题，不是考试题，而是“线上表现不对，但又说不清是哪层空间错了”。</p>
+<h2 id="三、如果你只关心某一类问题，可以这样跳读"><a href="#三、如果你只关心某一类问题，可以这样跳读" class="headerlink" title="三、如果你只关心某一类问题，可以这样跳读"></a>三、如果你只关心某一类问题，可以这样跳读</h2><p>如果你现在手里的问题比较明确，不一定非要从头顺着看。</p>
+<h3 id="1-挂点、父子节点、角色朝向"><a href="#1-挂点、父子节点、角色朝向" class="headerlink" title="1. 挂点、父子节点、角色朝向"></a>1. 挂点、父子节点、角色朝向</h3><p>优先看：</p>
+<ul>
+<li><a href="/2023/02/14/2023-02-14/" title="Unity 里的局部坐标和世界坐标：Transform 背后的矩阵">local、world 和 parent-child：Unity Transform 背后的矩阵关系</a></li>
+<li><a href="/2023/02/26/2023-02-26/" title="TRS 的顺序为什么重要：Matrix4x4.TRS 在项目中的用法">Matrix4x4.TRS、顺序和程序化摆放：Unity 里怎么真正用矩阵</a></li>
+<li><a href="/2023/05/04/2023-05-04/" title="把矩阵知识真正用进项目：动画、相机、地块和程序化摆放">把矩阵知识真正用进项目：动画、相机、地块和程序化摆放</a></li>
+</ul>
+<h3 id="2-UI-跟随、屏幕坐标、点击映射"><a href="#2-UI-跟随、屏幕坐标、点击映射" class="headerlink" title="2. UI 跟随、屏幕坐标、点击映射"></a>2. UI 跟随、屏幕坐标、点击映射</h3><p>优先看：</p>
+<ul>
+<li><a href="/2023/04/16/2023-04-16/" title="UI、屏幕、世界坐标来回转换：Unity 常见矩阵应用">UI、屏幕、世界坐标来回转换：Unity 常见矩阵应用</a></li>
+<li><a href="/2023/04/30/2023-04-30/" title="InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧">InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧</a></li>
+</ul>
+<h3 id="3-Shader、空间名、法线、光照异常"><a href="#3-Shader、空间名、法线、光照异常" class="headerlink" title="3. Shader、空间名、法线、光照异常"></a>3. Shader、空间名、法线、光照异常</h3><p>优先看：</p>
+<ul>
+<li><a href="/2023/03/12/2023-03-12/" title="Shader 里的 MVP：顶点从模型空间到裁剪空间经历了什么">Shader 里的 MVP：顶点从模型空间到裁剪空间经历了什么</a></li>
+<li><a href="/2023/03/26/2023-03-26/" title="非等比缩放为什么会搞坏法线：normal matrix 与渲染细节">非等比缩放为什么会搞坏法线：normal matrix 与渲染细节</a></li>
+</ul>
+<h3 id="4-棋盘、地块、程序化生成、批量摆放"><a href="#4-棋盘、地块、程序化生成、批量摆放" class="headerlink" title="4. 棋盘、地块、程序化生成、批量摆放"></a>4. 棋盘、地块、程序化生成、批量摆放</h3><p>优先看：</p>
+<ul>
+<li><a href="/2023/02/26/2023-02-26/" title="TRS 的顺序为什么重要：Matrix4x4.TRS 在项目中的用法">Matrix4x4.TRS、顺序和程序化摆放：Unity 里怎么真正用矩阵</a></li>
+<li><a href="/2023/04/30/2023-04-30/" title="InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧">InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧</a></li>
+<li><a href="/2023/05/04/2023-05-04/" title="把矩阵知识真正用进项目：动画、相机、地块和程序化摆放">把矩阵知识真正用进项目：动画、相机、地块和程序化摆放</a></li>
+</ul>
+<h2 id="四、这组文章我自己最想强调的，不是公式，而是“空间意识”"><a href="#四、这组文章我自己最想强调的，不是公式，而是“空间意识”" class="headerlink" title="四、这组文章我自己最想强调的，不是公式，而是“空间意识”"></a>四、这组文章我自己最想强调的，不是公式，而是“空间意识”</h2><p>我现在回头看，矩阵这块最值钱的不是手推公式本身，而是你会慢慢建立一种稳定的工程判断：</p>
+<ul>
+<li>这个值现在处于哪个空间</li>
+<li>这里应该传点，还是传方向</li>
+<li>这个偏移是叠加在局部空间还是世界空间</li>
+<li>这个 bug 更像是资源问题、逻辑问题，还是空间转换问题</li>
+</ul>
+<p>很多项目里的疑难杂症，最后都不是不会写 API，而是空间没讲清楚。</p>
+<h2 id="五、推荐一个更务实的学习方式"><a href="#五、推荐一个更务实的学习方式" class="headerlink" title="五、推荐一个更务实的学习方式"></a>五、推荐一个更务实的学习方式</h2><p>如果你是 Unity 客户端，不建议一开始就扑进长篇数学教材里。</p>
+<p>我更推荐这套顺序：</p>
+<ol>
+<li>先把这一组文章按需看完</li>
+<li>打开一个小场景，自己用 <code>Gizmos</code> 画几个点和方向</li>
+<li>手写几次 <code>TransformPoint</code>、<code>InverseTransformPoint</code>、<code>Matrix4x4.TRS</code></li>
+<li>再回到项目里找两个真实问题，对照空间去拆</li>
+</ol>
+<p>这样学得更慢一点，但会更扎实，也更接近真正能在项目里用出来的状态。</p>
+<h2 id="六、最后"><a href="#六、最后" class="headerlink" title="六、最后"></a>六、最后</h2><p>这一页先当作这组矩阵文章的导航入口。</p>
+<p>后面如果我继续把这个方向往下写，大概率会补几类内容：</p>
+<ul>
+<li>技能范围、碰撞盒、朝向判定怎么用矩阵思维统一</li>
+<li>编辑器工具里如何用矩阵减少中间节点和手工摆点</li>
+<li>二合、棋盘、SLG 地块这类系统里，空间抽象怎么提前设计得更稳</li>
+</ul>
+<p>如果你是从具体 bug 查进来的，希望这页能帮你少绕一点路。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/12/02/2017-12-02/" data-id="cmcw1g2rj000rz4z8alv96awl" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2023/05/28/2023-05-28/" data-id="cuidL4FhJkN2_FKYDOxRUgRpm" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li></ul>
 
     </footer>
   </div>
@@ -502,10 +1081,10 @@
 
 
   
-    <article id="post-2017-11-26" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2023-05-04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/26/2017-11-26/" class="article-date">
-  <time datetime="2017-11-26T00:43:28.000Z" itemprop="datePublished">2017-11-26</time>
+    <a href="/2023/05/04/2023-05-04/" class="article-date">
+  <time datetime="2023-05-04T14:00:01.000Z" itemprop="datePublished">2023-05-04</time>
 </a>
     
   </div>
@@ -516,7 +1095,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/26/2017-11-26/">UGUI sprite图九宫格设置和切割</a>
+      <a class="article-title" href="/2023/05/04/2023-05-04/">把矩阵知识真正用进项目：动画、相机、地块和程序化摆放</a>
     </h1>
   
 
@@ -524,23 +1103,135 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>很多时候美术给的背景图很小，需要程序进行放大（但要保持边角不模糊），这时候九宫格就有用了<del>~</del></p>
-<p>例如下图放大10倍，如果不用九宫格图会变得很模糊(你可以试下吧transform  的scale都设为10，效果太美。。。。。)</p>
-<p>不扯淡了，开搞</p>
-<p>一、九宫格<br>九宫格的主要目的是处理图片拉伸效果，我们知道图片一旦被拉伸，它就会出现形变、模糊等问题，但是，有的图片它的某一些部分又是允许被拉伸的。例如，一个UI背景框，它的中间部分几乎是一个纯色，允许被拉伸(纯色被拉伸不会发生质量问题)，但是，边缘的4个角可能有一些特殊花纹或者倒角不允许被任意拉伸，这个时候就可以使用九宫格，来使4个角不进行拉伸放大，只让中间部分进行拉伸放大，达到将一个小框拉大成一个大背景框，既节省了资源，又不会降低图片质量。<br>原理：</p>
-<p>把纹理用4条线分割成9部分（如上图），通过观察可以发现，5是最规则的形状（矩形），其次是2,6,8,4（矩形，但是和四个角有公共边），最后是四个角1,3,9,7（圆角矩形）<br>规则的图形在拉伸之后的效果是比较好的，如果是不规则的图形，则会在拉伸之后变形！</p>
-<p>根据上图做拉伸制定规则：<br>（1）保证四个角1,3,9,7不做任何拉伸<br>（2）与四个角有公共边的四个矩形2,6,8,4做单向拉伸，即保证与四个角的公共边不拉伸，例如2,8只进行横向拉伸，4,6只进行纵向拉伸<br>（3）中间部分5做双向拉伸，即横向，纵向同时拉伸<br>unity 中设置九宫格：<br>1.选中图片，在Inspector面板里将Texture Type改为Sprite，点击Sprite Editor按钮，通过拖动绿色的点来设置九宫格大小。<br>2.将Image组件的Image Type改为Sliced。</p>
-<p>二：图片切割<br>图片切割使用场景有：1.美术将多张图打包到同一张图里，例如UI都放在一张图里。2.做类型地砖的时候，美术给的图是9x9的大图，程序的单元格却是1x1的，这时候就需要把图片切成九张大小一样图片并在程序中拼接成一张大图。3.UGUI要做帧动画时。<br>unity 中设置：<br>1.选中图片，在Inspector面板里将Texture Type改为Sprite或Advance。<br>2.图片模式sprite修改为multiple模式。<br>3.进入图片编辑器，点击左上角的Slice按钮，其中的Type有三种，第一种时自动的，就是不切割。<br>第二种是按单元格切割 就是每个单元格大小一样，如图：</p>
-<p>通过对单元格的name的命名规则，我们可以再程序中拼接出整张大图，例如切成三行三列的图，可以命名为行数_列数或者行数*总的列数+当前列数，<br>取值的时候通过便利行和列就可以取到并拼接成正张图。<br>第三种，按行或列的count切割，适用于美术的小的ui或者帧动画，如图</p>
-<p>4.每个切割的小图可以单独设置九宫格进行拉伸。<br>5.使用的时候需要将image的imageType设置成Slice</p>
+        <p>这一串文章从线性变换基础，一路讲到了 TRS、MVP、法线、UI 坐标和排查技巧。</p>
+<p>写到这里，我自己其实更在意的已经不是“把概念讲全”，而是这些东西到底能不能变成你项目里真实可复用的判断和工具。</p>
+<p>最后这篇不再补新公式，而是收拢成一个问题：</p>
+<p>矩阵知识在 Unity 项目里，究竟值不值得花时间学？</p>
+<p>我的结论很明确：值。</p>
+<p>不是因为你要天天手写矩阵，而是因为一旦项目开始稍微复杂一点，矩阵思维会直接决定你排错和搭系统的效率。</p>
+<h2 id="一、动画挂点和骨骼跟随，本质上就是一串局部坐标系"><a href="#一、动画挂点和骨骼跟随，本质上就是一串局部坐标系" class="headerlink" title="一、动画挂点和骨骼跟随，本质上就是一串局部坐标系"></a>一、动画挂点和骨骼跟随，本质上就是一串局部坐标系</h2><p>比如这些常见需求：</p>
+<ul>
+<li>武器挂在手骨上</li>
+<li>枪口火焰跟着动画走</li>
+<li>技能特效绑定某个骨骼节点</li>
+<li>受击飘字挂在角色头顶偏上的位置</li>
+</ul>
+<p>它们不是“每帧手工修位置”，而是在使用层级矩阵关系。</p>
+<p>你越理解局部空间、世界空间、父子矩阵连乘，越不容易在这些地方写出越修越乱的逻辑。</p>
+<p>例如一个很常见的做法，是先在骨骼或挂点本地定义偏移，再统一转到世界：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vector3 localOffset = <span class="keyword">new</span> Vector3(<span class="number">0.1f</span>, <span class="number">0.25f</span>, <span class="number">0.2f</span>);</span><br><span class="line">Vector3 worldPos = handBone.TransformPoint(localOffset);</span><br><span class="line"></span><br><span class="line">fxInstance.position = worldPos;</span><br><span class="line">fxInstance.rotation = handBone.rotation;</span><br></pre></td></tr></table></figure>
+
+<p>这种写法的好处，是美术和程序都能围绕“挂点局部空间”说同一种语言，不容易一边在调骨骼、一边在调世界偏移，把逻辑越叠越乱。</p>
+<h2 id="二、相机系统为什么离不开矩阵思维"><a href="#二、相机系统为什么离不开矩阵思维" class="headerlink" title="二、相机系统为什么离不开矩阵思维"></a>二、相机系统为什么离不开矩阵思维</h2><p>相机跟随、锁定、边界限制、取景框预测、屏幕映射，这些系统表面上像“相机逻辑”，本质上都和空间变换有关。</p>
+<p>例如：</p>
+<ul>
+<li>一个物体是否还在屏幕内</li>
+<li>一个目标点投到屏幕后在什么位置</li>
+<li>一条世界方向在相机视角下是左偏还是右偏</li>
+</ul>
+<p>这些都不是纯 if-else 能搞定的，背后一定绕不过坐标空间转换。</p>
+<h2 id="三、地块系统、棋盘系统、阵列摆放特别适合矩阵思维"><a href="#三、地块系统、棋盘系统、阵列摆放特别适合矩阵思维" class="headerlink" title="三、地块系统、棋盘系统、阵列摆放特别适合矩阵思维"></a>三、地块系统、棋盘系统、阵列摆放特别适合矩阵思维</h2><p>如果你做的是：</p>
+<ul>
+<li>棋盘格</li>
+<li>二合游戏棋盘</li>
+<li>城建地块</li>
+<li>路径点阵列</li>
+<li>程序化关卡块摆放</li>
+</ul>
+<p>那么“先在局部定义模板，再用 TRS 批量映射到世界”通常是一种非常稳的写法。</p>
+<p>它的好处是：</p>
+<ol>
+<li>逻辑规则在局部空间里表达更清楚</li>
+<li>整体移动、旋转、缩放时不需要重写规则</li>
+<li>批量点位生成更容易维护</li>
+</ol>
+<h2 id="四、为什么二合、塔防、SLG-这类项目里尤其常用"><a href="#四、为什么二合、塔防、SLG-这类项目里尤其常用" class="headerlink" title="四、为什么二合、塔防、SLG 这类项目里尤其常用"></a>四、为什么二合、塔防、SLG 这类项目里尤其常用</h2><p>这些项目经常要处理：</p>
+<ul>
+<li>成片格子或槽位</li>
+<li>大量挂点和反馈层</li>
+<li>UI 与 3D 信息叠加</li>
+<li>目标区域预览</li>
+<li>技能范围与角色朝向联动</li>
+</ul>
+<p>看起来是业务逻辑，实际都离不开空间变换。</p>
+<p>所以学矩阵在这类项目里不是边缘知识，而是底层通用能力。</p>
+<h2 id="五、程序化摆放是最容易立刻见收益的地方"><a href="#五、程序化摆放是最容易立刻见收益的地方" class="headerlink" title="五、程序化摆放是最容易立刻见收益的地方"></a>五、程序化摆放是最容易立刻见收益的地方</h2><p>如果你已经会 <code>Matrix4x4.TRS</code>，很多摆放逻辑会写得很干净。</p>
+<p>例如：</p>
+<ul>
+<li>在角色前方按固定间距铺 10 个点</li>
+<li>沿某个局部平面生成技能预警区域</li>
+<li>根据朝向生成一组扇形采样点</li>
+<li>用本地模板快速复制建筑装饰布局</li>
+</ul>
+<p>这些都比“到处手写 position + forward * n + right * m”更稳。</p>
+<p>比如一个地块或阵列生成器，完全可以先把模板点定义在局部空间里：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Vector3[] pattern =</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">new</span> Vector3(<span class="number">0f</span>, <span class="number">0f</span>, <span class="number">0f</span>),</span><br><span class="line">	<span class="keyword">new</span> Vector3(<span class="number">1f</span>, <span class="number">0f</span>, <span class="number">0f</span>),</span><br><span class="line">	<span class="keyword">new</span> Vector3(<span class="number">0f</span>, <span class="number">0f</span>, <span class="number">1f</span>),</span><br><span class="line">	<span class="keyword">new</span> Vector3(<span class="number">1f</span>, <span class="number">0f</span>, <span class="number">1f</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Matrix4x4 trs = Matrix4x4.TRS(root.position, root.rotation, root.lossyScale);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (Vector3 localPoint <span class="keyword">in</span> pattern)</span><br><span class="line">&#123;</span><br><span class="line">	Vector3 worldPoint = trs.MultiplyPoint3x4(localPoint);</span><br><span class="line">	SpawnTile(worldPoint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这类代码最直接的收益，就是模板逻辑和场景摆放逻辑分开了，后面不管是做旋转关卡块、镜像布局还是复用预制方案，改动都更小。</p>
+<h2 id="六、UI-跟随和屏幕提示系统也会直接受益"><a href="#六、UI-跟随和屏幕提示系统也会直接受益" class="headerlink" title="六、UI 跟随和屏幕提示系统也会直接受益"></a>六、UI 跟随和屏幕提示系统也会直接受益</h2><p>很多项目后期都会长出一堆跟随类 UI：</p>
+<ul>
+<li>血条</li>
+<li>选中框</li>
+<li>指向箭头</li>
+<li>任务提示</li>
+<li>伤害飘字</li>
+</ul>
+<p>如果团队对坐标空间没有统一认知，这类系统会很容易反复返工。</p>
+<p>但只要你能稳定地区分：</p>
+<ul>
+<li>世界点</li>
+<li>屏幕点</li>
+<li>Canvas 本地点</li>
+</ul>
+<p>整体实现会顺很多。</p>
+<h2 id="七、矩阵知识能帮你避开的，不只是“不会写”，而是“误判问题归因”"><a href="#七、矩阵知识能帮你避开的，不只是“不会写”，而是“误判问题归因”" class="headerlink" title="七、矩阵知识能帮你避开的，不只是“不会写”，而是“误判问题归因”"></a>七、矩阵知识能帮你避开的，不只是“不会写”，而是“误判问题归因”</h2><p>工程里更贵的不是不会写，而是把问题看错。</p>
+<p>例如：</p>
+<ul>
+<li>你以为是动画错，其实是挂点空间错</li>
+<li>你以为是特效资源错，其实是方向向量变换错</li>
+<li>你以为是 UI 偏移没调好，其实是相机空间理解错</li>
+<li>你以为是 Shader 光照问题，其实是非等比缩放下法线错</li>
+</ul>
+<p>矩阵知识最大的价值之一，就是帮你缩小错误排查范围。</p>
+<h2 id="八、什么时候值得自己手写矩阵，什么时候不值得"><a href="#八、什么时候值得自己手写矩阵，什么时候不值得" class="headerlink" title="八、什么时候值得自己手写矩阵，什么时候不值得"></a>八、什么时候值得自己手写矩阵，什么时候不值得</h2><p>这件事也要讲清楚。</p>
+<p>值得自己显式用矩阵的情况：</p>
+<ul>
+<li>批量点位生成</li>
+<li>自定义网格或顶点处理</li>
+<li>编辑器工具</li>
+<li>特殊空间变换链</li>
+<li>要避免创建大量中间 Transform 节点</li>
+</ul>
+<p>不值得强行上矩阵的情况：</p>
+<ul>
+<li>普通挂点跟随</li>
+<li>常规父子层级</li>
+<li>Unity 已经提供稳定封装的标准用法</li>
+</ul>
+<p>也就是说，学矩阵不是为了炫技，而是为了在该抽象的时候抽象，不该抽象的时候不乱抽。</p>
+<h2 id="九、给-Unity-程序员的一个务实学习顺序"><a href="#九、给-Unity-程序员的一个务实学习顺序" class="headerlink" title="九、给 Unity 程序员的一个务实学习顺序"></a>九、给 Unity 程序员的一个务实学习顺序</h2><p>如果你想真正把这块学会，我建议按这个顺序来：</p>
+<ol>
+<li>点、向量、坐标系</li>
+<li>旋转、缩放、平移和顺序意识</li>
+<li>局部&#x2F;世界空间转换</li>
+<li><code>Matrix4x4.TRS</code> 和 <code>MultiplyPoint</code></li>
+<li>MVP 与屏幕投影</li>
+<li>法线和非等比缩放</li>
+<li>用 Gizmos 和调试工具把这些概念可视化</li>
+</ol>
+<p>不要一开始就啃最重的公式推导。</p>
+<p>先把 Unity 里的实际落点吃透，进步会更快。</p>
+<h2 id="十、总结"><a href="#十、总结" class="headerlink" title="十、总结"></a>十、总结</h2><p>矩阵在 Unity 里不是“只给图形程序员看的知识”。</p>
+<p>只要你做的是实际项目，尤其是有层级、挂点、相机、UI 跟随、程序化摆放、范围计算这些内容，矩阵思维迟早都会变成你的生产力工具。</p>
+<p>这也是为什么我觉得，Unity 客户端工程师把矩阵和线性变换学扎实，是一笔回报很高的投资。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/11/26/2017-11-26/" data-id="cmcw1g2rh000oz4z829n5d1w6" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2023/05/04/2023-05-04/" data-id="cuidadsjAbrTNW32b4GiNfNNv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E6%88%98/" rel="tag">实战</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li></ul>
 
     </footer>
   </div>
@@ -549,10 +1240,10 @@
 
 
   
-    <article id="post-2017-11-25" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2023-04-30" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/25/2017-11-25/" class="article-date">
-  <time datetime="2017-11-25T00:43:23.000Z" itemprop="datePublished">2017-11-25</time>
+    <a href="/2023/04/30/2023-04-30/" class="article-date">
+  <time datetime="2023-04-30T14:00:01.000Z" itemprop="datePublished">2023-04-30</time>
 </a>
     
   </div>
@@ -563,7 +1254,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/2017-11-25/">Unity后台计时器不运行问题</a>
+      <a class="article-title" href="/2023/04/30/2023-04-30/">InverseTransformPoint、MultiplyPoint 和 Gizmos：矩阵排查技巧</a>
     </h1>
   
 
@@ -571,20 +1262,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>问题：最近在做一个倒计时的功能，发现倒计时在程序切换到后台是会停止计时，发现unity 安卓后台运行时，计时器不在运行，再次切回App时从切到后台的时间点计时，例如切到后台时位10，后台切回app还是从10开始</p>
-<p>，原因是unity在安卓后台环境下，Update和协程不会执行。<br>解决：<br>1.在Update和协程中，计算计时器的时间用当前的Time.realtimeSinceStartup减去上一次计时的Time.realtimeSinceStartup，而不是直接减去固定数值，例如减去1<br>2.使用unity自带的方法void OnApplicationFocus(bool hasFocus)，该方法会在App进入后台和进入程序的时候调用，当进入程序时hasFocus = true,否则hasFocus=false;(参考Start()方法)</p>
-<p>3.使用unity自带的方法</p>
-<p>void OnApplicationPause(bool pauseStatus)<br>该方法会在App暂停和停止暂停的时候调用，当暂停时pauseStatus= true,否则pauseStatus=false;</p>
-<p>OnApplicationFocus is called when the application loses or gains focus. Alt-tabbing or Cmd-tabbing can take focus away from the Unity application to another desktop application. This causes the GameObjects to receive an OnApplicationFocus call with the argument set to false. When the user switches back to the Unity application, the GameObjects receive an OnApplicationFocus call with the argument set to true.<br>hasFocus True if the GameObjects have focus, else False.</p>
-<p>代码如下：只需要监听OnApplicationEnterFocus和OnApplicationQuitFocus事件即可，FocusContinueTime为进入后台的总时间，计算倒计时时只要减掉这个数就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">public static float FocusContinueTime</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return focusContinueTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static float PauseContinueTime</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return pauseContinueTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        #endregion</span><br><span class="line"></span><br><span class="line">        private static float preFocusTime &#x3D; 0;</span><br><span class="line">        private static float prePauseTime &#x3D; 0;</span><br><span class="line">        private static float focusContinueTime &#x3D; 0;</span><br><span class="line">        private static float pauseContinueTime &#x3D; 0;</span><br><span class="line"></span><br><span class="line">        void Awake()</span><br><span class="line">        &#123;</span><br><span class="line">            this.gameObject.name &#x3D; &quot;ApplicationEvent&quot;;</span><br><span class="line">            prePauseTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">            preFocusTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">            DontDestroyOnLoad(this);</span><br><span class="line">        &#125;</span><br><span class="line">        public void Init()</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        public void Release()</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        void OnApplicationFocus(bool hasFocus)</span><br><span class="line">        &#123;</span><br><span class="line">            if (hasFocus)</span><br><span class="line">            &#123;</span><br><span class="line">                focusContinueTime &#x3D; Time.realtimeSinceStartup - preFocusTime;</span><br><span class="line">                if (OnApplicationEnterFocus !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationEnterFocus(); </span><br><span class="line">                &#125;                         </span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;                </span><br><span class="line">                preFocusTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">                if (OnApplicationQuitFocus !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationQuitFocus();</span><br><span class="line">                &#125;     </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void OnApplicationPause(bool pauseStatus)</span><br><span class="line">        &#123;</span><br><span class="line">            if (pauseStatus)</span><br><span class="line">            &#123;</span><br><span class="line">                prePauseTime &#x3D; Time.realtimeSinceStartup;</span><br><span class="line">                if (OnApplicationEnterPause !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationEnterPause();</span><br><span class="line">                &#125;   </span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                pauseContinueTime &#x3D; Time.realtimeSinceStartup - prePauseTime;</span><br><span class="line">                if (OnApplicationQuitPause !&#x3D; null)</span><br><span class="line">                &#123;</span><br><span class="line">                    OnApplicationQuitPause();</span><br><span class="line">                &#125;                                          </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+        <p>矩阵真正让人头疼的，通常不是学习阶段，而是线上排查阶段。</p>
+<p>我自己现在碰这类问题，第一反应已经不是“这个 API 会不会有坑”，而是先想办法把空间关系画出来。因为只要能画出来，问题大概率就已经解决一半了。</p>
+<p>因为大多数矩阵问题表面上都不像矩阵问题：</p>
+<ul>
+<li>特效位置歪一点</li>
+<li>UI 跟随差半个身位</li>
+<li>子弹方向总偏一点</li>
+<li>Gizmo 画出来和实际碰撞范围不一致</li>
+</ul>
+<p>这篇就不再讲太多理论，专门讲怎么查。</p>
+<h2 id="一、先建立一个原则：不要直接猜“哪个-API-有-bug”"><a href="#一、先建立一个原则：不要直接猜“哪个-API-有-bug”" class="headerlink" title="一、先建立一个原则：不要直接猜“哪个 API 有 bug”"></a>一、先建立一个原则：不要直接猜“哪个 API 有 bug”</h2><p>多数坐标错位问题，根本原因通常只有几类：</p>
+<ol>
+<li>局部空间和世界空间搞混</li>
+<li>把点当向量，或者把向量当点</li>
+<li>父节点缩放或旋转污染了结果</li>
+<li>自定义偏移是在错误空间里叠加的</li>
+</ol>
+<p>所以排查时最重要的不是换 API，而是把当前数据所属空间说清楚。</p>
+<h2 id="二、InverseTransformPoint-是定位“世界点为什么不对”的神器"><a href="#二、InverseTransformPoint-是定位“世界点为什么不对”的神器" class="headerlink" title="二、InverseTransformPoint 是定位“世界点为什么不对”的神器"></a>二、<code>InverseTransformPoint</code> 是定位“世界点为什么不对”的神器</h2><p>例如你有一个世界命中点，想知道它相对某个角色是在左边还是右边、前面还是后面。</p>
+<p>最稳的做法往往不是自己点乘算，而是先转回角色局部空间：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vector3 local = transform.InverseTransformPoint(worldPos);</span><br></pre></td></tr></table></figure>
+
+<p>这样：</p>
+<ul>
+<li><code>local.x &gt; 0</code> 说明在右边</li>
+<li><code>local.z &gt; 0</code> 说明在前方</li>
+</ul>
+<p>很多看起来复杂的世界判断，回到局部空间后反而会简单很多。</p>
+<h2 id="三、MultiplyPoint-和-MultiplyVector-一定要配合语义去选"><a href="#三、MultiplyPoint-和-MultiplyVector-一定要配合语义去选" class="headerlink" title="三、MultiplyPoint 和 MultiplyVector 一定要配合语义去选"></a>三、<code>MultiplyPoint</code> 和 <code>MultiplyVector</code> 一定要配合语义去选</h2><p>这件事前面讲过几次，但在排查时尤其重要。</p>
+<p>你要确认自己现在处理的是：</p>
+<ul>
+<li>一个位置点</li>
+<li>一个方向向量</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vector3 p = matrix.MultiplyPoint(localPoint);</span><br><span class="line">Vector3 d = matrix.MultiplyVector(localDir);</span><br></pre></td></tr></table></figure>
+
+<p>一旦这里选错，后面所有数值都可能“看起来只差一点”，但永远调不正。</p>
+<h2 id="四、Gizmos-是把抽象矩阵可视化的最好朋友"><a href="#四、Gizmos-是把抽象矩阵可视化的最好朋友" class="headerlink" title="四、Gizmos 是把抽象矩阵可视化的最好朋友"></a>四、Gizmos 是把抽象矩阵可视化的最好朋友</h2><p>很多问题打印日志没感觉，但 Scene 视图一画就清楚了。</p>
+<p>例如你可以画：</p>
+<ul>
+<li>物体局部原点</li>
+<li>局部 x&#x2F;y&#x2F;z 三轴方向</li>
+<li>经过矩阵变换后的点位</li>
+<li>目标区域包围盒</li>
+</ul>
+<p>只要图能画出来，空间错位问题通常会快很多暴露。</p>
+<p>例如你完全可以给自己准备一个最小的调试函数，专门把局部点集映射到世界里画出来：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DrawPoints</span>(<span class="params">Matrix4x4 matrix, Vector3[] localPoints, Color color</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	Gizmos.color = color;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">foreach</span> (Vector3 localPoint <span class="keyword">in</span> localPoints)</span><br><span class="line">	&#123;</span><br><span class="line">		Vector3 worldPoint = matrix.MultiplyPoint3x4(localPoint);</span><br><span class="line">		Gizmos.DrawSphere(worldPoint, <span class="number">0.05f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这类工具平时像是“多写了点辅助代码”，但一到技能范围、刷怪区域、碰撞盒和棋盘调试阶段，收益会非常直接。</p>
+<h2 id="五、一个特别实用的调试模式：同时画“局部版本”和“世界版本”"><a href="#五、一个特别实用的调试模式：同时画“局部版本”和“世界版本”" class="headerlink" title="五、一个特别实用的调试模式：同时画“局部版本”和“世界版本”"></a>五、一个特别实用的调试模式：同时画“局部版本”和“世界版本”</h2><p>比如你在做扇形攻击范围。</p>
+<p>不要只画最终世界扇形。</p>
+<p>更好的做法是：</p>
+<ol>
+<li>先在局部空间定义扇形点</li>
+<li>把局部点画出来</li>
+<li>再乘矩阵得到世界点并画出来</li>
+</ol>
+<p>这样如果最后结果歪了，你能立刻判断问题出在：</p>
+<ul>
+<li>局部定义阶段</li>
+<li>矩阵变换阶段</li>
+<li>世界叠加阶段</li>
+</ul>
+<h2 id="六、排查父子层级问题时，一定要把父节点也拉进日志"><a href="#六、排查父子层级问题时，一定要把父节点也拉进日志" class="headerlink" title="六、排查父子层级问题时，一定要把父节点也拉进日志"></a>六、排查父子层级问题时，一定要把父节点也拉进日志</h2><p>很多人只打印出错物体自己的位置和旋转。</p>
+<p>但真正的污染源常常在父节点：</p>
+<ul>
+<li>父节点转了</li>
+<li>父节点非等比缩放</li>
+<li>父节点挂在另一个移动平台下面</li>
+</ul>
+<p>所以排查时建议一起看：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Debug.Log(transform.localPosition);</span><br><span class="line">Debug.Log(transform.position);</span><br><span class="line">Debug.Log(transform.parent ? transform.parent.localToWorldMatrix : Matrix4x4.identity);</span><br><span class="line">Debug.Log(transform.localToWorldMatrix);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、一个很高频的业务例子：技能指示器为什么总偏半步"><a href="#七、一个很高频的业务例子：技能指示器为什么总偏半步" class="headerlink" title="七、一个很高频的业务例子：技能指示器为什么总偏半步"></a>七、一个很高频的业务例子：技能指示器为什么总偏半步</h2><p>这种问题常见于：</p>
+<ul>
+<li>指示器是在角色局部前方定义的</li>
+<li>但你最后拿世界前方向量又叠了一遍偏移</li>
+</ul>
+<p>也就是同一段变换被重复做了两次。</p>
+<p>这种 bug 非常容易出现在“先 <code>TransformPoint</code>，后面又自己加 <code>forward * offset</code>”的代码里。</p>
+<h2 id="八、用局部空间做判断，通常比直接在世界空间硬算稳"><a href="#八、用局部空间做判断，通常比直接在世界空间硬算稳" class="headerlink" title="八、用局部空间做判断，通常比直接在世界空间硬算稳"></a>八、用局部空间做判断，通常比直接在世界空间硬算稳</h2><p>比如扇形检测、矩形攻击框、前后左右判定、小地图相对位置，很多时候：</p>
+<p>先把目标点逆变换回局部空间，再做几何判断，会比直接在世界空间里绕角度和投影稳得多。</p>
+<p>因为局部空间里很多问题会退化成：</p>
+<ul>
+<li>看符号</li>
+<li>看范围</li>
+<li>看距离</li>
+</ul>
+<p>逻辑简单很多。</p>
+<h2 id="九、给自己准备几个长期可复用的小工具"><a href="#九、给自己准备几个长期可复用的小工具" class="headerlink" title="九、给自己准备几个长期可复用的小工具"></a>九、给自己准备几个长期可复用的小工具</h2><p>我很建议在项目里长期保留一些调试工具：</p>
+<ol>
+<li>绘制局部坐标轴的小组件</li>
+<li>把世界点转局部点并显示文本的工具</li>
+<li>绘制矩阵变换后点集的 Gizmo 帮助函数</li>
+<li>临时打印 <code>localToWorldMatrix</code> 和 <code>worldToLocalMatrix</code> 的工具方法</li>
+</ol>
+<p>这些工具平时看起来没存在感，但一到线上疑难坐标问题，会非常值。</p>
+<h2 id="十、总结"><a href="#十、总结" class="headerlink" title="十、总结"></a>十、总结</h2><p>矩阵问题最怕“纯脑补排查”。</p>
+<p>把空间说清楚、把点和向量分清楚、把 Gizmos 画出来，通常比你盯着数值猜半天有效得多。</p>
+<p>下一篇我会把这整个系列收回到更贴近项目的一层：动画、相机、地块、程序化摆放这些场景，矩阵知识到底怎么真正转化成工程收益。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://droidman.net/2017/11/25/2017-11-25/" data-id="cmcw1g2rg000mz4z876qjhe1a" class="article-share-link">Share</a>
+      <a data-url="http://droidman.net/2023/04/30/2023-04-30/" data-id="cuidpd0ZZAO3Pxww4WeBkg-h3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li></ul>
 
     </footer>
   </div>
@@ -597,7 +1384,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -611,7 +1398,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Particle-System/" rel="tag">Particle System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assetbundle/" rel="tag">Assetbundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bingo/" rel="tag">Bingo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cash-Club/" rel="tag">Cash Club</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code-Review/" rel="tag">Code Review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matrix4x4/" rel="tag">Matrix4x4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Particle-System/" rel="tag">Particle System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Profiler/" rel="tag">Profiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDK/" rel="tag">SDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot/" rel="tag">Slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" rel="tag">Slot, 老虎机，游戏研究</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transform/" rel="tag">Transform</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-C/" rel="tag">Unity, C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" rel="tag">Unity, UI框架, UGUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity%EF%BC%8CAssetBundle/" rel="tag">Unity，AssetBundle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/" rel="tag">game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gameframework/" rel="tag">gameframework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http-server/" rel="tag">http.server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keyboard/" rel="tag">keyboard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" rel="tag">slot, 老虎机, slot game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity/" rel="tag">unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unity-python/" rel="tag">unity python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xLua/" rel="tag">xLua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xlua-lua-framework/" rel="tag">xlua, lua, framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" rel="tag">二合游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" rel="tag">任务系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" rel="tag">低端机适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" rel="tag">出海项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" rel="tag">前后端协作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E7%94%BB/" rel="tag">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97/" rel="tag">励志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" rel="tag">反作弊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" rel="tag">商店系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" rel="tag">回归测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%88%98/" rel="tag">实战</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" rel="tag">对象池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag">工作流</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" rel="tag">工具链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag">工程化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" rel="tag">工程流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag">工程设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" rel="tag">开发效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" rel="tag">弱联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" rel="tag">成就系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" rel="tag">支付系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" rel="tag">数值设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" rel="tag">数学模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" rel="tag">数据埋点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" rel="tag">新手引导</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" rel="tag">框架设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%95%E7%BA%BF/" rel="tag">法线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" rel="tag">活动系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" rel="tag">测试清单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" rel="tag">游戏设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">热更新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" rel="tag">物理引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" rel="tag">特效优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="tag">玩法设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" rel="tag">研发复盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" rel="tag">系列导航</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" rel="tag">经济设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" rel="tag">编辑器工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" rel="tag">网络同步</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" rel="tag">调试工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" rel="tag">资源打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" rel="tag">资源规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" rel="tag">运营框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" rel="tag">运营系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" rel="tag">配置系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" rel="tag">配置表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%87%8D%E6%9E%84/" rel="tag">重构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -621,7 +1408,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/C/" style="font-size: 15.71px;">C#</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Particle-System/" style="font-size: 10px;">Particle System</a> <a href="/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/UGUI/" style="font-size: 11.43px;">UGUI</a> <a href="/tags/Unity/" style="font-size: 18.57px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 12.86px;">mysql</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 17.14px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xlua-lua-framework/" style="font-size: 11.43px;">xlua, lua, framework</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.43px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 11.43px;">面试</a>
+      <a href="/tags/AI/" style="font-size: 18.46px;">AI</a> <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/AssetBundle/" style="font-size: 10px;">AssetBundle</a> <a href="/tags/Assetbundle/" style="font-size: 10px;">Assetbundle</a> <a href="/tags/Bingo/" style="font-size: 10px;">Bingo</a> <a href="/tags/C/" style="font-size: 13.08px;">C#</a> <a href="/tags/Cash-Club/" style="font-size: 10.77px;">Cash Club</a> <a href="/tags/Code-Review/" style="font-size: 10px;">Code Review</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 12.31px;">Java</a> <a href="/tags/Lua/" style="font-size: 15.38px;">Lua</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Matrix4x4/" style="font-size: 10px;">Matrix4x4</a> <a href="/tags/Particle-System/" style="font-size: 10px;">Particle System</a> <a href="/tags/Profiler/" style="font-size: 10px;">Profiler</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SDK/" style="font-size: 10px;">SDK</a> <a href="/tags/Shader/" style="font-size: 11.54px;">Shader</a> <a href="/tags/Slot/" style="font-size: 16.92px;">Slot</a> <a href="/tags/Slot-%E8%80%81%E8%99%8E%E6%9C%BA%EF%BC%8C%E6%B8%B8%E6%88%8F%E7%A0%94%E7%A9%B6/" style="font-size: 10px;">Slot, 老虎机，游戏研究</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Transform/" style="font-size: 10px;">Transform</a> <a href="/tags/UGUI/" style="font-size: 11.54px;">UGUI</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/Unity-C/" style="font-size: 10px;">Unity, C#</a> <a href="/tags/Unity-UI%E6%A1%86%E6%9E%B6-UGUI/" style="font-size: 10px;">Unity, UI框架, UGUI</a> <a href="/tags/Unity%EF%BC%8CAssetBundle/" style="font-size: 10px;">Unity，AssetBundle</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/game/" style="font-size: 10.77px;">game</a> <a href="/tags/gameframework/" style="font-size: 10px;">gameframework</a> <a href="/tags/http-server/" style="font-size: 10px;">http.server</a> <a href="/tags/keyboard/" style="font-size: 10px;">keyboard</a> <a href="/tags/mysql/" style="font-size: 11.54px;">mysql</a> <a href="/tags/python/" style="font-size: 11.54px;">python</a> <a href="/tags/slot-%E8%80%81%E8%99%8E%E6%9C%BA-slot-game/" style="font-size: 10px;">slot, 老虎机, slot game</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/unity/" style="font-size: 16.15px;">unity</a> <a href="/tags/unity-python/" style="font-size: 10px;">unity python</a> <a href="/tags/xLua/" style="font-size: 11.54px;">xLua</a> <a href="/tags/xlua-lua-framework/" style="font-size: 10.77px;">xlua, lua, framework</a> <a href="/tags/%E4%BA%8C%E5%90%88%E6%B8%B8%E6%88%8F/" style="font-size: 17.69px;">二合游戏</a> <a href="/tags/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">任务系统</a> <a href="/tags/%E4%BD%8E%E7%AB%AF%E6%9C%BA%E9%80%82%E9%85%8D/" style="font-size: 10px;">低端机适配</a> <a href="/tags/%E5%87%BA%E6%B5%B7%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">出海项目</a> <a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8D%8F%E4%BD%9C/" style="font-size: 10px;">前后端协作</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 10px;">励志</a> <a href="/tags/%E5%8F%8D%E4%BD%9C%E5%BC%8A/" style="font-size: 10px;">反作弊</a> <a href="/tags/%E5%95%86%E5%BA%97%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">商店系统</a> <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">回归测试</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10px;">图形学</a> <a href="/tags/%E5%AE%9E%E6%88%98/" style="font-size: 10px;">实战</a> <a href="/tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" style="font-size: 10px;">对象池</a> <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">导航</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 10.77px;">小游戏</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="font-size: 10px;">工作流</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/" style="font-size: 13.85px;">工具链</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 10px;">工程化</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">工程流程</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">工程设计</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 10px;">并发</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 10px;">开发效率</a> <a href="/tags/%E5%BC%B1%E8%81%94%E7%BD%91/" style="font-size: 10.77px;">弱联网</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 14.62px;">性能优化</a> <a href="/tags/%E6%88%90%E5%B0%B1%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">成就系统</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%94%AF%E4%BB%98/" style="font-size: 10px;">支付</a> <a href="/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">支付系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">数值设计</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">数学模型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/" style="font-size: 10.77px;">数据埋点</a> <a href="/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/" style="font-size: 10px;">新手引导</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 12.31px;">架构设计</a> <a href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">框架设计</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%95%E7%BA%BF/" style="font-size: 10px;">法线</a> <a href="/tags/%E6%B4%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F/" style="font-size: 10.77px;">活动系统</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95/" style="font-size: 10px;">测试清单</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10.77px;">游戏开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">游戏设计</a> <a href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">热更新</a> <a href="/tags/%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E/" style="font-size: 10px;">物理引擎</a> <a href="/tags/%E7%89%B9%E6%95%88%E4%BC%98%E5%8C%96/" style="font-size: 10px;">特效优化</a> <a href="/tags/%E7%8E%A9%E6%B3%95%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">玩法设计</a> <a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 16.15px;">矩阵</a> <a href="/tags/%E7%A0%94%E5%8F%91%E5%A4%8D%E7%9B%98/" style="font-size: 10px;">研发复盘</a> <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10.77px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E5%AF%BC%E8%88%AA/" style="font-size: 10px;">系列导航</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10.77px;">系统设计</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 10.77px;">线性代数</a> <a href="/tags/%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">经济设计</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7/" style="font-size: 11.54px;">编辑器工具</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/" style="font-size: 10px;">网络同步</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10.77px;">自动化测试</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 19.23px;">设计模式</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">读书笔记</a> <a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 10px;">调试</a> <a href="/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">调试工具</a> <a href="/tags/%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85/" style="font-size: 10px;">资源打包</a> <a href="/tags/%E8%B5%84%E6%BA%90%E8%A7%84%E8%8C%83/" style="font-size: 10px;">资源规范</a> <a href="/tags/%E8%BF%90%E8%90%A5%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">运营框架</a> <a href="/tags/%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">运营系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" style="font-size: 11.54px;">配置系统</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E8%A1%A8/" style="font-size: 10px;">配置表</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 10px;">重构</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10.77px;">面试</a>
     </div>
   </div>
 
@@ -630,7 +1417,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">January 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -643,23 +1430,23 @@
       <ul>
         
           <li>
-            <a href="/2025/07/13/2025-07-13/">简单的服务器搭建</a>
+            <a href="/2026/06/28/2026-06-28/">这半年我把二合开发和 Unity + AI 踩坑都写下来了，这里给你一份导航</a>
           </li>
         
           <li>
-            <a href="/2025/07/11/2025-07-11/">框架之日志管理系统</a>
+            <a href="/2026/06/19/2026-06-19/">让 AI 先帮你列 Code Review 清单，比每次拍脑袋看提交靠谱多了</a>
           </li>
         
           <li>
-            <a href="/2025/07/10/2025-07-12/">unity 一键打包</a>
+            <a href="/2026/06/13/2026-06-13/">编辑器批处理脚本总是又长又烦？这类活真的很适合先让 AI 打个底</a>
           </li>
         
           <li>
-            <a href="/2025/07/10/2025-07-10/">Unity UI框架总结</a>
+            <a href="/2026/05/30/2026-05-30/">埋点设计最怕事后补锅，AI 倒是很适合先帮你把埋点草图铺出来</a>
           </li>
         
           <li>
-            <a href="/2025/07/09/2025-07-09/">Unity 打android 包报错总结</a>
+            <a href="/2026/05/01/2026-05-01/">打包前总怕漏资源？AI 很适合先帮你做那层资源发布前检查</a>
           </li>
         
       </ul>
@@ -674,7 +1461,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 OuyangWenyuan<br>
+      &copy; 2026 OuyangWenyuan<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
